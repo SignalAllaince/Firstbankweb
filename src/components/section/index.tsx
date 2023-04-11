@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils/component.utils";
+
 function Section({
   children,
   className,
@@ -5,9 +7,8 @@ function Section({
   children: React.ReactNode;
   className: string;
 }) {
-  const classNames = ["max-w-[1100px] mx-auto w-full px-5", className]
-    .join(" ")
-    .trim();
+  const classNames = cn("max-w-[1100px] mx-auto w-full px-5", className);
+
   return <div className={classNames}>{children}</div>;
 }
 
