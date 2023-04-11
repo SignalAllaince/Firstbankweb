@@ -3,3 +3,11 @@
 dist
 node_modules
 public
+prettier.config.js
+.prettierrc
+next-env.d.ts
+next.config.js
+package-lock.json 
+README.md 
+package.json
+tsconfig.json

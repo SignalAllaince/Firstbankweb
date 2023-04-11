@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/component.utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
@@ -71,11 +72,9 @@ function Button({
   rightIcon,
   variant,
   size,
-  className,
+  className = "",
 }: ButtonProps) {
-  const classNames = [buttonClasses({ variant, size }), className]
-    .join(" ")
-    .trim();
+  const classNames = cn(buttonClasses({ variant, size }), className);
   return (
     <button className={classNames}>
       {leftIcon && leftIcon}

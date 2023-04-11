@@ -1,9 +1,6 @@
+import { cn } from "@/lib/utils/component.utils";
 import Image from "next/image";
 import { useState } from "react";
-
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 type ImageProps = {
   id: number;
