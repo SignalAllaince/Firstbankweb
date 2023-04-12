@@ -1,21 +1,12 @@
+import { DrawerProps } from "@/types/component.types";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 
-function Drawer({
-  isOpen,
-  setClose,
-  title,
-  children,
-}: {
-  isOpen: boolean;
-  setClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}) {
+function Drawer({ isOpen, setDrawer, title, children }: DrawerProps) {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setClose}>
+      <Dialog as="div" className="relative z-10" onClose={setDrawer}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -52,7 +43,7 @@ function Drawer({
                             <button
                               type="button"
                               className="-m-2 rounded-full p-1 text-gray-400 hover:text-gray-500"
-                              onClick={setClose}
+                              onClick={setDrawer}
                             >
                               <span className="sr-only">Close panel</span>
                               <XMarkIcon
