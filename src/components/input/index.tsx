@@ -1,5 +1,8 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import { InputWrapperProps } from "@/types/component.types";
 import { VariantProps, cva } from "class-variance-authority";
+import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import InputWrapper from "./input-wrapper";
+export type Ref = HTMLInputElement;
 
 const inputClasses = cva(
   [
@@ -45,7 +48,12 @@ export interface InputProps
     >,
     VariantProps<typeof inputClasses> {}
 
-const Input = ({ className, variant, inputSize, ...props }: InputProps) => {
+export const Input = ({
+  className,
+  variant,
+  inputSize,
+  ...props
+}: InputProps) => {
   return (
     <input
       className={inputClasses({ variant, inputSize, className })}
@@ -54,4 +62,52 @@ const Input = ({ className, variant, inputSize, ...props }: InputProps) => {
   );
 };
 
-export default Input;
+const CustomInput = React.forwardRef<Ref, InputProps & InputWrapperProps>(
+  (
+    {
+      value,
+      onChange,
+      name,
+      type,
+      onBlur,
+      placeholder,
+      isDisabled,
+      className,
+      variant,
+      inputSize,
+      ...others
+    },
+    ref
+  ) => {
+    const [show, setShow] = React.useState(false);
+    const handleClick = () => setShow(!show);
+    return (
+      <InputWrapper
+        type={type}
+        isDisabled={isDisabled}
+        name={name}
+        isShown={show}
+        handleClick={handleClick}
+        {...others}
+      >
+        <input
+          name={name}
+          type={type !== "password" ? type : show ? "text" : "password"}
+          onChange={onChange}
+          value={value}
+          id={name}
+          ref={ref}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          className={inputClasses({ variant, inputSize, className })}
+          min={others.min}
+          max={others.max}
+        />
+      </InputWrapper>
+    );
+  }
+);
+
+CustomInput.displayName = "CustomInput";
+
+export default CustomInput;
