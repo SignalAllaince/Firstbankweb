@@ -1,6 +1,6 @@
+import { CustomMethod, SecureRequestProps } from "@/types/api.types";
 import axios from "axios";
 import { getSession } from "next-auth/react";
-import { SecureRequestProps } from "types/action";
 
 export const secureRequest = async ({
   url,
@@ -9,25 +9,23 @@ export const secureRequest = async ({
   headers: requestHeader,
 }: SecureRequestProps) => {
   const session = await getSession();
-  const token = session?.accessToken;
-
+  //   const token = session?.accessToken;
+  const token = session;
+  const givenMethod = method.toLocaleLowerCase() as CustomMethod;
   const creathorHeader = {
     Authorization: `Bearer ${token}`,
   };
 
   const headers = { ...creathorHeader, ...requestHeader };
 
-  if (
-    method.toLocaleLowerCase() === "get" ||
-    method.toLocaleLowerCase() === "delete"
-  ) {
+  if (givenMethod === "get" || givenMethod === "delete") {
     //dont include body in GET request request will fail
-    return axios[method](url, {
+    return axios[givenMethod](url, {
       params: {
         ...body,
       },
       headers,
     });
   }
-  return axios[method](url, body, { headers });
+  return axios[givenMethod](url, body, { headers });
 };
