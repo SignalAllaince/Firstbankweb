@@ -1,11 +1,12 @@
 import CustomSwitch from "@/components/switch";
+import useNotification from "@/hooks/use-notification";
 import { Inter } from "next/font/google";
-import { useToasts } from "react-toast-notifications";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { addToast } = useToasts();
+  const { toast } = useNotification();
+
   return (
     <main className={`${inter.className} flex  flex-col items-center`}>
       <div className="space-y-4">
@@ -16,19 +17,18 @@ export default function Home() {
         <button
           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-2 font-sans text-sm font-medium text-white shadow-sm hover:bg-indigo-700"
           onClick={() =>
-            addToast(
-              <div className="space-y-0 py-1">
-                <h1 className="text-md font-mono font-bold">John</h1>
-                <p className="text-[13px]">Goes to school</p>
-              </div>,
-              {
-                appearance: "error",
-              }
-            )
+            toast({
+              appearance: "success",
+              // title: "John",
+              description:
+                " Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sitenim iste, optio qui consequuntur omnis quod possimus",
+            })
           }
         >
           Add Toast
         </button>
+        blanditiis dolore veniam similique nostrum praesentium, nam corrupti
+        ipsam aliquam!
         <CustomSwitch />
       </div>
     </main>

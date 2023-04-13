@@ -1,8 +1,8 @@
 import { ENDPOINTS } from "@/lib/constants";
 import { secureRequest } from "@/lib/utils/api.utils";
 import { FirstBankResponseType, ResponseErrorType } from "@/types/api.types";
-// import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
+import useNotification from "./use-notification";
 
 const getMutationAction = (mutationData: any) => {
   const { endpoint, method, headers, isCreathorsApi = true } = mutationData;
@@ -34,18 +34,7 @@ function useCustomMutation<
   } = getMutationAction({
     ...mutationData,
   });
-
-  //   const toast = useToast({
-  //     position: "top-right",
-  //     variant: "left-accent",
-  //     duration: 5000,
-  //     isClosable: true,
-  //     containerStyle: {
-  //       maxWidth: "350px",
-  //       fontSize: "0.9rem",
-  //       textTransform: "capitalize",
-  //     },
-  //   });
+  const { toast } = useNotification();
 
   const mutatationResult = useMutation<
     FirstBankResponseType<P>,
@@ -54,24 +43,24 @@ function useCustomMutation<
   >(mutationFn, {
     mutationKey: endpoint,
 
-    onError: (_err) => {
+    onError: (err) => {
       if (showFailureToast) {
-        // toast({
-        //   title: `Request Failed`,
-        //   description: `${err.response?.data?.message}`,
-        //   status: "error",
-        // });
+        toast({
+          title: `Request Failed`,
+          description: `${err.response?.data?.message}`,
+          appearance: "error",
+        });
       }
       mutatationResult.reset();
     },
     onSettled: (res, err) => {
       if (err) mutatationResult.reset();
       if (!err && showSuccessToast) {
-        // toast({
-        //   title: `Request Successful`,
-        //   description: `${res.data.message}`,
-        //   status: "success",
-        // });
+        toast({
+          title: `Request Successful`,
+          description: `${res?.data?.message}`,
+          appearance: "success",
+        });
       }
       return;
     },

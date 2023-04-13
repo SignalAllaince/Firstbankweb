@@ -1,32 +1,34 @@
-// import { useToast } from '@chakra-ui/react';
+import React from "react";
+import { AppearanceTypes, useToasts } from "react-toast-notifications";
 
-// function useNotification() {
-//   const toast = useToast({
-//     position: 'top-right',
-//     variant: 'left-accent',
-//     duration: 5000,
-//     isClosable: true,
-//     containerStyle: {
-//       maxWidth: '400px',
-//     },
-//   });
+function useNotification() {
+  const { addToast } = useToasts();
 
-//   const reqFailed = () => {
-//     toast({
-//       title: `Request Failed`,
-//       description: 'Email or password incorrect',
-//       status: 'error',
-//     });
-//   };
+  const toast = React.useCallback(
+    ({
+      title,
+      description,
+      appearance,
+    }: {
+      title?: string;
+      description: string;
+      appearance: AppearanceTypes;
+    }) => {
+      addToast(
+        <div className="space-y-0 py-1">
+          {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
+          <p className="text-[13px]">{description}</p>
+        </div>,
+        {
+          appearance,
+        }
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
-//   const reqSuccess = () => {
-//     toast({
-//       title: `Request Successful`,
-//       description: 'Login Successfully',
-//       status: 'success',
-//     });
-//   };
-//   return { reqFailed, reqSuccess };
-// }
+  return { toast };
+}
 
-// export default useNotification;
+export default useNotification;
