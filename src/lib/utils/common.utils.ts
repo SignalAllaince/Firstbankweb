@@ -37,16 +37,16 @@ export class Timer {
     this.callback = callback;
   }
 
-  pause() {
+  pause = () => {
     if (this.timerId) {
       window.clearTimeout(this.timerId);
       this.timerId = null;
       this.remaining -= Date.now() - this.start;
       // console.log(this.remaining, "remains");
     }
-  }
+  };
 
-  play() {
+  play = () => {
     if (this.timerId) {
       return;
     }
@@ -54,5 +54,48 @@ export class Timer {
     this.start = Date.now();
     // console.log(this.start);
     this.timerId = window.setTimeout(this.callback, this.remaining);
-  }
+  };
 }
+
+export class Clock {
+  private timer: any = null;
+
+  constructor(public template: string) {
+    this.template = template;
+  }
+  render = () => {
+    let date = new Date();
+
+    let hours = String(date.getHours());
+    if (+hours < 10) hours = "0" + hours;
+
+    let mins = String(date.getMinutes());
+    if (+mins < 10) mins = "0" + mins;
+
+    let secs = String(date.getSeconds());
+    if (+secs < 10) secs = "0" + secs;
+
+    let output = this.template
+      .replace("h", hours)
+      .replace("m", mins)
+      .replace("s", secs);
+
+    console.log(output);
+  };
+
+  stop = () => {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  };
+
+  start = () => {
+    if (!this.timer) {
+      this.render();
+      this.timer = setInterval(this.render, 1000);
+    }
+  };
+}
+
+// let clock = new Clock('h:m:s');
+// clock.start();
