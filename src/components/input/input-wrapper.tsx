@@ -27,24 +27,17 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
       }`}
     >
       {label && (
-        <label
-          className=" text-left text-sm capitalize"
-          htmlFor={name}
-          // bg={hasError ? "red.100" : "white.100"}
-        >
+        <label className="mb-10 text-left text-sm capitalize" htmlFor={name}>
           {label}
         </label>
       )}
       <div
-        className={`flex h-11 items-center overflow-hidden rounded-none ${bgColor}`}
+        className={`flex h-12 items-center overflow-hidden rounded-none ${bgColor} ${
+          label ? "mt-2" : ""
+        }`}
         // pr={props.pr || 0}
         // transition="all 0.25s linear"
         // bg={hasError ? "red.100" : "white"}
-        // _hover={{
-        //   borderColor: `${
-        //     hasError ? "#brand.1800" : props.isDisabled ? "" : "gray.400"
-        //   }`,
-        // }}
         // _focusWithin={{
         //   bg: bgColor,
         //   shadow: "none",

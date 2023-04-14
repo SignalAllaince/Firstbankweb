@@ -6,19 +6,19 @@ export type Ref = HTMLInputElement;
 
 const inputClasses = cva(
   [
-    "rounded-md",
-    "focus:ring-[2px]",
+    "bg-transparent",
+    "focus:ring-0",
     "transition",
     "font-light",
     "duration-200",
     "ease-in-out",
+    "px-4",
     "outline-none",
     "w-full",
-    "border",
-    "ring-blue-500",
-    "border-gray-300",
-    "hover:border-gray-400",
-    "placeholder:text-slate-600",
+    "text-sm",
+    "border-0",
+    "text-brand-darkest",
+    "placeholder:text-brand-medium",
   ],
   {
     variants: {
@@ -27,10 +27,10 @@ const inputClasses = cva(
         secondary: ["bg-gray-100", "text-slate-900"],
       },
       inputSize: {
-        xs: ["h-6", "text-xs", "px-2", "py-0"],
-        sm: ["h-8", "text-sm", "px-2", "py-2"],
-        md: ["h-10", "text-md", "px-2", "py-2"],
-        lg: ["h-12", "text-lg", "px-2", "py-2"],
+        xs: ["h-6", "text-xs", "py-0"],
+        sm: ["h-8", "text-sm", "py-2"],
+        md: ["h-10", "text-md", "py-2"],
+        lg: ["h-12", "text-lg", "py-2"],
       },
     },
     defaultVariants: {
@@ -56,7 +56,7 @@ const CustomInput = React.forwardRef<
     {
       value,
       onChange,
-      name,
+      name = "",
       type = "text",
       onBlur,
       placeholder,

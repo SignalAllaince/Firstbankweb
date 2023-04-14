@@ -4,6 +4,7 @@ import React from "react";
 import logoImg from "../../../public/images/logo-blue.svg";
 import Footer from "../footer";
 import Heading from "../heading";
+import CustomInput from "../input";
 
 const section = {
   personal: {
@@ -46,7 +47,16 @@ function AuthLayout({
                 </p>
               </div>
 
-              <div className="pb-4 pt-8">{children}</div>
+              <div className="pb-4 pt-8">
+                <div>
+                  <CustomInput
+                    name="jdjd"
+                    label="Branch sol ID"
+                    value="4783IEDH2893"
+                  />
+                </div>
+                {children}
+              </div>
               <div className="flex justify-center">
                 <Link href="" className="text-sm underline underline-offset-4">
                   {section[authType]?.linkText}
