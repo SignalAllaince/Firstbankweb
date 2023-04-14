@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import Footer from "@/components/footer";
 import CustomSwitch from "@/components/switch";
 import useNotification from "@/hooks/use-notification";
 import { Inter } from "next/font/google";
@@ -31,6 +32,7 @@ export default function Home() {
         <Button className="box-border">Salah</Button>
         <CustomSwitch />
       </div>
+      <Footer />
     </main>
   );
 }
