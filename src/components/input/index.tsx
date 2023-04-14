@@ -4,7 +4,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import InputWrapper from "./input-wrapper";
 export type Ref = HTMLInputElement;
-// 7:34 => 65%
+
 const inputClasses = cva(
   [
     "focus:ring-0",

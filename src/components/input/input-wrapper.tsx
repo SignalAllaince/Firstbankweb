@@ -22,7 +22,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
 
   return (
     <div
-      className={`relative text-brand-darkest ${
+      className={`relative w-full text-brand-darkest ${
         props.isDisabled ? "opacity-90" : "opacity-100"
       }`}
     >

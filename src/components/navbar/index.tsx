@@ -19,36 +19,44 @@ function Navbar() {
         <div className="flex w-[100px] items-center">
           <Image src={logoImg} alt="first bank logo" />
         </div>
-        <div className="flex items-center space-x-7">
-          <div className="flex">
-            <CustomInput
-              name="search"
-              placeholder="Search"
-              className="w-[400px]"
-            />
+        <div className="flex items-center space-x-10">
+          <div className="flex w-[400px]">
+            <CustomInput name="search" placeholder="Search" />
             <Button className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent">
               <Icon IconComp={MagnifyingGlassIcon} className="text-white" />
             </Button>
           </div>
-          <Button variant="secondary" size="small" className="border-0 px-1">
+          <Button
+            variant="secondary"
+            size="small"
+            className="border-0 px-[4px]"
+          >
             Help
             <Icon IconComp={ChevronDownIcon} className="text-inherit" />
           </Button>
-          <Button variant="secondary" size="small" className="border-0 px-1">
+          <Button
+            variant="secondary"
+            size="small"
+            className="border-0 px-[4px]"
+          >
             WishList
             <Icon IconComp={HeartIcon} className="text-inherit" />
           </Button>
           <Button
             variant="secondary"
             size="small"
-            className="relative border-0 px-1"
+            className="relative border-0 px-[4px]"
           >
             <Icon IconComp={ShoppingCartIcon} className="text-inherit" />
             <div className="absolute left-4 top-1 rounded bg-brand-darkest p-1 py-0 text-xs text-white">
               3
             </div>
           </Button>
-          <Button variant="secondary" size="small" className="border-0 px-1">
+          <Button
+            variant="secondary"
+            size="small"
+            className="border-0 px-[4px]"
+          >
             <Icon IconComp={UserCircleIcon} className="text-inherit" />
           </Button>
         </div>
