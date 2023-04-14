@@ -14,6 +14,7 @@ const buttonClasses = cva(
     "justify-center",
     "cursor-pointer",
     "gap-2",
+    // outline
     "focus:ring-2 focus:ring-blue-500 focus:outline-none",
     "outline-none",
     "leading-6",

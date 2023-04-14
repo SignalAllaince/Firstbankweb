@@ -1,12 +1,9 @@
 import AppLayout from "@/components/app-layout";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <AppLayout>
-      <p>lol</p>
+      <div className="grid grid-cols-3 gap-6 gap-y-20 py-20 lg:grid-cols-4"></div>
     </AppLayout>
   );
 }
