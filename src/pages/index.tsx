@@ -1,3 +1,4 @@
+import Heading from "@/components/heading";
 import CustomSwitch from "@/components/switch";
 import useNotification from "@/hooks/use-notification";
 import { Inter } from "next/font/google";
@@ -27,6 +28,7 @@ export default function Home() {
         >
           Add Toast
         </button>
+        <Heading as="h3">John</Heading>
         blanditiis dolore veniam similique nostrum praesentium, nam corrupti
         ipsam aliquam!
         <CustomSwitch />
