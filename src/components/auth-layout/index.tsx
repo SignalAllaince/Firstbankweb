@@ -4,7 +4,6 @@ import React from "react";
 import logoImg from "../../../public/images/logo-blue.svg";
 import Footer from "../footer";
 import Heading from "../heading";
-import CustomInput from "../input";
 
 const section = {
   personal: {
@@ -28,16 +27,16 @@ function AuthLayout({
 }) {
   return (
     <div className=" flex min-h-screen flex-col">
-      <div className="custom-bg flex flex-1 items-center justify-center py-5">
-        <div className="flex w-full max-w-xl flex-col items-center space-y-4">
-          <div className="max-w-[250px]">
+      <div className="custom-bg flex flex-1 items-center justify-center py-10">
+        <div className="flex w-full max-w-xl flex-1 flex-col items-center space-y-4">
+          <div className="max-w-[180px]">
             <Image src={logoImg} alt="first bank logo" />
           </div>
           <Heading className="text-white" size="h3" as="h3">
             Brandshop
           </Heading>
           <div className="w-full bg-white py-8 text-brand-darkest">
-            <div className="mx-auto w-full lg:max-w-md lg:px-0">
+            <div className="mx-auto w-full px-4 sm:px-8 md:px-8 lg:max-w-md lg:px-0">
               <div className="space-y-1">
                 <Heading size="h4" as="h4">
                   {section[authType]?.header}
@@ -47,16 +46,8 @@ function AuthLayout({
                 </p>
               </div>
 
-              <div className="pb-4 pt-8">
-                <div>
-                  <CustomInput
-                    name="jdjd"
-                    label="Branch sol ID"
-                    value="4783IEDH2893"
-                  />
-                </div>
-                {children}
-              </div>
+              <div className="flex-1 pb-4 pt-8">{children}</div>
+
               <div className="flex justify-center">
                 <Link href="" className="text-sm underline underline-offset-4">
                   {section[authType]?.linkText}

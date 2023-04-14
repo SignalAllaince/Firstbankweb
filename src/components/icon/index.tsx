@@ -16,7 +16,7 @@ export type IconProps = BoxProps & {
 
 const Icon: React.FC<IconProps> = (props) => {
   const { boxSize = 5, IconComp, className = "", ...others } = props;
-  const classNames = cn(`h-[${boxSize}] w-[${boxSize}]`, className);
+  const classNames = cn(`h-${boxSize} w-${boxSize}`, className);
 
   //   @ts-expect-error
   return <IconComp className={classNames} {...others} />;

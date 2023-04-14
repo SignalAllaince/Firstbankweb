@@ -3,18 +3,18 @@ import Button from "@/components/button";
 import CustomInput from "@/components/input";
 import { FormEvent } from "react";
 
-function PersonalLogin() {
+function BranchLogin() {
   const loginHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(e);
   };
   return (
-    <AuthLayout authType="personal">
+    <AuthLayout authType="branch">
       <form className="gap-7" onSubmit={loginHandler}>
         <div className="space-y-4">
           <CustomInput
             name="jdjd"
-            label="Staff Number"
+            label="Branch sol ID"
             autoComplete="off"
             placeholder="4783IEDH2893"
             className="bg-black"
@@ -39,4 +39,4 @@ function PersonalLogin() {
   );
 }
 
-export default PersonalLogin;
+export default BranchLogin;

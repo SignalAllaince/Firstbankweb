@@ -67,11 +67,15 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         )}
         {/* password type switcher use to toggle password fields */}
         {type === "password" && !isLoading && (
-          <Button onClick={handleClick}>
+          <Button
+            variant="secondary"
+            className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent"
+            onClick={handleClick}
+          >
             {isShown ? (
-              <Icon IconComp={EyeSlashIcon} className="text-gray-500" />
+              <Icon IconComp={EyeSlashIcon} className="text-brand-darkest" />
             ) : (
-              <Icon IconComp={EyeIcon} className="text-gray-500" />
+              <Icon IconComp={EyeIcon} className="text-brand-darkest" />
             )}
           </Button>
         )}

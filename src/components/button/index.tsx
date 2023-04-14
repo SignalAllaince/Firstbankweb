@@ -2,7 +2,6 @@ import { VariantProps, cva } from "class-variance-authority";
 import { Inter } from "next/font/google";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-import { cn } from "@/lib/utils/component.utils";
 const inter = Inter({ subsets: ["latin"], weight: ["500"] });
 
 const buttonClasses = cva(
@@ -15,7 +14,7 @@ const buttonClasses = cva(
     "justify-center",
     "cursor-pointer",
     "gap-3",
-    "focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none",
+    "focus:ring-2 focus:ring-blue-500 focus:outline-none",
     "outline-none",
     "leading-6",
     "transition-all",
@@ -83,9 +82,9 @@ function Button({
   className = "",
   ...others
 }: ButtonProps) {
-  const classNames = cn(buttonClasses({ variant, size }), className);
+  const classNames = buttonClasses({ variant, size, className });
   return (
-    <button className={classNames} {...others}>
+    <button type="button" className={classNames} {...others}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}

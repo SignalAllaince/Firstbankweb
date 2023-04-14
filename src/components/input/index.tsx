@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/component.utils";
 import { InputWrapperProps } from "@/types/component.types";
 import { VariantProps, cva } from "class-variance-authority";
 import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
@@ -6,7 +7,6 @@ export type Ref = HTMLInputElement;
 
 const inputClasses = cva(
   [
-    "bg-transparent",
     "focus:ring-0",
     "transition",
     "font-light",
@@ -61,7 +61,7 @@ const CustomInput = React.forwardRef<
       onBlur,
       placeholder,
       isDisabled,
-      className,
+      className = "",
       variant,
       inputSize,
       ...others
@@ -88,7 +88,7 @@ const CustomInput = React.forwardRef<
           ref={ref}
           onBlur={onBlur}
           placeholder={placeholder}
-          className={inputClasses({ variant, inputSize, className })}
+          className={cn(className, inputClasses({ variant, inputSize }))}
           min={others.min}
           max={others.max}
         />
