@@ -9,12 +9,12 @@ const section = {
   personal: {
     header: "Staff/Personal Login",
     linkText: "Login with Branch profile",
-    linkHref: "",
+    linkHref: "/login/branch",
   },
   branch: {
     header: "Branch Login",
     linkText: "Login with Staff/Personal profile",
-    linkHref: "",
+    linkHref: "/login",
   },
 };
 
@@ -49,7 +49,10 @@ function AuthLayout({
               <div className="flex-1 pb-4 pt-8">{children}</div>
 
               <div className="flex justify-center">
-                <Link href="" className="text-sm underline underline-offset-4">
+                <Link
+                  href={section[authType]?.linkHref}
+                  className="text-sm underline underline-offset-4"
+                >
                   {section[authType]?.linkText}
                 </Link>
               </div>
