@@ -1,7 +1,8 @@
+import { IconType } from "@/components/icon";
 import { ProtectedComponentType } from "@/types/service.types";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
-import React from "react";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 
 export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
   P,
@@ -14,6 +15,11 @@ export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
 export interface AppPropsWithAuth extends AppProps {
   Component: NextPageWithLayout & ProtectedComponentType;
 }
+// Box props
+export type BoxProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
 
 export interface DrawerProps {
   isOpen: boolean;
@@ -37,7 +43,7 @@ export interface IInputOption {
 
 export type InputWrapperProps = {
   // inputIcon?: IconType;
-  inputIcon?: React.ReactNode;
+  inputIcon?: IconType;
   name: string;
   label?: string;
   isLoading?: boolean;

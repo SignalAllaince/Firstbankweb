@@ -1,11 +1,7 @@
 import { cn } from "@/lib/utils/component.utils";
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { BoxProps } from "@/types/component.types";
 
-function Section({
-  children,
-  className = "",
-  ...props
-}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
+function Section({ children, className = "", ...props }: BoxProps) {
   const classNames = cn("max-w-[1100px] mx-auto w-full px-5", className);
 
   return (

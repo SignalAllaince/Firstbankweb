@@ -48,27 +48,16 @@ export interface InputProps
     >,
     VariantProps<typeof inputClasses> {}
 
-export const Input = ({
-  className,
-  variant,
-  inputSize,
-  ...props
-}: InputProps) => {
-  return (
-    <input
-      className={inputClasses({ variant, inputSize, className })}
-      {...props}
-    />
-  );
-};
-
-const CustomInput = React.forwardRef<Ref, InputProps & InputWrapperProps>(
+const CustomInput = React.forwardRef<
+  Ref,
+  InputProps & Omit<InputWrapperProps, "type">
+>(
   (
     {
       value,
       onChange,
       name,
-      type,
+      type = "text",
       onBlur,
       placeholder,
       isDisabled,
