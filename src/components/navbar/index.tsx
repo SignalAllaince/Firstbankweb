@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <div className="w-full bg-white py-4">
       <Section className="item-center flex justify-between ">
-        <div className="w-[120px]">
+        <div className="flex w-[100px] items-center">
           <Image src={logoImg} alt="first bank logo" />
         </div>
         <div className="flex items-center space-x-7">

@@ -7,7 +7,7 @@ import Section from "../section";
 function Footer() {
   return (
     <div className="w-full bg-brand-darkest py-7 text-xs text-white">
-      <Section className="flex max-w-[1200px] flex-col items-center justify-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <Section className="flex  flex-col items-center justify-start gap-4 sm:flex-row sm:items-end sm:justify-between">
         <p>© 2023. First Bank of Nigeria Ltd. An FBNHoldings Company.</p>
         <div className="space-y-6">
           <div className="flex gap-4">

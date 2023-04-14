@@ -1,15 +1,12 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import AppLayout from "@/components/app-layout";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={`${inter.className} flex  flex-col items-center`}>
-      <Navbar />
-
-      <Footer />
-    </main>
+    <AppLayout>
+      <p>lol</p>
+    </AppLayout>
   );
 }
