@@ -4,7 +4,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils/component.utils";
 
-const inter = Inter({ subsets: ["latin"], weight: ["600"] });
+const inter = Inter({ subsets: ["latin"], weight: ["500"] });
 
 const headerClasses = cva(["font-bold", "text-brand-darkest"], {
   variants: {
