@@ -1,49 +1,56 @@
 import { VariantProps, cva } from "class-variance-authority";
+import { Inter } from "next/font/google";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 import { cn } from "@/lib/utils/component.utils";
+const inter = Inter({ subsets: ["latin"], weight: ["500"] });
 
 const buttonClasses = cva(
   [
+    inter.className,
     "font-semibold",
-    "rounded-md",
+    "rounded-none",
     "flex",
     "items-center",
+    "justify-center",
     "cursor-pointer",
     "gap-3",
-    "focus:ring",
+    "focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none",
     "outline-none",
-    "active:ring",
+    "leading-6",
     "transition-all",
     "duration-200",
+    "disabled:cursor-not-allowed",
+    "disabled:opacity-80",
   ],
   {
     variants: {
       variant: {
         primary: [
-          "bg-gradient-to-r from-[#4C32F2] via-[#4C32F2] to-[#9F00BE]",
           "text-white",
+          "bg-brand-primary",
           "border-transparent",
-          "hover:bg-blue-600",
+          "hover:bg-brand-blue",
+          "disabled:bg-brand-grey-bg",
+          "disabled:text-brand-grey-text",
         ],
-        // **or**
-        // primary: "bg-blue-500 text-white border-transparent hover:bg-blue-600",
-        secondary: ["bg-transparent", "text-[#22005D]", "hover:bg-gray-100"],
+        secondary: [
+          "bg-transparent",
+          "border",
+          "border-brand-blue",
+          "text-brand-blue",
+          "focus:border-brand-lightblue",
+          "focus:text-brand-lightblue",
+          "focus:ring-0",
+          "disabled:border-[#E4E4EE]",
+          "disabled:text-[#E4E4EE]",
+        ],
       },
       size: {
-        small: ["text-sm", "py-1", "px-2"],
-        medium: ["text-[12px]", "py-3", "px-4"],
+        small: ["text-[13px]", "h-10", "px-5"],
+        medium: ["text-[15px]", "h-12", "px-8"],
       },
     },
-    compoundVariants: [
-      {
-        variant: "primary",
-        size: "medium",
-        class: "capitalize",
-        // **or** if you're a React.js user, `className` may feel more consistent:
-        // className: "uppercase"
-      },
-    ],
     defaultVariants: {
       variant: "primary",
       size: "medium",
@@ -57,8 +64,8 @@ export interface ButtonProps
       HTMLButtonElement
     >,
     VariantProps<typeof buttonClasses> {
-  leftIcon: React.ReactNode;
-  rightIcon: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 // button();
@@ -74,10 +81,11 @@ function Button({
   variant,
   size,
   className = "",
+  ...others
 }: ButtonProps) {
   const classNames = cn(buttonClasses({ variant, size }), className);
   return (
-    <button className={classNames}>
+    <button className={classNames} {...others}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}
