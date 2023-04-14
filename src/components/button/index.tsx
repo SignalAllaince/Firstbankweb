@@ -13,7 +13,7 @@ const buttonClasses = cva(
     "items-center",
     "justify-center",
     "cursor-pointer",
-    "gap-3",
+    "gap-2",
     "focus:ring-2 focus:ring-blue-500 focus:outline-none",
     "outline-none",
     "leading-6",
@@ -27,9 +27,10 @@ const buttonClasses = cva(
       variant: {
         primary: [
           "text-white",
-          "bg-brand-primary",
+          "bg-brand-blue",
           "border-transparent",
-          "hover:bg-brand-blue",
+          "hover:bg-brand-primary",
+          "focus:bg-brand-primary",
           "disabled:bg-brand-grey-bg",
           "disabled:text-brand-grey-text",
         ],
@@ -47,7 +48,7 @@ const buttonClasses = cva(
       },
       size: {
         small: ["text-[13px]", "h-10", "px-5"],
-        medium: ["text-[15px]", "h-12", "px-8"],
+        medium: ["text-[15px]", "h-11", "px-8"],
       },
     },
     defaultVariants: {

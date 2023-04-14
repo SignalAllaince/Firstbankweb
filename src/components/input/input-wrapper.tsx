@@ -32,7 +32,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         </label>
       )}
       <div
-        className={`flex h-12 items-center overflow-hidden rounded-none ${bgColor} ${
+        className={`flex h-11 items-center overflow-hidden rounded-none ${bgColor} ${
           label ? "mt-2" : ""
         }`}
         // pr={props.pr || 0}
