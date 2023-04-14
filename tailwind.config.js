@@ -15,6 +15,20 @@ module.exports = {
       gridTemplateRows: {
         "[auto,auto,1fr]": "auto auto 1fr",
       },
+      colors: {
+        brand: {
+          blue: "#003B65",
+          accent: "#f0bd2d",
+          darkest: "#142633",
+          dark: "#506473",
+          medium: "#879AAB",
+          light: "#DAE8F2",
+          lightest: "#F5F8FA",
+          700: "#977669",
+          800: "#846358",
+          900: "#43302b",
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
