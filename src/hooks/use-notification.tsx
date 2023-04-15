@@ -1,9 +1,28 @@
-import React from "react";
-import { AppearanceTypes, useToasts } from "react-toast-notifications";
+import Icon from "@/components/icon";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  closeSnackbar,
+  enqueueSnackbar,
+  SnackbarKey,
+  VariantType,
+} from "notistack";
+import React, { ReactNode } from "react";
 
 function useNotification() {
-  const { addToast } = useToasts();
-
+  const action = React.useCallback(
+    (snackbarId: SnackbarKey): ReactNode => (
+      <>
+        <button
+          onClick={() => {
+            closeSnackbar(snackbarId);
+          }}
+        >
+          <Icon IconComp={XMarkIcon} boxSize={4} />
+        </button>
+      </>
+    ),
+    []
+  );
   const toast = React.useCallback(
     ({
       title,
@@ -12,15 +31,16 @@ function useNotification() {
     }: {
       title?: string;
       description: string;
-      appearance: AppearanceTypes;
+      appearance: VariantType;
     }) => {
-      addToast(
-        <div className="space-y-0 py-1">
+      enqueueSnackbar(
+        <div className="space-y-0 p-1">
           {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
-          <p className="text-[13px]">{description}</p>
+          <p className="text-[12px]">{description}</p>
         </div>,
         {
-          appearance,
+          variant: appearance,
+          action,
         }
       );
     },

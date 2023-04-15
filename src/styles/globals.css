@@ -27,3 +27,14 @@
   background-size: cover;
   background-position: 100% 35%;
 }
+
+.toast-container {
+  max-width: 400px;
+  position: relative;
+}
+
+.go703367398 {
+  position: absolute;
+  top: 5px;
+  right: 14px;
+}
