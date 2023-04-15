@@ -46,6 +46,12 @@ const buttonClasses = cva(
           "disabled:border-[#E4E4EE]",
           "disabled:text-[#E4E4EE]",
         ],
+        outline: [
+          "border-0 px-[4px] text-white focus:text-white",
+          "bg-transparent",
+          "disabled:border-[#E4E4EE]",
+          "disabled:text-[#E4E4EE]",
+        ],
       },
       size: {
         small: ["text-[13px]", "h-10", "px-5"],
