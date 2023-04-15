@@ -17,9 +17,9 @@ function ProductCard({
   return (
     <Link
       href={href}
-      className="group relative rounded-none border-0 bg-white shadow outline-none"
+      className="group relative rounded-none border-0 bg-white outline-none"
     >
-      <div className="h-[220px] w-full min-w-[260px] overflow-hidden rounded-none bg-gray-200 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[220px] w-full min-w-[210px] overflow-hidden rounded-none bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
           //   src={productImg}
           src={imageSrc}
@@ -48,7 +48,7 @@ function ProductCard({
               ))}
             </div>
             <div className="bg-[#F5F8FA] p-1 px-2">
-              <p className="text-sm font-light">27 Remaining</p>
+              <p className="text-xs font-light">27 Remaining</p>
             </div>
           </div>
         </div>

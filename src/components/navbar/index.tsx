@@ -30,17 +30,19 @@ function Navbar() {
             variant="secondary"
             size="small"
             className="border-0 px-[4px]"
+            rightIcon={
+              <Icon IconComp={ChevronDownIcon} className="text-inherit" />
+            }
           >
             Help
-            <Icon IconComp={ChevronDownIcon} className="text-inherit" />
           </Button>
           <Button
             variant="secondary"
             size="small"
             className="border-0 px-[4px]"
+            rightIcon={<Icon IconComp={HeartIcon} className="text-inherit" />}
           >
             WishList
-            <Icon IconComp={HeartIcon} className="text-inherit" />
           </Button>
           <Button
             variant="secondary"

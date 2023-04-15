@@ -2,7 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { Inter } from "next/font/google";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-const inter = Inter({ subsets: ["latin"], weight: ["500"] });
+const inter = Inter({ subsets: ["latin"], weight: ["400"] });
 
 const buttonClasses = cva(
   [
