@@ -2,6 +2,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
+import ProductCard from "../product-card";
 
 function Catergory({ header }: { header: string; products?: any[] }) {
   return (
@@ -20,11 +21,11 @@ function Catergory({ header }: { header: string; products?: any[] }) {
         </Button>
       </div>
       <div className="grid grid-cols-3 gap-3 gap-y-20  lg:grid-cols-5">
-        {/* <ProductCard /> */}
-        {/* <ProductCard /> */}
-        {/* <ProductCard /> */}
-        {/* <ProductCard /> */}
-        {/* <ProductCard /> */}
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </div>
     </div>
   );

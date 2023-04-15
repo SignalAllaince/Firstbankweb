@@ -2,14 +2,14 @@ import { cn } from "@/lib/utils/component.utils";
 import { StarIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
-// import productImg from "../../../public/images/product.jpeg";
+import productImg from "../../../public/images/product.jpeg";
 
 function ProductCard({
-  imageSrc,
+  //   imageSrc,
   imageAlt = "",
   href = "#",
 }: {
-  imageSrc: string;
+  imageSrc?: string;
   imageAlt?: string;
   href?: string;
   price?: string;
@@ -17,12 +17,12 @@ function ProductCard({
   return (
     <Link
       href={href}
-      className="group relative rounded-none border-0 bg-white outline-none"
+      className="group relative overflow-hidden rounded-none border-0 bg-white"
     >
       <div className="h-[220px] w-full min-w-[210px] overflow-hidden rounded-none bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
-          //   src={productImg}
-          src={imageSrc}
+          src={productImg}
+          //   src={imageSrc}
           alt={imageAlt}
           width={400}
           height={400}

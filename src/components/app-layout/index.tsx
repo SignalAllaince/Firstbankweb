@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import Banner from "../banner";
 import Footer from "../footer";
 import HeroSection from "../hero-section";
 import Navbar from "../navbar";
@@ -14,7 +15,13 @@ function AppLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <MiniNavbar />
       <HeroSection />
-      <Section className="flex-1">{children}</Section>
+      <Section className="flex-1 pb-10">
+        <div className="py-10">
+          <Banner />
+        </div>
+
+        {children}
+      </Section>
       <Footer />
     </div>
   );

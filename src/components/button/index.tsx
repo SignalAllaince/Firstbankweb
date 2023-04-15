@@ -2,12 +2,16 @@ import { VariantProps, cva } from "class-variance-authority";
 import { Inter } from "next/font/google";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400"],
+  // weight: ["400", "500"],
+  display: "swap",
+});
 
 const buttonClasses = cva(
   [
     inter.className,
-    "font-semibold",
     "rounded-none",
     "flex",
     "items-center",
@@ -74,12 +78,6 @@ export interface ButtonProps
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
-
-// button();
-// => "font-semibold border rounded bg-blue-500 text-white border-transparent hover:bg-blue-600 text-base py-2 px-4 uppercase"
-
-// button({ variant: "secondary", size: "small" });
-// => "font-semibold border r
 
 function Button({
   children,
