@@ -25,7 +25,7 @@ function Banner() {
               <Button
                 size="small"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
-                className="bg-[#f0bd2d] !text-[#142633] hover:bg-[#f0bd2d] focus:bg-[#f0bd2d] focus:ring-amber-500"
+                variant="warning"
               >
                 View product
               </Button>

@@ -1,15 +1,19 @@
 import {
+  ArrowLeftOnRectangleIcon,
   ChevronDownIcon,
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingCartIcon,
+  StarIcon,
   UserCircleIcon,
+  WalletIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
 import CustomInput from "../input";
+import { Menu, MenuButton, MenuItem, MenuItems } from "../menu";
 import Section from "../section";
 
 function Navbar() {
@@ -26,16 +30,26 @@ function Navbar() {
               <Icon IconComp={MagnifyingGlassIcon} className="text-white" />
             </Button>
           </div>
-          <Button
-            variant="secondary"
-            size="small"
-            className="border-0 px-[4px]"
-            rightIcon={
-              <Icon IconComp={ChevronDownIcon} className="text-inherit" />
-            }
-          >
-            Help
-          </Button>
+          <div>
+            <Menu>
+              <MenuButton
+                as={Button}
+                variant="secondary"
+                size="small"
+                className="border-0 px-[4px]"
+                rightIcon={
+                  <Icon IconComp={ChevronDownIcon} className="text-inherit" />
+                }
+              >
+                Help
+              </MenuButton>
+              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px]">
+                <MenuItem>Blank Note</MenuItem>
+                <MenuItem>From Template</MenuItem>
+              </MenuItems>
+            </Menu>
+          </div>
+
           <Button
             variant="secondary"
             size="small"
@@ -54,13 +68,33 @@ function Navbar() {
               3
             </div>
           </Button>
-          <Button
-            variant="secondary"
-            size="small"
-            className="border-0 px-[4px]"
-          >
-            <Icon IconComp={UserCircleIcon} className="text-inherit" />
-          </Button>
+          <Menu>
+            <MenuButton
+              as={Button}
+              variant="secondary"
+              size="small"
+              className="border-0 px-[4px]"
+            >
+              <Icon IconComp={UserCircleIcon} className="text-inherit" />
+            </MenuButton>
+            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
+              <MenuItem
+                href="/login"
+                leftIcon={<Icon IconComp={UserCircleIcon} />}
+              >
+                My Account
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={WalletIcon} />}>
+                Orders
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={StarIcon} />}>
+                Ratings & Reviews
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
+                Login
+              </MenuItem>
+            </MenuItems>
+          </Menu>
         </div>
       </Section>
     </div>
