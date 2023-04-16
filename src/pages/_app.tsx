@@ -3,8 +3,8 @@ import "@/styles/globals.css";
 import { AppPropsWithAuth } from "@/types/component.types";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
+import { SnackbarProvider } from "notistack";
 import React from "react";
-import { ToastProvider } from "react-toast-notifications";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,17 +22,23 @@ const MyApp = ({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <ToastProvider
-          autoDismiss
-          autoDismissTimeout={7000}
-          placement="top-right"
+        <SnackbarProvider
+          maxSnack={5}
+          autoHideDuration={6000}
+          anchorOrigin={{
+            horizontal: "right",
+            vertical: "top",
+          }}
+          classes={{
+            root: "toast-container",
+          }}
         >
           {Component.auth ? (
             <AuthProvider>{layout}</AuthProvider>
           ) : (
             <>{layout}</>
           )}
-        </ToastProvider>
+        </SnackbarProvider>
       </QueryClientProvider>
     </SessionProvider>
   );

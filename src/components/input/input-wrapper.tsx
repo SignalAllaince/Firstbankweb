@@ -1,8 +1,9 @@
-import { get } from "react-hook-form";
-// import { FiEye, FiEyeOff } from "react-icons/fi";
-// import { RiErrorWarningFill } from "react-icons/ri";
-// import Icon from "../Icon/Icon";
 import { InputWrapperProps } from "@/types/component.types";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { ErrorMessage } from "@hookform/error-message";
+import { get } from "react-hook-form";
+import Button from "../button";
+import Icon from "../icon";
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
   children,
@@ -10,85 +11,42 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   label,
   isLoading = false,
   type = "text",
-  errors = null,
+  errors,
   isShown,
   handleClick,
   inputIcon,
   ...props
 }) => {
   const hasError = get(errors, name);
-  const bgColor = hasError ? "red.100" : "white";
-  const brColor = hasError ? "#brand.1800" : "main.700";
+  const bgColor = hasError ? "bg-red-100" : "bg-brand-lightest";
 
   return (
     <div
-      className={`relative ${props.isDisabled ? "opacity-90" : "opacity-100"}`}
+      className={`relative w-full text-brand-darkest ${
+        props.isDisabled ? "opacity-90" : "opacity-100"
+      }`}
     >
       {label && (
-        <p
-        // color="brand.800"
-        // _dark={{ color: "brand.100" }}
-        // textTransform="capitalize"
-        // textAlign="left"
-        // fontWeight="normal"
-        // as="label"
-        // fontSize="16px"
-        // htmlFor={name}
-        // mb={-1}
-        // transition="all 0.25s linear"
-        // bg={hasError ? "red.100" : "white.100"}
-        // w="max-content"
-        // px={2}
-        // pos="absolute"
-        // rounded="4"
-        // left={4}
-        // top={-1}
-        >
+        <label className="mb-10 text-left text-sm capitalize" htmlFor={name}>
           {label}
-        </p>
+        </label>
       )}
       <div
-      // direction="row"
-      // alignItems="center"
-      // overflow="hidden"
-      // pl={0}
-      // pr={props.pr || 0}
-      // spacing={0}
-      // rounded="10px"
-      // border="1px solid"
-      // transition="all 0.25s linear"
-      // bg={hasError ? "red.100" : "white"}
-      // borderColor={hasError ? "brand.1800" : "brand.1000"}
-      // color="gray.700"
-      // _placeholderShown={{
-      //   bg: "transparent",
-      // }}
-      // _hover={{
-      //   borderColor: `${
-      //     hasError ? "#brand.1800" : props.isDisabled ? "" : "gray.400"
-      //   }`,
-      // }}
-      // _focusWithin={{
-      //   bg: bgColor,
-      //   shadow: "none",
-      //   borderColor: brColor,
-      // }}
-      // _dark={{
-      //   bg: `${hasError ? "red.100" : "transparent"}`,
-      //   borderColor: `${hasError ? "#brand.1800" : "grey.500"}`,
-      //   color: `${hasError ? "red.700" : "brand.100"}`,
-      // }}
-      // h={props.h || props.height || "auto"}
+        className={`flex h-11 items-center overflow-hidden rounded-none ${bgColor} ${
+          label ? "mt-2" : ""
+        }`}
+        // pr={props.pr || 0}
+        // transition="all 0.25s linear"
+        // bg={hasError ? "red.100" : "white"}
+        // _focusWithin={{
+        //   bg: bgColor,
+        //   shadow: "none",
+        //   borderColor: brColor,
+        // }}
       >
-        {/* {inputIcon && (
-          <Icon
-            iconComp={inputIcon}
-            boxSize={7}
-            ml={2}
-            color="gray.300"
-            mr={-1}
-          />
-        )} */}
+        {inputIcon && (
+          <Icon IconComp={inputIcon} boxSize={7} className="text-gray-300" />
+        )}
         {/* The child input element which can be input, textarea, select etc */}
         {children}
         {/* To indicate loading, usefull when input default value is gotten from the server */}
@@ -102,48 +60,39 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
           />
         )} */}
         {/* Icon used to indicate error state */}
-        {/* {!isLoading && type !== "select" && hasError && (
+        {!isLoading && type !== "select" && hasError && (
           <div className="pr-1">
-            <Icon
-              boxSize={6}
-              iconComp={RiErrorWarningFill}
-              color="red.500"
-              fontWeight="bold"
-            />
+            <Icon boxSize={6} IconComp={EyeIcon} className="text-red-400" />
           </div>
-        )} */}
+        )}
         {/* password type switcher use to toggle password fields */}
-        {/* {type === "password" && !isLoading && (
-          <IconButton
-            variant="link"
-            aria-label="passowrd toggler"
-            textDecoration="none"
+        {type === "password" && !isLoading && (
+          <Button
+            variant="secondary"
+            className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent"
             onClick={handleClick}
-            mr={1}
           >
             {isShown ? (
-              <Icon iconComp={FiEyeOff} color="gray.500" />
+              <Icon IconComp={EyeSlashIcon} className="text-brand-darkest" />
             ) : (
-              <Icon iconComp={FiEye} color="gray.500" />
+              <Icon IconComp={EyeIcon} className="text-brand-darkest" />
             )}
-          </IconButton>
-        )} */}
+          </Button>
+        )}
       </div>
-      {/* {hasError && (
+      {hasError && (
         <ErrorMessage
           errors={errors}
           name={name}
           render={({ message }) => {
             return (
-              <Stack pos="absolute" bottom={-4} right={0}>
-                <Text color="red.600" fontSize="xs" fontWeight="semi-bold">
-                  {message}
-                </Text>
-              </Stack>
+              <div className="absolute -bottom-4 right-0">
+                <p className="text-xs font-semibold text-red-600">{message}</p>
+              </div>
             );
           }}
         />
-      )} */}
+      )}
     </div>
   );
 };

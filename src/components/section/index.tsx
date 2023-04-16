@@ -1,15 +1,18 @@
 import { cn } from "@/lib/utils/component.utils";
+import { BoxProps } from "@/types/component.types";
 
-function Section({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className: string;
-}) {
-  const classNames = cn("max-w-[1100px] mx-auto w-full px-5", className);
+// 7:46 => 67%
+function Section({ children, className = "", ...props }: BoxProps) {
+  const classNames = cn(
+    "max-w-[1200px] mx-auto w-full px-5 lg:px-0",
+    className
+  );
 
-  return <div className={classNames}>{children}</div>;
+  return (
+    <div className={classNames} {...props}>
+      {children}
+    </div>
+  );
 }
 
 export default Section;
