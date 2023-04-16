@@ -10,6 +10,7 @@ import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
 import CustomInput from "../input";
+import { Menu, MenuButton, MenuItem, MenuItems } from "../menu";
 import Section from "../section";
 
 function Navbar() {
@@ -26,16 +27,26 @@ function Navbar() {
               <Icon IconComp={MagnifyingGlassIcon} className="text-white" />
             </Button>
           </div>
-          <Button
-            variant="secondary"
-            size="small"
-            className="border-0 px-[4px]"
-            rightIcon={
-              <Icon IconComp={ChevronDownIcon} className="text-inherit" />
-            }
-          >
-            Help
-          </Button>
+          <div>
+            <Menu>
+              <MenuButton
+                as={Button}
+                variant="secondary"
+                size="small"
+                className="border-0 px-[4px]"
+                rightIcon={
+                  <Icon IconComp={ChevronDownIcon} className="text-inherit" />
+                }
+              >
+                Help
+              </MenuButton>
+              <MenuItems>
+                <MenuItem>Blank Note</MenuItem>
+                <MenuItem>From Template</MenuItem>
+              </MenuItems>
+            </Menu>
+          </div>
+
           <Button
             variant="secondary"
             size="small"

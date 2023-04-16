@@ -79,23 +79,22 @@ export interface ButtonProps
   rightIcon?: React.ReactNode;
 }
 
-function Button({
-  children,
-  leftIcon,
-  rightIcon,
-  variant,
-  size,
-  className = "",
-  ...others
-}: ButtonProps) {
-  const classNames = buttonClasses({ variant, size, className });
-  return (
-    <button type="button" className={classNames} {...others}>
-      {leftIcon && leftIcon}
-      {children}
-      {rightIcon && rightIcon}
-    </button>
-  );
-}
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { children, leftIcon, rightIcon, variant, size, className = "", ...others },
+    ref
+  ) => {
+    const classNames = buttonClasses({ variant, size, className });
+    return (
+      <button type="button" ref={ref} className={classNames} {...others}>
+        {leftIcon && leftIcon}
+        {children}
+        {rightIcon && rightIcon}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 export default Button;
