@@ -19,14 +19,20 @@ export function Menu({ children }: { children: ReactNode }) {
 
 export interface MenuItemProps extends Omit<ButtonProps, "ref"> {}
 
-export function MenuItem({ children, ...props }: MenuItemProps) {
+export function MenuItem({
+  children,
+  variant = "menu",
+  activeClasses = "bg-brand-light",
+  ...props
+}: MenuItemProps) {
   return (
     <HeadlessMenu.Item>
       {({ active }) => (
         <Button
-          variant="secondary"
+          variant={variant}
+          size="menu"
           className={clsx(
-            active ? "bg-red-500" : "bg-brand-blues",
+            active && variant === "menu" ? activeClasses : "",
             "w-full border-0"
           )}
           {...props}
@@ -38,7 +44,13 @@ export function MenuItem({ children, ...props }: MenuItemProps) {
   );
 }
 
-export function MenuItems({ children }: { children: ReactNode }) {
+export function MenuItems({
+  children,
+  menuClasses,
+}: {
+  children: ReactNode;
+  menuClasses: string;
+}) {
   return (
     <Transition
       as={Fragment}
@@ -49,8 +61,10 @@ export function MenuItems({ children }: { children: ReactNode }) {
       leaveFrom="transform opacity-100 scale-100"
       leaveTo="transform opacity-0 scale-95"
     >
-      <HeadlessMenu.Items className="absolute -right-28 mt-3 w-56 divide-y divide-gray-300 rounded-none bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="px-1 py-1 ">{children}</div>
+      <HeadlessMenu.Items
+        className={`${menuClasses} absolute w-56 rounded-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+      >
+        {children}
       </HeadlessMenu.Items>
     </Transition>
   );

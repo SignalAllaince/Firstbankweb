@@ -1,9 +1,12 @@
 import {
+  ArrowLeftOnRectangleIcon,
   ChevronDownIcon,
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingCartIcon,
+  StarIcon,
   UserCircleIcon,
+  WalletIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import logoImg from "../../../public/images/logo.svg";
@@ -40,7 +43,7 @@ function Navbar() {
               >
                 Help
               </MenuButton>
-              <MenuItems>
+              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-1">
                 <MenuItem>Blank Note</MenuItem>
                 <MenuItem>From Template</MenuItem>
               </MenuItems>
@@ -65,13 +68,33 @@ function Navbar() {
               3
             </div>
           </Button>
-          <Button
-            variant="secondary"
-            size="small"
-            className="border-0 px-[4px]"
-          >
-            <Icon IconComp={UserCircleIcon} className="text-inherit" />
-          </Button>
+          <Menu>
+            <MenuButton
+              as={Button}
+              variant="secondary"
+              size="small"
+              className="border-0 px-[4px]"
+            >
+              <Icon IconComp={UserCircleIcon} className="text-inherit" />
+            </MenuButton>
+            <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-1">
+              <MenuItem
+                href="/login"
+                leftIcon={<Icon IconComp={UserCircleIcon} />}
+              >
+                My Account
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={WalletIcon} />}>
+                Orders
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={StarIcon} />}>
+                Ratings & Reviews
+              </MenuItem>
+              <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
+                Login
+              </MenuItem>
+            </MenuItems>
+          </Menu>
         </div>
       </Section>
     </div>
