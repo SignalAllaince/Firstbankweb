@@ -13,9 +13,7 @@ function Catergory({ header }: { header: string; products?: any[] }) {
           variant="secondary"
           size="small"
           className="h-8 border-brand-light font-light"
-          rightIcon={
-            <Icon IconComp={ArrowRightIcon} className="text-inherit" />
-          }
+          rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
         >
           View category page
         </Button>

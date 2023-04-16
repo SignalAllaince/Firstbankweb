@@ -25,10 +25,20 @@ function Banner() {
               <Button
                 size="small"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
-                className="bg-brand-accent font-extrabold text-[#142633] hover:bg-brand-accent focus:bg-brand-accent focus:ring-amber-500"
+                className="bg-[#f0bd2d] !text-[#142633] hover:bg-[#f0bd2d] focus:bg-[#f0bd2d] focus:ring-amber-500"
               >
                 View product
               </Button>
+            </div>
+            <div className="flex items-center gap-1 pt-10">
+              {[1, 2, 3, 4].map((item) => (
+                <div
+                  className={`h-2 w-2 rounded-full ${
+                    item < 2 ? "bg-brand-accent" : "bg-white"
+                  }`}
+                  key={item}
+                ></div>
+              ))}
             </div>
           </div>
           <div className="max-w-[300px]">
