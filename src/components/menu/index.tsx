@@ -1,5 +1,4 @@
 import { Menu as HeadlessMenu, Transition } from "@headlessui/react";
-import clsx from "clsx";
 import { Fragment, ReactNode } from "react";
 import Button, { ButtonProps } from "../button";
 
@@ -22,7 +21,8 @@ export interface MenuItemProps extends Omit<ButtonProps, "ref"> {}
 export function MenuItem({
   children,
   variant = "menu",
-  activeClasses = "bg-brand-light",
+  activeBg = "#DAE8F2",
+  activeText,
   ...props
 }: MenuItemProps) {
   return (
@@ -31,10 +31,11 @@ export function MenuItem({
         <Button
           variant={variant}
           size="menu"
-          className={clsx(
-            active && variant === "menu" ? activeClasses : "",
-            "w-full border-0"
-          )}
+          className="w-full border-0"
+          style={{
+            background: active ? activeBg : "",
+            color: active ? activeText : "",
+          }}
           {...props}
         >
           {children}
@@ -62,7 +63,7 @@ export function MenuItems({
       leaveTo="transform opacity-0 scale-95"
     >
       <HeadlessMenu.Items
-        className={`${menuClasses} absolute w-56 rounded-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+        className={`${menuClasses} absolute z-20 w-56 rounded-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
       >
         {children}
       </HeadlessMenu.Items>

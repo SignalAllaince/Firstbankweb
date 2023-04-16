@@ -17,11 +17,12 @@ const buttonClasses = cva(
     "items-center",
     "cursor-pointer",
     "gap-2",
+    "flex",
     "focus:ring-2 focus:ring-blue-500 focus:outline-none",
     "outline-none",
     "leading-6",
     "transition-all",
-    "duration-400",
+    "duration-300",
     "disabled:cursor-not-allowed",
     "disabled:opacity-80",
   ],
@@ -53,18 +54,9 @@ const buttonClasses = cva(
           "bg-transparent",
           "text-brand-blue",
           "border-0",
-          "flex",
           "justify-start ",
         ],
-        minimenu: [
-          "bg-transparent",
-          "text-white",
-          "flex",
-          "justify-start",
-          "focus:bg-brand-darkest focus:text-brand-accent",
-          "hover:bg-brand-darkest hover:text-brand-accent",
-          "active:bg-brand-darkest active:text-brand-accent",
-        ],
+        minimenu: ["bg-transparent", "text-white", "justify-start"],
         outline: [
           "border-0 px-[4px] text-white focus:text-white",
           "bg-transparent",
@@ -76,7 +68,7 @@ const buttonClasses = cva(
       },
       size: {
         small: ["text-[13px]", "h-10", "px-5"],
-        menu: ["text-[13px]", "h-14", "px-4"],
+        menu: ["text-[13px]", "h-12", "px-4"],
         medium: ["text-[15px]", "h-11", "px-8"],
       },
     },
@@ -84,7 +76,7 @@ const buttonClasses = cva(
       {
         variant: ["primary", "secondary", "outline", "warning"],
         size: ["medium", "small"],
-        class: "flex justify-center",
+        class: " justify-center",
         // **or** if you're a React.js user, `className` may feel more consistent:
         // className: "uppercase"
       },
@@ -105,7 +97,8 @@ export interface ButtonProps
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   href?: string;
-  activeClasses?: string;
+  activeBg?: string;
+  activeText?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

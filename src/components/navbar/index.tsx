@@ -43,7 +43,7 @@ function Navbar() {
               >
                 Help
               </MenuButton>
-              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-1">
+              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px]">
                 <MenuItem>Blank Note</MenuItem>
                 <MenuItem>From Template</MenuItem>
               </MenuItems>
@@ -77,7 +77,7 @@ function Navbar() {
             >
               <Icon IconComp={UserCircleIcon} className="text-inherit" />
             </MenuButton>
-            <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-1">
+            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
               <MenuItem
                 href="/login"
                 leftIcon={<Icon IconComp={UserCircleIcon} />}
