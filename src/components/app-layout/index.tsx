@@ -7,7 +7,7 @@ import Navbar from "../navbar";
 import MiniNavbar from "../navbar/mini";
 import Section from "../section";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["cyrillic"] });
 
 function AppLayout({
   children,

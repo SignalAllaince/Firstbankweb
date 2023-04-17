@@ -18,13 +18,15 @@ const Accordion = ({
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <div className="space-y-7 border-b border-brand-darkest py-5">
+    <div className="space-y-7 border-b border-brand-darkest py-4">
       <motion.header
         initial={false}
         className={`m-0 flex h-[20px] w-full cursor-pointer items-center justify-between gap-4  transition-all duration-200`}
         onClick={() => setIsOpen((prevState) => !prevState)}
       >
-        <Heading className="text-[16px] text-black">{title}</Heading>
+        <Heading size="h5" className="text-black">
+          {title}
+        </Heading>
         <p className="text-2xl font-bold">
           {isOpen ? (
             <Icon IconComp={MinusIcon} />

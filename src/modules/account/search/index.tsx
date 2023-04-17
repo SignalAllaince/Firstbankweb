@@ -15,7 +15,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <div className="">
       <div className="w-full bg-white">
-        <Section className="space-y-6 py-6">
+        <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
               <p>Home</p>
