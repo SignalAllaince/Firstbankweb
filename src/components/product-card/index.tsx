@@ -14,7 +14,7 @@ import Icon from "../icon";
 function ProductCard({
   //   imageSrc,
   imageAlt = "",
-  href = "#",
+  // href = "#",
   isFinished = false,
   isProductPage = false,
 }: {

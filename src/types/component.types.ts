@@ -33,7 +33,7 @@ export interface ModalProps {
   closeModal: () => void;
   children?: React.ReactNode;
   closeOnOverlayClick?: boolean;
-  title: string;
+  title?: string;
 }
 // input types
 export interface IInputOption {
