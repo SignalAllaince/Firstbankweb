@@ -1,3 +1,4 @@
+import Accordion from "@/components/accordion";
 import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
@@ -52,7 +53,26 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       {/* second section */}
       <section className="pb-10 pt-6">
         <Section className="grid grid-cols-12 gap-4">
-          <div className="col-span-3 h-fit border-b border-t border-brand-darkest py-5"></div>
+          <div className="col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+            <Accordion title="Price">
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+            </Accordion>
+            <Accordion title="Rating">
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+              <p>Omo</p>
+            </Accordion>
+          </div>
           <div className="col-span-9">
             <div className="grid grid-cols-3 gap-x-4 gap-y-12">
               <ProductCard isProductPage />
