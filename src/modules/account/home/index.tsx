@@ -7,7 +7,7 @@ import { ReactElement } from "react";
 
 const Home: NextPageWithLayout & ProtectedComponentType = () => {
   return (
-    <Section className="gap-y-20">
+    <Section className="gap-y-20 pb-10">
       <Catergory header="Branch" />
       <Catergory header="Stationery" />
       <Catergory header="Uniform" />

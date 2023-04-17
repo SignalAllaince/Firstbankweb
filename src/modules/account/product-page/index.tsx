@@ -13,7 +13,7 @@ import { ReactElement } from "react";
 
 const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white pb-10">
       <div className="w-full border-b border-gray-200 ">
         <Section className="py-8">
           <div className="flex items-center">
@@ -64,10 +64,10 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
               <div className="flex items-center justify-between">
                 <p className="font-light text-brand-medium">1-4 of 8 reviews</p>
                 <div className="flex items-center gap-2">
-                  <Button variant="secondary" size="small">
+                  <Button variant="secondary" size="xs">
                     Previous
                   </Button>
-                  <Button variant="secondary" size="small">
+                  <Button variant="secondary" size="xs">
                     Next
                   </Button>
                 </div>

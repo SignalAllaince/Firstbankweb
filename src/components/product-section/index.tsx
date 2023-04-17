@@ -213,7 +213,9 @@ function ProductWithImageGallery() {
             <Button className="w-full px-2 uppercase" variant="secondary">
               Continue shopping
             </Button>
-            <Button className="w-full px-2 uppercase">Proceed to cart</Button>
+            <Button className="w-full px-2 uppercase" href="/cart">
+              Proceed to cart
+            </Button>
           </div>
         </div>
       </Modal>
