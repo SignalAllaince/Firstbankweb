@@ -6,7 +6,7 @@ import {
 import { HeartIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import productImg from "../../../public/images/shirt.jpg";
 import Button from "../button";
 import Icon from "../icon";
@@ -25,13 +25,18 @@ function ProductCard({
   isProductPage?: boolean;
   isFinished?: boolean;
 }) {
+  const [like, setLike] = useState(false);
   const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
-
+  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLike((prev) => !prev);
+  };
   return (
     <Link
-      href={href}
+      // href={href}
+      href="/others/umbrella"
       className={`${
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
       }  relative overflow-hidden rounded-none bg-white`}
@@ -54,9 +59,10 @@ function ProductCard({
             <Button
               variant="secondary"
               size="small"
-              className="relative h-auto border-0 px-[4px] py-1"
+              onClick={handleLike}
+              className="relative h-auto border-0 px-[4px] py-1 ring-red-600"
             >
-              <Icon IconComp={isProductPage ? HeartSolidIcon : HeartIcon} />
+              <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
             </Button>
           )}
         </div>

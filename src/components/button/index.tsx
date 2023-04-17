@@ -34,7 +34,6 @@ const buttonClasses = cva(
           "bg-brand-blue",
           "border-transparent",
           "hover:bg-brand-primary",
-          "focus:bg-brand-primary",
           "disabled:bg-brand-graybg",
           "disabled:text-brand-grayt",
         ],

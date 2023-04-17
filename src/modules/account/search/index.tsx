@@ -202,6 +202,8 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
               <ProductCard isProductPage />
               <ProductCard isProductPage />
             </div>
+            {/* Pagination */}
+            <div className="flex items-center justify-center"></div>
           </div>
         </Section>
       </section>
