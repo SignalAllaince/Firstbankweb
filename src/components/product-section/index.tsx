@@ -175,6 +175,15 @@ function ProductWithImageGallery() {
                   <p className="text-sm">{product.description}</p>
                 </div>
               </div>
+              <div className="flex items-center gap-8">
+                <p className="text-sm text-brand-medium">Net weight: 2kg</p>
+                <div className="bg-[#F5F8FA] p-1 px-2">
+                  <p className="text-xs font-light">27 Remaining</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-8">
+                <p className="font-light">Quantity:</p>
+              </div>
               {/* color radio */}
               <div className="mt-10">
                 <div className="mt-10 flex items-center space-x-5">
