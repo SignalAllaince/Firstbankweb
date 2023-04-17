@@ -21,7 +21,7 @@ function AppLayout({
       <Navbar />
       <MiniNavbar />
       <HeroSection />
-      <div className="flex-1 bg-brand-lightest pb-10">
+      <div className="mb-10 flex-1 bg-brand-lightest">
         <Section>
           {hasBanner && (
             <div className="py-10">
