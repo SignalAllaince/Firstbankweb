@@ -35,8 +35,8 @@ const buttonClasses = cva(
           "border-transparent",
           "hover:bg-brand-primary",
           "focus:bg-brand-primary",
-          "disabled:bg-brand-grey-bg",
-          "disabled:text-brand-grey-text",
+          "disabled:bg-brand-graybg",
+          "disabled:text-brand-grayt",
         ],
         secondary: [
           "bg-transparent",

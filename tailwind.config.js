@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/modules/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -26,8 +27,8 @@ module.exports = {
           light: "#DAE8F2",
           lightest: "#F5F8FA",
           primary: "#0072BC",
-          "grey-text": "#B2B2C2",
-          "grey-bg": "#F4F5F9",
+          grayt: "#B2B2C2",
+          graybg: "#F4F5F9",
         },
       },
     },

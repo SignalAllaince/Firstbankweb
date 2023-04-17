@@ -9,6 +9,7 @@ import {
   WalletIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
@@ -21,7 +22,9 @@ function Navbar() {
     <div className="w-full bg-white py-4">
       <Section className="item-center flex justify-between ">
         <div className="flex w-[100px] items-center">
-          <Image src={logoImg} alt="first bank logo" />
+          <Link href="/">
+            <Image src={logoImg} alt="first bank logo" />
+          </Link>
         </div>
         <div className="flex items-center space-x-10">
           <div className="flex w-[400px]">
