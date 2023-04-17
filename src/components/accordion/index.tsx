@@ -18,7 +18,7 @@ const Accordion = ({
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <div className="space-y-7 border-b border-brand-darkest py-4">
+    <div className="space-y-7 border-b border-brand-darkest py-5 pb-8">
       <motion.header
         initial={false}
         className={`m-0 flex h-[20px] w-full cursor-pointer items-center justify-between gap-4  transition-all duration-200`}

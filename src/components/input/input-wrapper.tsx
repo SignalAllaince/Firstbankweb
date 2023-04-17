@@ -18,7 +18,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   ...props
 }) => {
   const hasError = get(errors, name);
-  const bgColor = hasError ? "bg-red-100" : "bg-brand-lightest";
+  const bgColor = hasError ? "bg-red-100" : props.bg ?? "bg-brand-lightest";
 
   return (
     <div
