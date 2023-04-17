@@ -91,7 +91,10 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
                   <MenuItem>Highest to Lowest</MenuItem>
-                  <MenuItem>Higest price</MenuItem>
+                  <MenuItem>Lowest to Highest</MenuItem>
+                  <MenuItem>Best seller</MenuItem>
+                  <MenuItem>New arrivals</MenuItem>
+                  <MenuItem>Top sales</MenuItem>
                 </MenuItems>
               </Menu>
             </div>
@@ -114,11 +117,11 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                           <span
                             aria-hidden="true"
                             className={cn(
-                              "ring-brand-blue",
+                              "ring-brand-darkest",
                               active && checked ? "ring-2" : "",
-                              checked ? "bg-brand-blue" : "",
+                              checked ? "bg-brand-darkest" : "",
                               !active && checked ? "ring-2" : "",
-                              "relative -m-0.5 block  h-[18px] w-[18px] rounded-full border border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
+                              "relative -m-0.5 block h-[18px] w-[18px] rounded-full border-2 border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
                             )}
                           />
                           <span className="text-sm">{plan.name}</span>
@@ -129,11 +132,21 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
               </RadioGroup>
               <div className="space-y-3 pt-12">
-                <p>Custom price Rannge</p>
+                <p>Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
-                  <CustomInput bg="bg-white" name="min" placeholder="min" />
+                  <CustomInput
+                    borderColor="border-brand-light"
+                    bg="bg-white"
+                    name="min"
+                    placeholder="min"
+                  />
                   <Icon IconComp={MinusIcon} />
-                  <CustomInput bg="bg-white" name="max" placeholder="max" />
+                  <CustomInput
+                    borderColor="border-brand-light"
+                    bg="bg-white"
+                    name="max"
+                    placeholder="max"
+                  />
                 </div>
               </div>
             </Accordion>
@@ -148,11 +161,11 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                           <span
                             aria-hidden="true"
                             className={cn(
-                              "ring-brand-blue",
+                              "ring-brand-darkest",
                               active && checked ? "ring-2" : "",
-                              checked ? "bg-brand-blue" : "",
+                              checked ? "bg-brand-darkest" : "",
                               !active && checked ? "ring-2" : "",
-                              "relative -m-0.5 block  h-[18px] w-[18px] rounded-full border border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
+                              "relative -m-0.5 block h-[18px] w-[18px] rounded-full border-2 border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
                             )}
                           />
                           <div className="flex items-center space-x-3">

@@ -42,6 +42,7 @@ export interface IInputOption {
 }
 
 export type InputWrapperProps = {
+  borderColor?: string;
   bg?: string;
   inputIcon?: IconType;
   name: string;

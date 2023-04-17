@@ -19,6 +19,9 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
 }) => {
   const hasError = get(errors, name);
   const bgColor = hasError ? "bg-red-100" : props.bg ?? "bg-brand-lightest";
+  const borderColor = hasError
+    ? "bg-red-400"
+    : props.borderColor ?? "bg-transparent";
 
   return (
     <div
@@ -32,7 +35,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         </label>
       )}
       <div
-        className={`flex h-11 items-center overflow-hidden rounded-none ${bgColor} ${
+        className={`flex h-11 items-center overflow-hidden rounded-none border ${bgColor} ${borderColor} ${
           label ? "mt-2" : ""
         }`}
         // pr={props.pr || 0}
