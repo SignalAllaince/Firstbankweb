@@ -18,6 +18,7 @@ module.exports = {
       },
       colors: {
         brand: {
+          error: "#F83B3B",
           blue: "#003B65",
           lightblue: "#05629F",
           accent: "#f0bd2d",

@@ -7,7 +7,12 @@ import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { ArrowRightIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowRightIcon,
+  ChevronRightIcon,
+  HeartIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import { ReactElement } from "react";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
@@ -30,7 +35,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               <Button
                 variant="secondary"
                 size="xs"
-                className="border-0 border-b px-1 !text-sm"
+                className="border-0 border-b px-1"
                 href="/"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
               >
@@ -59,14 +64,34 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               </thead>
               <tbody className="bg-white">
                 <tr>
-                  <td className="py-4  text-slate-700">
-                    <div className="item-start flex max-w-sm gap-3 bg-slate-400">
+                  <td className="py-4 text-slate-700">
+                    <div className="item-start flex max-w-sm gap-3">
                       <div className="flex h-[100px] w-[100px] min-w-max flex-shrink-0 bg-brand-light" />
-                      <div className="flex h-full flex-col justify-between">
-                        <p>
+                      <div className="flex h-[100px] flex-col justify-between">
+                        <p className="text-xs font-light">
                           This Description should carry only the full name of
                           the product.
                         </p>
+                        <div className="flex items-center gap-3">
+                          <Button
+                            variant="cart"
+                            size="xs"
+                            className="border-brand-error text-brand-error"
+                            leftIcon={<Icon IconComp={TrashIcon} boxSize={4} />}
+                          >
+                            Remove Item
+                          </Button>
+                          <Button
+                            variant="cart"
+                            size="xs"
+                            className="border-brand-darkest text-brand-darkest"
+                            rightIcon={
+                              <Icon IconComp={HeartIcon} boxSize={4} />
+                            }
+                          >
+                            Remove Item
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </td>
