@@ -8,6 +8,7 @@ import { useState } from "react";
 import Button from "../button";
 import Icon from "../icon";
 import Modal from "../modal";
+import CartProductBtn from "../product-btn";
 
 const product = {
   name: "FirstBank Brandshop",
@@ -183,6 +184,7 @@ function ProductWithImageGallery() {
               </div>
               <div className="flex items-center gap-8">
                 <p className="font-light">Quantity:</p>
+                <CartProductBtn />
               </div>
               {/* color radio */}
               <div className="mt-10">

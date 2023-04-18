@@ -2,7 +2,7 @@ import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
-import CartModal from "@/components/modal/cart";
+import CheckoutModal from "@/components/modal/checkout";
 import CartProductBtn from "@/components/product-btn";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
@@ -17,7 +17,7 @@ import {
 import { ReactElement } from "react";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const { isOpen, onOClose } = useDisclosure();
+  const { isOpen, onOClose, onOpen } = useDisclosure();
 
   return (
     <>
@@ -108,10 +108,10 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               </tbody>
             </table> */}
 
-            <div className="flex flex-col overflow-x-auto">
+            <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
               <div className="sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto lg:overflow-x-hidden">
                     <table className="min-w-[640px] text-left text-sm font-light sm:min-w-full">
                       <thead className="border-b font-medium">
                         <tr>
@@ -128,7 +128,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                       </thead>
                       <tbody>
                         <tr className="border-b">
-                          <td className="w-[400px] whitespace-pre-line py-4 text-slate-700">
+                          <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
                               <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light" />
                               <div className="flex h-[100px] flex-col justify-between">
@@ -172,7 +172,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                           </td>
                         </tr>
                         <tr className="border-b">
-                          <td className="w-[400px] whitespace-pre-line py-4 text-slate-700">
+                          <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
                               <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light" />
                               <div className="flex h-[100px] flex-col justify-between">
@@ -234,22 +234,19 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                 <h2 className="text-lg">50,000</h2>
               </div>
               <div className="border-t border-brand-light"></div>
-              <Button className="w-full uppercase">Continue to Checkout</Button>
+              <Button className="w-full uppercase" onClick={onOpen}>
+                Continue to Checkout
+              </Button>
             </div>
           </div>
         </Section>
-
-        {/* second section */}
-        {/* <section className="space-y-5  ">
-        <div className="border-t-2 border-brand-lightest" />
-      </section> */}
       </div>
       {/* Remove from cart modal */}
-      <CartModal isOpen={isOpen} onOClose={onOClose} />
+      {/* <CartModal isOpen={isOpen} onOClose={onOClose} /> */}
       {/* Add to wishlist modal */}
       {/* <WishListModal isOpen={isOpen} onOClose={onOClose} /> */}
       {/* Checkout Modal */}
-      {/* <CheckoutModal isOpen={isOpen} onOClose={onOClose} /> */}
+      <CheckoutModal isOpen={isOpen} onOClose={onOClose} />
     </>
   );
 };

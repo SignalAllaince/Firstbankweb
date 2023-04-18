@@ -33,7 +33,9 @@ function CheckoutModal({
             placeholder="08000000000"
           />
           <div className="pt-4">
-            <Button className="w-full uppercase">Continue</Button>
+            <Button className="w-full uppercase" href="/cart/checkout">
+              Continue
+            </Button>
           </div>
         </form>
       </div>

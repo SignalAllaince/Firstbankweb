@@ -4,7 +4,7 @@ import { BoxProps } from "@/types/component.types";
 // 7:46 => 67%
 function Section({ children, className = "", ...props }: BoxProps) {
   const classNames = cn(
-    "max-w-[1200px] mx-auto w-full px-5 lg:px-0",
+    "max-w-[1200px] mx-auto w-full px-4 md:px-8 lg:px-4",
     className
   );
 
