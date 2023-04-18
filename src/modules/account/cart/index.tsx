@@ -3,6 +3,7 @@ import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import CartModal from "@/components/modal/cart";
+import CartProductBtn from "@/components/product-btn";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -160,11 +161,14 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                               </div>
                             </div>
                           </td>
-                          <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-medium">25,000</p>
+                          <td className="flex w-[200px] items-end justify-center whitespace-nowrap py-4">
+                            {/* Cart btn */}
+                            <div className="mt-7">
+                              <CartProductBtn />
+                            </div>
                           </td>
                           <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-medium">₦ 25,000</p>
+                            <p className="text-lg font-bold">₦ 25,000</p>
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -201,11 +205,14 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                               </div>
                             </div>
                           </td>
-                          <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-medium">25,000</p>
+                          <td className="flex w-[200px] items-end justify-center whitespace-nowrap py-4">
+                            {/* Cart btn */}
+                            <div className="mt-7">
+                              <CartProductBtn />
+                            </div>
                           </td>
                           <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-medium">₦ 25,000</p>
+                            <p className="text-lg font-bold">₦ 25,000</p>
                           </td>
                         </tr>
                       </tbody>
