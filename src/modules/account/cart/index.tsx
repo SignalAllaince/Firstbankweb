@@ -30,7 +30,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               <Button
                 variant="secondary"
                 size="xs"
-                className="border-0 border-b"
+                className="border-0 border-b px-1 !text-sm"
                 href="/"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
               >
@@ -42,7 +42,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
         </div>
 
         <Section className="grid grid-cols-12 gap-x-4 pt-3">
-          <div className="col-span-9 mb-8 overflow-hidden rounded bg-white pb-2">
+          <div className="col-span-8 mb-8 overflow-hidden rounded bg-white pb-2">
             <table className="w-full table-auto border-collapse border-spacing-0 rounded-full text-sm">
               <thead className="border-b border-brand-light">
                 <tr className="py-2">
@@ -92,8 +92,20 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               </tbody>
             </table>
           </div>
-          <div className="col-span-3">
-            <div className="bg-brand-lightest px-3 py-4"></div>
+          <div className="col-span-4">
+            <div className="text-md space-y-5 bg-brand-lightest px-4 py-6 font-medium text-brand-darkest">
+              <div className="flex items-center justify-between">
+                <h2>Order Summary</h2>
+                <h2>2 Items</h2>
+              </div>
+              <div className="border-t border-brand-light"></div>
+              <div className="flex items-center justify-between">
+                <h2>Total</h2>
+                <h2 className="text-lg">50,000</h2>
+              </div>
+              <div className="border-t border-brand-light"></div>
+              <Button className="w-full uppercase">Continue to Checkout</Button>
+            </div>
           </div>
         </Section>
 
