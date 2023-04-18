@@ -65,15 +65,22 @@ const Textarea = React.forwardRef<
       placeholder,
       isDisabled,
       className = "",
-      cols = 10,
+      cols = 40,
       variant,
       inputSize,
+      h = "min-h-[90px]",
       ...others
     },
     ref
   ) => {
     return (
-      <InputWrapper type={type} isDisabled={isDisabled} name={name} {...others}>
+      <InputWrapper
+        type={type}
+        isDisabled={isDisabled}
+        name={name}
+        h={h}
+        {...others}
+      >
         <textarea
           name={name}
           onChange={onChange}

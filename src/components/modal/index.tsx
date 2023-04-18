@@ -5,12 +5,17 @@ import { Fragment } from "react";
 import Button from "../button";
 import Icon from "../icon";
 
+const sizes = {
+  lg: "max-w-xl",
+  md: "max-w-lg",
+};
 function Modal({
   isOpen,
   closeModal,
   closeOnOverlayClick = false,
   children,
   title,
+  size = "lg",
 }: ModalProps) {
   return (
     <>
@@ -43,7 +48,9 @@ function Modal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative w-full max-w-xl transform overflow-hidden rounded-none bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel
+                  className={`relative w-full ${sizes[size]} transform overflow-hidden rounded-none bg-white p-6 text-left align-middle shadow-xl transition-all`}
+                >
                   {title && (
                     <Dialog.Title
                       as="h3"

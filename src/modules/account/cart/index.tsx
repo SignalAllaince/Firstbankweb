@@ -2,7 +2,7 @@ import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
-import Modal from "@/components/modal";
+import CartModal from "@/components/modal/checkout";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -26,6 +26,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               </div>
             </div>
             <Heading size="h4">Cart</Heading>
+            <Button onClick={onOpen}>Open Modals</Button>
           </Section>
         </div>
 
@@ -35,7 +36,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
       </section> */}
       </div>
       {/* Remove from cart modal */}
-      <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
+      {/* <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
         <div className="space-y-8 py-6 md:px-5">
           <div className="text-md mx-auto max-w-sm text-center font-light lg:text-lg">
             <p>Are you sure you want to remove this item from your cart?</p>
@@ -49,10 +50,10 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
             </Button>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
 
       {/* Add to wishlist modal */}
-      <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
+      {/* <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
         <div className="space-y-8 py-6 md:px-5">
           <div className="text-md mx-auto max-w-sm text-center font-light lg:text-lg">
             <p>Are you sure you want to save this item to your wishlist?</p>
@@ -66,27 +67,10 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
             </Button>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
 
       {/* Checkout Modal */}
-      <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
-        <div className="space-y-8 py-6 md:px-5">
-          <div className="text-md font-light lg:text-lg">
-            <p>
-              Kindly provide the following details correctly in the fields below
-              to continue
-            </p>
-          </div>
-          <div className="space-y-4">
-            <Button className="w-full px-2 uppercase" variant="secondary">
-              No, Cancel
-            </Button>
-            <Button className="w-full px-2 uppercase" href="/cart">
-              Add to Wishlist
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      <CartModal isOpen={isOpen} onOClose={onOClose} />
     </>
   );
 };

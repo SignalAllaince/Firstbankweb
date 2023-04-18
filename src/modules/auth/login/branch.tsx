@@ -14,24 +14,22 @@ const BranchLogin: NextPageWithLayout & ProtectedComponentType = () => {
     <form className="gap-7" onSubmit={loginHandler}>
       <div className="space-y-4">
         <CustomInput
-          name="jdjd"
+          name="brandId"
           label="Branch sol ID"
           autoComplete="off"
           placeholder="4783IEDH2893"
-          className="bg-black"
         />
         <CustomInput
           name="password"
           type="password"
           label="Password"
           autoComplete="off"
-          className="autofill:bg-black"
           // value="4783IEDH2893"
         />
       </div>
       <div>
         <div className="pt-8"></div>
-        <Button variant="primary" className="w-full bg-black" type="submit">
+        <Button variant="primary" className="w-full" type="submit">
           Login
         </Button>
       </div>

@@ -20,8 +20,8 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   const hasError = get(errors, name);
   const bgColor = hasError ? "bg-red-100" : props.bg ?? "bg-brand-lightest";
   const borderColor = hasError
-    ? "bg-red-400"
-    : props.borderColor ?? "bg-transparent";
+    ? "border-red-400"
+    : props.borderColor ?? "border-transparent";
 
   return (
     <div
@@ -30,14 +30,17 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
       }`}
     >
       {label && (
-        <label className="mb-10 text-left text-sm capitalize" htmlFor={name}>
+        <label
+          className="mb-10 text-left text-sm capitalize text-brand-darkest"
+          htmlFor={name}
+        >
           {label}
         </label>
       )}
       <div
-        className={`flex h-11 items-center overflow-hidden rounded-none border ${bgColor} ${borderColor} ${
-          label ? "mt-2" : ""
-        }`}
+        className={`flex h-11 items-center overflow-hidden rounded-none border ${
+          props.h ?? "h-11"
+        } ${bgColor} ${borderColor} ${label ? "mt-2" : ""}`}
         // pr={props.pr || 0}
         // transition="all 0.25s linear"
         // bg={hasError ? "red.100" : "white"}
