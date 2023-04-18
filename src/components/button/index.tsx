@@ -68,7 +68,7 @@ const buttonClasses = cva(
       },
       size: {
         small: ["text-[13px]", "h-10", "px-5"],
-        xs: ["text-xs", "h-8", "px-4"],
+        xs: ["text-xs", "h-8"],
         menu: ["text-[13px]", "h-12", "px-4"],
         medium: ["text-[15px]", "h-11", "px-8"],
       },
@@ -84,12 +84,17 @@ const buttonClasses = cva(
       {
         variant: ["secondary"],
         size: ["xs"],
-        className: " border-brand-light rounded-[4px]",
+        className: "border-brand-light rounded-[4px]",
       },
       {
         variant: "cart",
         size: "xs",
-        className: "px-1",
+        className: "px-0",
+      },
+      {
+        variant: ["primary", "secondary", "outline", "minimenu", "menu"],
+        size: "xs",
+        className: "px-4",
       },
     ],
     defaultVariants: {
