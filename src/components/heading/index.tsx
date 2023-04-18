@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils/component.utils";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
-const headerClasses = cva(["font-bold", "text-inherit"], {
+const headerClasses = cva(["font-bold", "text-inherit", "w-fit"], {
   variants: {
     size: {
       h1: ["text-[44px] leading-[52px]"],
