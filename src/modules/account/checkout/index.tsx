@@ -27,7 +27,11 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
 };
 
 CheckoutPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout hasBanner={false}>{page}</AppLayout>;
+  return (
+    <AppLayout hasBanner={false} isCheckout>
+      {page}
+    </AppLayout>
+  );
 };
 
 CheckoutPage.auth = false;
