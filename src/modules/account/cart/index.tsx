@@ -67,6 +67,26 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
           </div>
         </div>
       </Modal>
+
+      {/* Checkout Modal */}
+      <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
+        <div className="space-y-8 py-6 md:px-5">
+          <div className="text-md font-light lg:text-lg">
+            <p>
+              Kindly provide the following details correctly in the fields below
+              to continue
+            </p>
+          </div>
+          <div className="space-y-4">
+            <Button className="w-full px-2 uppercase" variant="secondary">
+              No, Cancel
+            </Button>
+            <Button className="w-full px-2 uppercase" href="/cart">
+              Add to Wishlist
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

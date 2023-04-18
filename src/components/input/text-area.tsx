@@ -51,7 +51,7 @@ export interface InputProps
   isLoading?: boolean;
 }
 
-const CustomInput = React.forwardRef<
+const Textarea = React.forwardRef<
   Ref,
   Omit<InputProps, "type"> & InputWrapperProps
 >(
@@ -65,6 +65,7 @@ const CustomInput = React.forwardRef<
       placeholder,
       isDisabled,
       className = "",
+      cols = 10,
       variant,
       inputSize,
       ...others
@@ -78,7 +79,7 @@ const CustomInput = React.forwardRef<
           onChange={onChange}
           value={value}
           id={name}
-          cols={10}
+          cols={cols}
           ref={ref}
           onBlur={onBlur}
           placeholder={placeholder}
@@ -89,6 +90,6 @@ const CustomInput = React.forwardRef<
   }
 );
 
-CustomInput.displayName = "CustomInput";
+Textarea.displayName = "Textarea";
 
-export default CustomInput;
+export default Textarea;
