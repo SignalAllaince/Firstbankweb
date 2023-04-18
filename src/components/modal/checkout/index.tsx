@@ -3,7 +3,13 @@ import CustomInput from "@/components/input";
 import Textarea from "@/components/input/text-area";
 import Modal from "..";
 
-function CartModal(isOpen: boolean, onOClose: () => void) {
+function CartModal({
+  isOpen,
+  onOClose,
+}: {
+  isOpen: boolean;
+  onOClose: () => void;
+}) {
   return (
     <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick size="md">
       <div className="space-y-8 py-6 md:px-5">
