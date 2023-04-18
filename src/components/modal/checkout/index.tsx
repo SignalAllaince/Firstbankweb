@@ -3,7 +3,7 @@ import CustomInput from "@/components/input";
 import Textarea from "@/components/input/text-area";
 import Modal from "..";
 
-function CartModal({
+function CheckoutModal({
   isOpen,
   onOClose,
 }: {
@@ -41,4 +41,4 @@ function CartModal({
   );
 }
 
-export default CartModal;
+export default CheckoutModal;

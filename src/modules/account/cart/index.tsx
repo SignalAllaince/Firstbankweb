@@ -2,8 +2,7 @@ import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
-import CartModal from "@/components/modal/checkout";
-import WishListModal from "@/components/modal/wishlist";
+import CartModal from "@/components/modal/cart";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -38,12 +37,10 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
       {/* Remove from cart modal */}
       <CartModal isOpen={isOpen} onOClose={onOClose} />
-
       {/* Add to wishlist modal */}
-      <WishListModal isOpen={isOpen} onOClose={onOClose} />
-
+      {/* <WishListModal isOpen={isOpen} onOClose={onOClose} /> */}
       {/* Checkout Modal */}
-      <CartModal isOpen={isOpen} onOClose={onOClose} />
+      {/* <CheckoutModal isOpen={isOpen} onOClose={onOClose} /> */}
     </>
   );
 };
