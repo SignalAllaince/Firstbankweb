@@ -6,52 +6,65 @@ import {
 import { HeartIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { MouseEvent } from "react";
-import productImg from "../../../public/images/product.jpeg";
+import { MouseEvent, useState } from "react";
+import productImg from "../../../public/images/shirt.jpg";
 import Button from "../button";
 import Icon from "../icon";
 
 function ProductCard({
   //   imageSrc,
   imageAlt = "",
-  href = "#",
-  isWishList = false,
+  // href = "#",
+  isFinished = false,
+  isProductPage = false,
 }: {
   imageSrc?: string;
   imageAlt?: string;
   href?: string;
   price?: string;
-  isWishList?: boolean;
+  isProductPage?: boolean;
+  isFinished?: boolean;
 }) {
+  const [like, setLike] = useState(false);
   const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
+  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLike((prev) => !prev);
+  };
   return (
     <Link
-      href={href}
-      className="group relative overflow-hidden rounded-none border-0 bg-white"
+      // href={href}
+      href="/others/umbrella"
+      className={`${
+        isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
+      }  relative overflow-hidden rounded-none bg-white`}
     >
-      <div className="h-[220px] w-full min-w-[210px] overflow-hidden rounded-none bg-gray-200 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-none bg-red-900 transition-all duration-200 group-hover:opacity-75">
         <Image
           src={productImg}
           //   src={imageSrc}
           alt={imageAlt}
           width={400}
           height={400}
-          //   className="aspect-h-1 aspect-w-1 object-cover object-center"
-          className="aspect-h-1 aspect-w-1 "
+          className=" h-[220px] object-cover object-center"
+          // className="aspect-h-1 aspect-w-1 "
         />
       </div>
       <div className="mt-5 space-y-6 px-3 pb-2">
         <div className="flex items-center justify-between">
-          <p className="text-sm">Focus Card Tray</p>
-          <Button
-            variant="secondary"
-            size="small"
-            className="relative h-auto border-0 px-[4px] py-1"
-          >
-            <Icon IconComp={isWishList ? HeartSolidIcon : HeartIcon} />
-          </Button>
+          <p className="text-sm capitalize">Office Shirt</p>
+          {isProductPage && (
+            <Button
+              variant="secondary"
+              size="small"
+              onClick={handleLike}
+              className="relative h-auto border-0 px-[4px] py-1 ring-red-600"
+            >
+              <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
+            </Button>
+          )}
         </div>
         <div className="space-y-1 pb-3">
           <p className="font-medium text-gray-900">NGN 25,000</p>
@@ -74,13 +87,15 @@ function ProductCard({
           </div>
         </div>
       </div>
-      <Button
-        leftIcon={<Icon IconComp={PlusIcon} className="text-white" />}
-        className="w-full"
-        onClick={handleAdd}
-      >
-        ADD
-      </Button>
+      {isProductPage && (
+        <Button
+          leftIcon={<Icon IconComp={PlusIcon} className="text-white" />}
+          className="w-full text-sm"
+          onClick={handleAdd}
+        >
+          ADD
+        </Button>
+      )}
     </Link>
   );
 }

@@ -6,8 +6,6 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400"],
-  // weight: ["400", "500"],
-  display: "swap",
 });
 
 const buttonClasses = cva(
@@ -34,9 +32,8 @@ const buttonClasses = cva(
           "bg-brand-blue",
           "border-transparent",
           "hover:bg-brand-primary",
-          "focus:bg-brand-primary",
-          "disabled:bg-brand-grey-bg",
-          "disabled:text-brand-grey-text",
+          "disabled:bg-brand-graybg",
+          "disabled:text-brand-grayt",
         ],
         secondary: [
           "bg-transparent",
@@ -68,6 +65,7 @@ const buttonClasses = cva(
       },
       size: {
         small: ["text-[13px]", "h-10", "px-5"],
+        xs: ["text-xs", "h-8", "px-4 border-brand-light rounded-[4px]"],
         menu: ["text-[13px]", "h-12", "px-4"],
         medium: ["text-[15px]", "h-11", "px-8"],
       },
@@ -76,7 +74,7 @@ const buttonClasses = cva(
       {
         variant: ["primary", "secondary", "outline", "warning"],
         size: ["medium", "small"],
-        class: " justify-center",
+        className: "justify-center",
         // **or** if you're a React.js user, `className` may feel more consistent:
         // className: "uppercase"
       },

@@ -9,6 +9,7 @@ import {
   WalletIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
@@ -21,7 +22,9 @@ function Navbar() {
     <div className="w-full bg-white py-4">
       <Section className="item-center flex justify-between ">
         <div className="flex w-[100px] items-center">
-          <Image src={logoImg} alt="first bank logo" />
+          <Link href="/">
+            <Image src={logoImg} alt="first bank logo" />
+          </Link>
         </div>
         <div className="flex items-center space-x-10">
           <div className="flex w-[400px]">
@@ -37,15 +40,14 @@ function Navbar() {
                 variant="secondary"
                 size="small"
                 className="border-0 px-[4px]"
-                rightIcon={
-                  <Icon IconComp={ChevronDownIcon} className="text-inherit" />
-                }
+                rightIcon={<Icon IconComp={ChevronDownIcon} />}
               >
                 Help
               </MenuButton>
               <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px]">
-                <MenuItem>Blank Note</MenuItem>
-                <MenuItem>From Template</MenuItem>
+                <MenuItem>Help Center</MenuItem>
+                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Contact Us</MenuItem>
               </MenuItems>
             </Menu>
           </div>
@@ -54,7 +56,7 @@ function Navbar() {
             variant="secondary"
             size="small"
             className="border-0 px-[4px]"
-            rightIcon={<Icon IconComp={HeartIcon} className="text-inherit" />}
+            rightIcon={<Icon IconComp={HeartIcon} />}
           >
             WishList
           </Button>
@@ -63,7 +65,7 @@ function Navbar() {
             size="small"
             className="relative border-0 px-[4px]"
           >
-            <Icon IconComp={ShoppingCartIcon} className="text-inherit" />
+            <Icon IconComp={ShoppingCartIcon} />
             <div className="absolute left-4 top-1 rounded bg-brand-darkest p-1 py-0 text-xs text-white">
               3
             </div>
@@ -74,8 +76,10 @@ function Navbar() {
               variant="secondary"
               size="small"
               className="border-0 px-[4px]"
+              leftIcon={<Icon IconComp={UserCircleIcon} />}
+              rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
             >
-              <Icon IconComp={UserCircleIcon} className="text-inherit" />
+              Emeka
             </MenuButton>
             <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
               <MenuItem

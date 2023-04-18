@@ -4,7 +4,7 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils/component.utils";
 
-const inter = Inter({ subsets: ["latin"], weight: ["500"] });
+const inter = Inter({ subsets: ["cyrillic"] });
 
 const headerClasses = cva(["font-bold", "text-inherit"], {
   variants: {
@@ -13,6 +13,7 @@ const headerClasses = cva(["font-bold", "text-inherit"], {
       h2: ["text-[36px] leading-[42px]"],
       h3: ["text-[28px] leading-[36px]"],
       h4: ["text-[24px] leading-[32px]"],
+      h5: ["text-[18px] leading-[24px]"],
     },
   },
   //   Variants that apply when multiple other variant conditions are met.

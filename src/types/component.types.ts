@@ -33,7 +33,8 @@ export interface ModalProps {
   closeModal: () => void;
   children?: React.ReactNode;
   closeOnOverlayClick?: boolean;
-  title: string;
+  title?: string;
+  size?: "lg" | "md";
 }
 // input types
 export interface IInputOption {
@@ -42,7 +43,8 @@ export interface IInputOption {
 }
 
 export type InputWrapperProps = {
-  // inputIcon?: IconType;
+  borderColor?: string;
+  bg?: string;
   inputIcon?: IconType;
   name: string;
   label?: string;
@@ -56,9 +58,9 @@ export type InputWrapperProps = {
   children?: React.ReactNode;
   options?: IInputOption[];
   isTextArea?: boolean;
-  h?: number;
+  h?: number | string;
   pr?: number;
-  height?: number;
+  height?: number | string;
 };
 
 export interface Option {
