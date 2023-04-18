@@ -7,7 +7,7 @@ import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ReactElement } from "react";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
@@ -17,7 +17,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
     <>
       <div className="bg-white pb-10">
         <div className="w-full border-b border-gray-200 ">
-          <Section className="space-y-5 py-8">
+          <Section className="space-y-4 py-8">
             <div className="flex items-center">
               <div className="flex items-center gap-1 text-sm">
                 <p>Home</p>
@@ -25,10 +25,77 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                 <p>Cart</p>
               </div>
             </div>
-            <Heading size="h4">Cart</Heading>
-            <Button onClick={onOpen}>Open Modals</Button>
+            <div className="flex items-center justify-between">
+              <Heading size="h4">Cart</Heading>
+              <Button
+                variant="secondary"
+                size="xs"
+                className="border-0 border-b"
+                href="/"
+                rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
+              >
+                Continue shopping
+              </Button>
+            </div>
+            {/* <Button onClick={onOpen}>Open Modals</Button> */}
           </Section>
         </div>
+
+        <Section className="grid grid-cols-12 gap-x-4 pt-3">
+          <div className="col-span-9 mb-8 overflow-hidden rounded bg-white pb-2">
+            <table className="w-full table-auto border-collapse border-spacing-0 rounded-full text-sm">
+              <thead className="border-b border-brand-light">
+                <tr className="py-2">
+                  <th className="w-full py-4 text-left font-medium text-brand-darkest">
+                    Item Details
+                  </th>
+                  <th className="w-full flex-auto py-4 text-left font-medium text-brand-darkest">
+                    Quantity
+                  </th>
+                  <th className="w-full py-4 text-left font-medium text-brand-darkest">
+                    Price
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                <tr>
+                  <td className="py-4  text-slate-700">
+                    <div className="item-start flex max-w-sm gap-3 bg-slate-400">
+                      <div className="flex h-[100px] w-[100px] min-w-max flex-shrink-0 bg-brand-light" />
+                      <div className="flex h-full flex-col justify-between">
+                        <p>
+                          This Description should carry only the full name of
+                          the product.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-4 text-slate-700">
+                    <Heading size="h4">25,000</Heading>
+                  </td>
+                  <td className="py-4 text-slate-700">1961</td>
+                </tr>
+                <tr>
+                  <td className="py-4  text-slate-700">TRX</td>
+                  <td className="py-4 text-slate-700">4.65%</td>
+                  <td className="py-4 text-slate-700">
+                    <Heading size="h4">25,000</Heading>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-4  text-slate-700">TRX</td>
+                  <td className="py-4 text-slate-700">4.65%</td>
+                  <td className="py-4 text-slate-700">
+                    <Heading size="h4">25,000</Heading>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="col-span-3">
+            <div className="bg-brand-lightest px-3 py-4"></div>
+          </div>
+        </Section>
 
         {/* second section */}
         {/* <section className="space-y-5  ">
