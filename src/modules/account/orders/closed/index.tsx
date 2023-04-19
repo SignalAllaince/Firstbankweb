@@ -5,19 +5,19 @@ import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
 import SingleOrder from "../components/order-row";
 
-const OpenOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
+const ClosedOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <div className="space-y-5 pt-5">
       <div className="space-y-5">
-        <SingleOrder status="pending" />
-        <SingleOrder status="pending" />
-        <SingleOrder status="pending" />
+        <SingleOrder status="success" />
+        <SingleOrder status="error" />
+        <SingleOrder status="success" />
       </div>
     </div>
   );
 };
 
-OpenOrdersPage.getLayout = function getLayout(page: ReactElement) {
+ClosedOrdersPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <AccountLayout>
       <OrderLayout>{page}</OrderLayout>
@@ -25,6 +25,6 @@ OpenOrdersPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-OpenOrdersPage.auth = false;
+ClosedOrdersPage.auth = false;
 
-export default OpenOrdersPage;
+export default ClosedOrdersPage;
