@@ -34,9 +34,11 @@ function useNotification() {
       appearance: VariantType;
     }) => {
       enqueueSnackbar(
-        <div className="space-y-0 p-1">
-          {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
-          <p className="text-[12px]">{description}</p>
+        <div>
+          <div className="space-y-0 px-2 py-3">
+            {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
+            <p className="text-[12px]">{description}</p>
+          </div>
         </div>,
         {
           variant: appearance,

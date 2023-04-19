@@ -10,6 +10,8 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
@@ -18,6 +20,12 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "../menu";
 import Section from "../section";
 
 function Navbar() {
+  const router = useRouter();
+  const searchHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push("search/others");
+  };
+
   return (
     <div className="w-full bg-white py-4">
       <Section className="item-center flex justify-between ">
@@ -27,12 +35,15 @@ function Navbar() {
           </Link>
         </div>
         <div className="flex items-center space-x-10">
-          <div className="flex w-[400px]">
+          <form onSubmit={searchHandler} className="flex w-[400px]">
             <CustomInput name="search" placeholder="Search" />
-            <Button className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent">
+            <Button
+              type="submit"
+              className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent"
+            >
               <Icon IconComp={MagnifyingGlassIcon} className="text-white" />
             </Button>
-          </div>
+          </form>
           <div>
             <Menu>
               <MenuButton

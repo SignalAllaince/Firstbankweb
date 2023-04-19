@@ -11,7 +11,7 @@ const inter = Inter({
 const buttonClasses = cva(
   [
     inter.className,
-    "rounded-[4px]",
+
     "items-center",
     "cursor-pointer",
     "gap-2",
@@ -77,7 +77,7 @@ const buttonClasses = cva(
       {
         variant: ["primary", "secondary", "outline", "warning"],
         size: ["medium", "small"],
-        className: "justify-center",
+        className: "justify-center rounded-[4px]",
         // **or** if you're a React.js user, `className` may feel more consistent:
         // className: "uppercase"
       },

@@ -1,6 +1,8 @@
+import Icon from "@/components/icon";
 import { AuthProvider } from "@/lib/context/auth-provider";
 import "@/styles/globals.css";
 import { AppPropsWithAuth } from "@/types/component.types";
+import { HeartIcon } from "@heroicons/react/20/solid";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { SnackbarProvider } from "notistack";
@@ -23,7 +25,16 @@ const MyApp = ({
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <SnackbarProvider
-          maxSnack={5}
+          maxSnack={3}
+          iconVariant={{
+            info: (
+              <Icon
+                IconComp={HeartIcon}
+                className="mr-2 text-brand-blue"
+                boxSize={6}
+              />
+            ),
+          }}
           autoHideDuration={6000}
           anchorOrigin={{
             horizontal: "right",

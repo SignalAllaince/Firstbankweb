@@ -73,7 +73,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                         <tr className="border-b">
                           <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                              <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
                                 <Image
                                   src={productImg}
                                   alt="product image"
@@ -125,7 +125,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                         <tr className="border-b">
                           <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                              <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
                                 <Image
                                   src={productImg}
                                   alt="product image"

@@ -1,3 +1,4 @@
+import useNotification from "@/hooks/use-notification";
 import { cn } from "@/lib/utils/component.utils";
 import {
   HeartIcon as HeartSolidIcon,
@@ -26,12 +27,20 @@ function ProductCard({
   isFinished?: boolean;
 }) {
   const [like, setLike] = useState(false);
+  const { toast } = useNotification();
   const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLike((prev) => !prev);
+    if (!like) {
+      toast({
+        appearance: "info",
+        description: "Item Successfully added to wishlist",
+      });
+      return;
+    }
   };
   return (
     <Link
@@ -41,7 +50,7 @@ function ProductCard({
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
       }  relative overflow-hidden rounded-[4px] bg-white`}
     >
-      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-[4px] bg-red-900 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
           src={productImg}
           //   src={imageSrc}
