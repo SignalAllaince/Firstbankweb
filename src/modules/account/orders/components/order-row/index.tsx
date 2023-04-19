@@ -1,3 +1,4 @@
+import Badge from "@/components/badge";
 import Button from "@/components/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,10 @@ function SingleOrder() {
           <p>
             This Description should carry only the full name of the product.
           </p>
-          <p className="text-xs text-brand-dark">Order No. - BS83748748</p>
+          <div className="flex items-center gap-3">
+            <p className="text-xs text-brand-dark">Order No. - BS83748748</p>
+            <Badge>Order placed</Badge>
+          </div>
           <div className="flex items-center gap-2">
             <p className="text-xs">
               To be delivered between Monday, April 8 and Thursday, April 11

@@ -8,7 +8,7 @@ const ChevronDownIcon = React.forwardRef<
     title?: string;
     titleId?: string;
   }
->(({ title, titleId, ...props }, svgRef) => {
+>(({ ...props }, svgRef) => {
   return (
     <svg
       ref={svgRef}
