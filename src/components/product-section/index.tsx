@@ -8,6 +8,7 @@ import { useState } from "react";
 import Button from "../button";
 import Icon from "../icon";
 import Modal from "../modal";
+import CartProductBtn from "../product-btn";
 
 const product = {
   name: "FirstBank Brandshop",
@@ -78,7 +79,7 @@ function classNames(...classes: string[]) {
 }
 
 function ProductWithImageGallery() {
-  const { isOpen, onOpen, onOClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImg, setSelectedImg] = useState(product.images[0]);
 
   return (
@@ -183,6 +184,7 @@ function ProductWithImageGallery() {
               </div>
               <div className="flex items-center gap-8">
                 <p className="font-light">Quantity:</p>
+                <CartProductBtn />
               </div>
               {/* color radio */}
               <div className="mt-10">
@@ -190,7 +192,7 @@ function ProductWithImageGallery() {
                   <Button
                     variant="primary"
                     onClick={onOpen}
-                    className="w-full py-6 uppercase"
+                    className="w-full py-6 text-sm uppercase"
                     leftIcon={
                       <Icon IconComp={PlusIcon} className="text-white" />
                     }
@@ -203,17 +205,20 @@ function ProductWithImageGallery() {
           </div>
         </div>
       </div>
-      <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
+      <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick>
         <div className="space-y-8 py-6 md:px-5">
           <div className="text-md mx-auto max-w-md text-center font-light lg:text-lg">
             <p>Product has been successfully added to cart.</p>
             <p> What would you like to do?</p>
           </div>
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <Button className="w-full px-2 uppercase" variant="secondary">
+            <Button
+              className="w-full px-2 text-sm uppercase"
+              variant="secondary"
+            >
               Continue shopping
             </Button>
-            <Button className="w-full px-2 uppercase" href="/cart">
+            <Button className="w-full px-2 text-sm uppercase" href="/cart">
               Proceed to cart
             </Button>
           </div>

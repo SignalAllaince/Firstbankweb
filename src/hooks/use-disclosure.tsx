@@ -4,10 +4,10 @@ function useDisclosure() {
   const [isOpen, setOpen] = useState(false);
 
   const onOpen = () => setOpen(true);
-  const onOClose = () => setOpen(false);
+  const onClose = () => setOpen(false);
   const onToggle = () => setOpen((prev) => !prev);
 
-  return { isOpen, onOClose, onOpen, onToggle };
+  return { isOpen, onClose, onOpen, onToggle };
 }
 
 export default useDisclosure;

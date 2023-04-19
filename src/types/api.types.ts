@@ -51,3 +51,12 @@ export interface ResponseErrorType {
 }
 
 export type CustomMethod = "get" | "put" | "delete" | "post";
+
+export type PaymentMethod =
+  | "card"
+  | "ussd"
+  | "transfer"
+  | "QR"
+  | "solId"
+  | "first-checkout"
+  | null;

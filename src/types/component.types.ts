@@ -35,6 +35,7 @@ export interface ModalProps {
   closeOnOverlayClick?: boolean;
   title?: string;
   size?: "lg" | "md";
+  isCloseIconPresent?: boolean;
 }
 // input types
 export interface IInputOption {

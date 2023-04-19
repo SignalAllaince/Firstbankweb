@@ -16,6 +16,7 @@ function Modal({
   children,
   title,
   size = "lg",
+  isCloseIconPresent = true,
 }: ModalProps) {
   return (
     <>
@@ -60,15 +61,17 @@ function Modal({
                     </Dialog.Title>
                   )}
                   {/* Close button */}
-                  <div className="absolute right-1 top-2">
-                    <Button
-                      onClick={closeModal}
-                      variant="outline"
-                      className="h-auto !ring-0 focus:!ring-0"
-                    >
-                      <Icon IconComp={XMarkIcon} className="text-black" />
-                    </Button>
-                  </div>
+                  {isCloseIconPresent ? (
+                    <div className="absolute right-1 top-2">
+                      <Button
+                        onClick={closeModal}
+                        variant="outline"
+                        className="h-auto !ring-0 focus:!ring-0"
+                      >
+                        <Icon IconComp={XMarkIcon} className="text-black" />
+                      </Button>
+                    </div>
+                  ) : null}
 
                   {children}
                 </Dialog.Panel>

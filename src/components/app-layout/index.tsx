@@ -3,6 +3,9 @@ import { ReactNode } from "react";
 import Banner from "../banner";
 import Footer from "../footer";
 import HeroSection from "../hero-section";
+import Navbar from "../navbar";
+import CheckoutNavbar from "../navbar/checkout";
+import MiniNavbar from "../navbar/mini";
 import Section from "../section";
 
 const inter = Inter({ subsets: ["cyrillic"] });
@@ -10,15 +13,23 @@ const inter = Inter({ subsets: ["cyrillic"] });
 function AppLayout({
   children,
   hasBanner = true,
+  isCheckout = false,
 }: {
   children: ReactNode;
   hasBanner?: boolean;
+  isCheckout?: boolean;
 }) {
   return (
     <div className={`${inter.className} flex min-h-screen w-full flex-col`}>
-      {/* <Navbar /> */}
-      {/* <MiniNavbar /> */}
-      <HeroSection />
+      {!isCheckout ? (
+        <>
+          <Navbar />
+          <MiniNavbar />
+          <HeroSection />
+        </>
+      ) : (
+        <CheckoutNavbar />
+      )}
       <div className="flex-1 bg-brand-lightest">
         <Section>
           {hasBanner && (
