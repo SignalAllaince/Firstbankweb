@@ -50,7 +50,7 @@ function ProductCard({
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
       }  relative overflow-hidden rounded-[4px] bg-white`}
     >
-      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-t-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
           src={productImg}
           //   src={imageSrc}
