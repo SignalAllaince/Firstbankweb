@@ -3,22 +3,22 @@ import Modal from "..";
 
 function WishListModal({
   isOpen,
-  onOClose,
+  onClose,
 }: {
   isOpen: boolean;
-  onOClose: () => void;
+  onClose: () => void;
 }) {
   return (
-    <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick>
+    <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick>
       <div className="space-y-8 py-6 md:px-5">
         <div className="text-md mx-auto max-w-sm text-center font-light lg:text-lg">
           <p>Are you sure you want to save this item to your wishlist?</p>
         </div>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <Button className="w-full px-2 uppercase" variant="secondary">
+          <Button className="w-full px-2 text-sm uppercase" variant="secondary">
             No, Cancel
           </Button>
-          <Button className="w-full px-2 uppercase" href="/cart">
+          <Button className="w-full px-2 text-sm uppercase" href="/cart">
             Add to Wishlist
           </Button>
         </div>

@@ -5,13 +5,13 @@ import Modal from "..";
 
 function CheckoutModal({
   isOpen,
-  onOClose,
+  onClose,
 }: {
   isOpen: boolean;
-  onOClose: () => void;
+  onClose: () => void;
 }) {
   return (
-    <Modal isOpen={isOpen} closeModal={onOClose} closeOnOverlayClick size="md">
+    <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick size="md">
       <div className="space-y-8 py-6 md:px-5">
         <div className="text-md font-medium text-brand-darkest lg:text-lg">
           <p>
@@ -33,7 +33,7 @@ function CheckoutModal({
             placeholder="08000000000"
           />
           <div className="pt-4">
-            <Button className="w-full uppercase" href="/cart/checkout">
+            <Button className="w-full text-sm uppercase" href="/cart/checkout">
               Continue
             </Button>
           </div>

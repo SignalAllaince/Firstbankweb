@@ -19,7 +19,7 @@ import { ReactElement } from "react";
 import productImg from "../../../../public/images/shirt.jpg";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const { isOpen, onOClose, onOpen } = useDisclosure();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
     <>
@@ -201,11 +201,11 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
         </Section>
       </div>
       {/* Remove from cart modal */}
-      {/* <CartModal isOpen={isOpen} onOClose={onOClose} /> */}
+      {/* <CartModal isOpen={isOpen} onClose={onClose} /> */}
       {/* Add to wishlist modal */}
-      {/* <WishListModal isOpen={isOpen} onOClose={onOClose} /> */}
+      {/* <WishListModal isOpen={isOpen} onClose={onClose} /> */}
       {/* Checkout Modal */}
-      <CheckoutModal isOpen={isOpen} onOClose={onOClose} />
+      <CheckoutModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };
