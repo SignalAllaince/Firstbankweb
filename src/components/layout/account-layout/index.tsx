@@ -14,9 +14,9 @@ import SidebarLink from "../../sidebar-link";
 const inter = Inter({ subsets: ["cyrillic"] });
 
 const links = [
-  { text: "My Account", href: "/account", icon: UserCircleIcon },
-  { text: "Order", href: "/account/orders", icon: WalletIcon },
-  { text: "Rating & Reviews", href: "/account/reviews", icon: StarIcon },
+  { text: "My Account", href: "/account", icon: UserCircleIcon, exact: true },
+  { text: "Order", href: "/account/orders", icon: WalletIcon, exact: false },
+  { text: "Rating & Reviews", href: "/account/reviews", icon: StarIcon, exact: true },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   return (
@@ -30,6 +30,7 @@ function AccountLayout({ children }: { children: ReactNode }) {
                 key={link.text}
                 LinkIcon={link.icon}
                 href={link.href}
+                exact={link.exact}
               >
                 {link.text}
               </SidebarLink>

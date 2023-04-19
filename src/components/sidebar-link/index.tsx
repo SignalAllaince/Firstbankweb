@@ -7,13 +7,15 @@ function SidebarLink({
   href,
   LinkIcon,
   children,
+  exact = true,
 }: {
   href: string;
   LinkIcon: IconType;
   children: ReactNode;
+  exact?: boolean;
 }) {
   const pathname = usePathname();
-  const active = pathname === href;
+  const active = exact ? pathname === href : pathname.includes(href);
   return (
     <Link
       href={href}

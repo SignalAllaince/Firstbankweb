@@ -47,7 +47,7 @@ function SingleOrder({
         <Button
           variant="secondary"
           size="xs"
-          onClick={() => router.push("/account/orders/jsjsjsj")}
+          onClick={() => router.push("/account/orders/3jdy37827hedhi")}
         >
           Order Details
         </Button>

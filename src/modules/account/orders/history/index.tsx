@@ -25,11 +25,10 @@ const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
             >
               All
             </MenuButton>
-            <MenuItems menuClasses="left-0 bg-white divide-y divide-gray-100 mt-3">
-              <MenuItem>My Account</MenuItem>
-              <MenuItem>Orders</MenuItem>
-              <MenuItem>Ratings & Reviews</MenuItem>
-              <MenuItem>Login</MenuItem>
+            <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-3">
+              <MenuItem>Yesterday</MenuItem>
+              <MenuItem>Last week</MenuItem>
+              <MenuItem>This Month</MenuItem>
             </MenuItems>
           </Menu>
         </div>
