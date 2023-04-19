@@ -7,7 +7,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { ReactElement, SVGProps } from "react";
-import SingleOrder from "./components/order-row";
+import SingleOrder from "../components/order-row";
 
 const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (

@@ -1,1 +1,1 @@
-export { default } from "@/modules/account/orders";
+export { default } from "@/modules/account/orders/history";
