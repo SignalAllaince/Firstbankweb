@@ -28,7 +28,11 @@ function OrderLayout({
         <div className="border-b border-brand-light pb-3">
           {isDetailsPage ? (
             <div className="flex items-center gap-3">
-              <Button variant="outline" onClick={() => router.back()}>
+              <Button
+                variant="outline"
+                onClick={() => router.back()}
+                className="h-auto"
+              >
                 <Icon IconComp={ArrowLeftIcon} color="black" />
               </Button>
               <Heading size="h5">Order details</Heading>

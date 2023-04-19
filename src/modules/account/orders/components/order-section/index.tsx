@@ -18,7 +18,7 @@ function OrderProductRow() {
           <p>
             This Description should carry only the full name of the product.
           </p>
-          <p className="text-xs text-brand-dark">Quantity: 1</p>
+          <p className="text-xs">Quantity: 1</p>
           <p className="text-xs font-medium">₦ 10,000</p>
         </div>
       </div>
