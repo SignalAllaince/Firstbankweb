@@ -3,20 +3,13 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
 import CheckoutModal from "@/components/modal/checkout";
-import CartProductBtn from "@/components/product-btn";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import {
-  ArrowRightIcon,
-  ChevronRightIcon,
-  HeartIcon,
-  TrashIcon,
-} from "@heroicons/react/24/outline";
-import Image from "next/image";
+import { ArrowRightIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { ReactElement } from "react";
-import productImg from "../../../../public/images/shirt.jpg";
+import CartProductRow from "./components/cart-row";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -70,110 +63,8 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b">
-                          <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
-                            <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
-                                <Image
-                                  src={productImg}
-                                  alt="product image"
-                                  width={400}
-                                  height={400}
-                                  className="h-full w-full object-cover object-center"
-                                />
-                              </div>
-                              <div className="flex h-[100px] flex-col justify-between">
-                                <p className="break-words">
-                                  This Description should carry only the full
-                                  name of the product.
-                                </p>
-                                <div className="flex items-center gap-2">
-                                  <Button
-                                    variant="cart"
-                                    size="xs"
-                                    className="border-brand-error text-brand-error"
-                                    leftIcon={
-                                      <Icon IconComp={TrashIcon} boxSize={4} />
-                                    }
-                                  >
-                                    Remove Item
-                                  </Button>
-                                  <Button
-                                    variant="cart"
-                                    size="xs"
-                                    className="border-brand-darkest text-brand-darkest"
-                                    rightIcon={
-                                      <Icon IconComp={HeartIcon} boxSize={4} />
-                                    }
-                                  >
-                                    Add to wishlist
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="flex w-[200px] items-end justify-center whitespace-nowrap py-4">
-                            {/* Cart btn */}
-                            <div className="mt-7">
-                              <CartProductBtn />
-                            </div>
-                          </td>
-                          <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-bold">₦ 25,000</p>
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
-                            <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
-                                <Image
-                                  src={productImg}
-                                  alt="product image"
-                                  width={400}
-                                  height={400}
-                                  className="h-full w-full object-cover object-center"
-                                />
-                              </div>
-                              <div className="flex h-[100px] flex-col justify-between">
-                                <p className="break-words">
-                                  This Description should carry only the full
-                                  name of the product.
-                                </p>
-                                <div className="flex items-center gap-2">
-                                  <Button
-                                    variant="cart"
-                                    size="xs"
-                                    className="border-brand-error text-brand-error"
-                                    leftIcon={
-                                      <Icon IconComp={TrashIcon} boxSize={4} />
-                                    }
-                                  >
-                                    Remove Item
-                                  </Button>
-                                  <Button
-                                    variant="cart"
-                                    size="xs"
-                                    className="border-brand-darkest text-brand-darkest"
-                                    rightIcon={
-                                      <Icon IconComp={HeartIcon} boxSize={4} />
-                                    }
-                                  >
-                                    Add to wishlist
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="flex w-[200px] items-end justify-center whitespace-nowrap py-4">
-                            {/* Cart btn */}
-                            <div className="mt-7">
-                              <CartProductBtn />
-                            </div>
-                          </td>
-                          <td className="w-[200px] whitespace-nowrap py-4 text-center">
-                            <p className="text-lg font-bold">₦ 25,000</p>
-                          </td>
-                        </tr>
+                        <CartProductRow />
+                        <CartProductRow />
                       </tbody>
                     </table>
                   </div>
@@ -200,10 +91,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
           </div>
         </Section>
       </div>
-      {/* Remove from cart modal */}
-      {/* <CartModal isOpen={isOpen} onClose={onClose} /> */}
-      {/* Add to wishlist modal */}
-      {/* <WishListModal isOpen={isOpen} onClose={onClose} /> */}
+
       {/* Checkout Modal */}
       <CheckoutModal isOpen={isOpen} onClose={onClose} />
     </>

@@ -16,7 +16,12 @@ const inter = Inter({ subsets: ["cyrillic"] });
 const links = [
   { text: "My Account", href: "/account", icon: UserCircleIcon, exact: true },
   { text: "Order", href: "/account/orders", icon: WalletIcon, exact: false },
-  { text: "Rating & Reviews", href: "/account/reviews", icon: StarIcon, exact: true },
+  {
+    text: "Rating & Reviews",
+    href: "/account/reviews",
+    icon: StarIcon,
+    exact: true,
+  },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   return (
