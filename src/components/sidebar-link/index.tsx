@@ -17,7 +17,7 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className="flex w-full items-center gap-4 p-4 text-brand-darkest transition duration-200"
+      className="flex w-full items-center gap-4 rounded-[4px] p-4 text-sm text-brand-darkest transition duration-200"
       style={{
         backgroundColor: active ? "#F5F8FA" : "transparent",
       }}

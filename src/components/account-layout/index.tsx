@@ -23,9 +23,9 @@ function AccountLayout({ children }: { children: ReactNode }) {
   return (
     <div className={`${inter.className} flex min-h-screen w-full flex-col`}>
       <Navbar />
-      <div className="flex-1 bg-brand-lightest">
-        <Section className="flex items-start gap-4">
-          <div className="w-[270px] flex-shrink-0">
+      <div className="flex-1 border-t border-brand-light bg-white pt-6">
+        <Section className="flex items-start gap-6">
+          <div className="w-[260px] flex-shrink-0">
             {links.map((link) => (
               <SidebarLink
                 key={link.text}
