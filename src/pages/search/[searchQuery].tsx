@@ -1,1 +1,1 @@
-export { default } from "@/modules/account/search";
+export { default } from "@/modules/product/search";

@@ -56,7 +56,7 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
                 {/* Item rows */}
                 <div className="flex items-start justify-between border-b border-brand-light pb-4">
                   <div className="item-start flex max-w-sm gap-3 text-sm font-light">
-                    <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                    <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
                       <Image
                         src={productImg}
                         alt="product image"
@@ -79,7 +79,7 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
                 <div className="flex items-start justify-between border-b border-brand-light pb-4">
                   <div className="item-start flex max-w-sm gap-3 text-sm font-light">
-                    <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                    <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
                       <Image
                         src={productImg}
                         alt="product image"

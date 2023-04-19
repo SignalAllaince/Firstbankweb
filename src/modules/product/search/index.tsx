@@ -105,7 +105,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       {/* second section */}
       <section className="pb-10 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
-          <div className="col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
@@ -121,7 +121,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                               active && checked ? "ring-2" : "",
                               checked ? "bg-brand-darkest" : "",
                               !active && checked ? "ring-2" : "",
-                              "relative -m-0.5 block h-[18px] w-[18px] rounded-full border-2 border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
+                              "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
                             )}
                           />
                           <span className="text-sm">{plan.name}</span>
@@ -165,7 +165,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                               active && checked ? "ring-2" : "",
                               checked ? "bg-brand-darkest" : "",
                               !active && checked ? "ring-2" : "",
-                              "relative -m-0.5 block h-[18px] w-[18px] rounded-full border-2 border-black border-opacity-80 p-0.5 ring-offset-1 focus:outline-none"
+                              "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
                             )}
                           />
                           <div className="flex items-center space-x-3">
@@ -195,6 +195,9 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
           </div>
           <div className="col-span-9">
             <div className="grid grid-cols-3 gap-x-4 gap-y-12">
+              <ProductCard isProductPage />
+              <ProductCard isProductPage />
+              <ProductCard isProductPage />
               <ProductCard isProductPage />
               <ProductCard isProductPage />
               <ProductCard isProductPage />

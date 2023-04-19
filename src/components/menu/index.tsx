@@ -63,7 +63,7 @@ export function MenuItems({
       leaveTo="transform opacity-0 scale-95"
     >
       <HeadlessMenu.Items
-        className={`${menuClasses} absolute z-20 w-56 rounded-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+        className={`${menuClasses} absolute z-20 w-56 rounded-[4px] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
       >
         {children}
       </HeadlessMenu.Items>

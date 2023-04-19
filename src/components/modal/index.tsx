@@ -50,7 +50,7 @@ function Modal({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`relative w-full ${sizes[size]} transform overflow-hidden rounded-none bg-white p-6 text-left align-middle shadow-xl transition-all`}
+                  className={`relative w-full ${sizes[size]} transform overflow-hidden rounded-[8px] bg-white p-6 text-left align-middle shadow-xl transition-all`}
                 >
                   {title && (
                     <Dialog.Title

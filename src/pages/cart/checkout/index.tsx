@@ -1,1 +1,1 @@
-export { default } from "@/modules/account/checkout";
+export { default } from "@/modules/product/checkout";
