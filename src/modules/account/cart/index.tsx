@@ -14,7 +14,9 @@ import {
   HeartIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { ReactElement } from "react";
+import productImg from "../../../../public/images/shirt.jpg";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   const { isOpen, onOClose, onOpen } = useDisclosure();
@@ -49,65 +51,6 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
 
         <Section className="gap-x-4 pt-5 lg:grid lg:grid-cols-12">
           <div className="mb-8 space-y-6 overflow-hidden rounded bg-white pb-2 lg:col-span-8">
-            {/* <table className="w-full table-auto border-collapse border-spacing-0 rounded-full text-sm">
-              <thead className="border-b border-brand-light">
-                <tr className="py-2">
-                  <th className="min-w-[370px]  py-4 text-left font-medium text-brand-darkest">
-                    Item Details
-                  </th>
-                  <th className="w-full flex-auto py-4 text-left font-medium text-brand-darkest">
-                    Quantity
-                  </th>
-                  <th className="w-full py-4 text-left font-medium text-brand-darkest">
-                    Price
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                <tr>
-                  <td className="py-4 text-slate-700">
-                    <div className="item-start flex  gap-3">
-                      <div className="flex h-[100px] w-[100px] min-w-max flex-shrink-0 bg-brand-light" />
-                      <div className="flex h-[100px] flex-col justify-between">
-                        <p className="font-light">
-                          This Description should carry only the full name of
-                          the product.
-                        </p>
-                        <div className="flex items-center gap-3">
-                          <Button
-                            variant="cart"
-                            size="xs"
-                            className="border-brand-error text-brand-error"
-                            leftIcon={<Icon IconComp={TrashIcon} boxSize={4} />}
-                          >
-                            Remove Item
-                          </Button>
-                          <Button
-                            variant="cart"
-                            size="xs"
-                            className="border-brand-darkest text-brand-darkest"
-                            rightIcon={
-                              <Icon IconComp={HeartIcon} boxSize={4} />
-                            }
-                          >
-                            Add to wishlist
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="py-4 text-slate-700">25,000</td>
-                  <td className="py-4 text-slate-700">1961</td>
-                </tr>
-
-                <tr>
-                  <td className="py-4  text-slate-700">TRX</td>
-                  <td className="py-4 text-slate-700">4.65%</td>
-                  <td className="py-4 text-slate-700">25,000</td>
-                </tr>
-              </tbody>
-            </table> */}
-
             <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
               <div className="sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -130,7 +73,15 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                         <tr className="border-b">
                           <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light" />
+                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                                <Image
+                                  src={productImg}
+                                  alt="product image"
+                                  width={400}
+                                  height={400}
+                                  className="h-full w-full object-cover object-center"
+                                />
+                              </div>
                               <div className="flex h-[100px] flex-col justify-between">
                                 <p className="break-words">
                                   This Description should carry only the full
@@ -174,7 +125,15 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                         <tr className="border-b">
                           <td className="w-[550px] whitespace-pre-line py-4 text-slate-700 md:w-[480px] lg:w-[450px]">
                             <div className="item-start flex gap-3">
-                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light" />
+                              <div className="flex h-[100px] w-[100px]  flex-shrink-0 bg-brand-light">
+                                <Image
+                                  src={productImg}
+                                  alt="product image"
+                                  width={400}
+                                  height={400}
+                                  className="h-full w-full object-cover object-center"
+                                />
+                              </div>
                               <div className="flex h-[100px] flex-col justify-between">
                                 <p className="break-words">
                                   This Description should carry only the full
