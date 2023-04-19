@@ -1,6 +1,6 @@
-import AuthLayout from "@/components/auth-layout";
 import Button from "@/components/button";
 import CustomInput from "@/components/input";
+import AuthLayout from "@/components/layout/auth-layout";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { FormEvent, ReactElement } from "react";

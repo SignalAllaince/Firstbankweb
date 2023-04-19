@@ -1,6 +1,6 @@
-import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
+import AppLayout from "@/components/layout/app-layout";
 import PaymentModal from "@/components/modal/payment";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";

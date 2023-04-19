@@ -6,18 +6,22 @@ import {
 } from "@heroicons/react/24/outline";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import Footer from "../footer";
-import Navbar from "../navbar";
-import Section from "../section";
-import SidebarLink from "../sidebar-link";
+import Footer from "../../footer";
+import Navbar from "../../navbar";
+import Section from "../../section";
+import SidebarLink from "../../sidebar-link";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
 const links = [
-  { text: "My Account", href: "/account", icon: UserCircleIcon },
-  { text: "Order", href: "/account/orders", icon: WalletIcon },
-  { text: "Rating & Reviews", href: "/account/reviews", icon: StarIcon },
-  { text: "Logout", href: "/logout", icon: ArrowLeftOnRectangleIcon },
+  { text: "My Account", href: "/account", icon: UserCircleIcon, exact: true },
+  { text: "Order", href: "/account/orders", icon: WalletIcon, exact: false },
+  {
+    text: "Rating & Reviews",
+    href: "/account/reviews",
+    icon: StarIcon,
+    exact: true,
+  },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   return (
@@ -31,11 +35,18 @@ function AccountLayout({ children }: { children: ReactNode }) {
                 key={link.text}
                 LinkIcon={link.icon}
                 href={link.href}
+                exact={link.exact}
               >
                 {link.text}
               </SidebarLink>
             ))}
+            <div className="border-t border-brand-light">
+              <SidebarLink LinkIcon={ArrowLeftOnRectangleIcon} href="">
+                Logout
+              </SidebarLink>
+            </div>
           </div>
+
           <div className="flex-1">{children}</div>
         </Section>
       </div>

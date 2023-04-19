@@ -1,5 +1,5 @@
-import AppLayout from "@/components/app-layout";
 import Catergory from "@/components/category";
+import AppLayout from "@/components/layout/app-layout";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";

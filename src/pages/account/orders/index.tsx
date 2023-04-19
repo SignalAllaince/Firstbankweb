@@ -1,1 +1,1 @@
-export { default } from "@/modules/account/profile";
+export { default } from "@/modules/account/orders/history";

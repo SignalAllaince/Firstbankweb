@@ -1,5 +1,5 @@
-import AccountLayout from "@/components/account-layout";
 import Heading from "@/components/heading";
+import AccountLayout from "@/components/layout/account-layout";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
