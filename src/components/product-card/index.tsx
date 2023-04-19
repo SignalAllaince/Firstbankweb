@@ -39,9 +39,9 @@ function ProductCard({
       href="/others/umbrella"
       className={`${
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
-      }  relative overflow-hidden rounded-none bg-white`}
+      }  relative overflow-hidden rounded-[4px] bg-white`}
     >
-      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-none bg-red-900 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[220px] w-full min-w-[240px] overflow-hidden rounded-[4px] bg-red-900 transition-all duration-200 group-hover:opacity-75">
         <Image
           src={productImg}
           //   src={imageSrc}

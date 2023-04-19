@@ -88,14 +88,14 @@ function ProductWithImageGallery() {
         <div className="py-4">
           <div className="mx-auto mt-6 max-w-2xl  space-y-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-16 lg:space-y-0 lg:px-8">
             <div className="space-y-7">
-              <div className="rounded-none bg-gray-100 ">
+              <div className="rounded-[4px] bg-gray-100 ">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedImg.src}
                     initial={{ opacity: 0.3 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0.3 }}
-                    className="aspect-h-1 aspect-w-1 max-h-[100px] overflow-hidden rounded-none "
+                    className="aspect-h-1 aspect-w-1 max-h-[100px] overflow-hidden rounded-[4px] "
                   >
                     <Image
                       src={selectedImg.src}
@@ -124,14 +124,14 @@ function ProductWithImageGallery() {
                       className={({ active, checked }) =>
                         classNames(
                           active || checked ? "ring-2 ring-blue-500" : "",
-                          "cursor-pointer overflow-hidden rounded-none"
+                          "cursor-pointer overflow-hidden rounded-[4px]"
                         )
                       }
                     >
                       <RadioGroup.Label as="span" className="sr-only">
                         {img.alt}
                       </RadioGroup.Label>
-                      <div className="h-[80px] w-[100px]  overflow-hidden rounded-none">
+                      <div className="h-[80px] w-[100px]  overflow-hidden rounded-[4px]">
                         <Image
                           src={img.src}
                           alt={img.alt}

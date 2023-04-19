@@ -11,7 +11,7 @@ const inter = Inter({
 const buttonClasses = cva(
   [
     inter.className,
-    "rounded-none",
+    "rounded-[4px]",
     "items-center",
     "cursor-pointer",
     "gap-2",
