@@ -40,7 +40,11 @@ function PaymentMethods({
   return (
     <div className="space-y-6 pb-6">
       <Heading size="h5">Payment method</Heading>
-      <RadioGroup value={paymentMethod} onChange={setPaymentMethod}>
+      <RadioGroup
+        value={paymentMethod}
+        onChange={setPaymentMethod}
+        className="w-fit"
+      >
         <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
         <div className="space-y-6">
           {methods.map((method) => (

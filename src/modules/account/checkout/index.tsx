@@ -4,14 +4,32 @@ import Heading from "@/components/heading";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ReactElement, useState } from "react";
 import productImg from "../../../../public/images/shirt.jpg";
 import PaymentMethods from "./components/payment-methods";
+import StaffDetails from "./components/staff-details";
 
+const btnText = {
+  details: "Proceed to payment",
+  payment: "Confirm Order",
+};
 const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [checked, setChecked] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [level, setLevel] = useState<"details" | "payment">("details");
+
+  const checkoutHandler = () => {
+    if (level === "details" && checked) {
+      setLevel("payment");
+      return;
+    }
+    alert("payment modal");
+  };
+  const disable =
+    (level === "details" && !checked) ||
+    (level === "payment" && !paymentMethod);
   return (
     <div className="bg-white pb-10">
       <div className="w-full border-b border-gray-200 ">
@@ -109,14 +127,31 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
               </div>
               {/* Toggle staff details and payment option */}
-              {/* <StaffDetails checked={checked} setChecked={setChecked} /> */}
-              <PaymentMethods
-                paymentMethod={paymentMethod}
-                setPaymentMethod={setPaymentMethod}
-              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={level}
+                  initial={{ opacity: 0.3 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0.3 }}
+                >
+                  {level === "details" ? (
+                    <StaffDetails checked={checked} setChecked={setChecked} />
+                  ) : (
+                    <PaymentMethods
+                      paymentMethod={paymentMethod}
+                      setPaymentMethod={setPaymentMethod}
+                    />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
               <div>
-                <Button className="w-full text-sm uppercase">
-                  Proceed to payment
+                <Button
+                  className="w-full text-sm uppercase"
+                  disabled={disable}
+                  onClick={checkoutHandler}
+                >
+                  {btnText[level]}
                 </Button>
               </div>
             </div>
