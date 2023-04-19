@@ -7,10 +7,11 @@ import { ProtectedComponentType } from "@/types/service.types";
 import Image from "next/image";
 import { ReactElement, useState } from "react";
 import productImg from "../../../../public/images/shirt.jpg";
-import StaffDetails from "./components/staff-details";
+import PaymentMethods from "./components/payment-methods";
 
 const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [checked, setChecked] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(null);
   return (
     <div className="bg-white pb-10">
       <div className="w-full border-b border-gray-200 ">
@@ -108,7 +109,11 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
               </div>
               {/* Toggle staff details and payment option */}
-              <StaffDetails checked={checked} setChecked={setChecked} />
+              {/* <StaffDetails checked={checked} setChecked={setChecked} /> */}
+              <PaymentMethods
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
+              />
               <div>
                 <Button className="w-full text-sm uppercase">
                   Proceed to payment
