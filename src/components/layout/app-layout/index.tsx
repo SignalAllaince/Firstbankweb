@@ -1,12 +1,12 @@
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
-import Banner from "../banner";
-import Footer from "../footer";
-import HeroSection from "../hero-section";
-import Navbar from "../navbar";
-import CheckoutNavbar from "../navbar/checkout";
-import MiniNavbar from "../navbar/mini";
-import Section from "../section";
+import Banner from "../../banner";
+import Footer from "../../footer";
+import HeroSection from "../../hero-section";
+import Navbar from "../../navbar";
+import CheckoutNavbar from "../../navbar/checkout";
+import MiniNavbar from "../../navbar/mini";
+import Section from "../../section";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 

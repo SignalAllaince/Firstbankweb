@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logoImg from "../../../public/images/logo-blue.svg";
-import Footer from "../footer";
-import Heading from "../heading";
+import Footer from "../../footer";
+import Heading from "../../heading";
 
 const section = {
   personal: {

@@ -1,9 +1,9 @@
 import Accordion from "@/components/accordion";
-import AppLayout from "@/components/app-layout";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
+import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
