@@ -4,11 +4,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import productImg from "../../../../../../public/images/shirt.jpg";
 
-function SingleOrder() {
+const texts = {
+  pending: "order placed",
+  error: "order cancelled - unsuccessful payment",
+  success: "delivered",
+};
+
+function SingleOrder({
+  status = "error",
+}: {
+  status?: "pending" | "success" | "error";
+}) {
   const router = useRouter();
   return (
     <div className="flex items-start justify-between border-b border-brand-light pb-4">
-      <div className="item-start flex max-w-lg gap-3 text-sm font-light">
+      <div className="item-start flex max-w-[550px] gap-3 text-sm font-light">
         <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
           <Image
             src={productImg}
@@ -24,7 +34,7 @@ function SingleOrder() {
           </p>
           <div className="flex items-center gap-3">
             <p className="text-xs text-brand-dark">Order No. - BS83748748</p>
-            <Badge>Order placed</Badge>
+            <Badge variant={status}>{texts[status]}</Badge>
           </div>
           <div className="flex items-center gap-2">
             <p className="text-xs">

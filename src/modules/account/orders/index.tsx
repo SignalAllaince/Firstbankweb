@@ -25,7 +25,7 @@ const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
             >
               All
             </MenuButton>
-            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
+            <MenuItems menuClasses="left-0 bg-white divide-y divide-gray-100 mt-3">
               <MenuItem>My Account</MenuItem>
               <MenuItem>Orders</MenuItem>
               <MenuItem>Ratings & Reviews</MenuItem>
@@ -44,9 +44,9 @@ const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
       <div className="space-y-5">
         <SingleOrder />
+        <SingleOrder status="pending" />
         <SingleOrder />
-        <SingleOrder />
-        <SingleOrder />
+        <SingleOrder status="success" />
       </div>
     </div>
   );

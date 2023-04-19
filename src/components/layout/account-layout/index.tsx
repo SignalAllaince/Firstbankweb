@@ -1,8 +1,8 @@
-import OrderIcon from "@/components/icon/icons/bag";
 import {
   ArrowLeftOnRectangleIcon,
   StarIcon,
   UserCircleIcon,
+  WalletIcon,
 } from "@heroicons/react/24/outline";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ["cyrillic"] });
 
 const links = [
   { text: "My Account", href: "/account", icon: UserCircleIcon },
-  { text: "Order", href: "/account/orders", icon: OrderIcon },
+  { text: "Order", href: "/account/orders", icon: WalletIcon },
   { text: "Rating & Reviews", href: "/account/reviews", icon: StarIcon },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {

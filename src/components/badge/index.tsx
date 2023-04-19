@@ -1,7 +1,7 @@
 import { VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
-const badgeClasses = cva(["cursor-pointer", "uppercase", "rounded-[4px]"], {
+const badgeClasses = cva(["uppercase", "rounded-[4px]"], {
   variants: {
     variant: {
       success: ["text-white", "bg-[#47C96B]"],
@@ -9,8 +9,7 @@ const badgeClasses = cva(["cursor-pointer", "uppercase", "rounded-[4px]"], {
       error: ["text-white", "bg-[#879AA8]"],
     },
     size: {
-      sm: ["text-[10px]", "py-1", "px-2"],
-      xs: ["text-[10px]", "h-8"],
+      sm: ["text-[10px]", "py-[2px]", "px-2"],
     },
   },
   defaultVariants: {
