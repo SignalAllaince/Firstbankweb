@@ -13,7 +13,7 @@ const links = [
 function OrderLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   return (
-    <Section className="space-y-4 pb-10">
+    <Section className="pb-10">
       <div>
         <div className="border-b border-brand-light pb-3">
           <Heading size="h5">Orders</Heading>

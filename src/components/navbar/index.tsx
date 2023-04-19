@@ -94,15 +94,21 @@ function Navbar() {
             </MenuButton>
             <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
               <MenuItem
-                href="/login"
+                href="/account"
                 leftIcon={<Icon IconComp={UserCircleIcon} />}
               >
                 My Account
               </MenuItem>
-              <MenuItem leftIcon={<Icon IconComp={WalletIcon} />}>
+              <MenuItem
+                href="/account/orders"
+                leftIcon={<Icon IconComp={WalletIcon} />}
+              >
                 Orders
               </MenuItem>
-              <MenuItem leftIcon={<Icon IconComp={StarIcon} />}>
+              <MenuItem
+                href="/account/reviews"
+                leftIcon={<Icon IconComp={StarIcon} />}
+              >
                 Ratings & Reviews
               </MenuItem>
               <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
