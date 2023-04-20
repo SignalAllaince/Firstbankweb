@@ -4,9 +4,9 @@ import smileEmoji from "../../../public/images/emoji/smile.svg";
 import staleEmoji from "../../../public/images/emoji/stale.svg";
 
 type OptionsType = {
-    name: string
-    value: string
-}
+  name: string;
+  value: string;
+};
 export const ratingsList = [
   {
     value: 5,
@@ -105,7 +105,7 @@ const getBranchList = [
   },
   {
     name: "A3 Snapper Frame",
-    value: "pen",
+    value: "pensaass",
   },
   {
     name: "A4 Snapper Frame",
@@ -113,7 +113,7 @@ const getBranchList = [
   },
   {
     name: "A3 Snapper Frame",
-    value: "pen",
+    value: "penod",
   },
 ];
 
