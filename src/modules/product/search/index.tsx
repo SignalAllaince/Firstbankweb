@@ -18,6 +18,7 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { ReactElement, useState } from "react";
 
 const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
@@ -30,7 +31,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
-              <p>Home</p>
+              <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
               <p>Search result</p>
             </div>
