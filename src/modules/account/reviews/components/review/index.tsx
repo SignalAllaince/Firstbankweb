@@ -1,8 +1,8 @@
 import Button from "@/components/button";
-import Icon from "@/components/icon";
-import WishListModal from "@/components/modal/wishlist";
+import DeleteReviewModal from "@/components/modal/delete-review";
 import useDisclosure from "@/hooks/use-disclosure";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import smileEmoji from "../../../../../../public/images/emoji/smile.svg";
 
 function WishListRow() {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -16,31 +16,21 @@ function WishListRow() {
             <p>
               This Description should carry only the full name of the product.
             </p>
-            <p className="text-xs">Quantity: 1</p>
-            <p className="text-xs font-medium">₦ 10,000</p>
+            <div className="flex items-center gap-3 pb-1">
+              <Image src={smileEmoji} alt="" className="h-4 w-4" />
+              <p className="text-sm">
+                I like it, it was exactly what I expected!
+              </p>
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-end gap-y-5">
-          <Button
-            variant="cart"
-            size="xs"
-            href="/category/others/umbrella"
-            className="border-brand-darkest text-brand-darkest"
-          >
-            View Item
-          </Button>
-          <Button
-            variant="cart"
-            size="xs"
-            className="border-brand-error text-brand-error"
-            leftIcon={<Icon IconComp={TrashIcon} boxSize={4} />}
-            onClick={onOpen}
-          >
-            Remove Item
+          <Button variant="secondary" size="xs" onClick={onOpen}>
+            Delete review
           </Button>
         </div>
       </div>
-      <WishListModal isOpen={isOpen} onClose={onClose} />
+      <DeleteReviewModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 }

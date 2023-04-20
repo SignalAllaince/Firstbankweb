@@ -13,7 +13,7 @@ function CheckoutModal({
   return (
     <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick size="md">
       <div className="space-y-8 py-6 md:px-5">
-        <div className="text-md font-medium text-brand-darkest lg:text-lg">
+        <div className="text-md font-medium text-brand-darkest ">
           <p>
             Kindly provide the following details correctly in the fields below
             to continue
