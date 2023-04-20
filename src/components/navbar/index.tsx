@@ -76,6 +76,7 @@ function Navbar() {
             size="small"
             className="border-0 px-[4px]"
             rightIcon={<Icon IconComp={HeartIcon} />}
+            href="/wishlist"
           >
             WishList
           </Button>
@@ -83,6 +84,7 @@ function Navbar() {
             variant="secondary"
             size="small"
             className="relative border-0 px-[4px]"
+            href="/cart"
           >
             <Icon IconComp={ShoppingCartIcon} />
             <div className="absolute left-4 top-1 rounded bg-brand-darkest p-1 py-0 text-xs text-white">
