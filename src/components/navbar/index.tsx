@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
@@ -21,9 +21,12 @@ import Section from "../section";
 
 function Navbar() {
   const router = useRouter();
+  const [search, setSearch] = useState("");
+
   const searchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("search/others");
+    if (!search.trim()) return;
+    router.push(`/search/${search}`);
   };
 
   return (
@@ -36,7 +39,12 @@ function Navbar() {
         </div>
         <div className="flex items-center space-x-10">
           <form onSubmit={searchHandler} className="flex w-[400px]">
-            <CustomInput name="search" placeholder="Search" />
+            <CustomInput
+              name="search"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <Button
               type="submit"
               className="border-0 px-[12px] outline-none focus:border-0 focus:ring-0 focus:ring-transparent"

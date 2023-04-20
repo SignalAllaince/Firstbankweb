@@ -45,7 +45,7 @@ function ProductCard({
   return (
     <Link
       // href={href}
-      href="/others/umbrella"
+      href="/category/others/umbrella"
       className={`${
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
       }  relative overflow-hidden rounded-[4px] bg-white`}
