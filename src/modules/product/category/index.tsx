@@ -7,10 +7,15 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
-import { priceList, ratingsList } from "@/lib/constants/rating";
+import {
+  getCategoryList,
+  priceList,
+  ratingsList,
+} from "@/lib/constants/rating";
+import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
+import { CategoryTypes, ProtectedComponentType } from "@/types/service.types";
 import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -18,11 +23,31 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { ReactElement, useState } from "react";
 
-const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
+export async function getStaticPaths() {
+  const paths = getAllCategories();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: { params: any }) {
+  return {
+    props: {
+      category: params.category,
+    },
+  };
+}
+
+const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
+  props: any
+) => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
+  const [categoryOpt, setCategoryOpt] = useState(null);
 
   return (
     <div className="">
@@ -30,16 +55,15 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
-              <p>Home</p>
+              <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>Search result</p>
-            </div>
-            <div>
-              <p className="text-sm text-brand-medium">1-6 of 6 results</p>
+              <p className="capitalize">{stringifyCategory(props?.category)}</p>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <Heading size="h3">Search Results - Umbrella</Heading>
+            <Heading size="h3" className="capitalize">
+              {stringifyCategory(props?.category)}
+            </Heading>
             <div className="flex items-center gap-2">
               <p className="text-sm">Filter:</p>
               <Menu>
@@ -66,9 +90,39 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
 
       {/* second section */}
-      <section className="pb-10 pt-6">
+      <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+            <Accordion title={stringifyCategory(props?.category)}>
+              <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
+                <RadioGroup.Label className="sr-only">
+                  {props?.category}
+                </RadioGroup.Label>
+                <div className="space-y-5">
+                  {getCategoryList(props?.category as CategoryTypes).map(
+                    (plan) => (
+                      <RadioGroup.Option value={plan} key={plan.name}>
+                        {({ checked, active }) => (
+                          <div className="flex cursor-pointer items-center gap-4">
+                            <span
+                              aria-hidden="true"
+                              className={cn(
+                                "ring-brand-darkest",
+                                active && checked ? "ring-2" : "",
+                                checked ? "bg-brand-darkest" : "",
+                                !active && checked ? "ring-2" : "",
+                                "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                              )}
+                            />
+                            <span className="text-sm">{plan.name}</span>
+                          </div>
+                        )}
+                      </RadioGroup.Option>
+                    )
+                  )}
+                </div>
+              </RadioGroup>
+            </Accordion>
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
@@ -95,7 +149,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
               </RadioGroup>
               <div className="space-y-3 pt-12">
-                <p>Custom Price Range</p>
+                <p className="text-sm">Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput
                     borderColor="border-brand-light"
@@ -132,7 +186,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                             <Image
                               src={rating.img}
                               alt="emoji"
-                              className="h-6 w-6"
+                              className="h-5 w-5"
                             />
                           </div>
                         </div>
@@ -164,10 +218,10 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
   );
 };
 
-SearchPage.getLayout = function getLayout(page: ReactElement) {
+CategoryPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-SearchPage.auth = false;
+CategoryPage.auth = false;
 
-export default SearchPage;
+export default CategoryPage;

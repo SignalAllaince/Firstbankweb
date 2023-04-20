@@ -15,7 +15,7 @@ function SidebarLink({
   exact?: boolean;
 }) {
   const pathname = usePathname();
-  const active = exact ? pathname === href : pathname.includes(href);
+  const active = exact ? pathname === href : pathname?.includes(href);
   return (
     <Link
       href={href}
