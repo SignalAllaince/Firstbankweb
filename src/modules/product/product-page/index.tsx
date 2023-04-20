@@ -5,11 +5,17 @@ import AppLayout from "@/components/layout/app-layout";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
+// import { getAllCategories } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { ReactElement } from "react";
+
+export async function getStaticPaths() {
+  // const paths = getAllCategories()
+  // Return a list of possible value for id
+}
 
 const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (

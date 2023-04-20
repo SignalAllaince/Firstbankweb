@@ -97,5 +97,21 @@ export class Clock {
   };
 }
 
-// let clock = new Clock('h:m:s');
-// clock.start();
+export function getAllCategories() {
+  const categories = [
+    "branch",
+    "stationery",
+    "uniform",
+    "other",
+    "office-equipment",
+    "home-appliance",
+  ];
+
+  return categories.map((category) => {
+    return {
+      params: {
+        category,
+      },
+    };
+  });
+}
