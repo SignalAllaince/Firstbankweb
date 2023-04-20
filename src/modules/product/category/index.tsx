@@ -7,6 +7,7 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
+import { ratingsList } from "@/lib/constants/rating";
 import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -17,7 +18,7 @@ import {
   ChevronRightIcon,
   MinusIcon,
 } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
 
@@ -41,21 +42,6 @@ const plans = [
   {
     name: "₦40,000 Above",
     value: "16GB",
-  },
-];
-
-const ratings = [
-  {
-    value: 4,
-  },
-  {
-    value: 3,
-  },
-  {
-    value: 2,
-  },
-  {
-    value: 1,
   },
 ];
 
@@ -153,7 +139,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
                 </div>
               </RadioGroup>
               <div className="space-y-3 pt-12">
-                <p>Custom Price Range</p>
+                <p className="text-sm">Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput
                     borderColor="border-brand-light"
@@ -174,37 +160,24 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
             <Accordion title="Rating">
               <RadioGroup value={rating} onChange={setRating}>
                 <RadioGroup.Label className="sr-only">Ratings</RadioGroup.Label>
-                <div className="space-y-5">
-                  {ratings.map((rating) => (
+                <div className="items-cente flex space-x-3">
+                  {ratingsList.map((rating) => (
                     <RadioGroup.Option value={rating} key={rating.value}>
                       {({ checked, active }) => (
-                        <div className="flex cursor-pointer items-center gap-4">
-                          <span
+                        <div className="cursor-pointer">
+                          <div
                             aria-hidden="true"
                             className={cn(
-                              "ring-brand-darkest",
-                              active && checked ? "ring-2" : "",
-                              checked ? "bg-brand-darkest" : "",
-                              !active && checked ? "ring-2" : "",
-                              "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                              checked ? "bg-blue-50 ring-1" : "bg-white",
+                              active && !checked ? "opacity-80" : "",
+                              "relative rounded-[4px] p-3 shadow ring-brand-blue transition focus:outline-none"
                             )}
-                          />
-                          <div className="flex items-center space-x-3">
-                            <div className="flex items-center">
-                              {[0, 1, 2, 3, 4].map((rate) => (
-                                <StarIcon
-                                  key={rate}
-                                  className={cn(
-                                    rating.value > rate
-                                      ? "text-brand-accent"
-                                      : "text-gray-200",
-                                    "h-4 w-4 flex-shrink-0"
-                                  )}
-                                  aria-hidden="true"
-                                />
-                              ))}
-                            </div>
-                            <p className="text-sm">& Up</p>
+                          >
+                            <Image
+                              src={rating.img}
+                              alt="emoji"
+                              className="h-6 w-6"
+                            />
                           </div>
                         </div>
                       )}
