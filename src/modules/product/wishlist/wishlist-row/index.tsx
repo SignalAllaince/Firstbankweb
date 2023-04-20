@@ -30,7 +30,7 @@ function WishListRow() {
             <p className="text-xs font-medium">₦ 10,000</p>
           </div>
         </div>
-        <div className="flex flex-col gap-y-5">
+        <div className="flex flex-col items-end gap-y-5">
           <Button
             variant="cart"
             size="xs"

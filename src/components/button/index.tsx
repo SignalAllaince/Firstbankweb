@@ -89,7 +89,7 @@ const buttonClasses = cva(
       {
         variant: "cart",
         size: "xs",
-        className: "px-0",
+        className: "px-0 w-fit",
       },
       {
         variant: ["primary", "secondary", "outline", "minimenu", "menu"],
