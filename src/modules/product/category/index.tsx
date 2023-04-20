@@ -7,6 +7,7 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
+import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -17,6 +18,7 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import { ReactElement, useState } from "react";
 
 const plans = [
@@ -57,7 +59,27 @@ const ratings = [
   },
 ];
 
-const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
+export async function getStaticPaths() {
+  const paths = getAllCategories();
+  // Return a list of possible value for id
+  //   console.log(paths)
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: { params: any }) {
+  return {
+    props: {
+      category: params.category,
+    },
+  };
+}
+
+const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
+  props: any
+) => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
 
@@ -67,16 +89,15 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
-              <p>Home</p>
+              <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>Office equipment</p>
-            </div>
-            <div>
-              <p className="text-sm text-brand-medium">1-6 of 6 results</p>
+              <p className="capitalize">{stringifyCategory(props?.category)}</p>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <Heading size="h3">Umbrella</Heading>
+            <Heading size="h3" className="capitalize">
+              {stringifyCategory(props?.category)}
+            </Heading>
             <div className="flex items-center gap-2">
               <p className="text-sm">Filter:</p>
               <Menu>

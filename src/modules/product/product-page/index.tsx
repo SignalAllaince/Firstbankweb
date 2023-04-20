@@ -5,30 +5,53 @@ import AppLayout from "@/components/layout/app-layout";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
-// import { getAllCategories } from "@/lib/utils/common.utils";
+import { getAllCategoriesProduct } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import { ReactElement } from "react";
 
 export async function getStaticPaths() {
-  // const paths = getAllCategories()
-  // Return a list of possible value for id
+  const paths = getAllCategoriesProduct();
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
-const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
+export async function getStaticProps({
+  params,
+}: {
+  params: {
+    category: string;
+    productId: string;
+  };
+}) {
+  return {
+    props: {
+      category: params.category,
+      productId: params.productId,
+    },
+  };
+}
+const ProductPage: NextPageWithLayout & ProtectedComponentType = (
+  props: any
+) => {
   return (
     <div className="bg-white pb-10">
       <div className="w-full border-b border-gray-200 ">
         <Section className="py-8">
           <div className="flex items-center">
-            <div className="flex items-center gap-1 text-sm">
-              <p>Home</p>
+            <div className="flex items-center gap-1 text-sm capitalize">
+              <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>Others</p>
+              <Link href={`/category/${props?.category?.toLowerCase()}`}>
+                {props?.category}
+              </Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>Umbrella</p>
+              <p>{props?.productId}</p>
             </div>
           </div>
         </Section>

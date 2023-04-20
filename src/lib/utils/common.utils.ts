@@ -97,12 +97,16 @@ export class Clock {
   };
 }
 
+export function stringifyCategory(category: string) {
+  return category.split("-").join(" ");
+}
+
 export function getAllCategories() {
   const categories = [
     "branch",
     "stationery",
     "uniform",
-    "other",
+    "others",
     "office-equipment",
     "home-appliance",
   ];
@@ -111,6 +115,26 @@ export function getAllCategories() {
     return {
       params: {
         category,
+      },
+    };
+  });
+}
+
+export function getAllCategoriesProduct() {
+  const categories = [
+    "branch",
+    "stationery",
+    "uniform",
+    "others",
+    "office-equipment",
+    "home-appliance",
+  ];
+
+  return categories.map((category) => {
+    return {
+      params: {
+        category,
+        productId: "jonathan",
       },
     };
   });
