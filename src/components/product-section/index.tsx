@@ -207,7 +207,7 @@ function ProductWithImageGallery() {
       </div>
       <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick>
         <div className="space-y-8 py-6 md:px-5">
-          <div className="text-md mx-auto max-w-md text-center font-light lg:text-lg">
+          <div className="text-md mx-auto max-w-md text-center font-light ">
             <p>Product has been successfully added to cart.</p>
             <p> What would you like to do?</p>
           </div>

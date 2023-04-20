@@ -1,9 +1,8 @@
 import Button from "@/components/button";
-import CustomInput from "@/components/input";
 import Textarea from "@/components/input/text-area";
 import Modal from "..";
 
-function CheckoutModal({
+function ItemReviewModal({
   isOpen,
   onClose,
 }: {
@@ -21,17 +20,12 @@ function CheckoutModal({
         </div>
         <form className="space-y-5">
           <Textarea
-            name="address"
+            name="comment"
             bg="bg-brand-lightest"
-            label="Delivery Address"
-            placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
+            label="Comment"
+            placeholder="Write your comment here."
           />
-          <CustomInput
-            bg="bg-brand-lightest"
-            name="phoneNumber"
-            label="Phone Number"
-            placeholder="08000000000"
-          />
+
           <div className="pt-4">
             <Button className="w-full text-sm uppercase" href="/cart/checkout">
               Continue
@@ -43,4 +37,4 @@ function CheckoutModal({
   );
 }
 
-export default CheckoutModal;
+export default ItemReviewModal;
