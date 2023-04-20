@@ -7,7 +7,7 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
-import { ratingsList } from "@/lib/constants/rating";
+import { priceList, ratingsList } from "@/lib/constants/rating";
 import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -22,33 +22,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
 
-const plans = [
-  {
-    name: "Under ₦5,000",
-    value: "12GB",
-  },
-  {
-    name: "₦5,000 - ₦9,999",
-    value: "16GB",
-  },
-  {
-    name: "₦10,000 - ₦19,999",
-    value: "32GB",
-  },
-  {
-    name: "₦20,000 - ₦39,999",
-    value: "16GB",
-  },
-  {
-    name: "₦40,000 Above",
-    value: "16GB",
-  },
-];
-
 export async function getStaticPaths() {
   const paths = getAllCategories();
-  // Return a list of possible value for id
-  //   console.log(paths)
   return {
     paths,
     fallback: false,
@@ -110,14 +85,17 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
       </div>
 
       {/* second section */}
-      <section className="pb-10 pt-6">
+      <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+            <Accordion title={stringifyCategory(props?.category)}>
+              <p></p>
+            </Accordion>
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
                 <div className="space-y-5">
-                  {plans.map((plan) => (
+                  {priceList.map((plan) => (
                     <RadioGroup.Option value={plan} key={plan.name}>
                       {({ checked, active }) => (
                         <div className="flex cursor-pointer items-center gap-4">
@@ -176,7 +154,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
                             <Image
                               src={rating.img}
                               alt="emoji"
-                              className="h-6 w-6"
+                              className="h-5 w-5"
                             />
                           </div>
                         </div>

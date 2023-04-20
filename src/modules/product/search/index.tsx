@@ -7,7 +7,7 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
-import { ratingsList } from "@/lib/constants/rating";
+import { priceList, ratingsList } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -19,29 +19,6 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { ReactElement, useState } from "react";
-
-const plans = [
-  {
-    name: "Under ₦5,000",
-    value: "12GB",
-  },
-  {
-    name: "₦5,000 - ₦9,999",
-    value: "16GB",
-  },
-  {
-    name: "₦10,000 - ₦19,999",
-    value: "32GB",
-  },
-  {
-    name: "₦20,000 - ₦39,999",
-    value: "16GB",
-  },
-  {
-    name: "₦40,000 Above",
-    value: "16GB",
-  },
-];
 
 const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [plan, setPlan] = useState(null);
@@ -96,7 +73,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
                 <div className="space-y-5">
-                  {plans.map((plan) => (
+                  {priceList.map((plan) => (
                     <RadioGroup.Option value={plan} key={plan.name}>
                       {({ checked, active }) => (
                         <div className="flex cursor-pointer items-center gap-4">
