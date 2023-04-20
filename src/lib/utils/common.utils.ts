@@ -134,7 +134,7 @@ export function getAllCategoriesProduct() {
     return {
       params: {
         category,
-        productId: "jonathan",
+        productId: "umbrella",
       },
     };
   });

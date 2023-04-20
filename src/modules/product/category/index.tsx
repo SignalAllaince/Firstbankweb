@@ -7,11 +7,15 @@ import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
-import { priceList, ratingsList } from "@/lib/constants/rating";
+import {
+  getCategoryList,
+  priceList,
+  ratingsList,
+} from "@/lib/constants/rating";
 import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
+import { CategoryTypes, ProtectedComponentType } from "@/types/service.types";
 import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -43,6 +47,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
 ) => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
+  const [categoryOpt, setCategoryOpt] = useState(null);
 
   return (
     <div className="">
@@ -89,7 +94,34 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
             <Accordion title={stringifyCategory(props?.category)}>
-              <p></p>
+              <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
+                <RadioGroup.Label className="sr-only">
+                  {props?.category}
+                </RadioGroup.Label>
+                <div className="space-y-5">
+                  {getCategoryList(props?.category as CategoryTypes).map(
+                    (plan) => (
+                      <RadioGroup.Option value={plan} key={plan.name}>
+                        {({ checked, active }) => (
+                          <div className="flex cursor-pointer items-center gap-4">
+                            <span
+                              aria-hidden="true"
+                              className={cn(
+                                "ring-brand-darkest",
+                                active && checked ? "ring-2" : "",
+                                checked ? "bg-brand-darkest" : "",
+                                !active && checked ? "ring-2" : "",
+                                "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                              )}
+                            />
+                            <span className="text-sm">{plan.name}</span>
+                          </div>
+                        )}
+                      </RadioGroup.Option>
+                    )
+                  )}
+                </div>
+              </RadioGroup>
             </Accordion>
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
