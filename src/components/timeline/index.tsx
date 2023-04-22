@@ -1,15 +1,31 @@
 import Badge from "../badge";
 import Icon from "../icon";
 
-function TimeLine({ badge, text }: { badge: string; text: string }) {
+function TimeLine({
+  badge,
+  text,
+  isCompleted = true,
+}: {
+  badge: string;
+  text: string;
+  isCompleted?: boolean;
+}) {
   return (
-    <div className="relative space-y-2">
+    <div
+      className={`relative space-y-2 ${
+        isCompleted ? "opacity-100" : "opacity-30"
+      }`}
+    >
       <div className="flex items-center gap-4">
         {/* @ts-expect-error */}
         <Icon IconComp={TimelIneIcon} />
         <Badge variant="pending">{badge}</Badge>
       </div>
-      <div className="ml-3 min-h-[60px] border-l border-dashed border-black pb-2 pl-6 pt-2 text-sm font-light">
+      <div
+        className={`ml-3 min-h-[60px] border-l border-dashed ${
+          isCompleted ? "border-black" : "border-transparent"
+        } pb-2 pl-6 pt-2 text-sm font-light`}
+      >
         <p>{text}</p>
       </div>
     </div>

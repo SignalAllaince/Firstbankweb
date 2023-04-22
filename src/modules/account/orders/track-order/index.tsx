@@ -24,6 +24,7 @@ const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
       <div className="space-y-5">
         <TimeLine badge="Order placed" text="April 10, 2023" />
         <TimeLine badge="Shipped" text="April 11, 2023" />
+        <TimeLine badge="delivered" isCompleted={false} text="April 11, 2023" />
       </div>
     </div>
   );
