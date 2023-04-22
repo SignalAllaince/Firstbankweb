@@ -33,7 +33,7 @@ const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
 TrackOpenOrderPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <AccountLayout>
-      <OrderLayout isDetailsPage>{page}</OrderLayout>
+      <OrderLayout isDetailsPageText="Item Travel History">{page}</OrderLayout>
     </AccountLayout>
   );
 };

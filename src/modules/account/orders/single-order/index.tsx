@@ -81,7 +81,7 @@ const OpenOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
 OpenOrdersPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <AccountLayout>
-      <OrderLayout isDetailsPage>{page}</OrderLayout>
+      <OrderLayout isDetailsPageText="Order details">{page}</OrderLayout>
     </AccountLayout>
   );
 };
