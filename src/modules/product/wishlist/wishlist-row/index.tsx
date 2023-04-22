@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import Icon from "@/components/icon";
-import WishListModal from "@/components/modal/wishlist";
+import DeleteFromWishListModal from "@/components/modal/remove-wishlist";
 import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -50,7 +50,7 @@ function WishListRow() {
           </Button>
         </div>
       </div>
-      <WishListModal isOpen={isOpen} onClose={onClose} />
+      <DeleteFromWishListModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 }
