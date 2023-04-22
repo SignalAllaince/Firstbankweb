@@ -9,12 +9,20 @@ import Icon from "../icon";
 
 function Pagination() {
   return (
-    <div className="flex items-center gap-3 pb-10 pt-12">
+    <div className="flex items-center gap-3 pt-10">
       <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon boxSize={4} IconComp={ChevronDoubleLeftIcon} />
+        <Icon
+          boxSize={4}
+          className="text-brand-medium"
+          IconComp={ChevronDoubleLeftIcon}
+        />
       </Button>
       <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon boxSize={4} IconComp={ChevronLeftIcon} />
+        <Icon
+          boxSize={4}
+          className="text-brand-medium"
+          IconComp={ChevronLeftIcon}
+        />
       </Button>
       <Button variant="secondary" size="xs" style={{ fontSize: "14px" }}>
         1
@@ -22,10 +30,18 @@ function Pagination() {
       <p className="text-sm font-light">of 1</p>
 
       <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon boxSize={4} IconComp={ChevronDoubleRightIcon} />
+        <Icon
+          boxSize={4}
+          className="text-brand-medium"
+          IconComp={ChevronDoubleRightIcon}
+        />
       </Button>
       <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon boxSize={4} IconComp={ChevronRightIcon} />
+        <Icon
+          boxSize={4}
+          className="text-brand-medium"
+          IconComp={ChevronRightIcon}
+        />
       </Button>
     </div>
   );

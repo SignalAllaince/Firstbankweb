@@ -5,6 +5,7 @@ import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Section from "@/components/section";
 import {
@@ -210,7 +211,9 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
               <ProductCard isProductPage />
             </div>
             {/* Pagination */}
-            <div className="flex items-center justify-center"></div>
+            <div className="flex items-center justify-center">
+              <Pagination />
+            </div>
           </div>
         </Section>
       </section>

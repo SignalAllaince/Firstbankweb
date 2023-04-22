@@ -68,7 +68,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
 
       {/* second section */}
-      <section className="pb-10 pt-6">
+      <section className="pb-20 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
             <Accordion title="Price">
