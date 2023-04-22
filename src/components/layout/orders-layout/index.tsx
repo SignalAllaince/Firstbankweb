@@ -15,10 +15,10 @@ const links = [
 
 function OrderLayout({
   children,
-  isDetailsPage = false,
+  isDetailsPageText,
 }: {
   children: ReactNode;
-  isDetailsPage?: boolean;
+  isDetailsPageText?: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -26,7 +26,7 @@ function OrderLayout({
     <Section className="pb-10">
       <div>
         <div className="border-b border-brand-light pb-3">
-          {isDetailsPage ? (
+          {isDetailsPageText ? (
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
@@ -35,13 +35,13 @@ function OrderLayout({
               >
                 <Icon IconComp={ArrowLeftIcon} color="black" />
               </Button>
-              <Heading size="h5">Order details</Heading>
+              <Heading size="h5">{isDetailsPageText}</Heading>
             </div>
           ) : (
             <Heading size="h5">Orders</Heading>
           )}
         </div>
-        {!isDetailsPage ? (
+        {!isDetailsPageText ? (
           <div className="box-border space-x-4 border-b border-brand-light py-2">
             <>
               {links.map((link) => (

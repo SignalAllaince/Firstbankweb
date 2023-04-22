@@ -5,9 +5,11 @@ import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
+import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { priceList, ratingsList } from "@/lib/constants/rating";
+import { priceList } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -17,7 +19,6 @@ import {
   ChevronRightIcon,
   MinusIcon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
 
@@ -67,7 +68,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
 
       {/* second section */}
-      <section className="pb-10 pt-6">
+      <section className="pb-20 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
             <Accordion title="Price">
@@ -115,33 +116,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
               </div>
             </Accordion>
             <Accordion title="Rating">
-              <RadioGroup value={rating} onChange={setRating}>
-                <RadioGroup.Label className="sr-only">Ratings</RadioGroup.Label>
-                <div className="items-cente flex space-x-3">
-                  {ratingsList.map((rating) => (
-                    <RadioGroup.Option value={rating} key={rating.value}>
-                      {({ checked, active }) => (
-                        <div className="cursor-pointer">
-                          <div
-                            aria-hidden="true"
-                            className={cn(
-                              checked ? "bg-blue-50 ring-1" : "bg-white",
-                              active && !checked ? "opacity-80" : "",
-                              "relative rounded-[4px] p-3 shadow ring-brand-blue transition focus:outline-none"
-                            )}
-                          >
-                            <Image
-                              src={rating.img}
-                              alt="emoji"
-                              className="h-6 w-6"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup>
+              <Ratings rating={rating} setRating={setRating} />
             </Accordion>
           </div>
           <div className="col-span-9">
@@ -157,7 +132,9 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
               <ProductCard isProductPage />
             </div>
             {/* Pagination */}
-            <div className="flex items-center justify-center"></div>
+            <div className="flex items-center justify-center">
+              <Pagination />
+            </div>
           </div>
         </Section>
       </section>

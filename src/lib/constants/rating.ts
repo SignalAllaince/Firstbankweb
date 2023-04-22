@@ -11,14 +11,17 @@ export const ratingsList = [
   {
     value: 5,
     img: smileEmoji,
+    text: "satisfied",
   },
   {
     value: 3,
     img: staleEmoji,
+    text: "Indifferent",
   },
   {
     value: 1,
     img: sadEmoji,
+    text: "Disappionted",
   },
 ];
 
