@@ -4,10 +4,12 @@ import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { usePathname } from "next/navigation";
 import { ReactElement } from "react";
 import OrderProductRow from "../components/order-section";
 
 const OpenOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const pathname = usePathname();
   return (
     <div className="space-y-5 pt-5">
       <div className="flex items-center justify-between gap-3">
@@ -17,7 +19,11 @@ const OpenOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
           </p>
           <Badge variant="pending">order placed</Badge>
         </div>
-        <Button size="small" className="h-8 px-[8px]">
+        <Button
+          size="small"
+          className="h-8 px-[8px]"
+          href={`${pathname}/track`}
+        >
           Track Order
         </Button>
       </div>

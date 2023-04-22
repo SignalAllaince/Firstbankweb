@@ -43,7 +43,7 @@ function SingleOrder({
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex-shrink-0">
         <Button
           variant="secondary"
           size="xs"

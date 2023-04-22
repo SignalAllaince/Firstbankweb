@@ -46,7 +46,7 @@ function AuthLayout({
                 </p>
               </div>
 
-              <div className="flex-1 pb-4 pt-4 sm:pt-8">{children}</div>
+              <div className="flex-1 pb-4 pt-6 sm:pt-8">{children}</div>
 
               <div className="flex justify-center">
                 <Link
