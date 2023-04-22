@@ -27,16 +27,16 @@ function AuthLayout({
 }) {
   return (
     <div className=" flex min-h-screen flex-col">
-      <div className="custom-bg flex flex-1 items-center justify-center py-10">
-        <div className="flex w-full max-w-xl flex-1 flex-col items-center space-y-4">
+      <div className="custom-bg flex flex-1 items-center justify-center  py-10">
+        <div className="-mt-10 flex w-full max-w-xl flex-1 flex-col items-center space-y-4 sm:mt-0">
           <div className="max-w-[180px]">
             <Image src={logoImg} alt="first bank logo" />
           </div>
           <Heading className="text-white" size="h3" as="h3">
             Brandshop
           </Heading>
-          <div className="w-full bg-white py-8 text-brand-darkest">
-            <div className="mx-auto w-full px-4 sm:px-8 md:px-8 lg:max-w-md lg:px-0">
+          <div className="w-full bg-transparent py-8 text-white sm:bg-white sm:text-brand-darkest">
+            <div className="mx-auto w-full px-6 sm:px-8 lg:max-w-md lg:px-0">
               <div className="space-y-1">
                 <Heading size="h4" as="h4">
                   {section[authType]?.header}
@@ -46,7 +46,7 @@ function AuthLayout({
                 </p>
               </div>
 
-              <div className="flex-1 pb-4 pt-8">{children}</div>
+              <div className="flex-1 pb-4 pt-4 sm:pt-8">{children}</div>
 
               <div className="flex justify-center">
                 <Link
@@ -60,7 +60,9 @@ function AuthLayout({
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="hidden sm:block">
+        <Footer />
+      </div>
     </div>
   );
 }
