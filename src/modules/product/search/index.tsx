@@ -128,14 +128,17 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                             className={cn(
                               checked ? "bg-blue-50 ring-1" : "bg-white",
                               active && !checked ? "opacity-80" : "",
-                              "relative rounded-[4px] p-3 shadow ring-brand-blue transition focus:outline-none"
+                              "relative w-20 space-y-1 rounded-[4px] p-3 shadow ring-brand-blue transition focus:outline-none"
                             )}
                           >
                             <Image
                               src={rating.img}
                               alt="emoji"
-                              className="h-6 w-6"
+                              className="mx-auto h-6 w-6"
                             />
+                            <p className="text-center text-[10px] font-light capitalize">
+                              {rating.text}
+                            </p>
                           </div>
                         </div>
                       )}
