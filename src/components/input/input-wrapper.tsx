@@ -31,7 +31,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
     >
       {label && (
         <label
-          className="mb-10 text-left text-sm capitalize text-brand-darkest"
+          className="mb-10 text-left text-sm capitalize text-white sm:text-brand-darkest"
           htmlFor={name}
         >
           {label}
