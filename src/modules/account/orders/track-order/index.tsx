@@ -9,7 +9,7 @@ import { ReactElement } from "react";
 
 const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
-    <div className="space-y-5 pt-5">
+    <div className="space-y-6 pt-5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <p className="text-sm font-medium text-brand-darkest">
@@ -18,11 +18,12 @@ const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
           <Badge variant="pending">order placed</Badge>
         </div>
         <Button size="small" className="h-8 px-[8px]">
-          Track Order
+          See tracking details
         </Button>
       </div>
       <div className="space-y-5">
-        <TimeLine />
+        <TimeLine badge="Order placed" text="April 10, 2023" />
+        <TimeLine badge="Shipped" text="April 11, 2023" />
       </div>
     </div>
   );

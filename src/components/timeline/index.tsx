@@ -1,11 +1,16 @@
+import Badge from "../badge";
 import Icon from "../icon";
 
-function TimeLine() {
+function TimeLine({ badge, text }: { badge: string; text: string }) {
   return (
-    <div className="relative border-l border-dashed border-black pb-8 pl-4">
-      <div className="absolute left-0 top-0">
+    <div className="relative space-y-2">
+      <div className="flex items-center gap-4">
         {/* @ts-expect-error */}
         <Icon IconComp={TimelIneIcon} />
+        <Badge variant="pending">{badge}</Badge>
+      </div>
+      <div className="ml-3 min-h-[60px] border-l border-dashed border-black pb-2 pl-6 pt-2 text-sm font-light">
+        <p>{text}</p>
       </div>
     </div>
   );
