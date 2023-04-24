@@ -64,7 +64,7 @@ export default NextAuth({
       return session;
     },
   },
-  session: { strategy: "jwt", maxAge: 1800 }, // session token expires after 30 mins of user inactivity
+  session: { strategy: "jwt" }, // session token expires after 30 mins of user inactivity
   pages: {
     signIn: "/auth/login",
   },
