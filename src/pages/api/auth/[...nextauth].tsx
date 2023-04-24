@@ -43,11 +43,12 @@ export default NextAuth({
     }),
   ],
   callbacks: {
+    // @ts-expect-error
     async jwt({ token, user }) {
       if (user) {
-        token.accessToken = user.accessToken;
-        token.accessTokenExpiry = user.accessTokenExpiry;
-        token.refreshToken = user.refreshToken;
+        // token.accessToken = user.accessToken;
+        // token.accessTokenExpiry = user.accessTokenExpiry;
+        // token.refreshToken = user.refreshToken;
         token.user = {
           id: user.id,
           email: user.email,
@@ -57,10 +58,10 @@ export default NextAuth({
       }
     },
     session: async ({ session, token }) => {
-      session.accessToken = token?.accessToken;
-      session.refreshToken = token?.refreshToken;
-      session.user = token?.user;
-      session.error = token?.error;
+      // session.accessToken = token?.accessToken;
+      // session.refreshToken = token?.refreshToken;
+      // session.user = token?.user;
+      // session.error = token?.error;
       return session;
     },
   },
