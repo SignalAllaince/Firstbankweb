@@ -11,7 +11,7 @@ function Banner() {
       <Heading size="h4" className="text-lg">
         Hi Emeka, what items would you like to buy today?
       </Heading>
-      <div className="bg-brand-blue px-8 py-3 text-brand-lightest">
+      <div className="relative overflow-hidden rounded-[4px] bg-brand-blue px-8 py-4 text-brand-lightest">
         <div className="flex items-center justify-between">
           <div>
             <div className="space-y-1">
@@ -42,8 +42,9 @@ function Banner() {
             </div>
           </div>
           <div className="max-w-[300px]">
-            <Image src={shoeImg} alt="" />
+            <Image src={shoeImg} alt="" className="relative z-20" />
           </div>
+          <div className="absolute -right-80 -top-20 z-10 h-[600px] w-[600px] -rotate-[30deg] rounded-[40px] bg-brand-accent" />
         </div>
       </div>
     </div>
