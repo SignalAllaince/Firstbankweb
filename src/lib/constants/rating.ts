@@ -27,23 +27,11 @@ export const ratingsList = [
 
 export const priceList = [
   {
-    name: "Under ₦5,000",
+    name: "Low to High",
     value: "12GB",
   },
   {
-    name: "₦5,000 - ₦9,999",
-    value: "16GB",
-  },
-  {
-    name: "₦10,000 - ₦19,999",
-    value: "32GB",
-  },
-  {
-    name: "₦20,000 - ₦39,999",
-    value: "16GB",
-  },
-  {
-    name: "₦40,000 Above",
+    name: "High to Low",
     value: "16GB",
   },
 ];
