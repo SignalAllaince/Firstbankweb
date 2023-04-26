@@ -1,27 +1,19 @@
 import { CategoryTypes } from "@/types/service.types";
-import sadEmoji from "../../../public/images/emoji/sad.svg";
-import smileEmoji from "../../../public/images/emoji/smile.svg";
-import staleEmoji from "../../../public/images/emoji/stale.svg";
 
 type OptionsType = {
   name: string;
   value: string;
 };
+
 export const ratingsList = [
   {
-    value: 5,
-    img: smileEmoji,
-    text: "satisfied",
+    value: 4,
   },
   {
     value: 3,
-    img: staleEmoji,
-    text: "Indifferent",
   },
   {
-    value: 1,
-    img: sadEmoji,
-    text: "Disappionted",
+    value: 2,
   },
 ];
 
