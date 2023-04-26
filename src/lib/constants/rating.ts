@@ -38,6 +38,11 @@ export const ratingsList = [
   },
 ];
 
+export const popularity = {
+  name: "By popularity",
+  value: "12GB",
+};
+
 export const priceList = [
   {
     name: "Low to High",

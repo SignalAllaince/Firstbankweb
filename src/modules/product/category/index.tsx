@@ -9,7 +9,7 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { getCategoryList, priceList } from "@/lib/constants/rating";
+import { getCategoryList, popularity, priceList } from "@/lib/constants/rating";
 import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -89,7 +89,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
       {/* second section */}
       <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
             <Accordion title={stringifyCategory(props?.category)}>
               <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
                 <RadioGroup.Label className="sr-only">
@@ -120,6 +120,28 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
                 </div>
               </RadioGroup>
             </Accordion>
+            <div className="border-b border-brand-darkest pb-5 pt-2">
+              <RadioGroup value={plan} onChange={setPlan}>
+                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
+                <RadioGroup.Option value={popularity}>
+                  {({ checked, active }) => (
+                    <div className="flex cursor-pointer items-center gap-4">
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "ring-brand-darkest",
+                          active && checked ? "ring-2" : "",
+                          checked ? "bg-brand-darkest" : "",
+                          !active && checked ? "ring-2" : "",
+                          "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                        )}
+                      />
+                      <span className="text-sm">{popularity.name}</span>
+                    </div>
+                  )}
+                </RadioGroup.Option>
+              </RadioGroup>
+            </div>
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>

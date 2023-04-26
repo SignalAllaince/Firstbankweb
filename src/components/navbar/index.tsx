@@ -122,7 +122,7 @@ function Navbar() {
                 Ratings & Reviews
               </MenuItem>
               <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
-                Login
+                Logout
               </MenuItem>
             </MenuItems>
           </Menu>

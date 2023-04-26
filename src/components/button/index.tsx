@@ -59,7 +59,7 @@ const buttonClasses = cva(
         outline: [
           "border-0 px-[4px] text-white focus:text-white",
           "bg-transparent",
-          "focus:ring-2",
+          "focus:ring-0",
           "hover:text-brand-accent",
           "focus:text-brand-accent",
         ],
