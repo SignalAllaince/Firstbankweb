@@ -14,7 +14,7 @@ function Ratings({
   return (
     <RadioGroup value={rating} onChange={setRating}>
       <RadioGroup.Label className="sr-only">Ratings</RadioGroup.Label>
-      <div className="space-y-5">
+      <div className="space-y-4">
         {ratingsList.map((rating) => (
           <RadioGroup.Option value={rating} key={rating.value}>
             {({ checked, active }) => (
