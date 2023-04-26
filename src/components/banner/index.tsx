@@ -8,15 +8,15 @@ import Icon from "../icon";
 function Banner() {
   return (
     <div className="space-y-3">
-      <Heading size="h4" className="text-lg">
+      <Heading size="h4" className="text-lg font-medium">
         Hi Emeka, what items would you like to buy today?
       </Heading>
       <div className="relative overflow-hidden rounded-[4px] bg-brand-blue px-8 py-4 text-brand-lightest">
         <div className="flex items-center justify-between">
           <div>
-            <div className="space-y-1">
+            <div className="space-y-2">
               <Heading size="h2">Live in style</Heading>
-              <p className="text-sm">
+              <p className="text-sm font-light">
                 with the newly added customized converse shoes.
               </p>
             </div>
