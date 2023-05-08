@@ -24,13 +24,25 @@ export const ENDPOINTS = {
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
   // Cart Endpoints
-  API_GET_CART_DATA: (customerId: string) => `cart/read/${customerId}`,
-  API_ADD_ITEM_TO_CART: (customerId: string) =>
-    `cart/${customerId}/add-cart-item`,
-  API_ADD_ITEMS_TO_CART: (customerId: string) =>
+  GET_CART_DATA: (customerId: string) => `cart/read/${customerId}`,
+  ADD_ITEM_TO_CART: (customerId: string) => `cart/${customerId}/add-cart-item`,
+  ADD_ITEMS_TO_CART: (customerId: string) =>
     `cart/${customerId}/add-cart-items`,
-  API_UPDATE_CART_QUANTITY: "cart/update/quantity",
-  API_DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
+  UPDATE_CART_QUANTITY: "cart/update/quantity",
+  DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
+
+  // Category Endpoint
+  GET_CATEGORY_PARENT: "categories/parent-only",
+  GET_CATEGORY_LIST: "categories/list",
+  GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
+  CREATE_CATEGORY: "categories/create",
+  UPDATE_CATEGORY: "categories/update",
+  DELETE_CATEGORY: (categoryId: string) => `categories/delete/${categoryId}`,
+  ADD_PRODUCT_TO_CATEGORY: (categoryId: string) =>
+    `categories/${categoryId}/products`,
+  UPDATE_PRODUCT_IN_CATEGORY: (categoryId: string) =>
+    `categories/update-product/${categoryId}`,
+  UPDATE_CATEGORY_STATUS: "categories/change-status",
 };
 
 export const STORE = {
