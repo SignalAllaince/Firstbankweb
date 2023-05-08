@@ -43,6 +43,17 @@ export const ENDPOINTS = {
   UPDATE_PRODUCT_IN_CATEGORY: (categoryId: string) =>
     `categories/update-product/${categoryId}`,
   UPDATE_CATEGORY_STATUS: "categories/change-status",
+
+  // Products Endpoints
+  GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
+  GET_PRODUCT_BY_ID: (name: string) => `products/read/${name}`,
+  GET_PRODUCTS_BY_SEARCH: "products/search",
+  CREATE_PRODUCTS: "products/create",
+  UPDATE_PRODUCT: "products/update",
+  UPDATE_PRODUCT_STATUS: "products/change-status",
+  DELETE_PRODUCT: (productId: string) => `products/delete/${productId}`,
+  GET_PRODUCTS_SEARCH_OPTIONS: "products/search-options",
+  GET_PRODUCTS_ORDERBY: "products/product-orderby",
 };
 
 export const STORE = {
