@@ -139,3 +139,13 @@ export function getAllCategoriesProduct() {
     };
   });
 }
+
+export const compose =
+  (...functions: Function[]) =>
+  (initialValue: string) =>
+    functions.reduceRight((acc, fn) => fn(acc), initialValue);
+
+export const pipe =
+  (...functions: Function[]) =>
+  (initialValue: number | string) =>
+    functions.reduce((acc, fn) => fn(acc), initialValue);
