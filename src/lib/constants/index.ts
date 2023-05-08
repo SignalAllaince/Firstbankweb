@@ -1,18 +1,3 @@
-export const PAGES = {
-  DASHBOARD_HOME: "/dashboard",
-  DASHBOARD: {
-    HOME: "/",
-    AFFILIATE: "/affiliates",
-    STORE: "/storefront",
-    TIP: "/tips",
-    TRANSACTION: "/transaction",
-    CUSTOMER: "/customers",
-    WALLET: "/wallets",
-    ORDERS: "/orders",
-    SETTINGS: "/settings",
-  },
-};
-
 // Api Endpoints
 export const ENDPOINTS = {
   API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
@@ -54,6 +39,15 @@ export const ENDPOINTS = {
   DELETE_PRODUCT: (productId: string) => `products/delete/${productId}`,
   GET_PRODUCTS_SEARCH_OPTIONS: "products/search-options",
   GET_PRODUCTS_ORDERBY: "products/product-orderby",
+
+  // Tax Endpoints
+  GET_TAX_RATE_LIST: "tax-rates/read",
+  GET_SINGLE_TAX: (taxId: string) => `tax-rates/read/${taxId}`,
+  CREATE_TAX_RATE: "tax-rates/create",
+  UPDATE_TAX_RATE: "tax-rates/update",
+  DELETE_TAX: (taxId: string) => `tax-rates/delete/${taxId}`,
+  GET_TAX_PER_COUNTRY: (countryId: string) => `tax-rates/export/${countryId}`,
+  TAX_IMPORT_POST: "tax-rates/import",
 };
 
 export const STORE = {
