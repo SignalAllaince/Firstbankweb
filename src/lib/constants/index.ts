@@ -47,6 +47,12 @@ export const ENDPOINTS = {
   DELETE_TAX: (taxId: string) => `tax-rates/delete/${taxId}`,
   GET_TAX_PER_COUNTRY: (countryId: string) => `tax-rates/export/${countryId}`,
   TAX_IMPORT_POST: "tax-rates/import",
+
+  // State Endpoint
+  GET_STATE_LIST: "statesndpr/list",
+  GET_SINGLE_STATE: (stateId: string) => `statesndpr/read/${stateId}`,
+  UPDATE_STATE_DETAILS: "statesndpr/update",
+  DELETE_STATE: (stateId: string) => `statesnpdr/delete/${stateId}`,
 };
 
 export const STORE = {
@@ -86,4 +92,10 @@ export const NAMESPACE = {
   ADD_ITEMS_TO_CART: "ADD_ITEMS_TO_CART",
   UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
   DELETE_CART_ITEM: "DELETE_CART_ITEM",
+
+  // state
+  GET_STATE_LIST: "GET_STATE_LIST",
+  GET_SINGLE_STATE: "GET_SINGLE_STATE",
+  UPDATE_STATE_DETAILS: "UPDATE_STATE_DETAILS",
+  DELETE_STATE: "DELETE_STATE",
 };
