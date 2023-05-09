@@ -5,7 +5,7 @@ const useGetCategory = (categoryId: string) => {
   return useQueryActionHook({
     method: "get",
     endpoint: ENDPOINTS.GET_SINGLE_CATEGORY(categoryId),
-    queryKey: [NAMESPACE.GET_SINGLE_CATEGORY],
+    queryKey: [NAMESPACE.GET_SINGLE_CATEGORY, categoryId],
   });
 };
 
