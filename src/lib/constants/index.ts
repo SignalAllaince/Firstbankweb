@@ -53,6 +53,8 @@ export const ENDPOINTS = {
   GET_SINGLE_STATE: (stateId: string) => `statesndpr/read/${stateId}`,
   UPDATE_STATE_DETAILS: "statesndpr/update",
   DELETE_STATE: (stateId: string) => `statesnpdr/delete/${stateId}`,
+  GET_STATES_BY_SEARCH: "statesnpdr/search",
+  CREATE_STATE: "statesnpdr/create",
 };
 
 export const STORE = {
@@ -98,4 +100,6 @@ export const NAMESPACE = {
   GET_SINGLE_STATE: "GET_SINGLE_STATE",
   UPDATE_STATE_DETAILS: "UPDATE_STATE_DETAILS",
   DELETE_STATE: "DELETE_STATE",
+  GET_STATES_BY_SEARCH: "GET_STATES_BY_SEARCH",
+  CREATE_STATE: "CREATE_STATE",
 };
