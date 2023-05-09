@@ -55,6 +55,10 @@ export const ENDPOINTS = {
   DELETE_STATE: (stateId: string) => `statesnpdr/delete/${stateId}`,
   GET_STATES_BY_SEARCH: "statesnpdr/search",
   CREATE_STATE: "statesnpdr/create",
+  IMPORT_STATES_BY_COUNTRYID: (countryId: string) =>
+    `statesnpdr/import-states/${countryId}`,
+  EXPORT_STATES_BY_COUNTRYID: (countryId: string) =>
+    `statesnpdr/export-states/${countryId}`,
 };
 
 export const STORE = {
@@ -102,4 +106,6 @@ export const NAMESPACE = {
   DELETE_STATE: "DELETE_STATE",
   GET_STATES_BY_SEARCH: "GET_STATES_BY_SEARCH",
   CREATE_STATE: "CREATE_STATE",
+  IMPORT_STATES_BY_COUNTRYID: "IMPORT_STATES_BY_COUNTRYID",
+  EXPORT_STATES_BY_COUNTRYID: "EXPORT_STATES_BY_COUNTRYID",
 };
