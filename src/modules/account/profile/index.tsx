@@ -2,12 +2,15 @@ import Heading from "@/components/heading";
 import CustomInput from "@/components/input";
 import AccountLayout from "@/components/layout/account-layout";
 import Section from "@/components/section";
+import useGetParentCategories from "@/hooks/category/useGetParentCategories";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import * as CryptoJS from "crypto-js";
 import { ChangeEvent, ReactElement } from "react";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
+  const data = useGetParentCategories();
+  console.log(data);
   // §
   const origCipher =
     "22BEE2AC4C4BB0DB13D399DCF3DE983A6420E23AE2ACEDAC66C75FEF661DED1ED80A5BFE86CE4C2A3608518404BD2D699902D105A399AA542DE5A527C8FC7C94D4EF9A59319EA01921E34837342A3DAC1D4A68326BB9E678F4856DCC9727880C9B1348C229B8542B808C70CD36C0CC42991CB14D8B1B42E4E21F70F76B6C34F4B6D5C6A7E144AEC37EDCCB8EC925BC2308049B9D537CE670AD455B142B9160DD46CC4614360B3D1FF1AAEFE8926374A2E733ABA83894EF43BAACC6900C1DDD5F";
