@@ -12,7 +12,7 @@ export const ENDPOINTS = {
   GET_CART_DATA: (userId: string) => `cart/read/${userId}`,
   ADD_ITEM_TO_CART: (userId: string) => `cart/${userId}/add-cart-item`,
   ADD_ITEMS_TO_CART: (userId: string) => `cart/${userId}/add-cart-items`,
-  UPDATE_CART_QUANTITY: "cart/update/quantity",
+  UPDATE_CART_ITEM_QUANTITY: "cart/update/quantity",
   DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
 
   // Category Endpoint
@@ -84,4 +84,5 @@ export const NAMESPACE = {
   GET_CART_DATA: "GET_CART_DATA",
   ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
   ADD_ITEMS_TO_CART: "ADD_ITEMS_TO_CART",
+  UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
 };
