@@ -10,9 +10,12 @@ export const ENDPOINTS = {
 
   // Cart Endpoints
 
-  GET_CART_DATA: (userId: string) => `account/cart/read/${userId}`,
+  GET_CART_LIST: `account/cart/list`,
+  GET_CART_ITEM_RESULT: (productId: string) =>
+    `account/cart/add-item-result?productId=${productId}`,
   ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
-  UPDATE_CART_ITEM_QUANTITY: "account/cart/update/quantity",
+  UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
+  CART_VALIDATION_SELECTION: "account/cart/validate-selection",
   DELETE_CART_ITEM: `account/cart/remove-item`,
   CLEAR_CART: `account/cart/clear`,
 
@@ -94,9 +97,11 @@ export const NAMESPACE = {
   GET_PRODUCT_BY_SEARCH: "GET_PRODUCT_BY_SEARCH",
 
   // cart
-  GET_CART_DATA: "GET_CART_DATA",
+  GET_CART_LIST: "GET_CART_LIST",
+  GET_CART_ITEM_RESULT: "GET_CART_ITEM_RESULT",
   ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
   UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
+  CART_VALIDATION_SELECTION: "CART_VALIDATION_SELECTION",
   DELETE_CART_ITEM: "DELETE_CART_ITEM",
   CLEAR_CART: "CLEAR_CART",
 

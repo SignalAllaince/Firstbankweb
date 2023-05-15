@@ -4,8 +4,8 @@ import useCustomMutation from "../use-mutationaction";
 const useUpdateItemInCart = () => {
   return useCustomMutation({
     method: "post",
-    endpoint: ENDPOINTS.UPDATE_CART_ITEM_QUANTITY,
-    queryKey: [NAMESPACE.UPDATE_CART_ITEM_QUANTITY],
+    endpoint: ENDPOINTS.CART_VALIDATION_SELECTION,
+    queryKey: [NAMESPACE.CART_VALIDATION_SELECTION],
   });
 };
 
