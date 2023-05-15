@@ -111,4 +111,5 @@ export const NAMESPACE = {
 
   // Tax Rate
   GET_TAX_RATE_LIST: "GET_TAX_RATE_LIST",
+  GET_SINGLE_TAX: "GET_SINGLE_TAX",
 };

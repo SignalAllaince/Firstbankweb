@@ -1,12 +1,12 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import useQueryActionHook from "../use-queryaction";
 
-const useGetTaxRateList = () => {
+const useGetTaxRate = (taxId: string) => {
   return useQueryActionHook({
     method: "get",
-    endpoint: ENDPOINTS.GET_TAX_RATE_LIST,
-    queryKey: [NAMESPACE.GET_TAX_RATE_LIST],
+    endpoint: ENDPOINTS.GET_SINGLE_TAX(taxId),
+    queryKey: [NAMESPACE.GET_SINGLE_TAX, taxId],
   });
 };
 
-export default useGetTaxRateList;
+export default useGetTaxRate;
