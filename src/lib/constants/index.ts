@@ -14,6 +14,7 @@ export const ENDPOINTS = {
   ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
   UPDATE_CART_ITEM_QUANTITY: "account/cart/update/quantity",
   DELETE_CART_ITEM: `account/cart/remove-item`,
+  CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
   GET_CATEGORY_PARENT: "categories/parent-only",
@@ -97,6 +98,7 @@ export const NAMESPACE = {
   ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
   UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
   DELETE_CART_ITEM: "DELETE_CART_ITEM",
+  CLEAR_CART: "CLEAR_CART",
 
   // state
   GET_STATE_LIST: "GET_STATE_LIST",
