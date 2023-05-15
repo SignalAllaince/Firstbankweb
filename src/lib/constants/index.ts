@@ -73,6 +73,10 @@ export const ENDPOINTS = {
     `account/address/update/${addressId}`,
   UPDATE_DEFAULT_ADDRESS: "account/address/set-default",
   DELETE_ADDRESS: "account/address/confirm-delete",
+
+  // search Endpoint
+  GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
+  GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 };
 
 export const STORE = {
@@ -136,4 +140,8 @@ export const NAMESPACE = {
   UPDATE_SINGLE_ADDRESS: "UPDATE_SINGLE_ADDRESS",
   UPDATE_DEFAULT_ADDRESS: "UPDATE_DEFAULT_ADDRESS",
   DELETE_ADDRESS: "DELETE_ADDRESS",
+
+  // Search
+  GET_SEARCH_RESULT: "GET_SEARCH_RESULT",
+  GET_MOST_SEARCHED_KEYWORDS: "GET_MOST_SEARCHED_KEYWORDS",
 };
