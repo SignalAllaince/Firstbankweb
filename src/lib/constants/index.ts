@@ -16,7 +16,7 @@ export const ENDPOINTS = {
   ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
   UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
   CART_VALIDATION_SELECTION: "account/cart/validate-selection",
-  DELETE_CART_ITEM: `account/cart/remove-item`,
+  DELETE_CART_ITEM: (itemId: string) => `account/cart/remove-item?id=${itemId}`,
   CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
@@ -77,6 +77,8 @@ export const ENDPOINTS = {
   // search Endpoint
   GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
+
+  // Shipping Endpoints
 };
 
 export const STORE = {
