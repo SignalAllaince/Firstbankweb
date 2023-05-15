@@ -1,6 +1,8 @@
 import Button from "@/components/button";
 import DeleteReviewModal from "@/components/modal/delete-review";
 import useDisclosure from "@/hooks/use-disclosure";
+import { cn } from "@/lib/utils/component.utils";
+import { StarIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import smileEmoji from "../../../../../../public/images/emoji/smile.svg";
 
@@ -16,6 +18,18 @@ function WishListRow() {
             <p>
               This Description should carry only the full name of the product.
             </p>
+            <div className="flex items-center">
+              {[0, 1, 2, 3, 4].map((rating) => (
+                <StarIcon
+                  key={rating}
+                  className={cn(
+                    4 > rating ? "text-brand-accent" : "text-gray-200",
+                    "h-4 w-4 flex-shrink-0"
+                  )}
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
             <div className="flex items-center gap-3 pb-1">
               <Image src={smileEmoji} alt="" className="h-4 w-4" />
               <p className="text-sm">

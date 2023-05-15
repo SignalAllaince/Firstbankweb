@@ -10,9 +10,9 @@ function Catergory({ header }: { header: string; products?: any[] }) {
       <div className="flex w-full items-center justify-between">
         <Heading size="h4">{header}</Heading>
         <Button
-          variant="secondary"
-          size="small"
-          className="h-8 border-brand-light font-light"
+          variant="cart"
+          size="xs"
+          className="border-brand-light font-light text-brand-blue"
           rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
         >
           View category page

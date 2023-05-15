@@ -1,22 +1,3 @@
-export const PAGES = {
-  DASHBOARD_HOME: "/dashboard",
-  DASHBOARD: {
-    HOME: "/",
-    AFFILIATE: "/affiliates",
-    STORE: "/storefront",
-    TIP: "/tips",
-    TRANSACTION: "/transaction",
-    CUSTOMER: "/customers",
-    WALLET: "/wallets",
-    ORDERS: "/orders",
-    SETTINGS: "/settings",
-  },
-
-  ACCOUNT_LOGIN: "/auth/login",
-  ACCOUNT_SIGNUP: "/auth/register",
-  ACCOUNT_RESET_PASSWORD: "/auth/reset-password",
-};
-
 // Api Endpoints
 export const ENDPOINTS = {
   API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
@@ -27,103 +8,57 @@ export const ENDPOINTS = {
   API_RESET_PASSWORD: (token: string) => `/auth/reset-password?token=${token}`,
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
-  // Users Endpoints
-  API_CREATE_WITHDRAWAL_ACCOUNT: "/withdrawal-accounts",
-  API_VERIFY_ACCOUNT: "/withdrawal-accounts/verify",
-  API_GET_BANK_LIST: "/resources/banks/ng",
-  API_GET_CURRENCIES: "/resources/currencies",
+  // Cart Endpoints
+  GET_CART_DATA: (userId: string) => `cart/read/${userId}`,
+  ADD_ITEM_TO_CART: (userId: string) => `cart/${userId}/add-cart-item`,
+  ADD_ITEMS_TO_CART: (userId: string) => `cart/${userId}/add-cart-items`,
+  UPDATE_CART_ITEM_QUANTITY: "cart/update/quantity",
+  DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
 
-  // Settings Endpoint
-  USER_ACCOUNT_INFO: "/users/info",
-  EDIT_USER_ACCOUNT_INFO: "/users/info/edit",
-  API_CHANGE_PASSWORD: "/users/security/change-password",
-  USER_WITHDRAWAL_ACCOUNTS: "/withdrawal-accounts",
-  USER_NOTIFICATION_SETTINGS: "/users/notification-preferences",
-  VERIFY_USER_EMAIL: "/auth/verify/email",
+  // Category Endpoint
+  GET_CATEGORY_PARENT: "categories/parent-only",
+  GET_CATEGORY_LIST: "categories/list",
+  GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
+  CREATE_CATEGORY: "categories/create",
+  UPDATE_CATEGORY: "categories/update",
+  DELETE_CATEGORY: (categoryId: string) => `categories/delete/${categoryId}`,
+  ADD_PRODUCT_TO_CATEGORY: (categoryId: string) =>
+    `categories/${categoryId}/products`,
+  UPDATE_PRODUCT_IN_CATEGORY: (categoryId: string) =>
+    `categories/update-product/${categoryId}`,
+  UPDATE_CATEGORY_STATUS: "categories/change-status",
 
-  // Tip Endpoints
-  API_TIP_LINKS: "/tips",
-  API_SINGLE_TIP_LINK: (linkId: string) => `/tips/${linkId}`,
-  GET_TIP_LINKS: (
-    pageSize: string | number,
-    pageNumber: string | number,
-    status: string,
-    search: string
-  ) =>
-    `/tips?pageSize=${pageSize}&pageNumber=${pageNumber}&status=${status}&search=${search}`,
-  API_DISABLE_TIP_LINK: (linkId: string) => `/tips/${linkId}/disable`,
-  API_ENABLE_TIP_LINK: (linkId: string) => `/tips/${linkId}/enable`,
-  API_TIP_TRANSACTIONS: (
-    linkId: string,
-    pageSize: number,
-    pageNumber: number
-  ) =>
-    `/tips/${linkId}/transactions?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+  // Products Endpoints
+  GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
+  GET_PRODUCT_BY_ID: (name: string) => `products/read/${name}`,
+  GET_PRODUCTS_BY_SEARCH: "products/search",
+  CREATE_PRODUCTS: "products/create",
+  UPDATE_PRODUCT: "products/update",
+  UPDATE_PRODUCT_STATUS: "products/change-status",
+  DELETE_PRODUCT: (productId: string) => `products/delete/${productId}`,
+  GET_PRODUCTS_SEARCH_OPTIONS: "products/search-options",
+  GET_PRODUCTS_ORDERBY: "products/product-orderby",
 
-  // Wallet Endpoints
-  API_GET_WALLETS: "/wallets",
-  API_GET_WALLETS_TRANSACTION: (pageSize: number, pageNumber: number) =>
-    `/wallets/transactions?pageSize=${pageSize}&pageNumber=${pageNumber}`,
-  USER_ANALYTICS: "/analytics",
+  // Tax Endpoints
+  GET_TAX_RATE_LIST: "tax-rates/read",
+  GET_SINGLE_TAX: (taxId: string) => `tax-rates/read/${taxId}`,
+  CREATE_TAX_RATE: "tax-rates/create",
+  UPDATE_TAX_RATE: "tax-rates/update",
+  DELETE_TAX: (taxId: string) => `tax-rates/delete/${taxId}`,
+  GET_TAX_PER_COUNTRY: (countryId: string) => `tax-rates/export/${countryId}`,
+  TAX_IMPORT_POST: "tax-rates/import",
 
-  //  Withdrawal Endpoints
-  API_INITIATE_WITHDRAWAL: "/remittance/withdrawals",
-
-  // store endpoints
-  API_STORE_LINKS: "/stores",
-  GET_STORE_LINKS: (
-    pageSize: string | number,
-    pageNumber: string | number,
-    status: string,
-    search: string
-  ) =>
-    `/stores?pageSize=${pageSize}&pageNumber=${pageNumber}&status=${status}&search=${search}`,
-  API_SINGLE_STORE_INFO: (storeId: string) => `/stores/${storeId}`,
-
-  GET_STORE_PRODUCTS: (
-    storeId: string,
-    pageSize: string | number,
-    pageNumber: string | number,
-    search: string
-  ) =>
-    `/stores/${storeId}/products?pageSize=${pageSize}&pageNumber=${pageNumber}&search=${search}`,
-
-  GET_STORE_ORDERS: (
-    storeId: string,
-    pageSize: string | number,
-    pageNumber: string | number,
-    search: string
-  ) =>
-    `/stores/${storeId}/orders?pageSize=${pageSize}&pageNumber=${pageNumber}&search=${search}`,
-
-  GET_STORE_ORDER_DETAIL: (storeOrderId: string) => `/orders/${storeOrderId}`,
-
-  GET_INDIVIDUAL_PRODUCT_INFO: (storeId: string, productId: string) =>
-    `/stores/${storeId}/products/${productId}`,
-
-  API_SINGLE_STORE_PRODUCTS: (storeId: string) => `/stores/${storeId}/products`,
-
-  EDIT_STORE_PRODUCT: (storeId: string, productId: string) =>
-    `/stores/${storeId}/products?productId=${productId}`,
-
-  PUT_EDIT_STORE_PRODUCT: (storeId: string, productId: string) =>
-    `/stores/${storeId}/products/${productId}`,
-
-  GET_CUSTOMERS: (
-    pageSize: string | number,
-    pageNumber: string | number,
-    search: string
-  ) =>
-    `/customers?pageSize=${pageSize}&pageNumber=${pageNumber}&search=${search}`,
-
-  GET_CUSTOMER_DETAILS: (customerId: string) => `/customers/${customerId}`,
-
-  GET_CUSTOMER_TRANSACTIONS: (
-    customerId: string,
-    pageSize: number,
-    pageNumber: number
-  ) =>
-    `/customers/${customerId}/transactions?pageSize=${pageSize}&pageNumber=${pageNumber}`,
+  // State Endpoint
+  GET_STATE_LIST: "statesndpr/list",
+  GET_SINGLE_STATE: (stateId: string) => `statesndpr/read/${stateId}`,
+  UPDATE_STATE_DETAILS: "statesndpr/update",
+  DELETE_STATE: (stateId: string) => `statesnpdr/delete/${stateId}`,
+  GET_STATES_BY_SEARCH: "statesnpdr/search",
+  CREATE_STATE: "statesnpdr/create",
+  IMPORT_STATES_BY_COUNTRYID: (countryId: string) =>
+    `statesnpdr/import-states/${countryId}`,
+  EXPORT_STATES_BY_COUNTRYID: (countryId: string) =>
+    `statesnpdr/export-states/${countryId}`,
 };
 
 export const STORE = {
@@ -134,25 +69,47 @@ export const NAMESPACE = {
   INITIATE_SIGNUP: "INITIATE_SIGNUP",
   RESET_PASSWORD: "RESET_PASSWORD",
   CREATE_WITHDRAWAL_ACCOUNT: "CREATE_WITHDRAWAL_ACCOUNT",
-  VERIFY_ACCOUNT: "VERIFY_ACCOUNT",
-  GET_BANK_LIST: "GET_BANK_LIST",
-  GET_CURRENCIES: "GET_CURRENCIES",
-  GET_USER_ACCOUNT_INFO: "GET_USER_ACCOUNT_INFO",
-  EDIT_USER_ACCOUNT_INFO: "EDIT_USER_ACCOUNT_INFO",
-  CHANGE_PASSWORD: "CHANGE_PASSWORD",
-  USER_WITHDRAWAL_ACCOUNTS: "USER_WITHDRAWAL_ACCOUNTS",
-  ADD_USER_WITHDRAWAL_ACCOUNTS: "ADD_USER_WITHDRAWAL_ACCOUNTS",
-  REMOVE_WITHDRAWAL_ACCOUNTS: "USER_WITHDRAWAL_ACCOUNTS",
-  USER_NOTIFICATION_SETTINGS: "USER_NOTIFICATION_SETTINGS",
-  UPDATE_USER_NOTIFICATION_SETTINGS: "UPDATE_USER_NOTIFICATION_SETTINGS",
-  CREATE_TIP: "CREATE_TIP",
-  VERIFY_USER_EMAIL: "VERIFY_USER_EMAIL",
-  VERIFY_SIGNUP_DETAILS: "VERIFY_SIGNUP_DETAILS",
-  EDIT_TIP_LINKS: "EDIT_TIP_LINKS",
-  GET_WALLETS: "GET_WALLETS",
-  GET_WALLETS_TRANSACTION: "GET_WALLETS_TRANSACTION",
-  USER_ANALYTICS: "USER_ANALYTICS",
-  INITIATE_WITHDRAWAL: "INITIATE_WITHDRAWAL",
-  STORE_LINKS: "STORE_LINKS",
-  SINGLE_STORE_INFO: "SINGLE_STORE_INFO",
+
+  // categories
+  GET_CATEGORY_PARENT: "GET_CATEGORY_PARENT",
+  GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
+  GET_SINGLE_CATEGORY: "GET_SINGLE_CATEGORY",
+  CREATE_CATEGORY: "CREATE_CATEGORY",
+  UPDATE_CATEGORY: "UPDATE_CATEGORY",
+  DELETE_CATEGORY: "DELETE_CATEGORY",
+  UPDATE_CATEGORY_STATUS: "UPDATE_CATEGORY_STATUS",
+  UPDATE_PRODUCT_IN_CATEGORY: "UPDATE_PRODUCT_IN_CATEGORY",
+  ADD_PRODUCT_TO_CATEGORY: "ADD_PRODUCT_TO_CATEGORY",
+
+  // Products
+  CREATE_PRODUCTS: "CREATE_PRODUCTS",
+  GET_PRODUCTS_BY_SEARCH: "GET_PRODUCTS_BY_SEARCH",
+  UPDATE_PRODUCT: "UPDATE_PRODUCT",
+  UPDATE_PRODUCT_STATUS: "UPDATE_PRODUCT_STATUS",
+  GET_PRODUCTS_SEARCH_OPTIONS: "GET_PRODUCTS_SEARCH_OPTIONS",
+  GET_PRODUCTS_ORDERBY: "GET_PRODUCTS_ORDERBY",
+  DELETE_PRODUCT: "DELETE_PRODUCT",
+  GET_PRODUCT_BY_ID: "GET_PRODUCT_BY_ID",
+  GET_PRODUCT_BY_SEARCH: "GET_PRODUCT_BY_SEARCH",
+
+  // cart
+  GET_CART_DATA: "GET_CART_DATA",
+  ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
+  ADD_ITEMS_TO_CART: "ADD_ITEMS_TO_CART",
+  UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
+  DELETE_CART_ITEM: "DELETE_CART_ITEM",
+
+  // state
+  GET_STATE_LIST: "GET_STATE_LIST",
+  GET_SINGLE_STATE: "GET_SINGLE_STATE",
+  UPDATE_STATE_DETAILS: "UPDATE_STATE_DETAILS",
+  DELETE_STATE: "DELETE_STATE",
+  GET_STATES_BY_SEARCH: "GET_STATES_BY_SEARCH",
+  CREATE_STATE: "CREATE_STATE",
+  IMPORT_STATES_BY_COUNTRYID: "IMPORT_STATES_BY_COUNTRYID",
+  EXPORT_STATES_BY_COUNTRYID: "EXPORT_STATES_BY_COUNTRYID",
+
+  // Tax Rate
+  GET_TAX_RATE_LIST: "GET_TAX_RATE_LIST",
+  GET_SINGLE_TAX: "GET_SINGLE_TAX",
 };

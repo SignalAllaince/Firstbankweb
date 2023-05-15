@@ -60,3 +60,7 @@ export type PaymentMethod =
   | "solId"
   | "first-checkout"
   | null;
+
+export interface CreateProductResponse {
+  name: string;
+}

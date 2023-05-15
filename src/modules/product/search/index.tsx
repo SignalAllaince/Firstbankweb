@@ -9,7 +9,7 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { priceList } from "@/lib/constants/rating";
+import { popularity, priceList } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -52,14 +52,12 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                   className="h-8 border-brand-light px-[6px] text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
-                  By Popularity
+                  Best Seller
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
-                  <MenuItem>Highest to Lowest</MenuItem>
-                  <MenuItem>Lowest to Highest</MenuItem>
-                  <MenuItem>Best seller</MenuItem>
-                  <MenuItem>New arrivals</MenuItem>
-                  <MenuItem>Top sales</MenuItem>
+                  <MenuItem>Best Seller</MenuItem>
+                  <MenuItem>New Arrivals</MenuItem>
+                  <MenuItem>Top Sales</MenuItem>
                 </MenuItems>
               </Menu>
             </div>
@@ -70,11 +68,33 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
       {/* second section */}
       <section className="pb-20 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest">
+          <div className="sticky top-0 col-span-3 h-fit space-y-3 font-light">
+            <div className="border-b border-brand-darkest pb-5">
+              <RadioGroup value={plan} onChange={setPlan}>
+                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
+                <RadioGroup.Option value={popularity}>
+                  {({ checked, active }) => (
+                    <div className="flex cursor-pointer items-center gap-4">
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "ring-brand-darkest",
+                          active && checked ? "ring-2" : "",
+                          checked ? "bg-brand-darkest" : "",
+                          !active && checked ? "ring-2" : "",
+                          "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                        )}
+                      />
+                      <span className="text-sm">{popularity.name}</span>
+                    </div>
+                  )}
+                </RadioGroup.Option>
+              </RadioGroup>
+            </div>
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
-                <div className="space-y-5">
+                <div className="space-y-4">
                   {priceList.map((plan) => (
                     <RadioGroup.Option value={plan} key={plan.name}>
                       {({ checked, active }) => (
@@ -96,7 +116,7 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
                   ))}
                 </div>
               </RadioGroup>
-              <div className="space-y-3 pt-12">
+              <div className="space-y-3 pt-10">
                 <p>Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput
