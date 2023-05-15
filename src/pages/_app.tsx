@@ -25,7 +25,7 @@ const MyApp = ({
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <SnackbarProvider
-          maxSnack={3}
+          maxSnack={2}
           iconVariant={{
             info: (
               <Icon

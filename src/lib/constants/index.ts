@@ -9,11 +9,11 @@ export const ENDPOINTS = {
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
   // Cart Endpoints
-  GET_CART_DATA: (userId: string) => `cart/read/${userId}`,
-  ADD_ITEM_TO_CART: (userId: string) => `cart/${userId}/add-cart-item`,
-  ADD_ITEMS_TO_CART: (userId: string) => `cart/${userId}/add-cart-items`,
-  UPDATE_CART_ITEM_QUANTITY: "cart/update/quantity",
-  DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
+
+  GET_CART_DATA: (userId: string) => `account/cart/read/${userId}`,
+  ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
+  UPDATE_CART_ITEM_QUANTITY: "account/cart/update/quantity",
+  DELETE_CART_ITEM: `account/cart/remove-item`,
 
   // Category Endpoint
   GET_CATEGORY_PARENT: "categories/parent-only",
@@ -95,7 +95,6 @@ export const NAMESPACE = {
   // cart
   GET_CART_DATA: "GET_CART_DATA",
   ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
-  ADD_ITEMS_TO_CART: "ADD_ITEMS_TO_CART",
   UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
   DELETE_CART_ITEM: "DELETE_CART_ITEM",
 
