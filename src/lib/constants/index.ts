@@ -34,7 +34,8 @@ export const ENDPOINTS = {
 
   // Products Endpoints
   GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
-  GET_PRODUCT_BY_ID: (name: string) => `products/read/${name}`,
+  GET_PRODUCT_BY_ID: (productId: string) =>
+    `product-catalog/product-details/${productId}`,
   GET_PRODUCTS_BY_SEARCH: "products/search",
   CREATE_PRODUCTS: "products/create",
   UPDATE_PRODUCT: "products/update",
@@ -63,6 +64,15 @@ export const ENDPOINTS = {
     `statesnpdr/import-states/${countryId}`,
   EXPORT_STATES_BY_COUNTRYID: (countryId: string) =>
     `statesnpdr/export-states/${countryId}`,
+
+  // Address Endpoint
+  GET_ADDRESS_LIST: "account/address/list",
+  CREATE_ADDRESS: "account/address/create",
+  GET_SINGLE_ADDRESS: (addressId: string) => `account/address/${addressId}`,
+  UPDATE_SINGLE_ADDRESS: (addressId: string) =>
+    `account/address/update/${addressId}`,
+  UPDATE_DEFAULT_ADDRESS: "account/address/set-default",
+  DELETE_ADDRESS: "account/address/confirm-delete",
 };
 
 export const STORE = {
@@ -118,4 +128,12 @@ export const NAMESPACE = {
   // Tax Rate
   GET_TAX_RATE_LIST: "GET_TAX_RATE_LIST",
   GET_SINGLE_TAX: "GET_SINGLE_TAX",
+
+  // Address
+  GET_ADDRESS_LIST: "GET_ADDRESS_LIST",
+  CREATE_ADDRESS: "CREATE_ADDRESS",
+  GET_SINGLE_ADDRESS: "GET_SINGLE_ADDRESS",
+  UPDATE_SINGLE_ADDRESS: "UPDATE_SINGLE_ADDRESS",
+  UPDATE_DEFAULT_ADDRESS: "UPDATE_DEFAULT_ADDRESS",
+  DELETE_ADDRESS: "DELETE_ADDRESS",
 };
