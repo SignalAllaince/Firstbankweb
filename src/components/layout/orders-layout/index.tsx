@@ -3,6 +3,7 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import Section from "@/components/section";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -22,6 +23,8 @@ function OrderLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const changer = links.findIndex((link) => link.href === pathname);
+
   return (
     <Section className="pb-10">
       <div>
@@ -61,8 +64,17 @@ function OrderLayout({
           </div>
         ) : null}
       </div>
-
-      {children}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={changer}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0.3 }}
+          className="flex-1"
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
     </Section>
   );
 }

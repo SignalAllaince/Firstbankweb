@@ -15,7 +15,11 @@ function WishListModal({
           <p>Are you sure you want to save this item to your wishlist?</p>
         </div>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <Button className="w-full px-2 text-sm uppercase" variant="secondary">
+          <Button
+            className="w-full px-2 text-sm uppercase"
+            variant="secondary"
+            onClick={onClose}
+          >
             No, Cancel
           </Button>
           <Button className="w-full px-2 text-sm uppercase" href="/cart">

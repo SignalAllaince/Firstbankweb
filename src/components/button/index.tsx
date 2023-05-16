@@ -15,6 +15,7 @@ const buttonClasses = cva(
     "cursor-pointer",
     "gap-2",
     "flex",
+    "flex-shrink-0",
     "relative",
     "focus:ring-blue-500",
     "focus:outline-none",

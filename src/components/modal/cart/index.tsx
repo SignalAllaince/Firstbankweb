@@ -18,7 +18,7 @@ function CartModal({
           <Button className="w-full px-2 text-sm uppercase" variant="secondary">
             Remove item
           </Button>
-          <Button className="w-full px-2 text-sm uppercase" href="/cart">
+          <Button className="w-full px-2 text-sm uppercase" onClick={onClose}>
             No, Cancel
           </Button>
         </div>

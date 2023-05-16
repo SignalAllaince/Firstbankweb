@@ -78,7 +78,14 @@ export const ENDPOINTS = {
   GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 
-  // Shipping Endpoints
+  // review Endpoints
+  ADD_PRODUCT_REVIEW: "review-product/add-review",
+  GET_PRODUCT_REVIEWS: (
+    productId: string,
+    pageNumber: number,
+    pageSize: number
+  ) =>
+    `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
 };
 
 export const STORE = {
@@ -146,4 +153,8 @@ export const NAMESPACE = {
   // Search
   GET_SEARCH_RESULT: "GET_SEARCH_RESULT",
   GET_MOST_SEARCHED_KEYWORDS: "GET_MOST_SEARCHED_KEYWORDS",
+
+  // reviews
+  GET_PRODUCT_REVIEWS: "GET_PRODUCT_REVIEWS",
+  ADD_PRODUCT_REVIEW: "ADD_PRODUCT_REVIEW",
 };
