@@ -97,6 +97,16 @@ export const ENDPOINTS = {
   UPDATE_SHIPPING_RATE: "shipping-rate/update",
   DELETE_SHIPPING_RATE: (rateId: string) => `shipping-rate/delete/${rateId}`,
   POST_SHIPPING_RATES: "shipping-rate/import-shipping-rates",
+
+  // Tax Class Endpoint
+  GET_TAXCLASS_LIST: "api/tax-classes/list",
+  GET_ACTIVE_TAXCLASS: "api/tax-classes/active",
+  GET_SINGLE_TAXCLASS: (taxClassId: string) =>
+    `api/tax-classes/read/${taxClassId}`,
+  GET_DEFAULT_TAXCLASS: "",
+  CREATE_TAXCLASS: "",
+  UPDATE_TAXCLASS: "",
+  DELETE_TAXCLASS: "",
 };
 
 export const STORE = {
@@ -179,4 +189,13 @@ export const NAMESPACE = {
   UPDATE_SHIPPING_RATE: "UPDATE_SHIPPING_RATE",
   DELETE_SHIPPING_RATE: "DELETE_SHIPPING_RATE",
   POST_SHIPPING_RATES: "POST_SHIPPING_RATES",
+
+  // TAX CLASS
+  GET_TAXCLASS_LIST: "GET_TAXCLASS_LIST",
+  GET_ACTIVE_TAXCLASS: "GET_ACTIVE_TAXCLASS",
+  GET_SINGLE_TAXCLASS: "GET_SINGLE_TAXCLASS",
+  GET_DEFAULT_TAXCLASS: "GET_DEFAULT_TAXCLASS",
+  CREATE_TAXCLASS: "CREATE_TAXCLASS",
+  UPDATE_TAXCLASS: "UPDATE_TAXCLASS",
+  DELETE_TAXCLASS: "DELETE_TAXCLASS",
 };
