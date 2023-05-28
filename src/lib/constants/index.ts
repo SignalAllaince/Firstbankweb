@@ -103,10 +103,12 @@ export const ENDPOINTS = {
   GET_ACTIVE_TAXCLASS: "api/tax-classes/active",
   GET_SINGLE_TAXCLASS: (taxClassId: string) =>
     `api/tax-classes/read/${taxClassId}`,
-  GET_DEFAULT_TAXCLASS: "",
-  CREATE_TAXCLASS: "",
-  UPDATE_TAXCLASS: "",
-  DELETE_TAXCLASS: "",
+  GET_DEFAULT_TAXCLASS: "api/tax-classes/default",
+  CREATE_TAXCLASS: "api/tax-classes/create",
+  UPDATE_TAXCLASS: "api/tax-classes/update",
+  DELETE_TAXCLASS: (taxClassId: string) =>
+    `api/tax-classes/delete/${taxClassId}`,
+  POST_TAXCLASS_LIST: "",
 };
 
 export const STORE = {
@@ -198,4 +200,5 @@ export const NAMESPACE = {
   CREATE_TAXCLASS: "CREATE_TAXCLASS",
   UPDATE_TAXCLASS: "UPDATE_TAXCLASS",
   DELETE_TAXCLASS: "DELETE_TAXCLASS",
+  POST_TAXCLASS_LIST: "POST_TAXCLASS_LIST",
 };
