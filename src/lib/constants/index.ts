@@ -108,7 +108,8 @@ export const ENDPOINTS = {
   UPDATE_TAXCLASS: "api/tax-classes/update",
   DELETE_TAXCLASS: (taxClassId: string) =>
     `api/tax-classes/delete/${taxClassId}`,
-  POST_TAXCLASS_LIST: "",
+  POST_TAXCLASS_LIST: "api/tax-classes/import-tax-classes",
+  GET_TAXCLASS_LISTS: "api/tax-classes/export-tax-classes",
 };
 
 export const STORE = {
@@ -201,4 +202,5 @@ export const NAMESPACE = {
   UPDATE_TAXCLASS: "UPDATE_TAXCLASS",
   DELETE_TAXCLASS: "DELETE_TAXCLASS",
   POST_TAXCLASS_LIST: "POST_TAXCLASS_LIST",
+  GET_TAXCLASS_LISTS: "GET_TAXCLASS_LISTS",
 };
