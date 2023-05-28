@@ -9,7 +9,6 @@ export const ENDPOINTS = {
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
   // Cart Endpoints
-
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
     `account/cart/add-item-result?productId=${productId}`,
@@ -86,6 +85,18 @@ export const ENDPOINTS = {
     pageSize: number
   ) =>
     `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
+  // Reply
+  POST_REPLY: "reply/add-reply",
+
+  // Shipping Endpoint
+  SEARCH_SHIPPING_RATE: "shipping-rate/search",
+  GET_SHIPPING_RATE: (id: string) => `shipping-rate/read/${id}`,
+  GET_SHIPPING_RATES: "shipping-rate/export-shipping-rates",
+  GET_SHIPPING_RATES_OPTIONS: "shipping-rate/search-options",
+  CREATE_SHIPPING_RATE: "shipping-rate/create",
+  UPDATE_SHIPPING_RATE: "shipping-rate/update",
+  DELETE_SHIPPING_RATE: (id: string) => `shipping-rate/delete/${id}`,
+  POST_SHIPPING_RATE: "shipping-rate/import-shipping-rates",
 };
 
 export const STORE = {
@@ -157,4 +168,5 @@ export const NAMESPACE = {
   // reviews
   GET_PRODUCT_REVIEWS: "GET_PRODUCT_REVIEWS",
   ADD_PRODUCT_REVIEW: "ADD_PRODUCT_REVIEW",
+  POST_REPLY: "POST_REPLY",
 };
