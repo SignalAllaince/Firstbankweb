@@ -4,8 +4,8 @@ import useQueryActionHook from "../use-queryaction";
 const useGetDefaultTaxClass = () => {
   return useQueryActionHook({
     method: "get",
-    endpoint: ENDPOINTS.GET_ACTIVE_TAXCLASS,
-    queryKey: [NAMESPACE.GET_ACTIVE_TAXCLASS],
+    endpoint: ENDPOINTS.GET_DEFAULT_TAXCLASS,
+    queryKey: [NAMESPACE.GET_DEFAULT_TAXCLASS],
   });
 };
 
