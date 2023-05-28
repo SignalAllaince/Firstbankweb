@@ -66,11 +66,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
           />
         )} */}
         {/* Icon used to indicate error state */}
-        {!isLoading && type !== "select" && hasError && (
-          <div className="pr-1">
-            <Icon boxSize={6} IconComp={EyeIcon} className="text-red-400" />
-          </div>
-        )}
+
         {/* password type switcher use to toggle password fields */}
         {type === "password" && !isLoading && (
           <Button

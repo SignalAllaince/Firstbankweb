@@ -3,29 +3,40 @@ import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { FormEvent, ReactElement } from "react";
+import { ReactElement } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
+type Inputs = {
+  staffId: string;
+  password: string;
+};
 const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
-  const loginHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(e);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
   };
   return (
-    <form className="gap-7" onSubmit={loginHandler}>
+    <form className="gap-7" onSubmit={handleSubmit(submitLoginRequest)}>
       <div className="space-y-4">
         <CustomInput
-          name="jdjd"
+          {...register("staffId", { required: true })}
+          errors={errors}
           label="Staff Number"
           autoComplete="off"
           placeholder="4783IEDH2893"
           className="bg-black"
         />
         <CustomInput
-          name="password"
+          {...register("password", { required: true })}
+          errors={errors}
           type="password"
           label="Password"
           autoComplete="off"
-          className="autofill:bg-black"
           // value="4783IEDH2893"
         />
       </div>

@@ -64,3 +64,9 @@ export type PaymentMethod =
 export interface CreateProductResponse {
   name: string;
 }
+
+// Cart interfaces
+export interface CartQuantityUpdate {
+  cartItemId: number;
+  quantity: number;
+}

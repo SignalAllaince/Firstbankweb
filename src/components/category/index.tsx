@@ -18,7 +18,7 @@ function Catergory({ header }: { header: string; products?: any[] }) {
           View category page
         </Button>
       </div>
-      <div className="grid grid-cols-3 gap-3 gap-y-20  lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 gap-y-10 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4">
         <ProductCard />
         <ProductCard />
         <ProductCard isFinished />

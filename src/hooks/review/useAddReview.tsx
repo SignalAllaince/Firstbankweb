@@ -1,12 +1,12 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import useCustomMutation from "../use-mutationaction";
 
-const useAddItemToCart = () => {
+const useAddReview = () => {
   return useCustomMutation({
     method: "post",
-    endpoint: ENDPOINTS.ADD_ITEM_TO_CART,
-    queryKey: [NAMESPACE.ADD_ITEM_TO_CART],
+    endpoint: ENDPOINTS.ADD_PRODUCT_REVIEW,
+    queryKey: [NAMESPACE.ADD_PRODUCT_REVIEW],
   });
 };
 
-export default useAddItemToCart;
+export default useAddReview;

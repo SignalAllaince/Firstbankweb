@@ -9,11 +9,15 @@ export const ENDPOINTS = {
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
   // Cart Endpoints
-  GET_CART_DATA: (userId: string) => `cart/read/${userId}`,
-  ADD_ITEM_TO_CART: (userId: string) => `cart/${userId}/add-cart-item`,
-  ADD_ITEMS_TO_CART: (userId: string) => `cart/${userId}/add-cart-items`,
-  UPDATE_CART_ITEM_QUANTITY: "cart/update/quantity",
-  DELETE_CART_ITEM: (itemId: string) => `cart/delete/item/${itemId}`,
+
+  GET_CART_LIST: `account/cart/list`,
+  GET_CART_ITEM_RESULT: (productId: string) =>
+    `account/cart/add-item-result?productId=${productId}`,
+  ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
+  UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
+  CART_VALIDATION_SELECTION: "account/cart/validate-selection",
+  DELETE_CART_ITEM: (itemId: string) => `account/cart/remove-item?id=${itemId}`,
+  CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
   GET_CATEGORY_PARENT: "categories/parent-only",
@@ -30,7 +34,8 @@ export const ENDPOINTS = {
 
   // Products Endpoints
   GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
-  GET_PRODUCT_BY_ID: (name: string) => `products/read/${name}`,
+  GET_PRODUCT_BY_ID: (productId: string) =>
+    `product-catalog/product-details/${productId}`,
   GET_PRODUCTS_BY_SEARCH: "products/search",
   CREATE_PRODUCTS: "products/create",
   UPDATE_PRODUCT: "products/update",
@@ -59,6 +64,28 @@ export const ENDPOINTS = {
     `statesnpdr/import-states/${countryId}`,
   EXPORT_STATES_BY_COUNTRYID: (countryId: string) =>
     `statesnpdr/export-states/${countryId}`,
+
+  // Address Endpoint
+  GET_ADDRESS_LIST: "account/address/list",
+  CREATE_ADDRESS: "account/address/create",
+  GET_SINGLE_ADDRESS: (addressId: string) => `account/address/${addressId}`,
+  UPDATE_SINGLE_ADDRESS: (addressId: string) =>
+    `account/address/update/${addressId}`,
+  UPDATE_DEFAULT_ADDRESS: "account/address/set-default",
+  DELETE_ADDRESS: "account/address/confirm-delete",
+
+  // search Endpoint
+  GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
+  GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
+
+  // review Endpoints
+  ADD_PRODUCT_REVIEW: "review-product/add-review",
+  GET_PRODUCT_REVIEWS: (
+    productId: string,
+    pageNumber: number,
+    pageSize: number
+  ) =>
+    `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
 };
 
 export const STORE = {
@@ -93,11 +120,13 @@ export const NAMESPACE = {
   GET_PRODUCT_BY_SEARCH: "GET_PRODUCT_BY_SEARCH",
 
   // cart
-  GET_CART_DATA: "GET_CART_DATA",
+  GET_CART_LIST: "GET_CART_LIST",
+  GET_CART_ITEM_RESULT: "GET_CART_ITEM_RESULT",
   ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
-  ADD_ITEMS_TO_CART: "ADD_ITEMS_TO_CART",
   UPDATE_CART_ITEM_QUANTITY: "UPDATE_CART_ITEM_QUANTITY",
+  CART_VALIDATION_SELECTION: "CART_VALIDATION_SELECTION",
   DELETE_CART_ITEM: "DELETE_CART_ITEM",
+  CLEAR_CART: "CLEAR_CART",
 
   // state
   GET_STATE_LIST: "GET_STATE_LIST",
@@ -112,4 +141,20 @@ export const NAMESPACE = {
   // Tax Rate
   GET_TAX_RATE_LIST: "GET_TAX_RATE_LIST",
   GET_SINGLE_TAX: "GET_SINGLE_TAX",
+
+  // Address
+  GET_ADDRESS_LIST: "GET_ADDRESS_LIST",
+  CREATE_ADDRESS: "CREATE_ADDRESS",
+  GET_SINGLE_ADDRESS: "GET_SINGLE_ADDRESS",
+  UPDATE_SINGLE_ADDRESS: "UPDATE_SINGLE_ADDRESS",
+  UPDATE_DEFAULT_ADDRESS: "UPDATE_DEFAULT_ADDRESS",
+  DELETE_ADDRESS: "DELETE_ADDRESS",
+
+  // Search
+  GET_SEARCH_RESULT: "GET_SEARCH_RESULT",
+  GET_MOST_SEARCHED_KEYWORDS: "GET_MOST_SEARCHED_KEYWORDS",
+
+  // reviews
+  GET_PRODUCT_REVIEWS: "GET_PRODUCT_REVIEWS",
+  ADD_PRODUCT_REVIEW: "ADD_PRODUCT_REVIEW",
 };
