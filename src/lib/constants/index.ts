@@ -96,7 +96,7 @@ export const ENDPOINTS = {
   CREATE_SHIPPING_RATE: "shipping-rate/create",
   UPDATE_SHIPPING_RATE: "shipping-rate/update",
   DELETE_SHIPPING_RATE: (rateId: string) => `shipping-rate/delete/${rateId}`,
-  POST_SHIPPING_RATE: "shipping-rate/import-shipping-rates",
+  POST_SHIPPING_RATES: "shipping-rate/import-shipping-rates",
 };
 
 export const STORE = {
@@ -178,5 +178,5 @@ export const NAMESPACE = {
   CREATE_SHIPPING_RATE: "CREATE_SHIPPING_RATE",
   UPDATE_SHIPPING_RATE: "UPDATE_SHIPPING_RATE",
   DELETE_SHIPPING_RATE: "DELETE_SHIPPING_RATE",
-  POST_SHIPPING_RATE: "POST_SHIPPING_RATE",
+  POST_SHIPPING_RATES: "POST_SHIPPING_RATES",
 };
