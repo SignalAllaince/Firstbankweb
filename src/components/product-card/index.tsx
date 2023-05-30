@@ -33,11 +33,11 @@ function ProductCard({
 
   const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
     const reqBody = {
-      productId: "",
+      productId: "jdjdjdjdj",
       quantity: 4,
     };
     // Add item to cart
-    // addItemToCart.mutateAsync(reqBody);
+    addItemToCart.mutateAsync(reqBody).catch((err) => console.log(err));
     e.preventDefault();
   };
 
