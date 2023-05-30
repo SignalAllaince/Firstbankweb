@@ -2,7 +2,7 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Icon from "../icon";
 
-function CartProductBtn({ quantity = 1 }: { quantity: number }) {
+function CartProductBtn({ quantity = 1 }: { quantity?: number }) {
   const [num, setNum] = useState(1);
   const increaseNum = () => setNum((prev) => ++prev);
   const decreaseNum = () => num > 1 && setNum((prev) => --prev);
