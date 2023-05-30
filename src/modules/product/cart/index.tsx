@@ -4,6 +4,7 @@ import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
 import CheckoutModal from "@/components/modal/checkout";
 import Section from "@/components/section";
+import useGetCartList from "@/hooks/cart/useGetCartList";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -13,7 +14,7 @@ import CartProductRow from "./components/cart-row";
 
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-
+  const getCartList = useGetCartList();
   return (
     <>
       <div className="bg-white pb-10">

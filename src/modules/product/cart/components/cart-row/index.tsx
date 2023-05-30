@@ -60,7 +60,7 @@ function CartProductRow() {
         <td className="flex w-[200px] items-end justify-center whitespace-nowrap py-4">
           {/* Cart btn */}
           <div className="mt-7">
-            <CartProductBtn />
+            <CartProductBtn quantity={1} />
           </div>
         </td>
         <td className="w-[200px] whitespace-nowrap py-4 text-center">

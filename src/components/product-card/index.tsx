@@ -1,3 +1,4 @@
+import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
 import useNotification from "@/hooks/use-notification";
 import { cn } from "@/lib/utils/component.utils";
 import {
@@ -26,11 +27,20 @@ function ProductCard({
   isProductPage?: boolean;
   isFinished?: boolean;
 }) {
+  const addItemToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
+
   const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
+    const reqBody = {
+      productId: "jdjdjdjdj",
+      quantity: 4,
+    };
+    // Add item to cart
+    addItemToCart.mutateAsync(reqBody).catch((err) => console.log(err));
     e.preventDefault();
   };
+
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLike((prev) => !prev);

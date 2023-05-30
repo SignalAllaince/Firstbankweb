@@ -46,7 +46,7 @@ function useCustomMutation<
     onError: (err) => {
       if (showFailureToast) {
         toast({
-          title: `Request Failed`,
+          // title: `Request Failed`,
           description: `${err.response?.data?.message}`,
           appearance: "error",
         });

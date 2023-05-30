@@ -9,7 +9,6 @@ export const ENDPOINTS = {
   VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
 
   // Cart Endpoints
-
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
     `account/cart/add-item-result?productId=${productId}`,
@@ -86,6 +85,31 @@ export const ENDPOINTS = {
     pageSize: number
   ) =>
     `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
+  // Reply
+  POST_REPLY: "reply/add-reply",
+
+  // Shipping Endpoint
+  SEARCH_SHIPPING_RATE: "shipping-rate/search",
+  GET_SHIPPING_RATE: (rateId: string) => `shipping-rate/read/${rateId}`,
+  GET_SHIPPING_RATES: "shipping-rate/export-shipping-rates",
+  GET_SHIPPING_RATES_OPTIONS: "shipping-rate/search-options",
+  CREATE_SHIPPING_RATE: "shipping-rate/create",
+  UPDATE_SHIPPING_RATE: "shipping-rate/update",
+  DELETE_SHIPPING_RATE: (rateId: string) => `shipping-rate/delete/${rateId}`,
+  POST_SHIPPING_RATES: "shipping-rate/import-shipping-rates",
+
+  // Tax Class Endpoint
+  GET_TAXCLASS_LIST: "api/tax-classes/list",
+  GET_ACTIVE_TAXCLASS: "api/tax-classes/active",
+  GET_SINGLE_TAXCLASS: (taxClassId: string) =>
+    `api/tax-classes/read/${taxClassId}`,
+  GET_DEFAULT_TAXCLASS: "api/tax-classes/default",
+  CREATE_TAXCLASS: "api/tax-classes/create",
+  UPDATE_TAXCLASS: "api/tax-classes/update",
+  DELETE_TAXCLASS: (taxClassId: string) =>
+    `api/tax-classes/delete/${taxClassId}`,
+  POST_TAXCLASS_LIST: "api/tax-classes/import-tax-classes",
+  GET_TAXCLASS_LISTS: "api/tax-classes/export-tax-classes",
 };
 
 export const STORE = {
@@ -157,4 +181,26 @@ export const NAMESPACE = {
   // reviews
   GET_PRODUCT_REVIEWS: "GET_PRODUCT_REVIEWS",
   ADD_PRODUCT_REVIEW: "ADD_PRODUCT_REVIEW",
+  POST_REPLY: "POST_REPLY",
+
+  // Shipping rates
+  GET_SHIPPING_RATES: "GET_SHIPPING_RATES",
+  SEARCH_SHIPPING_RATE: "SEARCH_SHIPPING_RATE",
+  GET_SHIPPING_RATE: "GET_SHIPPING_RATE",
+  GET_SHIPPING_RATES_OPTIONS: "GET_SHIPPING_RATES_OPTIONS",
+  CREATE_SHIPPING_RATE: "CREATE_SHIPPING_RATE",
+  UPDATE_SHIPPING_RATE: "UPDATE_SHIPPING_RATE",
+  DELETE_SHIPPING_RATE: "DELETE_SHIPPING_RATE",
+  POST_SHIPPING_RATES: "POST_SHIPPING_RATES",
+
+  // TAX CLASS
+  GET_TAXCLASS_LIST: "GET_TAXCLASS_LIST",
+  GET_ACTIVE_TAXCLASS: "GET_ACTIVE_TAXCLASS",
+  GET_SINGLE_TAXCLASS: "GET_SINGLE_TAXCLASS",
+  GET_DEFAULT_TAXCLASS: "GET_DEFAULT_TAXCLASS",
+  CREATE_TAXCLASS: "CREATE_TAXCLASS",
+  UPDATE_TAXCLASS: "UPDATE_TAXCLASS",
+  DELETE_TAXCLASS: "DELETE_TAXCLASS",
+  POST_TAXCLASS_LIST: "POST_TAXCLASS_LIST",
+  GET_TAXCLASS_LISTS: "GET_TAXCLASS_LISTS",
 };
