@@ -110,6 +110,13 @@ export const ENDPOINTS = {
     `api/tax-classes/delete/${taxClassId}`,
   POST_TAXCLASS_LIST: "api/tax-classes/import-tax-classes",
   GET_TAXCLASS_LISTS: "api/tax-classes/export-tax-classes",
+
+  // Wishlist Endpoint
+  GET_WISHLIST: (pageNumber: number, pageSize: number) =>
+    `account/wishlist/${pageNumber}/${pageSize}`,
+  ADD_ITEM_TO_WISHLIST: "account/wishlist/",
+  REMOVE_ITEM_FROM_WISHLIST: "account/wishlist/",
+  UPDATE_WISHLIST_ITEM: "account/wishlist/",
 };
 
 export const STORE = {
@@ -203,4 +210,10 @@ export const NAMESPACE = {
   DELETE_TAXCLASS: "DELETE_TAXCLASS",
   POST_TAXCLASS_LIST: "POST_TAXCLASS_LIST",
   GET_TAXCLASS_LISTS: "GET_TAXCLASS_LISTS",
+
+  // Wishlist Endpoint
+  GET_WISHLIST: "GET_WISHLIST",
+  ADD_ITEM_TO_WISHLIST: "ADD_ITEM_TO_WISHLIST",
+  REMOVE_ITEM_FROM_WISHLIST: "REMOVE_ITEM_FROM_WISHLIST",
+  UPDATE_WISHLIST_ITEM: "UPDATE_WISHLIST_ITEM",
 };
