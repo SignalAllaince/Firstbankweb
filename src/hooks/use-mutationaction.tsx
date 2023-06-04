@@ -58,7 +58,7 @@ function useCustomMutation<
       if (!err && showSuccessToast) {
         toast({
           title: `Request Successful`,
-          description: `${res?.data?.message}`,
+          // description: `${res?.data?.message}`,
           appearance: "success",
         });
       }
