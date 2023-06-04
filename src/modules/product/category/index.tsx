@@ -5,6 +5,7 @@ import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import PageHead from "@/components/page-head";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
@@ -48,6 +49,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
 
   return (
     <div className="">
+      <PageHead title="Category" />
       <div className="w-full bg-white">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">

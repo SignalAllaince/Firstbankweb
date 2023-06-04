@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import AccountLayout from "@/components/layout/account-layout";
+import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useValidateToken from "@/hooks/auth/useValidateToken";
 import { decryptResponse } from "@/lib/utils/common.utils";
@@ -74,6 +75,7 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
   };
   return (
     <Section className="space-y-4 pb-10">
+      <PageHead title="Profile" />
       <div className="border-b border-brand-light pb-3">
         <Heading size="h5">Account Overview</Heading>
       </div>

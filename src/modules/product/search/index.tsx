@@ -5,6 +5,7 @@ import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import AppLayout from "@/components/layout/app-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import PageHead from "@/components/page-head";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
@@ -20,14 +21,17 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
 
 const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
+  const router = useRouter();
 
   return (
     <div className="">
+      <PageHead title={`${router.query?.searchQuery ?? "***"} - Search`} />
       <div className="w-full bg-white">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
