@@ -30,7 +30,7 @@ function useNotification() {
       appearance,
     }: {
       title?: string;
-      description: string;
+      description?: string;
       appearance: VariantType;
     }) => {
       enqueueSnackbar(
