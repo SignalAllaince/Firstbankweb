@@ -116,7 +116,7 @@ export interface ButtonProps
   activeBg?: string;
   activeText?: string;
   spinnerColor?: string;
-  isLoading?: string;
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -183,7 +183,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading && (
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <svg
-              className={`h-4 w-4 animate-spin ${spinnerColor}`}
+              className={`h-5 w-5 animate-spin ${spinnerColor}`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -194,7 +194,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
               ></circle>
               <path
                 className="opacity-75"

@@ -1,12 +1,17 @@
+import Button from "@/components/button";
 import Heading from "@/components/heading";
+import AccountLayout from "@/components/layout/account-layout";
 import Section from "@/components/section";
+import useValidateToken from "@/hooks/auth/useValidateToken";
+import { decryptResponse } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import * as CryptoJS from "crypto-js";
 import { format } from "crypto-js";
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
+  const validateToken = useValidateToken();
   // §
   // "ECBA94BE7E0981F2FC1CD1DF086BB9DF61446BD9BA9FB0D5E7D268CAAFB161750F5652B2E3DAEA94E750FEC04E4514602D8DB839C8DA06DF6732768E90231FB67811BAFDD719D36DFB639968A527D3FA6FB5B4AA343D92F112F11BC857DF9CEFF33B4B1ABF72AE1CF33076814215BCD91BDE31AFC2EEE43E80E99CF1EAB43AF6101658BF5A166DB06893887489F99B892F2824FF2AD9678B32A3787245FB67C180A5BA264FEF6D1ACD690B4DFBD7395A89683D18C0EBCD4C081C40AAF6FD2048";
 
@@ -41,15 +46,32 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       //   JSON.stringify(decrypted.toString(CryptoJS.enc.Utf8))
       // );
 
-      const plainText = decrypted.toString(CryptoJS.enc.Utf8);
+      const plainText = decrypted.toString(CryptoJS.enc.Utf8).toString();
 
       // const parsedRes = JSON.parse(plainText);
-      console.log(plainText, "decrypted");
+      // console.log(plainText, "decrypted");
+      // console.log(JSON.parse(plainText), "decrypted");
+
       // console.log(parsedRes);
     };
     handleFileUpload();
   }, []);
 
+  const validateTokenHandler = () => {
+    validateToken
+      .mutateAsync({
+        userId: "7B0030007800640033006600640035003000",
+        token: "johnbosco",
+      })
+      .then(() => {
+        console.log(validateToken.value);
+        const answer = decryptResponse(validateToken?.value?.content as string);
+        console.log(answer, "answer");
+        // const name = { ...answer };
+        // console.log(JSON.stringify(answer), "json answer");
+        // console.log(name, "json answer");
+      });
+  };
   return (
     <Section className="space-y-4 pb-10">
       <div className="border-b border-brand-light pb-3">
@@ -75,10 +97,21 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
         <div className="space-y-2">
           <p className="text-xs font-medium">Email address</p>
           <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
+          <Button
+            className="flex-shrink-0"
+            onClick={validateTokenHandler}
+            isLoading={validateToken.isLoading}
+          >
+            Validate Token
+          </Button>
         </div>
       </div>
     </Section>
   );
+};
+
+AccountProfile.getLayout = function getLayout(page: ReactElement) {
+  return <AccountLayout>{page}</AccountLayout>;
 };
 
 AccountProfile.auth = false;
