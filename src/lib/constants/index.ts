@@ -2,12 +2,6 @@
 export const ENDPOINTS = {
   API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
 
-  // Auth endpoints
-  API_INITIATE_SIGNUP: "/auth/signup",
-  API_FORGOT_PASSWORD: "/auth/forgot-password",
-  API_RESET_PASSWORD: (token: string) => `/auth/reset-password?token=${token}`,
-  VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
-
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
@@ -119,15 +113,7 @@ export const ENDPOINTS = {
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
 };
 
-export const STORE = {
-  TIP_PREVIEW: "_TIP_PREVIEW_",
-};
 export const NAMESPACE = {
-  FORGOT_PASSWORD: "FORGOT_PASSWORD",
-  INITIATE_SIGNUP: "INITIATE_SIGNUP",
-  RESET_PASSWORD: "RESET_PASSWORD",
-  CREATE_WITHDRAWAL_ACCOUNT: "CREATE_WITHDRAWAL_ACCOUNT",
-
   // categories
   GET_CATEGORY_PARENT: "GET_CATEGORY_PARENT",
   GET_CATEGORY_LIST: "GET_CATEGORY_LIST",

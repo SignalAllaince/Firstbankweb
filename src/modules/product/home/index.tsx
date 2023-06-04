@@ -22,7 +22,7 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
 };
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout>{page}</AppLayout>;
+  return <AppLayout isMainPage>{page}</AppLayout>;
 };
 
 Home.auth = false;

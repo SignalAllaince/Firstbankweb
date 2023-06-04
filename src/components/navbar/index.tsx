@@ -38,8 +38,9 @@ function Navbar() {
           </Link>
         </div>
         <div className="flex items-center space-x-10">
-          <form onSubmit={searchHandler} className="flex w-[400px]">
+          <form onSubmit={searchHandler} className="flex w-[400px] space-x-1">
             <CustomInput
+              borderColor="border-brand-input"
               name="search"
               placeholder="Search"
               value={search}

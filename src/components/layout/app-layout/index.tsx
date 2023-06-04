@@ -14,18 +14,24 @@ function AppLayout({
   children,
   hasBanner = true,
   isCheckout = false,
+  isMainPage = false,
 }: {
   children: ReactNode;
   hasBanner?: boolean;
   isCheckout?: boolean;
+  isMainPage?: boolean;
 }) {
   return (
     <div className={`${inter.className} flex min-h-screen w-full flex-col`}>
       {!isCheckout ? (
         <>
           <Navbar />
-          <MiniNavbar />
-          <HeroSection />
+          {!isMainPage ? (
+            <>
+              <MiniNavbar />
+              <HeroSection />
+            </>
+          ) : null}
         </>
       ) : (
         <CheckoutNavbar />
