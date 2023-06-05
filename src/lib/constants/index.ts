@@ -143,6 +143,10 @@ export const ENDPOINTS = {
 
   // Homepage Endpoint
   GET_HOMEPAGE_CONTENT: "homepage/index-content",
+
+  // order Endpoints
+  GET_ALL_ORDERS: "account/orders",
+  GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
 };
 
 export const NAMESPACE = {
@@ -264,4 +268,8 @@ export const NAMESPACE = {
 
   // Homepage Endpoint
   GET_HOMEPAGE_CONTENT: "GET_HOMEPAGE_CONTENT",
+
+  // order Endpoints
+  GET_ALL_ORDERS: "GET_ALL_ORDERS",
+  GET_SINGLE_ORDERS: "GET_SINGLE_ORDERS",
 };
