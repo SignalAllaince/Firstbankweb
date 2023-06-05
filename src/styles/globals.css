@@ -43,4 +43,8 @@
   color: #142633 !important;
 }
 
+.product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
 /* .notistack-MuiContent.notistack-MuiContent-error.go167266335.go3651055292  */

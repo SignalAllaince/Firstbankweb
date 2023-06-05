@@ -64,7 +64,7 @@ function Navbar() {
               >
                 Help
               </MenuButton>
-              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px]">
+              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px] z-30">
                 <MenuItem>Help Center</MenuItem>
                 <MenuItem>FAQ</MenuItem>
                 <MenuItem>Contact Us</MenuItem>
@@ -103,7 +103,7 @@ function Navbar() {
             >
               Emeka
             </MenuButton>
-            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
+            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px] z-30">
               <MenuItem
                 href="/account"
                 leftIcon={<Icon IconComp={UserCircleIcon} />}

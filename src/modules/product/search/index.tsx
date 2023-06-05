@@ -71,8 +71,8 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
 
       {/* second section */}
       <section className="pb-20 pt-6">
-        <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit space-y-3 font-light">
+        <Section className="grid grid-cols-12 gap-x-8">
+          <div className="sticky top-0 col-span-4 h-fit space-y-3 font-light md:col-span-3">
             <div className="border-b border-brand-darkest pb-5">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
@@ -143,8 +143,8 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
               <Ratings rating={rating} setRating={setRating} />
             </Accordion>
           </div>
-          <div className="col-span-9">
-            <div className="grid grid-cols-3 gap-x-4 gap-y-12">
+          <div className="col-span-8 md:col-span-9">
+            <div className="product-grid grid gap-x-4 gap-y-12">
               <ProductCard isProductPage />
               <ProductCard isProductPage />
               <ProductCard isProductPage />
