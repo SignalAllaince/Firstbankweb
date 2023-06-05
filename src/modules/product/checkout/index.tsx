@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import Heading from "@/components/heading";
 import AppLayout from "@/components/layout/app-layout";
 import PaymentModal from "@/components/modal/payment";
+import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -35,6 +36,7 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
     (level === "payment" && !paymentMethod);
   return (
     <>
+      <PageHead title="Checkout" />
       <PaymentModal isOpen={isOpen} onClose={onClose} isLoading={false} />
       <div className="bg-white pb-10">
         <div className="w-full border-b border-gray-200 ">

@@ -61,7 +61,7 @@ function ProductCard({
       }}
       className={`${
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
-      }  relative min-w-[240px] max-w-[260px] overflow-hidden rounded-[4px] bg-white`}
+      }  relative overflow-hidden rounded-[4px] bg-white`}
     >
       <div className="h-[220px] w-full overflow-hidden rounded-t-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
@@ -70,8 +70,7 @@ function ProductCard({
           alt={imageAlt}
           width={400}
           height={400}
-          className=" h-[220px] object-cover object-center"
-          // className="aspect-h-1 aspect-w-1 "
+          className=" h-[220px] w-full object-cover object-center"
         />
       </div>
       <div className="mt-5 space-y-6 px-3 pb-2">

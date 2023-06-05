@@ -3,6 +3,7 @@ import Icon from "@/components/icon";
 import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import PageHead from "@/components/page-head";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -12,6 +13,7 @@ import SingleOrder from "../components/order-row";
 const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <div className="space-y-5">
+      <PageHead title="Orders" />
       <div className="flex items-center justify-between border-b border-brand-light py-3">
         <div className="flex items-center gap-2 font-light">
           <p className="text-xs">Filter</p>

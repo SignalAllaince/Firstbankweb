@@ -3,6 +3,7 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
 import CheckoutModal from "@/components/modal/checkout";
+import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useGetCartList from "@/hooks/cart/useGetCartList";
 import useDisclosure from "@/hooks/use-disclosure";
@@ -17,6 +18,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   const getCartList = useGetCartList();
   return (
     <>
+      <PageHead title="Cart" />
       <div className="bg-white pb-10">
         <div className="w-full border-b border-gray-200 ">
           <Section className="space-y-4 py-8">

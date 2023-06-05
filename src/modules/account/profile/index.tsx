@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
-import AccountLayout from "@/components/layout/account-layout";
+import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useValidateToken from "@/hooks/auth/useValidateToken";
 import { decryptResponse } from "@/lib/utils/common.utils";
@@ -8,7 +8,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import * as CryptoJS from "crypto-js";
 import { format } from "crypto-js";
-import { ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
   const validateToken = useValidateToken();
@@ -47,6 +47,7 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       // );
 
       const plainText = decrypted.toString(CryptoJS.enc.Utf8).toString();
+      return plainText;
 
       // const parsedRes = JSON.parse(plainText);
       // console.log(plainText, "decrypted");
@@ -57,6 +58,12 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
     handleFileUpload();
   }, []);
 
+  function unicodeToChar(text: string) {
+    return text.replace(/\\u[\dA-F]{4}/gi, function (match) {
+      return String.fromCharCode(parseInt(match.replace(/\\u/g, ""), 16));
+    });
+  }
+
   const validateTokenHandler = () => {
     validateToken
       .mutateAsync({
@@ -64,16 +71,33 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
         token: "johnbosco",
       })
       .then(() => {
-        console.log(validateToken.value);
-        const answer = decryptResponse(validateToken?.value?.content as string);
-        console.log(answer, "answer");
-        // const name = { ...answer };
-        // console.log(JSON.stringify(answer), "json answer");
-        // console.log(name, "json answer");
+        console.log(validateToken.data?.data);
+        // @ts-expect-error
+        const answer = decryptResponse(validateToken?.value?.Content as string);
+        let boss = "";
+        for (let i = 0; i < answer.length; i++) {
+          // console.log(answer[i]);
+          if (answer[i] === "{" || answer[i] === "}" || answer[i] === '"') {
+            console.log("first");
+          } else {
+            boss = boss + answer[i];
+          }
+        }
+        console.log(JSON.parse(`["\\u${unicodeToChar(boss)}"]`)[0]);
+
+        // console.log(answer, "answer");
+        // const deAns = unicodeToChar(answer);
+        // console.log(
+        //   JSON.parse(deAns, (key: string, value: any) => {
+        //     return unicodeToChar(value);
+        //   }),
+        //   "json answer"
+        // );
       });
   };
   return (
     <Section className="space-y-4 pb-10">
+      <PageHead title="Profile" />
       <div className="border-b border-brand-light pb-3">
         <Heading size="h5">Account Overview</Heading>
       </div>
@@ -108,10 +132,6 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
     </Section>
   );
-};
-
-AccountProfile.getLayout = function getLayout(page: ReactElement) {
-  return <AccountLayout>{page}</AccountLayout>;
 };
 
 AccountProfile.auth = false;

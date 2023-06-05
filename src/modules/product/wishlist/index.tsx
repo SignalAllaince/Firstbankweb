@@ -1,6 +1,7 @@
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
+import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -12,6 +13,7 @@ import WishListRow from "./wishlist-row";
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <div className="bg-white">
+      <PageHead title="Wishlist" />
       <div className="w-full border-b border-brand-light">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">

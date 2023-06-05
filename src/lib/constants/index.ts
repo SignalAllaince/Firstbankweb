@@ -2,12 +2,6 @@
 export const ENDPOINTS = {
   API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
 
-  // Auth endpoints
-  API_INITIATE_SIGNUP: "/auth/signup",
-  API_FORGOT_PASSWORD: "/auth/forgot-password",
-  API_RESET_PASSWORD: (token: string) => `/auth/reset-password?token=${token}`,
-  VERIFY_SIGNUP_DETAILS: "/auth/verify/signup",
-
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
@@ -117,17 +111,45 @@ export const ENDPOINTS = {
   ADD_ITEM_TO_WISHLIST: "account/wishlist/",
   REMOVE_ITEM_FROM_WISHLIST: "account/wishlist/",
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
+
+  // Checkout Endpoints
+  CREATE_CHECKOUT_ORDER: `checkout/create-order`,
+  GET_CHECKOUT_SHIPPING: (oid: string, sta: number, ers: string) =>
+    `checkout/shipping?oid=${oid}&sta=${sta}&ers=${ers}`,
+  SAVE_CHECKOUT_ORDERNOTE: (orderId: string) =>
+    `checkout/${orderId}/save-ordernote`,
+  APPLY_CHECKOUT_COUPON: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_DETAILS: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
+  GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
+  GET_SHIPPING_AS_BILLING: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_SHIPPING_STATES: (name: string) => `checkout/${name}`,
+  GET_CHANGE_SHIPPING_PROVIDER: (name: string) => `checkout/${name}`,
+  GET_ALL_CHECKOUT: (name: string) => `checkout/${name}`,
+  UPDATE_CHECKOUT_ITEM: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_PAYMENT: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_ORDER_SUCCESS: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_ORDER_ERROR: (name: string) => `checkout/${name}`,
+  ADD_ITEM_TO_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
+  REMOVE_ITEM_FROM_CHECOUT_ORDER: (name: string) => `checkout/${name}`,
+  UPDATE_ITEM_IN_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
+  GET_CANCEL_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
+  CHANGE_CHECKOUT_ORDER_STATUS: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_ORDER_STATUS: (name: string) => `checkout/${name}`,
+  GET_DELETE_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
+
+  // Homepage Endpoint
+  GET_HOMEPAGE_CONTENT: "homepage/index-content",
+
+  // order Endpoints
+  GET_ALL_ORDERS: "account/orders",
+  GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
 };
 
-export const STORE = {
-  TIP_PREVIEW: "_TIP_PREVIEW_",
-};
 export const NAMESPACE = {
-  FORGOT_PASSWORD: "FORGOT_PASSWORD",
-  INITIATE_SIGNUP: "INITIATE_SIGNUP",
-  RESET_PASSWORD: "RESET_PASSWORD",
-  CREATE_WITHDRAWAL_ACCOUNT: "CREATE_WITHDRAWAL_ACCOUNT",
-
   // categories
   GET_CATEGORY_PARENT: "GET_CATEGORY_PARENT",
   GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
@@ -216,4 +238,38 @@ export const NAMESPACE = {
   ADD_ITEM_TO_WISHLIST: "ADD_ITEM_TO_WISHLIST",
   REMOVE_ITEM_FROM_WISHLIST: "REMOVE_ITEM_FROM_WISHLIST",
   UPDATE_WISHLIST_ITEM: "UPDATE_WISHLIST_ITEM",
+
+  // Checkout Endpoint
+  CREATE_CHECKOUT_ORDER: "CREATE_CHECKOUT_ORDER",
+  GET_CHECKOUT_SHIPPING: "GET_CHECKOUT_SHIPPING",
+  SAVE_CHECKOUT_ORDERNOTE: "SAVE_CHECKOUT_ORDERNOTE",
+  APPLY_CHECKOUT_COUPON: "APPLY_CHECKOUT_COUPON",
+  GET_CHECKOUT_DETAILS: "GET_CHECKOUT_DETAILS",
+  GET_CHECKOUT_SHIPPING_ADDRESS: "GET_CHECKOUT_SHIPPING_ADDRESS",
+  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: "CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS",
+  CREATE_NEW_CHECKOUT_BILLING_ADDRESS: "CREATE_NEW_CHECKOUT_BILLING_ADDRESS",
+  GET_UPDATED_SHIPPING_ADDRESS: "GET_UPDATED_SHIPPING_ADDRESS",
+  GET_UPDATED_BILLING_ADDRESS: "GET_UPDATED_BILLING_ADDRESS",
+  GET_SHIPPING_AS_BILLING: "GET_SHIPPING_AS_BILLING",
+  GET_CHECKOUT_SHIPPING_STATES: "GET_CHECKOUT_SHIPPING_STATES",
+  GET_CHANGE_SHIPPING_PROVIDER: "GET_CHANGE_SHIPPING_PROVIDER",
+  GET_ALL_CHECKOUT: "GET_ALL_CHECKOUT",
+  UPDATE_CHECKOUT_ITEM: "UPDATE_CHECKOUT_ITEM",
+  GET_CHECKOUT_PAYMENT: "GET_CHECKOUT_PAYMENT",
+  GET_CHECKOUT_ORDER_SUCCESS: "GET_CHECKOUT_ORDER_SUCCESS",
+  GET_CHECKOUT_ORDER_ERROR: "GET_CHECKOUT_ORDER_ERROR",
+  ADD_ITEM_TO_CHECKOUT_ORDER: "ADD_ITEM_TO_CHECKOUT_ORDER",
+  REMOVE_ITEM_FROM_CHECOUT_ORDER: "REMOVE_ITEM_FROM_CHECOUT_ORDER",
+  UPDATE_ITEM_IN_CHECKOUT_ORDER: "UPDATE_ITEM_IN_CHECKOUT_ORDER",
+  GET_CANCEL_CHECKOUT_ORDER: "GET_CANCEL_CHECKOUT_ORDER",
+  CHANGE_CHECKOUT_ORDER_STATUS: "CHANGE_CHECKOUT_ORDER_STATUS",
+  GET_CHECKOUT_ORDER_STATUS: "GET_CHECKOUT_ORDER_STATUS",
+  GET_DELETE_CHECKOUT_ORDER: "GET_DELETE_CHECKOUT_ORDER",
+
+  // Homepage Endpoint
+  GET_HOMEPAGE_CONTENT: "GET_HOMEPAGE_CONTENT",
+
+  // order Endpoints
+  GET_ALL_ORDERS: "GET_ALL_ORDERS",
+  GET_SINGLE_ORDERS: "GET_SINGLE_ORDERS",
 };

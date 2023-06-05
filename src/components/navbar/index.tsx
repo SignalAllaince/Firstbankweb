@@ -38,8 +38,9 @@ function Navbar() {
           </Link>
         </div>
         <div className="flex items-center space-x-10">
-          <form onSubmit={searchHandler} className="flex w-[400px]">
+          <form onSubmit={searchHandler} className="flex w-[400px] space-x-1">
             <CustomInput
+              borderColor="border-brand-input"
               name="search"
               placeholder="Search"
               value={search}
@@ -63,7 +64,7 @@ function Navbar() {
               >
                 Help
               </MenuButton>
-              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px]">
+              <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px] z-30">
                 <MenuItem>Help Center</MenuItem>
                 <MenuItem>FAQ</MenuItem>
                 <MenuItem>Contact Us</MenuItem>
@@ -102,7 +103,7 @@ function Navbar() {
             >
               Emeka
             </MenuButton>
-            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
+            <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px] z-30">
               <MenuItem
                 href="/account"
                 leftIcon={<Icon IconComp={UserCircleIcon} />}
