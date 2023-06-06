@@ -4,27 +4,41 @@ import Heading from "../heading";
 import Icon from "../icon";
 import ProductCard from "../product-card";
 
-function Catergory({ header }: { header: string; products?: any[] }) {
+function Catergory({
+  header,
+  noMore = false,
+  indep = false,
+}: {
+  header: string;
+  products?: any[];
+  indep?: boolean;
+  noMore?: boolean;
+}) {
   return (
     <div className="space-y-6 py-10">
-      <div className="flex w-full items-center justify-between">
-        <Heading size="h4">{header}</Heading>
-        <Button
-          variant="cart"
-          size="xs"
-          className="border-brand-light font-light text-brand-blue"
-          rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
-        >
-          View category page
-        </Button>
+      <div
+        className={`flex w-full items-center justify-between px-2 py-2 ${
+          indep ? "bg-[#B6D9A6]" : "bg-[#FFE18C]"
+        }`}
+      >
+        <Heading size="h5" className="font-medium">
+          {header}
+        </Heading>
+        {!noMore && (
+          <Button
+            variant="cart"
+            size="xs"
+            className="border-brand-blue font-light text-brand-blue"
+            rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
+          >
+            See all
+          </Button>
+        )}
       </div>
       <div className="product-grid grid gap-x-3 gap-y-10">
         <ProductCard />
         <ProductCard />
         <ProductCard isFinished />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
         <ProductCard />
       </div>
     </div>

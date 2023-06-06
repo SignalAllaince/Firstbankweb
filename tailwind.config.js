@@ -30,7 +30,7 @@ module.exports = {
           primary: "#0072BC",
           grayt: "#B2B2C2",
           graybg: "#F4F5F9",
-          input: "#879AA8"
+          input: "#879AA8",
         },
       },
     },

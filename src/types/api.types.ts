@@ -24,7 +24,8 @@ export interface RequestResponse<T = Record<string, unknown>> {
 export interface FirstBankResponseType<D = Record<string, unknown>> {
   data: {
     response_code: string;
-    data: D;
+    data: string;
+    // data: D;
     content: string;
     status: string;
   };

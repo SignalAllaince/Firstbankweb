@@ -19,8 +19,7 @@
 }
 
 .custom-hero {
-  background-image:
-    url("../../public/images/banner.svg");
+  background-image: url("../../public/images/banner.svg");
   background-color: rgb(0, 208, 255);
   background-repeat: no-repeat;
   background-size: cover;
@@ -45,6 +44,10 @@
 
 .product-grid {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.profile-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
 /* .notistack-MuiContent.notistack-MuiContent-error.go167266335.go3651055292  */

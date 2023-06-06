@@ -35,7 +35,7 @@ function useNotification() {
     }) => {
       enqueueSnackbar(
         <div>
-          <div className="space-y-0 px-2 py-3">
+          <div className="space-y-0 px-2 py-2">
             {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
             <p className="text-[12px]">{description}</p>
           </div>
