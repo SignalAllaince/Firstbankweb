@@ -7,13 +7,13 @@ import Icon from "../icon";
 
 function Banner() {
   return (
-    <div className="space-y-3">
-      <Heading size="h4" className="text-lg font-medium">
+    <div className="banner-row grid w-full grid-cols-1 space-y-3">
+      <Heading size="h4" className="h-fit text-lg font-medium">
         Hi Emeka, what items would you like to buy today?
       </Heading>
-      <div className="relative overflow-hidden rounded-[4px] bg-brand-blue px-8 py-4 text-brand-lightest">
-        <div className="flex items-center justify-between">
-          <div>
+      <div className="relative flex flex-1 justify-center overflow-hidden rounded-[4px] bg-brand-blue px-8 py-6 text-brand-lightest">
+        <div className="flex w-full items-center justify-between">
+          <div className="flex h-full flex-col justify-between">
             <div className="space-y-2">
               <Heading size="h2">Live in style</Heading>
               <p className="text-sm font-light">

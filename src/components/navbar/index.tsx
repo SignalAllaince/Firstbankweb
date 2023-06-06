@@ -30,7 +30,7 @@ function Navbar() {
   };
 
   return (
-    <div className="w-full bg-white py-4">
+    <div className="sticky top-0 z-30 w-full border-b bg-white py-4">
       <Section className="item-center flex justify-between ">
         <div className="flex w-[100px] items-center">
           <Link href="/">

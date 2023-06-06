@@ -1,3 +1,4 @@
+import BannerNav from "@/components/banner-nav";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import Banner from "../../banner";
@@ -39,7 +40,8 @@ function AppLayout({
       <div className="flex-1 bg-brand-lightest">
         <Section>
           {hasBanner && (
-            <div className="py-10">
+            <div className="flex space-x-7 py-10">
+              <BannerNav />
               <Banner />
             </div>
           )}

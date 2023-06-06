@@ -50,4 +50,8 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
+.banner-row {
+  grid-template-rows: auto 1fr;
+}
+
 /* .notistack-MuiContent.notistack-MuiContent-error.go167266335.go3651055292  */
