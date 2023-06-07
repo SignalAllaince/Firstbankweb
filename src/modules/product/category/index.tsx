@@ -10,11 +10,11 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { getCategoryList, popularity, priceList } from "@/lib/constants/rating";
-import { getAllCategories, stringifyCategory } from "@/lib/utils/common.utils";
+import { popularity, priceList } from "@/lib/constants/rating";
+import { stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { NextPageWithLayout } from "@/types/component.types";
-import { CategoryTypes, ProtectedComponentType } from "@/types/service.types";
+import { ProtectedComponentType } from "@/types/service.types";
 import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -22,31 +22,30 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement, useState } from "react";
 
-export async function getStaticPaths() {
-  const paths = getAllCategories();
-  return {
-    paths,
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const paths = getAllCategories();
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }: { params: any }) {
-  return {
-    props: {
-      category: params.category,
-    },
-  };
-}
+// export async function getStaticProps({ params }: { params: any }) {
+//   return {
+//     props: {
+//       category: params.category,
+//     },
+//   };
+// }
 
-const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
-  props: any
-) => {
+const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
   const [categoryOpt, setCategoryOpt] = useState(null);
-
+  const router = useRouter();
   return (
     <div className="">
       <PageHead title="Category" />
@@ -56,12 +55,14 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
             <div className="flex items-center gap-1 text-sm">
               <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p className="capitalize">{stringifyCategory(props?.category)}</p>
+              <p className="capitalize">
+                {stringifyCategory(router?.query?.categoryName as string)}
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-between">
             <Heading size="h3" className="capitalize">
-              {stringifyCategory(props?.category)}
+              {stringifyCategory(router?.query?.categoryName as string)}
             </Heading>
             <div className="flex items-center gap-2">
               <p className="text-sm">Filter:</p>
@@ -87,15 +88,18 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
       </div>
 
       {/* second section */}
+
       <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
-            <Accordion title={stringifyCategory(props?.category)}>
+            <Accordion
+              title={stringifyCategory(router?.query?.categoryName as string)}
+            >
               <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
                 <RadioGroup.Label className="sr-only">
-                  {props?.category}
+                  {router?.query?.categoryName as string}
                 </RadioGroup.Label>
-                <div className="space-y-4">
+                {/* <div className="space-y-4">
                   {getCategoryList(props?.category as CategoryTypes).map(
                     (plan) => (
                       <RadioGroup.Option value={plan} key={plan.name}>
@@ -117,7 +121,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
                       </RadioGroup.Option>
                     )
                   )}
-                </div>
+                </div> */}
               </RadioGroup>
             </Accordion>
             <div className="border-b border-brand-darkest pb-5 pt-2">
@@ -202,7 +206,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = (
               <ProductCard isProductPage />
               <ProductCard isProductPage />
             </div>
-            {/* Pagination */}
+
             <div className="flex items-center justify-center">
               <Pagination />
             </div>
