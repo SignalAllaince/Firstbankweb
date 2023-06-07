@@ -22,14 +22,11 @@ export interface RequestResponse<T = Record<string, unknown>> {
 }
 
 export interface FirstBankResponseType<D = Record<string, unknown>> {
-  data: {
-    response_code: string;
-    data: string;
-    // data: D;
-    error: D;
-    content: string;
-    status: string;
-  };
+  response_code: string;
+  data: D;
+  error: D;
+  content: string;
+  status: string;
 }
 
 export interface ResponseErrorType {
@@ -67,4 +64,14 @@ export interface CreateProductResponse {
 export interface CartQuantityUpdate {
   cartItemId: number;
   quantity: number;
+}
+
+export interface SearchCategories {
+  icon: string | null;
+  id: number;
+  name: string;
+  slug: string;
+  shortDescription: string;
+  thumbnailImage: null;
+  thumbnailUrl: null;
 }

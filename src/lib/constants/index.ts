@@ -13,8 +13,8 @@ export const ENDPOINTS = {
   CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
-  GET_SEARCHED_CATEGORIES: "categories-view/search-categories",
-  GET_ALL_CATEGORIES: "categories-view/all-categories",
+  GET_SEARCHED_CATEGORIES: "category-view/search-categories",
+  GET_ALL_CATEGORIES: "category-view/all-categories",
   GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
 
   // Products Endpoints
