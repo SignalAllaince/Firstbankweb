@@ -1,12 +1,12 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import useQueryActionHook from "../use-queryaction";
 
-const useGetCategoryList = () => {
+const useGetAllCategories = () => {
   return useQueryActionHook({
     method: "get",
-    endpoint: ENDPOINTS.GET_CATEGORY_LIST,
-    queryKey: [NAMESPACE.GET_CATEGORY_LIST],
+    endpoint: ENDPOINTS.GET_ALL_CATEGORIES,
+    queryKey: [NAMESPACE.GET_ALL_CATEGORIES],
   });
 };
 
-export default useGetCategoryList;
+export default useGetAllCategories;

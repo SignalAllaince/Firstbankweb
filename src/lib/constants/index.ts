@@ -13,17 +13,9 @@ export const ENDPOINTS = {
   CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
-  GET_CATEGORY_PARENT: "categories/parent-only",
-  GET_CATEGORY_LIST: "categories/list",
+  GET_SEARCHED_CATEGORIES: "categories-view/search-categories",
+  GET_ALL_CATEGORIES: "categories-view/all-categories",
   GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
-  CREATE_CATEGORY: "categories/create",
-  UPDATE_CATEGORY: "categories/update",
-  DELETE_CATEGORY: (categoryId: string) => `categories/delete/${categoryId}`,
-  ADD_PRODUCT_TO_CATEGORY: (categoryId: string) =>
-    `categories/${categoryId}/products`,
-  UPDATE_PRODUCT_IN_CATEGORY: (categoryId: string) =>
-    `categories/update-product/${categoryId}`,
-  UPDATE_CATEGORY_STATUS: "categories/change-status",
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>
@@ -142,8 +134,8 @@ export const ENDPOINTS = {
 
 export const NAMESPACE = {
   // categories
-  GET_CATEGORY_PARENT: "GET_CATEGORY_PARENT",
-  GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
+  GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",
+  GET_ALL_CATEGORIES: "GET_ALL_CATEGORIES",
   GET_SINGLE_CATEGORY: "GET_SINGLE_CATEGORY",
   CREATE_CATEGORY: "CREATE_CATEGORY",
   UPDATE_CATEGORY: "UPDATE_CATEGORY",
