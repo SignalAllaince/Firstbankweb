@@ -22,7 +22,6 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       });
   };
 
-  console.log(validateToken?.value);
   return (
     <Section className="space-y-4 pb-10">
       <PageHead title="Profile" />

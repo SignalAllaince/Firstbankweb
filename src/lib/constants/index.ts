@@ -26,17 +26,8 @@ export const ENDPOINTS = {
   UPDATE_CATEGORY_STATUS: "categories/change-status",
 
   // Products Endpoints
-  GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
   GET_PRODUCT_BY_ID: (productId: string) =>
     `product-catalog/product-details/${productId}`,
-  GET_PRODUCTS_BY_SEARCH: "products/search",
-  CREATE_PRODUCTS: "products/create",
-  UPDATE_PRODUCT: "products/update",
-  UPDATE_PRODUCT_STATUS: "products/change-status",
-  DELETE_PRODUCT: (productId: string) => `products/delete/${productId}`,
-  GET_PRODUCTS_SEARCH_OPTIONS: "products/search-options",
-  GET_PRODUCTS_ORDERBY: "products/product-orderby",
-
   // Tax Endpoints
   GET_TAX_RATE_LIST: "tax-rates/read",
   GET_SINGLE_TAX: (taxId: string) => `tax-rates/read/${taxId}`,

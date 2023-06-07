@@ -26,6 +26,7 @@ export interface FirstBankResponseType<D = Record<string, unknown>> {
     response_code: string;
     data: string;
     // data: D;
+    error: D;
     content: string;
     status: string;
   };
