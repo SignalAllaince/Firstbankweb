@@ -1,4 +1,6 @@
+import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import React from "react";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
@@ -6,6 +8,7 @@ import ProductCard from "../product-card";
 
 function Catergory({
   header,
+  id,
   noMore = false,
   indep = false,
 }: {
@@ -13,7 +16,16 @@ function Catergory({
   products?: any[];
   indep?: boolean;
   noMore?: boolean;
+  id: number;
 }) {
+  const categoryProducts = useGetCategoryProducts(id);
+
+  React.useEffect(() => {
+    if (!categoryProducts.error || categoryProducts.data) {
+      categoryProducts.mutateAsync({}).catch(console.log);
+    }
+  }, []);
+
   return (
     <div className="space-y-6 py-10">
       <div

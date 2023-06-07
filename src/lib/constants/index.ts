@@ -15,7 +15,8 @@ export const ENDPOINTS = {
   // Category Endpoint
   GET_SEARCHED_CATEGORIES: "category-view/search-categories",
   GET_ALL_CATEGORIES: "category-view/all-categories",
-  GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
+  GET_SINGLE_CATEGORY: (categoryId: number) =>
+    `category-view/details?id=${categoryId}`,
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>

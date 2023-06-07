@@ -8,6 +8,7 @@ import useGetSearchCategories from "@/hooks/category/useGetSearchCategories";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
+import HomeLoader from "./loading";
 
 const Home: NextPageWithLayout & ProtectedComponentType = () => {
   const searchCategories = useGetSearchCategories();
@@ -19,13 +20,22 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
         <IfElse
           ifOn={!searchCategories.isLoading && !!searchCategories?.value}
           ifOnElse={searchCategories.isLoading && !searchCategories?.value}
-          onElse={<p>Loading.....</p>}
-          // elseThen={<ProductPageSkeleton />}
+          onElse={
+            <div>
+              {[1, 2, 3, 4].map((i) => (
+                <HomeLoader key={i} />
+              ))}
+            </div>
+          }
         >
           <>
             {searchCategories?.value &&
               searchCategories?.value.map((category) => (
-                <Catergory key={category.id} header={category.name} />
+                <Catergory
+                  key={category.id}
+                  header={category.name}
+                  id={category.id}
+                />
               ))}
             {/* <Catergory header="Top Selling Products" />
             <Catergory header="Recommended for you" noMore />
