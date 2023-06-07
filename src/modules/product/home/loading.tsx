@@ -6,7 +6,7 @@ export default function HomeLoader() {
       <div className="h-12 animate-pulse bg-slate-300"></div>
       <div className="product-grid grid gap-x-3 gap-y-10">
         {[1, 2, 3, 4].map((i) => (
-          <ProductCardSkeleton key={1} />
+          <ProductCardSkeleton key={i} />
         ))}
       </div>
     </div>

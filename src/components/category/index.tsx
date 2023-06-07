@@ -20,10 +20,11 @@ function Catergory({
 }) {
   const categoryProducts = useGetCategoryProducts(id);
 
-  React.useEffect(() => {
-    if (!categoryProducts.error || categoryProducts.data) {
+  React.useLayoutEffect(() => {
+    if (!categoryProducts.error || categoryProducts.value) {
       categoryProducts.mutateAsync({}).catch(console.log);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

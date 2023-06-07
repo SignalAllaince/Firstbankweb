@@ -37,11 +37,6 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
                   id={category.id}
                 />
               ))}
-            {/* <Catergory header="Top Selling Products" />
-            <Catergory header="Recommended for you" noMore />
-            <Catergory header="Independence Deals" indep />
-            <Catergory header="Top Deals on Home Appliance" />
-            <Catergory header="Top Deals on Stationery" /> */}
           </>
         </IfElse>
       </Section>

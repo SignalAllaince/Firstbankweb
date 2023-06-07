@@ -1,3 +1,4 @@
+import useGetAllCategories from "@/hooks/category/useGetAllCategories";
 import Image from "next/image";
 import Link from "next/link";
 import branchImg from "../../../public/images/icons/branch.svg";
@@ -6,6 +7,18 @@ import officeImg from "../../../public/images/icons/office.svg";
 import penImg from "../../../public/images/icons/pen.svg";
 import shirtImg from "../../../public/images/icons/shirt.svg";
 import tagImg from "../../../public/images/icons/tag.svg";
+import IfElse from "../if-else";
+
+const imgs = [
+  branchImg,
+  homeImg,
+  officeImg,
+  penImg,
+  shirtImg,
+  tagImg,
+  officeImg,
+  homeImg,
+];
 
 const links = [
   { text: "Branch", href: "/branch", img: branchImg, exact: true },
@@ -35,21 +48,38 @@ const links = [
   },
   { text: "Others", href: "/others", img: tagImg, exact: true },
 ];
+
 function BannerNav() {
+  const allCategories = useGetAllCategories();
   return (
-    <div className="h-full w-[270px] flex-shrink-0 bg-white">
-      {links.map((link) => (
-        <Link
-          key={link.text}
-          href={`/category${link.href}`}
-          className="flex w-full items-center gap-4 bg-transparent p-5 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
-        >
-          {/* <Icon IconComp={LinkIcon} /> */}
-          <Image src={link.img} className="h-5 w-5" alt={link.text} />
-          <span>{link.text}</span>
-        </Link>
-      ))}
-    </div>
+    <>
+      <IfElse
+        ifOn={!allCategories.isLoading && !!allCategories?.value}
+        ifOnElse={allCategories.isLoading && !allCategories?.value}
+        onElse={
+          <div className="flex h-[440px] w-[270px] flex-shrink-0 animate-pulse flex-col justify-between bg-white p-1">
+            {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+              <div key={item} className="h-14 bg-slate-300" />
+            ))}
+          </div>
+        }
+      >
+        <div className="h-full w-[270px] flex-shrink-0 bg-white">
+          {allCategories.value &&
+            allCategories.value.map((link, i) => (
+              <Link
+                key={link.id}
+                href={`/${link.slug}`}
+                className="flex w-full items-center gap-4 bg-transparent p-5 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
+              >
+                {/* <Icon IconComp={LinkIcon} /> */}
+                <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
+                <span>{link.name}</span>
+              </Link>
+            ))}
+        </div>
+      </IfElse>
+    </>
   );
 }
 
