@@ -48,7 +48,11 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
   const router = useRouter();
   return (
     <div className="">
-      <PageHead title="Category" />
+      <PageHead
+        title={stringifyCategory(
+          (router.query?.categoryName as string) ?? "Category"
+        )}
+      />
       <div className="w-full bg-white">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">

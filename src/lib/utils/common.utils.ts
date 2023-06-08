@@ -122,7 +122,7 @@ export class Clock {
 }
 
 export function stringifyCategory(category: string) {
-  return category.split("-").join(" ");
+  return category?.split("-")?.join(" ");
 }
 
 export function getAllCategories() {

@@ -41,12 +41,22 @@ export interface HeadingProps
 }
 type HeaderTypes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-function Heading({ children, size, as = "h2", className = "" }: HeadingProps) {
+function Heading({
+  children,
+  size,
+  as = "h2",
+  style,
+  className = "",
+}: HeadingProps) {
   const allowedTypes = ["h1", "h2", "h3", "h4", "h5", "h6"];
   const ElementType = allowedTypes.includes(as) ? as : ("h2" as const);
 
   const classNames = cn(headerClasses({ size }), className, inter.className);
-  return <ElementType className={classNames}>{children}</ElementType>;
+  return (
+    <ElementType className={classNames} style={style}>
+      {children}
+    </ElementType>
+  );
 }
 
 export default Heading;
