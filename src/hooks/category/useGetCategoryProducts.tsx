@@ -9,6 +9,7 @@ const useGetCategoryProducts = (categoryId: number) => {
     queryKey: [NAMESPACE.GET_SINGLE_CATEGORY, categoryId],
     showFailureToast: false,
     showSuccessToast: false,
+    enabled: !!categoryId,
   });
 };
 

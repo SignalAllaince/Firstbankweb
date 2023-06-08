@@ -69,6 +69,7 @@ function Catergory({
             <ProductCard
               name={product.name}
               key={product.id}
+              href={`/${product.slug}`}
               // isFinished={product.stockQuantity === 0}
               stockQuantity={product.stockQuantity}
               price={product.calculatedProductPrice.price}

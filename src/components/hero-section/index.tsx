@@ -4,7 +4,7 @@ import Section from "../section";
 function HeroSection() {
   return (
     <Section>
-      <div className="custom-hero my-4 flex h-[244px] flex-col items-start justify-center space-y-4 rounded-md pl-20 ">
+      <div className="custom-hero my-4 flex h-[244px] flex-col items-start justify-center space-y-4 rounded-md bg-blue-950 pl-20 ">
         <Heading style={{ color: "#F0BD2D" }} size="h1">
           Flash Sale
         </Heading>

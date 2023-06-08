@@ -16,7 +16,7 @@ import Icon from "../icon";
 function ProductCard({
   //   imageSrc,
   imageAlt = "",
-  // href = "#",
+  href = "#",
   isFinished = false,
   isProductPage = false,
   name = "office shirt",
@@ -59,8 +59,8 @@ function ProductCard({
   };
   return (
     <Link
-      // href={href}
-      href="/category/others/umbrella"
+      href={href}
+      // href="/category/others/umbrella"
       onClick={(e) => {
         isFinished && e.preventDefault();
       }}

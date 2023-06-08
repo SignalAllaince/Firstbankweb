@@ -5,7 +5,6 @@ import AppLayout from "@/components/layout/app-layout";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
-import { getAllCategoriesProduct } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -13,29 +12,6 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { ReactElement } from "react";
 
-export async function getStaticPaths() {
-  const paths = getAllCategoriesProduct();
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({
-  params,
-}: {
-  params: {
-    category: string;
-    productId: string;
-  };
-}) {
-  return {
-    props: {
-      category: params.category,
-      productId: params.productId,
-    },
-  };
-}
 const ProductPage: NextPageWithLayout & ProtectedComponentType = (
   props: any
 ) => {
