@@ -75,3 +75,98 @@ export interface SearchCategories {
   thumbnailImage: null;
   thumbnailUrl: null;
 }
+
+export interface CategoryProduct {
+  price: number;
+  oldPrice: number;
+  specialPrice: number;
+  stockQuantity: number;
+  specialPriceStart: string;
+  specialPriceEnd: string;
+  reviewsCount: number;
+  ratingAverage: null;
+  calculatedProductPrice: {
+    price: number;
+    oldPrice: number;
+    percentOfSaving: number;
+    priceString: "string";
+    oldPriceString: "string";
+  };
+  id: number;
+  name: string;
+  slug: string;
+  shortDescription: string;
+  thumbnailUrl: null;
+}
+export interface CategoryItems {
+  categoryId: number;
+  parentCategorId: null;
+  categoryName: string;
+  categorySlug: string;
+  seoKeywords: string;
+  shortDescription: string;
+  primaryImage: null;
+  thumbnailImage: null;
+  totalProduct: number;
+  products: CategoryProduct[];
+  filterOption: {
+    categories: [
+      {
+        id: 12;
+        name: "Kitchen Utensils";
+        slug: "category/12/kitchen-utensils";
+        count: 1;
+        parentId: null;
+      }
+    ];
+    price: {
+      maxPrice: number;
+      minPrice: number;
+    };
+  };
+  currentSearchOption: {
+    q: null;
+    b: null;
+    c: null;
+    p: 1;
+    ps: 10;
+    tp: 1.0;
+    s: null;
+    mnp: null;
+    mxp: null;
+  };
+  availableSortOptions: [
+    {
+      value: "feat";
+      display: "Featured";
+    },
+    {
+      value: "price-asc";
+      display: "Price: Low to High";
+    },
+    {
+      value: "price-desc";
+      display: "Price: High to Low";
+    },
+    {
+      value: "alphaaz";
+      display: "Alphabetically A - Z";
+    },
+    {
+      value: "alphaza";
+      display: "Alphabetically Z - A";
+    },
+    {
+      value: "newest";
+      display: "Date: Newest";
+    },
+    {
+      value: "oldest";
+      display: "Date: Oldest";
+    },
+    {
+      value: "bestsale";
+      display: "Best Selling";
+    }
+  ];
+}

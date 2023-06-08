@@ -19,13 +19,18 @@ function ProductCard({
   // href = "#",
   isFinished = false,
   isProductPage = false,
+  name = "office shirt",
+  stockQuantity = 27,
+  price,
 }: {
   imageSrc?: string;
   imageAlt?: string;
   href?: string;
-  price?: string;
+  price?: number;
   isProductPage?: boolean;
   isFinished?: boolean;
+  name?: string;
+  stockQuantity?: number;
 }) {
   const addItemToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
@@ -75,7 +80,7 @@ function ProductCard({
       </div>
       <div className="mt-5 space-y-6 px-3 pb-2">
         <div className="flex items-center justify-between">
-          <p className="text-sm capitalize">Office Shirt</p>
+          <p className="text-sm capitalize">{name}</p>
           {isProductPage && (
             <Button
               variant="secondary"
@@ -88,7 +93,7 @@ function ProductCard({
           )}
         </div>
         <div className="space-y-1 pb-3">
-          <p className="font-medium text-gray-900">NGN 25,000</p>
+          <p className="font-medium text-gray-900">NGN {price ?? "25,000"}</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               {[0, 1, 2, 3, 4].map((rating) => (
@@ -103,7 +108,7 @@ function ProductCard({
               ))}
             </div>
             <div className="bg-[#F5F8FA] p-1 px-2">
-              <p className="text-xs font-light">27 Remaining</p>
+              <p className="text-xs font-light">{stockQuantity} Remaining</p>
             </div>
           </div>
         </div>

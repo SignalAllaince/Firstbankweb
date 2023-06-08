@@ -35,6 +35,7 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
                   key={category.id}
                   header={category.name}
                   id={category.id}
+                  slug={category.slug}
                 />
               ))}
           </>

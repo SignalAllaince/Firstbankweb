@@ -4,19 +4,23 @@ import React from "react";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
+import IfElse from "../if-else";
 import ProductCard from "../product-card";
+import ProductCardSkeleton from "../product-card/skeleton";
 
 function Catergory({
   header,
   id,
   noMore = false,
   indep = false,
+  slug,
 }: {
   header: string;
   products?: any[];
   indep?: boolean;
   noMore?: boolean;
   id: number;
+  slug: string;
 }) {
   const categoryProducts = useGetCategoryProducts(id);
 
@@ -39,6 +43,7 @@ function Catergory({
         </Heading>
         {!noMore && (
           <Button
+            href={`/${slug}`}
             variant="cart"
             size="xs"
             className="border-brand-blue font-light text-brand-blue"
@@ -48,12 +53,30 @@ function Catergory({
           </Button>
         )}
       </div>
-      <div className="product-grid grid gap-x-3 gap-y-10">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard isFinished />
-        <ProductCard />
-      </div>
+      <IfElse
+        ifOn={!categoryProducts.isLoading && !!categoryProducts?.value}
+        ifOnElse={categoryProducts.isLoading && !categoryProducts?.value}
+        onElse={
+          <div className="product-grid grid gap-x-3 gap-y-10">
+            {[1, 2, 3, 4].map((i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          </div>
+        }
+      >
+        <div className="product-grid grid gap-x-3 gap-y-10">
+          {categoryProducts?.value?.products.map((product) => (
+            <ProductCard
+              name={product.name}
+              key={product.id}
+              // isFinished={product.stockQuantity === 0}
+              stockQuantity={product.stockQuantity}
+              price={product.calculatedProductPrice.price}
+              imageAlt={`${product.name} image`}
+            />
+          ))}
+        </div>
+      </IfElse>
     </div>
   );
 }

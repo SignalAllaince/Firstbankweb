@@ -1,12 +1,12 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import useGetAllCategories from "@/hooks/category/useGetAllCategories";
 import { usePathname } from "next/navigation";
 import Button, { ButtonProps } from "../button";
-import Icon from "../icon";
-import { Menu, MenuButton, MenuItem, MenuItems } from "../menu";
 import Section from "../section";
 
 function MiniNavbar() {
   const pathname = usePathname();
+  const allCategories = useGetAllCategories();
+
   const menuProps = {
     activeBg: "#142633",
     activeText: "#f0bd2d",
@@ -63,11 +63,28 @@ function MiniNavbar() {
   ];
   return (
     <div className="w-full bg-brand-blue py-2 text-white">
-      <Section className="item-center flex max-w-[950px] justify-between">
-        <div className="flex w-full items-center justify-between space-x-10">
-          <p className="text-sm text-brand-accent">All Category</p>
+      <Section className="item-center flex max-w-[1000px] justify-between overflow-auto">
+        <div className="flex w-full items-center justify-between space-x-6">
+          <p className="flex-shrink-0 text-sm text-brand-accent">
+            All Category
+          </p>
+          {allCategories?.value &&
+            allCategories?.value.map((category) => (
+              <Button
+                key={category.id}
+                variant="outline"
+                className="flex-shrink-0"
+                size="small"
+                href={`/${category.slug}`}
+                style={{
+                  color: pathname === `/${category.slug}` ? "#f0bd2d" : "",
+                }}
+              >
+                {category.name}
+              </Button>
+            ))}
 
-          {miniNavLinks.map((item) =>
+          {/* {miniNavLinks.map((item) =>
             item.items ? (
               <Menu key={item.path}>
                 <MenuButton
@@ -106,7 +123,7 @@ function MiniNavbar() {
                 {item.title}
               </Button>
             )
-          )}
+          )} */}
         </div>
       </Section>
     </div>

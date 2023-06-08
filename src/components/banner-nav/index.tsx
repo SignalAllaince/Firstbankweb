@@ -70,7 +70,7 @@ function BannerNav() {
               <Link
                 key={link.id}
                 href={`/${link.slug}`}
-                className="flex w-full items-center gap-4 bg-transparent p-5 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
+                className="flex w-full items-center gap-4 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
               >
                 {/* <Icon IconComp={LinkIcon} /> */}
                 <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
