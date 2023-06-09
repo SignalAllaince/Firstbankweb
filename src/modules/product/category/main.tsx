@@ -11,6 +11,7 @@ import Section from "@/components/section";
 import { popularity, priceList } from "@/lib/constants/rating";
 import { stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
+import { CategoryItems } from "@/types/api.types";
 import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -18,14 +19,19 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
-function CategoryMain() {
+function CategoryMain({
+  categoryName,
+  categoryProducts,
+}: {
+  categoryName: string;
+  categoryProducts: CategoryItems;
+}) {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
   const [categoryOpt, setCategoryOpt] = useState(null);
-  const router = useRouter();
+
   return (
     <div>
       <div className="w-full bg-white">
@@ -34,14 +40,12 @@ function CategoryMain() {
             <div className="flex items-center gap-1 text-sm">
               <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p className="capitalize">
-                {stringifyCategory(router?.query?.categoryName as string)}
-              </p>
+              <p className="capitalize">{stringifyCategory(categoryName)}</p>
             </div>
           </div>
           <div className="flex items-center justify-between">
             <Heading size="h3" className="capitalize">
-              {stringifyCategory(router?.query?.categoryName as string)}
+              {stringifyCategory(categoryName)}
             </Heading>
             <div className="flex items-center gap-2">
               <p className="text-sm">Filter:</p>
@@ -71,12 +75,10 @@ function CategoryMain() {
       <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
-            <Accordion
-              title={stringifyCategory(router?.query?.categoryName as string)}
-            >
+            <Accordion title={stringifyCategory(categoryName)}>
               <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
                 <RadioGroup.Label className="sr-only">
-                  {router?.query?.categoryName as string}
+                  {categoryName}
                 </RadioGroup.Label>
                 {/* <div className="space-y-4">
                   {getCategoryList(props?.category as CategoryTypes).map(
@@ -174,16 +176,18 @@ function CategoryMain() {
             </Accordion>
           </div>
           <div className="col-span-9">
-            <div className="grid grid-cols-3 gap-x-4 gap-y-12">
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
+            <div className="product-grid grid grid-cols-3 gap-x-4 gap-y-12">
+              {categoryProducts?.products.map((product) => (
+                <ProductCard
+                  name={product.name}
+                  key={product.id}
+                  href={`/${product.slug}`}
+                  // isFinished={product.stockQuantity === 0}
+                  stockQuantity={product.stockQuantity}
+                  price={product.calculatedProductPrice.price}
+                  imageAlt={`${product.name} image`}
+                />
+              ))}
             </div>
 
             <div className="flex items-center justify-center">

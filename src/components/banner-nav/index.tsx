@@ -59,7 +59,7 @@ function BannerNav() {
         onElse={
           <div className="flex h-[440px] w-[270px] flex-shrink-0 animate-pulse flex-col justify-between bg-white p-1">
             {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-              <div key={item} className="h-14 bg-slate-300" />
+              <div key={item} className="h-14 bg-slate-200" />
             ))}
           </div>
         }

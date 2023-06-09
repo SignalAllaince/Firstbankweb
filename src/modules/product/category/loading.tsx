@@ -13,23 +13,36 @@ function CategoryLoading() {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <div className="h-4 w-14 rounded bg-slate-300"></div>
-            <div className="h-4 w-10"></div>
+            <div className="h-4 w-24 bg-slate-300"></div>
+            <div className="h-5 w-28 rounded bg-slate-300"></div>
           </div>
         </Section>
       </div>
 
       {/* second section */}
-      <section className="pb-24 pt-6">
+      <section className="pb-24 pt-8">
         <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit animate-pulse space-y-3 border-t border-brand-darkest font-light">
-            <div className="h-20 w-full bg-slate-300"></div>
-            <div className="h-20 w-full bg-slate-300"></div>
-            <div className="h-30 w-full bg-slate-300"></div>
+          <div className="sticky top-0 col-span-3 h-fit animate-pulse space-y-3 font-light">
+            <div className="h-40 w-full space-y-2">
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-40 space-y-4 bg-slate-300" />
+              <div className="h-3 w-20 space-y-4 bg-slate-300" />
+            </div>
+            <div className="h-40 w-full space-y-2">
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-full space-y-4 bg-slate-300" />
+              <div className="h-3 w-40 space-y-4 bg-slate-300" />
+              <div className="h-3 w-20 space-y-4 bg-slate-300" />
+            </div>
           </div>
           <div className="col-span-9">
-            <div className="grid grid-cols-3 gap-x-4 gap-y-12">
-              {[1, 2, 3, 4].map((i) => (
+            <div className="product-grid grid grid-cols-3 gap-x-4 gap-y-12">
+              {[1, 2, 3].map((i) => (
                 <ProductCardSkeleton key={i} />
               ))}
             </div>

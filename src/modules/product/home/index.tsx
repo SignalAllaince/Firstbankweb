@@ -52,6 +52,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout isMainPage>{page}</AppLayout>;
 };
 
-Home.auth = false;
+Home.auth = true;
 
 export default Home;

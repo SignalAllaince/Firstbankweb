@@ -133,6 +133,7 @@ export const ENDPOINTS = {
   GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
 };
 
+export const STOREID = "fbn46374683";
 export const NAMESPACE = {
   // categories
   GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",
