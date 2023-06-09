@@ -57,9 +57,14 @@ function CategoryMain({
                   className="h-8 border-brand-light px-[6px] text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
-                  Best Seller
+                  {categoryProducts.availableSortOptions[0].display}
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
+                  {categoryProducts.availableSortOptions.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {item.display}
+                    </MenuItem>
+                  ))}
                   <MenuItem>Best Seller</MenuItem>
                   <MenuItem>New Arrivals</MenuItem>
                   <MenuItem>Top Sales</MenuItem>

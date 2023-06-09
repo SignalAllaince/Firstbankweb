@@ -135,38 +135,8 @@ export interface CategoryItems {
     mnp: null;
     mxp: null;
   };
-  availableSortOptions: [
-    {
-      value: "feat";
-      display: "Featured";
-    },
-    {
-      value: "price-asc";
-      display: "Price: Low to High";
-    },
-    {
-      value: "price-desc";
-      display: "Price: High to Low";
-    },
-    {
-      value: "alphaaz";
-      display: "Alphabetically A - Z";
-    },
-    {
-      value: "alphaza";
-      display: "Alphabetically Z - A";
-    },
-    {
-      value: "newest";
-      display: "Date: Newest";
-    },
-    {
-      value: "oldest";
-      display: "Date: Oldest";
-    },
-    {
-      value: "bestsale";
-      display: "Best Selling";
-    }
-  ];
+  availableSortOptions: {
+    value: string;
+    display: string;
+  }[];
 }

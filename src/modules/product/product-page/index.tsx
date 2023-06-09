@@ -1,16 +1,12 @@
-import Button from "@/components/button";
-import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
-import ProductReview from "@/components/product-review";
-import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { ReactElement } from "react";
+import ProductPageLoader from "./loading";
 
 const ProductPage: NextPageWithLayout & ProtectedComponentType = (
   props: any
@@ -33,8 +29,9 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = (
         </Section>
       </div>
 
+      <ProductPageLoader />
       {/* second section */}
-      <section className="space-y-5 pb-10 pt-6">
+      {/* <section className="space-y-5 pb-10 pt-6">
         <Section className="">
           <ProductWithImageGallery />
         </Section>
@@ -65,7 +62,6 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = (
               <ProductReview />
               <ProductReview />
 
-              {/* Pagination */}
               <div className="flex items-center justify-between">
                 <p className="font-light text-brand-medium">1-4 of 8 reviews</p>
                 <div className="flex items-center gap-2">
@@ -80,7 +76,7 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = (
             </div>
           </div>
         </Section>
-      </section>
+      </section> */}
     </div>
   );
 };
