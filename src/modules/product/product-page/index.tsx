@@ -89,6 +89,6 @@ ProductPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-ProductPage.auth = false;
+ProductPage.auth = true;
 
 export default ProductPage;

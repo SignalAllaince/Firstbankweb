@@ -170,6 +170,6 @@ SearchPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-SearchPage.auth = false;
+SearchPage.auth = true;
 
 export default SearchPage;

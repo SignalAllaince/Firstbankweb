@@ -34,7 +34,7 @@ const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
       })
       .then((res) => {
         store?.setItem(res.data?.data);
-        router.replace("/home");
+        router.replace("/");
       });
   };
 
@@ -60,7 +60,12 @@ const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
       </div>
       <div>
         <div className="pt-8"></div>
-        <Button variant="primary" className="w-full bg-black" type="submit">
+        <Button
+          isLoading={validateToken.isLoading}
+          variant="primary"
+          className="w-full bg-black"
+          type="submit"
+        >
           Login
         </Button>
       </div>

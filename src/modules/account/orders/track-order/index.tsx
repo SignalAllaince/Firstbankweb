@@ -38,6 +38,6 @@ TrackOpenOrderPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-TrackOpenOrderPage.auth = false;
+TrackOpenOrderPage.auth = true;
 
 export default TrackOpenOrderPage;

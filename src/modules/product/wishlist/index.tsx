@@ -46,6 +46,6 @@ WishListPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-WishListPage.auth = false;
+WishListPage.auth = true;
 
 export default WishListPage;

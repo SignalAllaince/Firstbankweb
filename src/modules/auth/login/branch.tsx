@@ -34,7 +34,7 @@ const BranchLogin: NextPageWithLayout & ProtectedComponentType = () => {
       })
       .then((res) => {
         store?.setItem(res.data?.data);
-        router.replace("/home");
+        router.replace("/");
       });
   };
 

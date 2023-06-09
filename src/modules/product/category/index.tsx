@@ -64,6 +64,6 @@ CategoryPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-CategoryPage.auth = false;
+CategoryPage.auth = true;
 
 export default CategoryPage;

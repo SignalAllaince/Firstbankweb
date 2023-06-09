@@ -105,6 +105,6 @@ CartPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-CartPage.auth = false;
+CartPage.auth = true;
 
 export default CartPage;

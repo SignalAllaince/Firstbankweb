@@ -4,7 +4,6 @@ import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useValidateToken from "@/hooks/auth/useValidateToken";
-import useGetAllCategories from "@/hooks/category/useGetAllCategories";
 import useGetSearchCategories from "@/hooks/category/useGetSearchCategories";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -12,7 +11,6 @@ import { decodeToken } from "react-jwt";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
   const validateToken = useValidateToken();
-  const allCategories = useGetAllCategories();
   const searchCategories = useGetSearchCategories();
   const validateTokenHandler = () => {
     validateToken
@@ -26,7 +24,6 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       });
   };
 
-  console.log(allCategories?.value);
   console.log(searchCategories?.value);
 
   return (
@@ -72,6 +69,6 @@ AccountProfile.getLayout = function getLayout(page: React.ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
 
-AccountProfile.auth = false;
+AccountProfile.auth = true;
 
 export default AccountProfile;

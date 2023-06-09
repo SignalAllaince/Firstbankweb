@@ -7,8 +7,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const store = useLocalStore(STOREID);
   const router = useRouter();
 
-  console.log(store?.getItem());
-
   React.useEffect(() => {
     if (!store?.getItem()) {
       router.replace("/login");

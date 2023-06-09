@@ -83,6 +83,6 @@ OrdersPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-OrdersPage.auth = false;
+OrdersPage.auth = true;
 
 export default OrdersPage;
