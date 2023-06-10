@@ -17,7 +17,7 @@ const IfElse = ({
   ifOnElse = true,
 }: IfElseProps) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="popLayout">
       {ifOn && (
         <motion.div
           initial={{ opacity: 0.3 }}

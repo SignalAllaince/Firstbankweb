@@ -1,20 +1,19 @@
-import ProductCardSkeleton from "@/components/product-card/skeleton";
 import Section from "@/components/section";
 
-function CategoryLoading() {
+function ProductPageLoader() {
   return (
     <div>
       <div className="w-full bg-white">
         <Section className="animate-pulse space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
-              <div className="h-2 w-10 rounded bg-slate-300"></div>
-              <div className="h-2 w-10 rounded bg-slate-300"></div>
+              <div className="h-2 w-10 rounded bg-slate-200"></div>
+              <div className="h-2 w-10 rounded bg-slate-200"></div>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <div className="h-4 w-24 bg-slate-300"></div>
-            <div className="h-5 w-28 rounded bg-slate-300"></div>
+            <div className="h-4 w-24 bg-slate-200"></div>
+            <div className="h-5 w-28 rounded bg-slate-200"></div>
           </div>
         </Section>
       </div>
@@ -33,8 +32,16 @@ function CategoryLoading() {
               ))}
             </div>
           </div>
-          <div className="">
-            <ProductCardSkeleton />
+          <div className="animate-pulse space-y-3">
+            <div className="h-3 w-2/3 bg-slate-200" />
+            <div className="h-3 w-1/2 bg-slate-200" />
+            <div className="h-3 w-1/3 bg-slate-200" />
+            <div className="h-3 w-1/4 bg-slate-200" />
+            <div className="h-40 w-full bg-slate-200" />
+            <div className="h-3 w-1/3 bg-slate-200" />
+            <div className="h-3 w-1/3 bg-slate-200" />
+            <div className="h-3 w-1/4 bg-slate-200" />
+            <div className="h-14 w-full bg-slate-200" />
           </div>
         </Section>
       </section>
@@ -42,4 +49,4 @@ function CategoryLoading() {
   );
 }
 
-export default CategoryLoading;
+export default ProductPageLoader;

@@ -6,6 +6,7 @@ const useGetProductById = (productId: string) => {
     method: "get",
     endpoint: ENDPOINTS.GET_PRODUCT_BY_ID(productId),
     queryKey: [NAMESPACE.GET_PRODUCT_BY_ID, productId],
+    enabled: !!productId,
   });
 };
 

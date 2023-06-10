@@ -1,26 +1,14 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
-import AppLayout from "@/components/layout/app-layout";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
-import useGetProductById from "@/hooks/products/useGetProductById";
-import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { ReactElement } from "react";
-import ProductPageLoader from "./loading";
 
-const ProductPage: NextPageWithLayout & ProtectedComponentType = (
-  props: any
-) => {
-  const router = useRouter();
-  const getProduct = useGetProductById(router?.query?.productId as string);
-  console.log(getProduct);
+function ProductMainSection() {
   return (
     <div className="bg-white pb-10">
       <div className="w-full border-b border-gray-200 ">
@@ -29,16 +17,15 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = (
             <div className="flex items-center gap-1 text-sm capitalize">
               <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <Link href={`/category/${props?.category?.toLowerCase()}`}>
+              {/* <Link href={`/category/${props?.category?.toLowerCase()}`}>
                 {props?.category}
               </Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>{props?.productId}</p>
+              <p>{props?.productId}</p> */}
             </div>
           </div>
         </Section>
       </div>
-      <ProductPageLoader />
       {/* second section */}
       <section className="space-y-5 pb-10 pt-6">
         <Section className="">
@@ -88,12 +75,6 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = (
       </section>
     </div>
   );
-};
+}
 
-ProductPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout hasBanner={false}>{page}</AppLayout>;
-};
-
-ProductPage.auth = true;
-
-export default ProductPage;
+export default ProductMainSection;
