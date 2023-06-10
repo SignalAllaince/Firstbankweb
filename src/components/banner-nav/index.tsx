@@ -51,6 +51,7 @@ const imgs = [
 
 function BannerNav() {
   const allCategories = useGetAllCategories();
+
   return (
     <>
       <IfElse
@@ -65,8 +66,8 @@ function BannerNav() {
         }
       >
         <div className="h-full w-[270px] flex-shrink-0 bg-white">
-          {allCategories.value &&
-            allCategories.value.map((link, i) => (
+          {allCategories?.value &&
+            allCategories?.value?.map((link, i) => (
               <Link
                 key={link.id}
                 href={`/${link.slug}`}

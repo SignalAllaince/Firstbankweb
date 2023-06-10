@@ -1,6 +1,5 @@
 import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import React from "react";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
@@ -23,13 +22,6 @@ function Catergory({
   slug: string;
 }) {
   const categoryProducts = useGetCategoryProducts(id);
-
-  React.useLayoutEffect(() => {
-    if (!categoryProducts.error || categoryProducts.value) {
-      categoryProducts.mutateAsync({}).catch(console.log);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="space-y-6 py-10">

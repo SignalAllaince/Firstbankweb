@@ -8,6 +8,7 @@ import {
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
+import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
 import useNotification from "@/hooks/use-notification";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -94,9 +95,9 @@ function ProductWithImageGallery({
   const [selectedImg, setSelectedImg] = useState(product.images[0]);
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
+  const addToCart = useAddItemToCart();
 
-  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleLike = () => {
     setLike((prev) => !prev);
     if (!like) {
       toast({
@@ -105,6 +106,12 @@ function ProductWithImageGallery({
       });
       return;
     }
+  };
+  const addToCartHandler = () => {
+    addToCart.mutateAsync({
+      ProductId: productDetails.id,
+      Quantity: 1,
+    });
   };
   return (
     <>
@@ -225,7 +232,8 @@ function ProductWithImageGallery({
                 <div className="mt-10 flex items-center space-x-5">
                   <Button
                     variant="primary"
-                    onClick={onOpen}
+                    onClick={addToCartHandler}
+                    isLoading={addToCart.isLoading}
                     className="w-full py-6 text-sm uppercase"
                     leftIcon={
                       <Icon IconComp={PlusIcon} className="text-white" />
@@ -236,8 +244,7 @@ function ProductWithImageGallery({
                   <Button
                     onClick={handleLike}
                     variant="secondary"
-                    size="small"
-                    className="relative h-auto border-0 px-[4px] py-1 ring-red-600"
+                    className="relative  rounded-full px-[12px] ring-blue-200 focus:ring-1"
                   >
                     <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
                   </Button>

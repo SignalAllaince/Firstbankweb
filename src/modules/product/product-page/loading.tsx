@@ -1,4 +1,6 @@
+import Icon from "@/components/icon";
 import Section from "@/components/section";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 function ProductPageLoader() {
   return (
@@ -8,12 +10,11 @@ function ProductPageLoader() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
               <div className="h-2 w-10 rounded bg-slate-200"></div>
+              <Icon IconComp={ChevronRightIcon} boxSize={4} />
               <div className="h-2 w-10 rounded bg-slate-200"></div>
+              <Icon IconComp={ChevronRightIcon} boxSize={4} />
+              <div className="h-2 w-14 rounded bg-slate-200"></div>
             </div>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="h-4 w-24 bg-slate-200"></div>
-            <div className="h-5 w-28 rounded bg-slate-200"></div>
           </div>
         </Section>
       </div>
@@ -22,7 +23,7 @@ function ProductPageLoader() {
       <section className="border-t pb-24 pt-8">
         <Section className="mx-auto mt-6 max-w-2xl  space-y-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-16 lg:space-y-0 lg:px-8">
           <div className="h-fit animate-pulse space-y-3 font-light">
-            <div className="h-96 w-full space-y-2 bg-slate-200"></div>
+            <div className="ml-auto h-[450px] w-full max-w-[500px] space-y-2 rounded bg-slate-200"></div>
             <div className="flex items-center justify-center gap-3 px-3 sm:px-0">
               {[1, 2, 3].map((card) => (
                 <div
@@ -32,7 +33,7 @@ function ProductPageLoader() {
               ))}
             </div>
           </div>
-          <div className="animate-pulse space-y-3">
+          <div className="animate-pulse space-y-4">
             <div className="h-3 w-2/3 bg-slate-200" />
             <div className="h-3 w-1/2 bg-slate-200" />
             <div className="h-3 w-1/3 bg-slate-200" />

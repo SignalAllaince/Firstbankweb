@@ -11,7 +11,8 @@ import ProductMainSection from "./main";
 const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
   const router = useRouter();
   const getProduct = useGetProductById(router?.query?.productId as string);
-  console.log(router);
+
+  console.log(getProduct?.data?.data?.data, "sdjjdsjdj");
   return (
     <div className="bg-white pb-10">
       <IfElse
@@ -27,7 +28,11 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
 };
 
 ProductPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout hasBanner={false}>{page}</AppLayout>;
+  return (
+    <AppLayout isMainPage hasBanner={false}>
+      {page}
+    </AppLayout>
+  );
 };
 
 ProductPage.auth = true;

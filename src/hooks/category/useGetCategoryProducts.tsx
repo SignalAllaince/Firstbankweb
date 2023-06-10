@@ -1,14 +1,12 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import { CategoryItems } from "@/types/api.types";
-import useCustomMutation from "../use-mutationaction";
+import useQueryActionHook from "../use-queryaction";
 
 const useGetCategoryProducts = (categoryId: number) => {
-  return useCustomMutation<CategoryItems>({
-    method: "post",
+  return useQueryActionHook<CategoryItems>({
+    method: "get",
     endpoint: ENDPOINTS.GET_SINGLE_CATEGORY(categoryId),
     queryKey: [NAMESPACE.GET_SINGLE_CATEGORY, categoryId],
-    showFailureToast: false,
-    showSuccessToast: false,
     enabled: !!categoryId,
   });
 };

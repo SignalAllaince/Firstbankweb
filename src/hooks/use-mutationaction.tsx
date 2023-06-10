@@ -69,7 +69,7 @@ function useCustomMutation<
     ...others,
   });
 
-  return { ...mutatationResult, value: mutatationResult?.data?.data };
+  return { ...mutatationResult, value: mutatationResult?.data?.data?.data };
 }
 
 export default useCustomMutation;

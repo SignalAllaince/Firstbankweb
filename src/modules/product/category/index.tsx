@@ -6,7 +6,7 @@ import { stringifyCategory } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import CategoryLoading from "./loading";
 import CategoryMain from "./main";
 
@@ -31,13 +31,6 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
   const categoryProducts = useGetCategoryProducts(
     router?.query?.categoryId as unknown as number
   );
-
-  React.useLayoutEffect(() => {
-    if (!categoryProducts.error || categoryProducts.value) {
-      categoryProducts.mutateAsync({}).catch(console.log);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="">

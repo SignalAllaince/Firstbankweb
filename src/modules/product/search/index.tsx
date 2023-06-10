@@ -145,15 +145,15 @@ const SearchPage: NextPageWithLayout & ProtectedComponentType = () => {
           </div>
           <div className="col-span-8 md:col-span-9">
             <div className="product-grid grid gap-x-4 gap-y-12">
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
-              <ProductCard isProductPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
+              <ProductCard isCategoryPage />
             </div>
             {/* Pagination */}
             <div className="flex items-center justify-center">

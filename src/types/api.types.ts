@@ -22,11 +22,13 @@ export interface RequestResponse<T = Record<string, unknown>> {
 }
 
 export interface FirstBankResponseType<D = Record<string, unknown>> {
-  response_code: string;
-  data: D;
-  error: D;
-  content: string;
-  status: string;
+  data: {
+    response_code: string;
+    data: D;
+    errors: Record<string, unknown>;
+    errorCode: number;
+    status: string;
+  };
 }
 
 export interface ResponseErrorType {

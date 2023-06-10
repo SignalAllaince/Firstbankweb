@@ -6,7 +6,7 @@ export const ENDPOINTS = {
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
     `account/cart/add-item-result?productId=${productId}`,
-  ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
+  ADD_ITEM_TO_CART: `account/cart/add-item`,
   UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
   CART_VALIDATION_SELECTION: "account/cart/validate-selection",
   DELETE_CART_ITEM: (itemId: string) => `account/cart/remove-item?id=${itemId}`,
