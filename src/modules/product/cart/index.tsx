@@ -16,6 +16,8 @@ import CartProductRow from "./components/cart-row";
 const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const getCartList = useGetCartList();
+
+  console.log(getCartList.value, "getCartList?.value");
   return (
     <>
       <PageHead title="Cart" />
@@ -57,17 +59,34 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                           <th className="py-4 text-left font-medium text-brand-darkest">
                             Item Details
                           </th>
-                          <th className="w-[200px] py-4 text-center font-medium text-brand-darkest">
-                            Quantity
-                          </th>
-                          <th className="w-[200px] py-4 text-center font-medium text-brand-darkest">
-                            Price
-                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         <CartProductRow />
                         <CartProductRow />
+                        <div className="flex items-center justify-between border-b">
+                          <div className="max-w-[400px] py-4 text-slate-700">
+                            <div className="item-start flex animate-pulse gap-3">
+                              <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden  rounded-[4px] bg-brand-light">
+                                <div className="h-full w-full bg-slate-200 object-cover object-center" />
+                              </div>
+                              <div className="flex h-[110px] flex-col justify-between">
+                                <div className="space-y-2">
+                                  <div className="h-2 w-40 max-w-[400px] bg-slate-200" />
+                                  <div className="h-2 w-28 max-w-[400px] bg-slate-200" />
+                                  <div className="h-2 w-20 max-w-[400px] bg-slate-200" />
+                                </div>
+                                <div className="h-2 w-14 bg-slate-200 px-2" />
+                                <div className="h-5 w-14 bg-slate-200 px-2" />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex w-[200px] flex-col items-center space-y-4 py-4 text-center">
+                            <div className="h-4 w-20 bg-slate-200 px-2" />
+                            <div className="h-6 w-24 bg-slate-200 px-2" />
+                          </div>
+                        </div>
                       </tbody>
                     </table>
                   </div>
@@ -102,7 +121,11 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
 };
 
 CartPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout hasBanner={false}>{page}</AppLayout>;
+  return (
+    <AppLayout isMainPage hasBanner={false}>
+      {page}
+    </AppLayout>
+  );
 };
 
 CartPage.auth = true;

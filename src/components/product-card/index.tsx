@@ -22,6 +22,7 @@ function ProductCard({
   name = "office shirt",
   stockQuantity = 27,
   price,
+  id,
 }: {
   imageSrc?: string;
   imageAlt?: string;
@@ -31,19 +32,28 @@ function ProductCard({
   isFinished?: boolean;
   name?: string;
   stockQuantity?: number;
+  id?: string | number;
 }) {
-  const addItemToCart = useAddItemToCart();
+  const addToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
 
-  const handleAdd = (e: MouseEvent<HTMLButtonElement>) => {
-    const reqBody = {
-      productId: "jdjdjdjdj",
-      quantity: 4,
-    };
-    // Add item to cart
-    addItemToCart.mutateAsync(reqBody).catch((err) => console.log(err));
+  const addToCartHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    addToCart
+      .mutateAsync({
+        ProductId: id,
+        Quantity: 1,
+      })
+      .then(() => {
+        toast({
+          appearance: "success",
+          description: `${name} was added to wishlist`,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
@@ -118,7 +128,8 @@ function ProductCard({
           <Button
             leftIcon={<Icon IconComp={PlusIcon} className="text-white" />}
             className="w-full text-sm"
-            onClick={handleAdd}
+            onClick={addToCartHandler}
+            isLoading={addToCart.isLoading}
           >
             ADD
           </Button>

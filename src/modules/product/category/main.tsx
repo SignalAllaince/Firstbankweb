@@ -186,6 +186,7 @@ function CategoryMain({
                 <ProductCard
                   name={product.name}
                   key={product.id}
+                  id={product.id}
                   href={`/${product.slug}`}
                   // isFinished={product.stockQuantity === 0}
                   stockQuantity={product.stockQuantity}

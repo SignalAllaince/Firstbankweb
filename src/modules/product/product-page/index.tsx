@@ -12,7 +12,6 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
   const router = useRouter();
   const getProduct = useGetProductById(router?.query?.productId as string);
 
-  console.log(getProduct?.data?.data?.data, "sdjjdsjdj");
   return (
     <div className="bg-white pb-10">
       <IfElse

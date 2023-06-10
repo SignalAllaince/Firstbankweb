@@ -53,8 +53,6 @@ const product = {
     { name: "L", inStock: true },
     { name: "XL", inStock: false },
   ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
   highlights: [
     "Hand cut and sewn locally",
     "Dyed with our proprietary colors",
@@ -108,10 +106,21 @@ function ProductWithImageGallery({
     }
   };
   const addToCartHandler = () => {
-    addToCart.mutateAsync({
-      ProductId: productDetails.id,
-      Quantity: 1,
-    });
+    addToCart
+      .mutateAsync({
+        ProductId: productDetails.id,
+        Quantity: 1,
+      })
+      .then(() => {
+        // toast({
+        //   appearance: "success",
+        //   description: `${productDetails.name} was added to wishlist`,
+        // });
+        onOpen();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
@@ -264,6 +273,7 @@ function ProductWithImageGallery({
             <Button
               className="w-full px-2 text-sm uppercase"
               variant="secondary"
+              onClick={onClose}
             >
               Continue shopping
             </Button>
