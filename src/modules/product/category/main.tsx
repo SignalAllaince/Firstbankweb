@@ -191,6 +191,7 @@ function CategoryMain({
                   stockQuantity={product.stockQuantity}
                   price={product.calculatedProductPrice.price}
                   imageAlt={`${product.name} image`}
+                  isCategoryPage
                 />
               ))}
             </div>

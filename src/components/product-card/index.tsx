@@ -18,7 +18,7 @@ function ProductCard({
   imageAlt = "",
   href = "#",
   isFinished = false,
-  isProductPage = false,
+  isCategoryPage = false,
   name = "office shirt",
   stockQuantity = 27,
   price,
@@ -27,7 +27,7 @@ function ProductCard({
   imageAlt?: string;
   href?: string;
   price?: number;
-  isProductPage?: boolean;
+  isCategoryPage?: boolean;
   isFinished?: boolean;
   name?: string;
   stockQuantity?: number;
@@ -66,7 +66,7 @@ function ProductCard({
       }}
       className={`${
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
-      }  relative overflow-hidden rounded-[4px] bg-white`}
+      }  relative flex w-full flex-col overflow-hidden rounded-[4px] bg-white`}
     >
       <div className="h-[220px] w-full overflow-hidden rounded-t-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
@@ -78,10 +78,10 @@ function ProductCard({
           className=" h-[220px] w-full object-cover object-center"
         />
       </div>
-      <div className="mt-5 space-y-6 px-3 pb-2">
+      <div className="mt-5 flex-1 space-y-6 px-3 pb-2">
         <div className="flex items-center justify-between">
           <p className="text-sm capitalize">{name}</p>
-          {isProductPage && (
+          {isCategoryPage && (
             <Button
               variant="secondary"
               size="small"
@@ -113,15 +113,17 @@ function ProductCard({
           </div>
         </div>
       </div>
-      {isProductPage && (
-        <Button
-          leftIcon={<Icon IconComp={PlusIcon} className="text-white" />}
-          className="w-full text-sm"
-          onClick={handleAdd}
-        >
-          ADD
-        </Button>
-      )}
+      <div className="sticky bottom-0 left-0">
+        {isCategoryPage && (
+          <Button
+            leftIcon={<Icon IconComp={PlusIcon} className="text-white" />}
+            className="w-full text-sm"
+            onClick={handleAdd}
+          >
+            ADD
+          </Button>
+        )}
+      </div>
     </Link>
   );
 }

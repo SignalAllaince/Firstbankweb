@@ -140,3 +140,36 @@ export interface CategoryItems {
     display: string;
   }[];
 }
+
+export interface ProductDetailsRes {
+  id: number;
+  name: string;
+  slug: string;
+  sku: null;
+  thumbnailUrl: string;
+  shortDescription: string;
+  seoKeywords: string;
+  calculatedProductPrice: {
+    price: number;
+    oldPrice: number;
+    percentOfSaving: number;
+    priceString: string;
+    oldPriceString: string;
+  };
+  description: string;
+  specification: string;
+  isAllowToOrder: boolean;
+  stockQuantity: number;
+  reviewsCount: number;
+  ratingAverage: null;
+  availableOptions: any[];
+  optionDisplayValues: {};
+  images: any[];
+  variations: any[];
+  attributes: any[];
+  categories: {
+    id: number;
+    name: string;
+    slug: string;
+  }[];
+}

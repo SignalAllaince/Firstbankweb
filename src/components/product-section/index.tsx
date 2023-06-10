@@ -1,7 +1,14 @@
 import useDisclosure from "@/hooks/use-disclosure";
+import { ProductDetailsRes } from "@/types/api.types";
 import { RadioGroup } from "@headlessui/react";
-import { StarIcon } from "@heroicons/react/20/solid";
+import {
+  HeartIcon as HeartSolidIcon,
+  StarIcon,
+} from "@heroicons/react/20/solid";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
+
+import useNotification from "@/hooks/use-notification";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -78,10 +85,27 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ProductWithImageGallery() {
+function ProductWithImageGallery({
+  productDetails,
+}: {
+  productDetails: ProductDetailsRes;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImg, setSelectedImg] = useState(product.images[0]);
+  const [like, setLike] = useState(false);
+  const { toast } = useNotification();
 
+  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLike((prev) => !prev);
+    if (!like) {
+      toast({
+        appearance: "info",
+        description: "Item Successfully added to wishlist",
+      });
+      return;
+    }
+  };
   return (
     <>
       <div className="rounded-lg bg-white">
@@ -148,7 +172,9 @@ function ProductWithImageGallery() {
             <div className="space-y-8 px-4 pb-10 sm:px-0">
               <div className="space-y-2">
                 <div className="flex flex-col gap-4 text-2xl text-slate-800">
-                  <h2 className="text-3xl font-bold">{product.name}</h2>
+                  <h2 className="text-3xl font-bold capitalize">
+                    {productDetails.name}
+                  </h2>
                   <div className="flex items-end space-x-3">
                     <div className="flex items-center">
                       {[0, 1, 2, 3, 4].map((rating) => (
@@ -164,22 +190,30 @@ function ProductWithImageGallery() {
                         />
                       ))}
                     </div>
-                    <p className="text-xs ">(8 verified ratings)</p>
+                    <p className="text-xs ">
+                      ({productDetails.reviewsCount} verified ratings)
+                    </p>
 
-                    <p className="sr-only">{reviews.average} out of 5 stars</p>
+                    <p className="sr-only">
+                      {productDetails.reviewsCount} out of 5 stars
+                    </p>
                   </div>
-                  <h2 className="text-[18px]">{product.price}</h2>
+                  <h2 className="text-[18px]">
+                    {productDetails.calculatedProductPrice.priceString}
+                  </h2>
                 </div>
 
                 <div className="space-y-3 pt-4 font-light text-brand-darkest">
                   <p className="text-md font-bold">Description</p>
-                  <p className="text-sm">{product.description}</p>
+                  <p className="text-sm">{productDetails.description}</p>
                 </div>
               </div>
               <div className="flex items-center gap-8">
                 <p className="text-sm text-brand-medium">Net weight: 2kg</p>
                 <div className="bg-[#F5F8FA] p-1 px-2">
-                  <p className="text-xs font-light">27 Remaining</p>
+                  <p className="text-xs font-light">
+                    {productDetails.stockQuantity} Remaining
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-8">
@@ -198,6 +232,14 @@ function ProductWithImageGallery() {
                     }
                   >
                     Add to Cart
+                  </Button>
+                  <Button
+                    onClick={handleLike}
+                    variant="secondary"
+                    size="small"
+                    className="relative h-auto border-0 px-[4px] py-1 ring-red-600"
+                  >
+                    <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
                   </Button>
                 </div>
               </div>

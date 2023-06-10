@@ -1,27 +1,35 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
+import PageHead from "@/components/page-head";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
+import { ProductDetailsRes } from "@/types/api.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-function ProductMainSection() {
+function ProductMainSection({
+  productDetails,
+}: {
+  productDetails: ProductDetailsRes;
+}) {
   return (
     <div className="bg-white pb-10">
+      <PageHead title={productDetails.name} />
       <div className="w-full border-b border-gray-200 ">
         <Section className="py-8">
           <div className="flex items-center">
             <div className="flex items-center gap-1 text-sm capitalize">
               <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              {/* <Link href={`/category/${props?.category?.toLowerCase()}`}>
-                {props?.category}
+              <Link href={`/${productDetails.categories[0].slug}`}>
+                {productDetails.categories[0].name}
               </Link>
+
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p>{props?.productId}</p> */}
+              <p>{productDetails.name}</p>
             </div>
           </div>
         </Section>
@@ -29,7 +37,7 @@ function ProductMainSection() {
       {/* second section */}
       <section className="space-y-5 pb-10 pt-6">
         <Section className="">
-          <ProductWithImageGallery />
+          <ProductWithImageGallery productDetails={productDetails} />
         </Section>
         <div className="border-t-2 border-brand-lightest" />
         <Section className="grid grid-cols-2 gap-4">
