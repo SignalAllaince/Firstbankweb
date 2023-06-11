@@ -39,7 +39,7 @@ function ProductCard({
   const addToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
-  const addToWishlist = useAddItemToWishlist(id as number)
+  const addToWishlist = useAddItemToWishlist(id as number);
   const getCartList = useGetCartList(addToCart.value);
 
   const addToCartHandler = (e: MouseEvent<HTMLButtonElement>) => {
@@ -69,7 +69,7 @@ function ProductCard({
         appearance: "info",
         description: "Item Successfully added to wishlist",
       });
-    })
+    });
   };
 
   return (

@@ -4,14 +4,11 @@ import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useValidateToken from "@/hooks/auth/useValidateToken";
-import useGetSearchCategories from "@/hooks/category/useGetSearchCategories";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { decodeToken } from "react-jwt";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
   const validateToken = useValidateToken();
-  const searchCategories = useGetSearchCategories();
   const validateTokenHandler = () => {
     validateToken
       .mutateAsync({
@@ -20,11 +17,8 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
       })
       .then((res) => {
         console.log(res.data);
-        console.log(decodeToken(res.data?.data as string));
       });
   };
-
-  console.log(searchCategories?.value);
 
   return (
     <Section className="space-y-4 pb-10">
