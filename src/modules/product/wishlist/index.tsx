@@ -3,6 +3,7 @@ import Icon from "@/components/icon";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
+import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -11,6 +12,8 @@ import { ReactElement } from "react";
 import WishListRow from "./wishlist-row";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const getWishList = useGetWishlist(1);
+  console.log(getWishList?.value, "getWishList?.value");
   return (
     <div className="bg-white">
       <PageHead title="Wishlist" />

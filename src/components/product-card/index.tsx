@@ -1,5 +1,7 @@
 import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
+import useGetCartList from "@/hooks/cart/useGetCartList";
 import useNotification from "@/hooks/use-notification";
+import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
 import { cn } from "@/lib/utils/component.utils";
 import {
   HeartIcon as HeartSolidIcon,
@@ -37,6 +39,8 @@ function ProductCard({
   const addToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
+  const addToWishlist = useAddItemToWishlist(id as number)
+  const getCartList = useGetCartList(addToCart.value);
 
   const addToCartHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -46,6 +50,7 @@ function ProductCard({
         Quantity: 1,
       })
       .then(() => {
+        getCartList.refetch();
         toast({
           appearance: "success",
           description: `${name} was added to wishlist`,
@@ -58,15 +63,15 @@ function ProductCard({
 
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLike((prev) => !prev);
-    if (!like) {
+    addToWishlist.refetch().then(() => {
+      setLike((prev) => !prev);
       toast({
         appearance: "info",
         description: "Item Successfully added to wishlist",
       });
-      return;
-    }
+    })
   };
+
   return (
     <Link
       href={href}

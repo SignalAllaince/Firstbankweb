@@ -1,3 +1,4 @@
+import useGetCartList from "@/hooks/cart/useGetCartList";
 import {
   ArrowLeftOnRectangleIcon,
   ChevronDownIcon,
@@ -22,6 +23,7 @@ import Section from "../section";
 function Navbar() {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const getCartList = useGetCartList();
 
   const searchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,7 +91,7 @@ function Navbar() {
           >
             <Icon IconComp={ShoppingCartIcon} />
             <div className="absolute left-4 top-1 rounded bg-brand-darkest p-1 py-0 text-xs text-white">
-              3
+              {getCartList?.value && getCartList?.value?.items?.length}
             </div>
           </Button>
           <Menu>

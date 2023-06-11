@@ -92,7 +92,7 @@ export const ENDPOINTS = {
   // Wishlist Endpoint
   GET_WISHLIST: (pageNumber: number, pageSize: number) =>
     `account/wishlist/${pageNumber}/${pageSize}`,
-  ADD_ITEM_TO_WISHLIST: "account/wishlist/",
+  ADD_ITEM_TO_WISHLIST: (id: number) => `account/wishlist/add-item?id=${id}`,
   REMOVE_ITEM_FROM_WISHLIST: "account/wishlist/",
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
 
