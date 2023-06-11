@@ -9,6 +9,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
+import useCounter from "@/hooks/use-couter";
 import useNotification from "@/hooks/use-notification";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -94,6 +95,7 @@ function ProductWithImageGallery({
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
   const addToCart = useAddItemToCart();
+  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(5);
 
   const handleLike = () => {
     setLike((prev) => !prev);
@@ -109,7 +111,7 @@ function ProductWithImageGallery({
     addToCart
       .mutateAsync({
         ProductId: productDetails.id,
-        Quantity: 1,
+        Quantity: quantity,
       })
       .then(() => {
         // toast({
@@ -234,7 +236,11 @@ function ProductWithImageGallery({
               </div>
               <div className="flex items-center gap-8">
                 <p className="font-light">Quantity:</p>
-                <CartProductBtn />
+                <CartProductBtn
+                  quantity={quantity}
+                  onIncrease={increaseQuantity}
+                  onDecrease={decreaseQuantity}
+                />
               </div>
               {/* color radio */}
               <div className="mt-10">

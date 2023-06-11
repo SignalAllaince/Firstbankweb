@@ -177,28 +177,24 @@ export interface ProductDetailsRes {
 }
 
 export interface CartListResponse {
-  errors: null;
-  data: {
-    id: 7;
-    items: {
-      id: number;
-      productId: number;
-      slug: string;
-      productName: string;
-      productImage: null;
-      productPrice: number;
-      productPriceString: string;
-      productStockQuantity: number;
-      isProductAvailabeToOrder: boolean;
-      quantity: number;
-      total: number;
-      totalString: string;
-      optionCombination: null;
-    }[];
-    subTotal: number;
-    subTotalString: string;
-    customerId: string;
-    isValid: false;
-  };
-  errorCode: number;
+  id: 7;
+  items: {
+    id: number;
+    productId: number;
+    slug: string;
+    productName: string;
+    productImage: null;
+    productPrice: number;
+    productPriceString: string;
+    productStockQuantity: number;
+    isProductAvailabeToOrder: boolean;
+    quantity: number;
+    total: number;
+    totalString: string;
+    optionCombination: null;
+  }[];
+  subTotal: number;
+  subTotalString: string;
+  customerId: string;
+  isValid: false;
 }

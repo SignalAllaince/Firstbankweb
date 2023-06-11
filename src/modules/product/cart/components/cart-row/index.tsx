@@ -2,13 +2,37 @@ import Button from "@/components/button";
 import Icon from "@/components/icon";
 import CartModal from "@/components/modal/cart";
 import CartProductBtn from "@/components/product-btn";
+import useDeleteItemFromCart from "@/hooks/cart/useDeleteItemFromCart";
 import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import productImg from "../../../../../../public/images/shirt.jpg";
 
-function CartProductRow() {
+function CartProductRow({
+  name,
+  getCartList,
+  productId,
+  price,
+  quantity,
+}: {
+  getCartList: any;
+  name: string;
+  productId: number;
+  price: string;
+  quantity: number;
+}) {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const deleteFromCart = useDeleteItemFromCart(productId);
+
+  const onRemoveHandler = () => {
+    deleteFromCart
+      .mutateAsync({})
+      .catch((err) => console.log(err))
+      .then(() => {
+        getCartList.refetch();
+        onClose();
+      });
+  };
 
   return (
     <>
@@ -25,12 +49,8 @@ function CartProductRow() {
               />
             </div>
             <div className="flex h-[110px] flex-col justify-between">
-              <p className="break-words">
-                This Description should carry only the full name of the product.
-              </p>
-              <div className="w-fit bg-[#F5F8FA]  px-2">
-                <p className="text-[10px] font-light">11 Remaining</p>
-              </div>
+              <p className="capitalize text-black">{name}</p>
+
               <div className="flex items-center gap-2">
                 <Button
                   variant="cart"
@@ -47,14 +67,20 @@ function CartProductRow() {
         </div>
 
         <div className="w-[200px] space-y-4 py-4 text-center">
-          <p className="text-lg font-bold">₦ 25,000</p>
+          <p className="text-lg font-bold">{price}</p>
           <div className="bg-full flex w-full items-center justify-center">
-            <CartProductBtn quantity={1} />
+            <CartProductBtn quantity={quantity} />
           </div>
         </div>
       </div>
       {/* Remove from cart modal */}
-      <CartModal isOpen={isOpen} onClose={onClose} />
+      <CartModal
+        name={name}
+        isLoading={deleteFromCart.isLoading || getCartList.isRefetching}
+        onRemove={onRemoveHandler}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
       {/* Add to wishlist modal */}
     </>
   );

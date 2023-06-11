@@ -1,13 +1,9 @@
 import Icon from "@/components/icon";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
-import useGetCartList from "@/hooks/cart/useGetCartList";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const CartLoadingPage = () => {
-  const getCartList = useGetCartList();
-
-  console.log(getCartList.value, "getCartList?.value");
   return (
     <>
       <PageHead title="Cart" />
@@ -42,7 +38,7 @@ const CartLoadingPage = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {[1, 2, 3].map((item) => (
+                        {[1, 2].map((item) => (
                           <div
                             key={item}
                             className="flex items-center justify-between border-b"
@@ -77,7 +73,7 @@ const CartLoadingPage = () => {
               </div>
             </div>
           </div>
-          <div className="h-72 w-full lg:col-span-4"></div>
+          <div className="mt-4 h-48 w-full rounded bg-slate-200 lg:col-span-4"></div>
         </Section>
       </div>
     </>
