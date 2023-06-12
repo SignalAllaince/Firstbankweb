@@ -14,7 +14,6 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <>
       <PageHead title="Cart" />
-
       <IfElse
         ifOn={!getCartList.isLoading && !!getCartList?.value}
         ifOnElse={getCartList.isLoading && !getCartList?.value}

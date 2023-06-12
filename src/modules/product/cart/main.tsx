@@ -3,7 +3,6 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import CheckoutModal from "@/components/modal/checkout";
-import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useGetCartList from "@/hooks/cart/useGetCartList";
 import useDisclosure from "@/hooks/use-disclosure";
@@ -22,7 +21,6 @@ const CartPageSection = ({
 
   return (
     <>
-      <PageHead title="Cart" />
       <div className="h-full bg-white pb-10">
         <div className="w-full border-b border-gray-200 ">
           <Section className="space-y-4 py-8">
@@ -78,7 +76,8 @@ const CartPageSection = ({
                             <CartProductRow
                               price={item.productPriceString}
                               quantity={item.quantity}
-                              getCartList={getCartList}
+                              onCartRefetch={getCartList.refetch}
+                              isLoading={getCartList.isRefetching}
                               key={item.id}
                               name={item.productName}
                               productId={item.id}

@@ -198,3 +198,22 @@ export interface CartListResponse {
   customerId: string;
   isValid: false;
 }
+
+export interface WishlistResponse {
+  id: number;
+  pageNumber: number;
+  pageSize: number;
+  totalItems: number;
+  items: {
+    id: number;
+    wishListId: number;
+    productId: number;
+    productName: string;
+    slug: string;
+    productPriceString: string;
+    productOldPriceString: string;
+    productImage: any[];
+    description: null;
+    quantity: number;
+  }[];
+}

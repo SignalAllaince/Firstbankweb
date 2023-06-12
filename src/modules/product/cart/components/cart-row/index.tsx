@@ -10,16 +10,18 @@ import productImg from "../../../../../../public/images/shirt.jpg";
 
 function CartProductRow({
   name,
-  getCartList,
+  onCartRefetch,
+  isLoading,
   productId,
   price,
   quantity,
 }: {
-  getCartList: any;
+  onCartRefetch: any;
   name: string;
   productId: number;
   price: string;
   quantity: number;
+  isLoading: boolean;
 }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const deleteFromCart = useDeleteItemFromCart(productId);
@@ -29,7 +31,7 @@ function CartProductRow({
       .mutateAsync({})
       .catch((err) => console.log(err))
       .then(() => {
-        getCartList.refetch();
+        onCartRefetch();
         onClose();
       });
   };
@@ -76,7 +78,7 @@ function CartProductRow({
       {/* Remove from cart modal */}
       <CartModal
         name={name}
-        isLoading={deleteFromCart.isLoading || getCartList.isRefetching}
+        isLoading={isLoading || deleteFromCart.isLoading}
         onRemove={onRemoveHandler}
         isOpen={isOpen}
         onClose={onClose}

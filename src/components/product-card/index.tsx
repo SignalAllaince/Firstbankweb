@@ -53,7 +53,7 @@ function ProductCard({
         getCartList.refetch();
         toast({
           appearance: "success",
-          description: `${name} was added to wishlist`,
+          description: ` was added to wishlist`,
         });
       })
       .catch((err) => {
@@ -64,10 +64,10 @@ function ProductCard({
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     addToWishlist.refetch().then(() => {
-      setLike((prev) => !prev);
+      setLike(true);
       toast({
         appearance: "info",
-        description: "Item Successfully added to wishlist",
+        description: `${name} successfully added to wishlist`,
       });
     });
   };
@@ -100,7 +100,9 @@ function ProductCard({
             <Button
               variant="secondary"
               size="small"
+              isLoading={addToWishlist.isFetching}
               onClick={handleLike}
+              spinnerColor="#003B65"
               className="relative h-auto border-0 px-[4px] py-1 ring-red-600"
             >
               <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />

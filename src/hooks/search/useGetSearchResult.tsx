@@ -6,6 +6,7 @@ const useGetSearchResult = (search: string) => {
     method: "get",
     endpoint: ENDPOINTS.GET_SEARCH_RESULT(search),
     queryKey: [NAMESPACE.GET_SEARCH_RESULT, search],
+    enabled: !!search,
   });
 };
 

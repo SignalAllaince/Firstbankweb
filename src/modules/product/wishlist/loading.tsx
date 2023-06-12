@@ -1,28 +1,11 @@
-import Icon from "@/components/icon";
 import Section from "@/components/section";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
-const CartLoadingPage = () => {
+const WishListSkeleton = () => {
   return (
     <>
       <div className="animate-pulse bg-white pb-10">
-        <div className="w-full border-b border-gray-200 ">
-          <Section className="space-y-4 py-8">
-            <div className="flex items-center gap-1 text-sm">
-              <div className="h-2 w-10 rounded bg-slate-200"></div>
-              <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <div className="h-2 w-10 rounded bg-slate-200"></div>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="h-8 w-20 bg-slate-200 px-2" />
-              <div className="h-4 w-20 bg-slate-200 px-2" />
-            </div>
-            {/* <Button onClick={onOpen}>Open Modals</Button> */}
-          </Section>
-        </div>
-
-        <Section className="gap-x-4 pt-5 lg:grid lg:grid-cols-12">
-          <div className="mb-8 space-y-6 overflow-hidden rounded bg-white pb-2 lg:col-span-8">
+        <Section className="gap-x-4 pt-5">
+          <div className="mb-8 space-y-6 overflow-hidden rounded bg-white pb-2">
             <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
               <div className="sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -58,9 +41,9 @@ const CartLoadingPage = () => {
                               </div>
                             </div>
 
-                            <div className="flex w-[200px] flex-col items-center space-y-4 py-4 text-center">
-                              <div className="h-4 w-20 bg-slate-200 px-2" />
-                              <div className="h-6 w-24 bg-slate-200 px-2" />
+                            <div className="flex w-[200px] flex-col items-end space-y-4 py-4 text-center">
+                              <div className="h-2 w-16 bg-slate-200 px-2" />
+                              <div className="h-2 w-20 bg-slate-200 px-2" />
                             </div>
                           </div>
                         ))}
@@ -71,11 +54,10 @@ const CartLoadingPage = () => {
               </div>
             </div>
           </div>
-          <div className="mt-4 h-48 w-full rounded bg-slate-200 lg:col-span-4"></div>
         </Section>
       </div>
     </>
   );
 };
 
-export default CartLoadingPage;
+export default WishListSkeleton;

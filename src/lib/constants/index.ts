@@ -53,7 +53,7 @@ export const ENDPOINTS = {
   DELETE_ADDRESS: "account/address/confirm-delete",
 
   // search Endpoint
-  GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
+  GET_SEARCH_RESULT: (search: string) => `search/query?q=${search}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 
   // review Endpoints
@@ -94,7 +94,8 @@ export const ENDPOINTS = {
   GET_WISHLIST: (pageNumber: number, pageSize: number) =>
     `account/wishlist/${pageNumber}/${pageSize}`,
   ADD_ITEM_TO_WISHLIST: (id: number) => `account/wishlist/add-item?id=${id}`,
-  REMOVE_ITEM_FROM_WISHLIST: "account/wishlist/",
+  REMOVE_ITEM_FROM_WISHLIST: (id: number) =>
+    `account/wishlist/remove-item?id=${id}`,
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
 
   // Checkout Endpoints
