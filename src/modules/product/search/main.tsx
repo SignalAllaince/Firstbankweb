@@ -8,10 +8,8 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { popularity, priceList } from "@/lib/constants/rating";
-import { cn } from "@/lib/utils/component.utils";
+import { displayValue } from "@/lib/utils/common.utils";
 import { SearchResponse } from "@/types/api.types";
-import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -19,15 +17,22 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const SearchMainSection = ({
   search,
   searchResult,
+  sort,
+  onChangeSort,
+  isRefetching,
 }: {
   search: string;
   searchResult: SearchResponse;
+  // eslint-disable-next-line no-unused-vars
+  onChangeSort: (value: string) => void;
+  isRefetching: boolean;
+  sort?: string;
 }) => {
-  const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
 
   return (
@@ -48,26 +53,43 @@ const SearchMainSection = ({
             <Heading size="h4">
               Search Results - <span className="capitalize">{search}</span>
             </Heading>
-            <div className="flex items-center gap-2">
+            <div className="relative flex items-center gap-2">
               <p className="text-sm">Filter:</p>
               <Menu>
                 <MenuButton
                   as={Button}
                   variant="secondary"
                   size="small"
-                  className="h-8 border-brand-light px-[6px] text-brand-darkest"
+                  className="h-8 min-w-[130px] border-brand-light px-[6px] text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
-                  {searchResult.availableSortOptions[0].display}
+                  {sort
+                    ? displayValue(searchResult.availableSortOptions, sort)
+                    : "Apply Filter"}
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
                   {searchResult.availableSortOptions.map((item) => (
-                    <MenuItem key={item.value} value={item.value}>
+                    <MenuItem
+                      key={item.value}
+                      value={item.value}
+                      onClick={() => {
+                        onChangeSort(item.value!);
+                      }}
+                    >
                       {item.display}
                     </MenuItem>
                   ))}
                 </MenuItems>
               </Menu>
+              <div className="absolute -right-6 top-1">
+                <ClipLoader
+                  color="#003B65"
+                  loading={isRefetching}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
             </div>
           </div>
         </Section>
@@ -77,54 +99,8 @@ const SearchMainSection = ({
       <section className="pb-20 pt-6">
         <Section className="grid grid-cols-12 gap-x-8">
           <div className="sticky top-0 col-span-4 h-fit space-y-3 font-light md:col-span-3">
-            <div className="border-b border-brand-darkest pb-5">
-              <RadioGroup value={plan} onChange={setPlan}>
-                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
-                <RadioGroup.Option value={popularity}>
-                  {({ checked, active }) => (
-                    <div className="flex cursor-pointer items-center gap-4">
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "ring-brand-darkest",
-                          active && checked ? "ring-2" : "",
-                          checked ? "bg-brand-darkest" : "",
-                          !active && checked ? "ring-2" : "",
-                          "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                        )}
-                      />
-                      <span className="text-sm">{popularity.name}</span>
-                    </div>
-                  )}
-                </RadioGroup.Option>
-              </RadioGroup>
-            </div>
             <Accordion title="Price">
-              <RadioGroup value={plan} onChange={setPlan}>
-                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
-                <div className="space-y-4">
-                  {priceList.map((plan) => (
-                    <RadioGroup.Option value={plan} key={plan.name}>
-                      {({ checked, active }) => (
-                        <div className="flex cursor-pointer items-center gap-4">
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "ring-brand-darkest",
-                              active && checked ? "ring-2" : "",
-                              checked ? "bg-brand-darkest" : "",
-                              !active && checked ? "ring-2" : "",
-                              "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                            )}
-                          />
-                          <span className="text-sm">{plan.name}</span>
-                        </div>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup>
-              <div className="space-y-3 pt-10">
+              <div className="space-y-3 pt-1">
                 <p>Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput

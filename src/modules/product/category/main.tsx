@@ -8,11 +8,8 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { priceList } from "@/lib/constants/rating";
 import { displayValue, stringifyCategory } from "@/lib/utils/common.utils";
-import { cn } from "@/lib/utils/component.utils";
 import { CategoryItems } from "@/types/api.types";
-import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -20,19 +17,22 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 function CategoryMain({
   categoryName,
   categoryProducts,
   sort,
   onChangeSort,
+  isRefetching,
 }: {
   sort?: string;
   categoryName: string;
   categoryProducts: CategoryItems;
+  // eslint-disable-next-line no-unused-vars
   onChangeSort: (value: string) => void;
+  isRefetching: boolean;
 }) {
-  const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
 
   return (
@@ -78,6 +78,15 @@ function CategoryMain({
                   ))}
                 </MenuItems>
               </Menu>
+              <div className="absolute -right-6 top-1">
+                <ClipLoader
+                  color="#003B65"
+                  loading={isRefetching}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
             </div>
           </div>
         </Section>
@@ -89,31 +98,7 @@ function CategoryMain({
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-24 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
             <Accordion title="Price">
-              <RadioGroup value={plan} onChange={setPlan}>
-                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
-                <div className="space-y-4">
-                  {priceList.map((plan) => (
-                    <RadioGroup.Option value={plan} key={plan.name}>
-                      {({ checked, active }) => (
-                        <div className="flex cursor-pointer items-center gap-4">
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "ring-brand-darkest",
-                              active && checked ? "ring-2" : "",
-                              checked ? "bg-brand-darkest" : "",
-                              !active && checked ? "ring-2" : "",
-                              "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                            )}
-                          />
-                          <span className="text-sm">{plan.name}</span>
-                        </div>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup>
-              <div className="space-y-3 pt-10">
+              <div className="space-y-3 pt-1">
                 <p className="text-sm">Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput

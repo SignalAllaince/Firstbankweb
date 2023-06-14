@@ -51,6 +51,7 @@ const CategoryPage: NextPageWithLayout<
           categoryProducts={categoryProducts?.value!}
           sort={sort}
           onChangeSort={changeSortHandler}
+          isRefetching={categoryProducts.isRefetching}
         />
       </IfElse>
     </div>

@@ -6,7 +6,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import CategoryLoading from "../category/loading";
 import SearchMainSection from "./main";
 
@@ -24,10 +24,14 @@ const SearchPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > &
   ProtectedComponentType = (props) => {
+  const [sort, setSortValue] = React.useState<string | undefined>(undefined);
+
   const searchResult = useGetSearchResult({
     search: props?.query?.searchQuery as string,
+    sort,
   });
-  console.log(searchResult?.value, "props");
+
+  const changeSortHandler = (value: string) => setSortValue(value);
 
   return (
     <div className="">
@@ -38,9 +42,11 @@ const SearchPage: NextPageWithLayout<
         onElse={<CategoryLoading />}
       >
         <SearchMainSection
-          // categoryName={router?.query?.categoryName as string}
           searchResult={searchResult?.value!}
           search={props?.query?.searchQuery as string}
+          sort={sort}
+          onChangeSort={changeSortHandler}
+          isRefetching={searchResult.isRefetching}
         />
       </IfElse>
     </div>
