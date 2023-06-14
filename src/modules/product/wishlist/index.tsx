@@ -4,7 +4,6 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
-import useGetSearchResult from "@/hooks/search/useGetSearchResult";
 import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -16,7 +15,6 @@ import WishListRow from "./wishlist-row";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   const getWishList = useGetWishlist(1);
-  useGetSearchResult("ashawo");
 
   return (
     <div className="bg-white">

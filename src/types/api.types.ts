@@ -112,15 +112,13 @@ export interface CategoryItems {
   totalProduct: number;
   products: CategoryProduct[];
   filterOption: {
-    categories: [
-      {
-        id: 12;
-        name: "Kitchen Utensils";
-        slug: "category/12/kitchen-utensils";
-        count: 1;
-        parentId: null;
-      }
-    ];
+    categories: {
+      id: number;
+      name: string;
+      slug: string;
+      count: number;
+      parentId: null;
+    }[];
     price: {
       maxPrice: number;
       minPrice: number;
@@ -215,5 +213,60 @@ export interface WishlistResponse {
     productImage: any[];
     description: null;
     quantity: number;
+  }[];
+}
+
+export interface SearchResponse {
+  totalProduct: number;
+  products: [
+    {
+      price: number;
+      oldPrice: number;
+      specialPrice: number;
+      stockQuantity: number;
+      specialPriceStart: string;
+      specialPriceEnd: string;
+      reviewsCount: number;
+      ratingAverage: null;
+      calculatedProductPrice: {
+        price: number;
+        oldPrice: number;
+        percentOfSaving: number;
+        priceString: string;
+        oldPriceString: string;
+      };
+      id: number;
+      name: string;
+      slug: string;
+      shortDescription: string;
+      thumbnailUrl: null;
+    }
+  ];
+  filterOption: {
+    categories: {
+      id: number;
+      name: string;
+      slug: string;
+      count: number;
+      parentId: null;
+    }[];
+    price: {
+      maxPrice: number;
+      minPrice: number;
+    };
+  };
+  currentSearchOption: {
+    q: string;
+    c: null;
+    p: number;
+    ps: number;
+    tp: number;
+    s: null;
+    mnp: null;
+    mxp: null;
+  };
+  availableSortOptions: {
+    value: string;
+    display: string;
   }[];
 }

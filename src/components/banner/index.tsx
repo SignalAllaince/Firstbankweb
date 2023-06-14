@@ -1,15 +1,46 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import React from "react";
+import shirtImg from "../../../public/images/shirt.svg";
 import shoeImg from "../../../public/images/shoe.svg";
+import umbrellaImg from "../../../public/images/umbrella.svg";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
 
+const images = [
+  {
+    src: shoeImg,
+  },
+  {
+    src: shirtImg,
+  },
+  {
+    src: umbrellaImg,
+  },
+];
+
+const colors = ["black", "#f0bd2d", "green"];
 function Banner() {
+  const [active, setActive] = React.useState<number>(0);
+  const [upset, setUpset] = React.useState<number>(1);
+  const time = 6000;
+
+  React.useEffect(() => {
+    const changeCarousel = () =>
+      setActive((prev) => (prev === 2 ? 0 : prev + 1));
+
+    const interval = setInterval(() => {
+      changeCarousel();
+    }, time);
+    return () => clearInterval(interval);
+  }, [upset, time]);
+
   return (
     <div className="banner-row grid w-full grid-cols-1 space-y-3">
       <Heading size="h4" className="h-fit pb-4 text-lg font-medium">
-        Hi Emeka, what items would you like to buy today?
+        Hi Trima, what items would you like to buy today?
       </Heading>
       <div className="relative flex flex-1 justify-center overflow-hidden rounded-[4px] bg-brand-blue px-8 py-6 text-brand-lightest">
         <div className="flex  w-full items-center justify-between">
@@ -31,20 +62,61 @@ function Banner() {
               </Button>
             </div>
             <div className="flex items-center gap-1 pt-10">
-              {[1, 2, 3, 4].map((item) => (
-                <div
-                  className={`h-2 w-2 rounded-full ${
-                    item < 2 ? "bg-brand-accent" : "bg-white"
-                  }`}
-                  key={item}
-                ></div>
-              ))}
+              {Array(images.length)
+                .fill(0)
+                .map((_, i) => i)
+                .map((item) => (
+                  <div
+                    onClick={() => {
+                      setActive(item);
+                      setUpset(upset + 1);
+                    }}
+                    className={`h-3 w-3 cursor-pointer rounded-full ${
+                      item < 2 ? "bg-brand-accent" : "bg-white"
+                    }`}
+                    style={{
+                      background: `${active === item ? "#f0bd2d" : "white"}`,
+                    }}
+                    key={item}
+                  ></div>
+                ))}
             </div>
           </div>
-          <div className="max-w-[300px]">
-            <Image src={shoeImg} alt="" className="relative z-20" />
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={active}
+              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ type: "spring", stiffness: 50, duration: 2000 }}
+              className="z-30 max-h-[300px] max-w-[270px]"
+            >
+              <Image
+                src={images[active].src}
+                alt=""
+                width={400}
+                height={400}
+                className="relative z-20"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="absolute -right-80 -top-20 z-10 h-[600px] w-[600px] -rotate-[30deg] overflow-hidden rounded-[40px] bg-brand-accent">
+            {/* <motion.div
+              key={active}
+              animate={{ opacity: 1, backgroundColor: colors[active] }}
+              initial={{
+                opacity: 0,
+                backgroundColor: colors[active === 0 ? 0 : active - 1],
+              }}
+              exit={{
+                opacity: 0,
+                backgroundColor: colors[active - 1 < 0 ? 0 : active - 1],
+              }}
+              // transition={{ delay: 0.2 }}
+              className="h-full w-full"
+            ></motion.div> */}
           </div>
-          <div className="absolute -right-80 -top-20 z-10 h-[600px] w-[600px] -rotate-[30deg] rounded-[40px] bg-brand-accent" />
         </div>
       </div>
     </div>

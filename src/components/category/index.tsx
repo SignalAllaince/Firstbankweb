@@ -64,7 +64,7 @@ function Catergory({
               href={`/${product.slug}`}
               // isFinished={product.stockQuantity === 0}
               stockQuantity={product.stockQuantity}
-              price={product.calculatedProductPrice.price}
+              price={product.calculatedProductPrice.priceString}
               imageAlt={`${product.name} image`}
             />
           ))}

@@ -16,8 +16,12 @@ export const ENDPOINTS = {
   // Category Endpoint
   GET_SEARCHED_CATEGORIES: "category-view/search-categories",
   GET_ALL_CATEGORIES: "category-view/all-categories",
-  GET_SINGLE_CATEGORY: (categoryId: number) =>
-    `category-view/details?id=${categoryId}`,
+  GET_SINGLE_CATEGORY_DETAILS: (
+    categoryId: number,
+    mnp?: string | number,
+    mxp?: string | number,
+    sort?: string
+  ) => `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}`,
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>
@@ -53,7 +57,12 @@ export const ENDPOINTS = {
   DELETE_ADDRESS: "account/address/confirm-delete",
 
   // search Endpoint
-  GET_SEARCH_RESULT: (search: string) => `search/query?q=${search}`,
+  GET_SEARCH_RESULT: (
+    search: string,
+    mnp?: string | number,
+    mxp?: string | number,
+    sort?: string
+  ) => `search/query?q=${search}&mnp=${mnp}&s=${sort}&mxp=${mxp}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 
   // review Endpoints
@@ -140,7 +149,7 @@ export const NAMESPACE = {
   // categories
   GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",
   GET_ALL_CATEGORIES: "GET_ALL_CATEGORIES",
-  GET_SINGLE_CATEGORY: "GET_SINGLE_CATEGORY",
+  GET_SINGLE_CATEGORY_DETAILS: "GET_SINGLE_CATEGORY",
   CREATE_CATEGORY: "CREATE_CATEGORY",
   UPDATE_CATEGORY: "UPDATE_CATEGORY",
   DELETE_CATEGORY: "DELETE_CATEGORY",

@@ -9,9 +9,8 @@ import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
 import { popularity, priceList } from "@/lib/constants/rating";
-import { stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
-import { CategoryItems } from "@/types/api.types";
+import { SearchResponse } from "@/types/api.types";
 import { RadioGroup } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -21,31 +20,33 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-function CategoryMain({
-  categoryName,
-  categoryProducts,
+const SearchMainSection = ({
+  search,
+  searchResult,
 }: {
-  categoryName: string;
-  categoryProducts: CategoryItems;
-}) {
+  search: string;
+  searchResult: SearchResponse;
+}) => {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
-  const [categoryOpt, setCategoryOpt] = useState(null);
 
   return (
-    <div>
+    <div className="">
       <div className="w-full bg-white">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
               <Link href="/">Home</Link>
               <Icon IconComp={ChevronRightIcon} boxSize={4} />
-              <p className="capitalize">{stringifyCategory(categoryName)}</p>
+              <p>Search result</p>
+            </div>
+            <div>
+              <p className="text-sm text-brand-medium">1-6 of 6 results</p>
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <Heading size="h3" className="capitalize">
-              {stringifyCategory(categoryName)}
+            <Heading size="h4">
+              Search Results - <span className="capitalize">{search}</span>
             </Heading>
             <div className="flex items-center gap-2">
               <p className="text-sm">Filter:</p>
@@ -57,10 +58,10 @@ function CategoryMain({
                   className="h-8 border-brand-light px-[6px] text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
-                  {categoryProducts.availableSortOptions[0].display}
+                  {searchResult.availableSortOptions[0].display}
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
-                  {categoryProducts.availableSortOptions.map((item) => (
+                  {searchResult.availableSortOptions.map((item) => (
                     <MenuItem key={item.value} value={item.value}>
                       {item.display}
                     </MenuItem>
@@ -73,41 +74,10 @@ function CategoryMain({
       </div>
 
       {/* second section */}
-
-      <section className="pb-24 pt-6">
-        <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
-            <Accordion title={stringifyCategory(categoryName)}>
-              <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
-                <RadioGroup.Label className="sr-only">
-                  {categoryName}
-                </RadioGroup.Label>
-                {/* <div className="space-y-4">
-                  {getCategoryList(props?.category as CategoryTypes).map(
-                    (plan) => (
-                      <RadioGroup.Option value={plan} key={plan.name}>
-                        {({ checked, active }) => (
-                          <div className="flex cursor-pointer items-center gap-4">
-                            <span
-                              aria-hidden="true"
-                              className={cn(
-                                "ring-brand-darkest",
-                                active && checked ? "ring-2" : "",
-                                checked ? "bg-brand-darkest" : "",
-                                !active && checked ? "ring-2" : "",
-                                "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                              )}
-                            />
-                            <span className="text-sm">{plan.name}</span>
-                          </div>
-                        )}
-                      </RadioGroup.Option>
-                    )
-                  )}
-                </div> */}
-              </RadioGroup>
-            </Accordion>
-            <div className="border-b border-brand-darkest pb-5 pt-2">
+      <section className="pb-20 pt-6">
+        <Section className="grid grid-cols-12 gap-x-8">
+          <div className="sticky top-0 col-span-4 h-fit space-y-3 font-light md:col-span-3">
+            <div className="border-b border-brand-darkest pb-5">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
                 <RadioGroup.Option value={popularity}>
@@ -155,7 +125,7 @@ function CategoryMain({
                 </div>
               </RadioGroup>
               <div className="space-y-3 pt-10">
-                <p className="text-sm">Custom Price Range</p>
+                <p>Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
                   <CustomInput
                     borderColor="border-brand-light"
@@ -177,23 +147,22 @@ function CategoryMain({
               <Ratings rating={rating} setRating={setRating} />
             </Accordion>
           </div>
-          <div className="col-span-9">
-            <div className="product-grid grid grid-cols-3 gap-x-4 gap-y-12">
-              {categoryProducts?.products.map((product) => (
+          <div className="col-span-8 md:col-span-9">
+            <div className="product-grid grid gap-x-4 gap-y-12">
+              {searchResult.products.map((product) => (
                 <ProductCard
-                  name={product.name}
-                  key={product.id}
-                  id={product.id}
+                  isCategoryPage
                   href={`/${product.slug}`}
-                  // isFinished={product.stockQuantity === 0}
+                  id={product.id}
+                  imageAlt={product.name}
+                  key={product.id}
+                  name={product.name}
                   stockQuantity={product.stockQuantity}
                   price={product.calculatedProductPrice.priceString}
-                  imageAlt={`${product.name} image`}
-                  isCategoryPage
                 />
               ))}
             </div>
-
+            {/* Pagination */}
             <div className="flex items-center justify-center">
               <Pagination />
             </div>
@@ -202,6 +171,6 @@ function CategoryMain({
       </section>
     </div>
   );
-}
+};
 
-export default CategoryMain;
+export default SearchMainSection;

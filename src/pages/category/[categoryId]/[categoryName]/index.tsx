@@ -4,4 +4,4 @@
 //   getStaticProps,
 // } from "@/modules/product/category";
 
-export { default } from "@/modules/product/category";
+export { default, getServerSideProps } from "@/modules/product/category";

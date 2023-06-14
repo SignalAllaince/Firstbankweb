@@ -29,7 +29,7 @@ function ProductCard({
   imageSrc?: string;
   imageAlt?: string;
   href?: string;
-  price?: number;
+  price?: string;
   isCategoryPage?: boolean;
   isFinished?: boolean;
   name?: string;
@@ -53,7 +53,7 @@ function ProductCard({
         getCartList.refetch();
         toast({
           appearance: "success",
-          description: ` was added to wishlist`,
+          description: `${name} was added to wishlist`,
         });
       })
       .catch((err) => {
@@ -110,7 +110,7 @@ function ProductCard({
           )}
         </div>
         <div className="space-y-1 pb-3">
-          <p className="font-medium text-gray-900">NGN {price ?? "25,000"}</p>
+          <p className="font-medium text-gray-900">{price}</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               {[0, 1, 2, 3, 4].map((rating) => (

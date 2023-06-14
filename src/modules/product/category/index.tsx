@@ -5,38 +5,35 @@ import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
 import { stringifyCategory } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { useRouter } from "next/router";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
 import CategoryLoading from "./loading";
 import CategoryMain from "./main";
 
-// export async function getStaticPaths() {
-//   const paths = getAllCategories();
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
+export const getServerSideProps: GetServerSideProps<{
+  query: ParsedUrlQuery;
+}> = async (params) => {
+  return {
+    props: {
+      query: params.query,
+    },
+  };
+};
 
-// export async function getStaticProps({ params }: { params: any }) {
-//   return {
-//     props: {
-//       category: params.category,
-//     },
-//   };
-// }
-
-const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const router = useRouter();
-  const categoryProducts = useGetCategoryProducts(
-    router?.query?.categoryId as unknown as number
-  );
+const CategoryPage: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> &
+  ProtectedComponentType = (props) => {
+  const categoryProducts = useGetCategoryProducts({
+    categoryId: props?.query?.categoryId as unknown as number,
+  });
 
   return (
     <div className="">
       <PageHead
         title={stringifyCategory(
-          (router.query?.categoryName as string) ?? "Category"
+          (props?.query?.categoryName as string) ?? "Category"
         )}
       />
       <IfElse
@@ -45,7 +42,7 @@ const CategoryPage: NextPageWithLayout & ProtectedComponentType = () => {
         onElse={<CategoryLoading />}
       >
         <CategoryMain
-          categoryName={router?.query?.categoryName as string}
+          categoryName={props?.query?.categoryName as string}
           categoryProducts={categoryProducts?.value!}
         />
       </IfElse>
