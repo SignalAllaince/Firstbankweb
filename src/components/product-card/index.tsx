@@ -83,7 +83,7 @@ function ProductCard({
         isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
       }  relative flex w-full flex-col overflow-hidden rounded-[4px] bg-white`}
     >
-      <div className="h-[220px] w-full overflow-hidden rounded-t-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[200px] w-full overflow-hidden rounded-t-[4px] bg-gray-200 transition-all duration-200 group-hover:opacity-75">
         <Image
           src={productImg}
           //   src={imageSrc}
@@ -93,7 +93,7 @@ function ProductCard({
           className=" h-[220px] w-full object-cover object-center"
         />
       </div>
-      <div className="mt-5 flex-1 space-y-6 px-3 pb-2">
+      <div className="mt-5 flex-1 space-y-6 px-[10px] pb-2">
         <div className="flex items-center justify-between">
           <p className="text-sm capitalize">{name}</p>
           {isCategoryPage && (
@@ -125,7 +125,9 @@ function ProductCard({
               ))}
             </div>
             <div className="bg-[#F5F8FA] p-1 px-2">
-              <p className="text-xs font-light">{stockQuantity} Remaining</p>
+              <p className="text-[10px] font-light">
+                {stockQuantity} Remaining
+              </p>
             </div>
           </div>
         </div>

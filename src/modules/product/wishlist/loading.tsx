@@ -11,15 +11,8 @@ const WishListSkeleton = () => {
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                   <div className="overflow-x-auto lg:overflow-x-hidden">
                     <table className="min-w-[640px] text-left text-sm font-light sm:min-w-full">
-                      <thead className="border-b font-medium">
-                        <tr>
-                          <th className="py-4 text-left font-medium text-brand-darkest">
-                            <div className="h-2 w-20 max-w-[400px] bg-slate-200" />
-                          </th>
-                        </tr>
-                      </thead>
                       <tbody>
-                        {[1, 2].map((item) => (
+                        {[1, 2, 3].map((item) => (
                           <div
                             key={item}
                             className="flex items-center justify-between border-b"

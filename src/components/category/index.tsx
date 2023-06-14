@@ -9,7 +9,7 @@ import ProductCardSkeleton from "../product-card/skeleton";
 
 function Catergory({
   header,
-  id,
+  categoryId,
   noMore = false,
   indep = false,
   slug,
@@ -18,10 +18,12 @@ function Catergory({
   products?: any[];
   indep?: boolean;
   noMore?: boolean;
-  id: number;
+  categoryId: number;
   slug: string;
 }) {
-  const categoryProducts = useGetCategoryProducts(id);
+  const categoryProducts = useGetCategoryProducts({
+    categoryId,
+  });
 
   return (
     <div className="space-y-6 py-10">

@@ -45,8 +45,9 @@ const buttonClasses = cva(
           "focus:border-brand-lightblue",
           "focus:text-brand-lightblue",
           "focus:ring-0",
-          "disabled:border-[#E4E4EE]",
-          "disabled:text-[#E4E4EE]",
+          "disabled:opacity-50",
+          // "disabled:border-[#E4E4EE]",
+          // "disabled:text-[#E4E4EE]",
         ],
         warning: ["bg-brand-accent", "text-brand-darkest", "focus:ring-0"],
         menu: [
@@ -130,6 +131,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       href,
       spinnerColor = "currentColor",
       isLoading = false,
+      disabled,
       className = "",
       ...others
     },
@@ -153,7 +155,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={classNames}
         {...others}
-        disabled={isLoading ? true : false}
+        disabled={isLoading || disabled}
       >
         {leftIcon && (
           <span

@@ -21,11 +21,11 @@ const images = [
   },
 ];
 
-const colors = ["black", "#f0bd2d", "green"];
+// const colors = ["black", "#f0bd2d", "green"];
 function Banner() {
   const [active, setActive] = React.useState<number>(0);
   const [upset, setUpset] = React.useState<number>(1);
-  const time = 6000;
+  const time = 3000;
 
   React.useEffect(() => {
     const changeCarousel = () =>
@@ -57,6 +57,7 @@ function Banner() {
                 size="small"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
                 variant="warning"
+                href="/product/7/watch"
               >
                 View product
               </Button>
@@ -89,7 +90,7 @@ function Banner() {
               initial={{ opacity: 0, scale: 0.9 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ type: "spring", stiffness: 50, duration: 2000 }}
-              className="z-30 max-h-[300px] max-w-[270px]"
+              className="z-20 max-h-[300px] max-w-[270px]"
             >
               <Image
                 src={images[active].src}

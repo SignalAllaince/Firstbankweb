@@ -7,7 +7,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import CategoryLoading from "./loading";
 import CategoryMain from "./main";
 
@@ -25,10 +25,15 @@ const CategoryPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > &
   ProtectedComponentType = (props) => {
+  const [sort, setSortValue] = React.useState<string | undefined>(undefined);
   const categoryProducts = useGetCategoryProducts({
     categoryId: props?.query?.categoryId as unknown as number,
+    sort,
   });
 
+  const changeSortHandler = (value: string) => setSortValue(value);
+
+  console.log(categoryProducts.isRefetching, "categoryProducts.isRefetching?");
   return (
     <div className="">
       <PageHead
@@ -44,6 +49,8 @@ const CategoryPage: NextPageWithLayout<
         <CategoryMain
           categoryName={props?.query?.categoryName as string}
           categoryProducts={categoryProducts?.value!}
+          sort={sort}
+          onChangeSort={changeSortHandler}
         />
       </IfElse>
     </div>

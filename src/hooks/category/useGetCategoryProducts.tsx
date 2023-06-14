@@ -15,7 +15,7 @@ const useGetCategoryProducts = ({
 }) => {
   return useQueryActionHook<CategoryItems>({
     method: "get",
-    endpoint: ENDPOINTS.GET_SINGLE_CATEGORY_DETAILS(categoryId),
+    endpoint: ENDPOINTS.GET_SINGLE_CATEGORY_DETAILS(categoryId, mnp, mxp, sort),
     queryKey: [
       NAMESPACE.GET_SINGLE_CATEGORY_DETAILS,
       categoryId,

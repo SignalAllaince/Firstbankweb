@@ -1,47 +1,43 @@
-import {
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Button from "../button";
 import Icon from "../icon";
 
 function Pagination() {
   return (
     <div className="flex items-center gap-3 pt-10">
-      <Button className="px-[8px]" variant="secondary" size="xs">
+      {/* <Button className="px-[8px]" variant="secondary" size="xs">
         <Icon
           boxSize={4}
           className="text-brand-medium"
           IconComp={ChevronDoubleLeftIcon}
         />
+      </Button> */}
+      <Button
+        className="px-[8px] outline-none focus:ring focus:ring-blue-300"
+        variant="secondary"
+        size="xs"
+      >
+        <Icon boxSize={5} className="" IconComp={ChevronLeftIcon} />
       </Button>
-      <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon
-          boxSize={4}
-          className="text-brand-medium"
-          IconComp={ChevronLeftIcon}
-        />
-      </Button>
-      <Button variant="secondary" size="xs" style={{ fontSize: "14px" }}>
+      <div className="flex h-8 items-center justify-center rounded border border-brand-blue px-[14px]">
         1
-      </Button>
-      <p className="text-sm font-light">of 1</p>
+      </div>
+      <p className="text-md font-light">of 1</p>
 
-      <Button className="px-[8px]" variant="secondary" size="xs">
+      {/* <Button className="px-[8px]" variant="secondary" size="xs">
         <Icon
           boxSize={4}
           className="text-brand-medium"
           IconComp={ChevronDoubleRightIcon}
         />
-      </Button>
-      <Button className="px-[8px]" variant="secondary" size="xs">
-        <Icon
-          boxSize={4}
-          className="text-brand-medium"
-          IconComp={ChevronRightIcon}
-        />
+      </Button> */}
+      <Button
+        className="px-[8px] outline-none focus:ring focus:ring-blue-300"
+        variant="secondary"
+        size="xs"
+        disabled
+      >
+        <Icon boxSize={5} IconComp={ChevronRightIcon} />
       </Button>
     </div>
   );

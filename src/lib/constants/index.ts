@@ -21,7 +21,8 @@ export const ENDPOINTS = {
     mnp?: string | number,
     mxp?: string | number,
     sort?: string
-  ) => `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}`,
+  ) =>
+    `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=3`,
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>

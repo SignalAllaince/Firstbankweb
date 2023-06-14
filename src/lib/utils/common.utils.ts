@@ -173,3 +173,11 @@ export const pipe =
   (...functions: Function[]) =>
   (initialValue: number | string) =>
     functions.reduce((acc, fn) => fn(acc), initialValue);
+
+type Menu = {
+  value: string;
+  display: string;
+};
+
+export const displayValue = (arr: Menu[], sort: string) =>
+  arr.find((item) => item.value === sort)?.display;

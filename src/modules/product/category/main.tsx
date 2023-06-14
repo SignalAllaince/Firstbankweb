@@ -8,8 +8,8 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
-import { popularity, priceList } from "@/lib/constants/rating";
-import { stringifyCategory } from "@/lib/utils/common.utils";
+import { priceList } from "@/lib/constants/rating";
+import { displayValue, stringifyCategory } from "@/lib/utils/common.utils";
 import { cn } from "@/lib/utils/component.utils";
 import { CategoryItems } from "@/types/api.types";
 import { RadioGroup } from "@headlessui/react";
@@ -24,13 +24,16 @@ import { useState } from "react";
 function CategoryMain({
   categoryName,
   categoryProducts,
+  sort,
+  onChangeSort,
 }: {
+  sort?: string;
   categoryName: string;
   categoryProducts: CategoryItems;
+  onChangeSort: (value: string) => void;
 }) {
   const [plan, setPlan] = useState(null);
   const [rating, setRating] = useState(null);
-  const [categoryOpt, setCategoryOpt] = useState(null);
 
   return (
     <div>
@@ -47,21 +50,29 @@ function CategoryMain({
             <Heading size="h3" className="capitalize">
               {stringifyCategory(categoryName)}
             </Heading>
-            <div className="flex items-center gap-2">
+            <div className="relative flex items-center gap-2">
               <p className="text-sm">Filter:</p>
               <Menu>
                 <MenuButton
                   as={Button}
                   variant="secondary"
                   size="small"
-                  className="h-8 border-brand-light px-[6px] text-brand-darkest"
+                  className="h-8 min-w-[130px] border-brand-light px-[6px] text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
-                  {categoryProducts.availableSortOptions[0].display}
+                  {sort
+                    ? displayValue(categoryProducts.availableSortOptions, sort)
+                    : "Apply Filter"}
                 </MenuButton>
                 <MenuItems menuClasses="right-0 bg-white divide-y divide-gray-100 mt-[18px]">
                   {categoryProducts.availableSortOptions.map((item) => (
-                    <MenuItem key={item.value} value={item.value}>
+                    <MenuItem
+                      key={item.value}
+                      value={item.value}
+                      onClick={() => {
+                        onChangeSort(item.value!);
+                      }}
+                    >
                       {item.display}
                     </MenuItem>
                   ))}
@@ -76,59 +87,7 @@ function CategoryMain({
 
       <section className="pb-24 pt-6">
         <Section className="grid grid-cols-12 gap-x-5">
-          <div className="sticky top-0 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
-            <Accordion title={stringifyCategory(categoryName)}>
-              <RadioGroup value={categoryOpt} onChange={setCategoryOpt}>
-                <RadioGroup.Label className="sr-only">
-                  {categoryName}
-                </RadioGroup.Label>
-                {/* <div className="space-y-4">
-                  {getCategoryList(props?.category as CategoryTypes).map(
-                    (plan) => (
-                      <RadioGroup.Option value={plan} key={plan.name}>
-                        {({ checked, active }) => (
-                          <div className="flex cursor-pointer items-center gap-4">
-                            <span
-                              aria-hidden="true"
-                              className={cn(
-                                "ring-brand-darkest",
-                                active && checked ? "ring-2" : "",
-                                checked ? "bg-brand-darkest" : "",
-                                !active && checked ? "ring-2" : "",
-                                "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                              )}
-                            />
-                            <span className="text-sm">{plan.name}</span>
-                          </div>
-                        )}
-                      </RadioGroup.Option>
-                    )
-                  )}
-                </div> */}
-              </RadioGroup>
-            </Accordion>
-            <div className="border-b border-brand-darkest pb-5 pt-2">
-              <RadioGroup value={plan} onChange={setPlan}>
-                <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
-                <RadioGroup.Option value={popularity}>
-                  {({ checked, active }) => (
-                    <div className="flex cursor-pointer items-center gap-4">
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "ring-brand-darkest",
-                          active && checked ? "ring-2" : "",
-                          checked ? "bg-brand-darkest" : "",
-                          !active && checked ? "ring-2" : "",
-                          "relative block h-4 w-4 rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
-                        )}
-                      />
-                      <span className="text-sm">{popularity.name}</span>
-                    </div>
-                  )}
-                </RadioGroup.Option>
-              </RadioGroup>
-            </div>
+          <div className="sticky top-24 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
             <Accordion title="Price">
               <RadioGroup value={plan} onChange={setPlan}>
                 <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>

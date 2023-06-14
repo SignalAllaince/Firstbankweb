@@ -8,10 +8,12 @@ const Accordion = ({
   initialState = true,
   title,
   children,
+  btnIsHidden = false,
 }: {
   initialState?: boolean;
   title: string;
   children: ReactNode;
+  btnIsHidden?: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(initialState);
 
@@ -27,13 +29,15 @@ const Accordion = ({
         <Heading size="h5" className="capitalize text-black">
           {title}
         </Heading>
-        <p className="text-2xl font-bold">
-          {isOpen ? (
-            <Icon IconComp={MinusIcon} />
-          ) : (
-            <Icon IconComp={PlusIcon} />
-          )}
-        </p>
+        {!btnIsHidden && (
+          <p className="text-2xl font-bold">
+            {isOpen ? (
+              <Icon IconComp={MinusIcon} />
+            ) : (
+              <Icon IconComp={PlusIcon} />
+            )}
+          </p>
+        )}
       </motion.header>
       <AnimatePresence initial={false}>
         {isOpen && (
