@@ -57,6 +57,7 @@ function Banner() {
                 size="small"
                 rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
                 variant="warning"
+                className="w-fit"
                 href="/product/7/watch"
               >
                 View product

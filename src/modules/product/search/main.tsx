@@ -46,7 +46,10 @@ const SearchMainSection = ({
               <p>Search result</p>
             </div>
             <div>
-              <p className="text-sm text-brand-medium">1-6 of 6 results</p>
+              <p className="text-sm text-brand-medium">
+                1-{Math.min(searchResult.totalProduct, 10)} of{" "}
+                {searchResult.totalProduct} results
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-between">

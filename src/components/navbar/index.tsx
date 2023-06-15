@@ -28,7 +28,8 @@ function Navbar() {
   const searchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!search.trim()) return;
-    router.push(`/search/${search}`);
+    router.push(`/search/${search.trim()}`);
+    setSearch("");
   };
 
   return (
