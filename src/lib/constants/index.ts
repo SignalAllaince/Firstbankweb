@@ -20,9 +20,10 @@ export const ENDPOINTS = {
     categoryId: number,
     mnp?: string | number,
     mxp?: string | number,
-    sort?: string
+    sort?: string,
+    ps?: number
   ) =>
-    `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=3`,
+    `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=${ps}`,
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>
@@ -62,8 +63,9 @@ export const ENDPOINTS = {
     search: string,
     mnp?: string | number,
     mxp?: string | number,
-    sort?: string
-  ) => `search/query?q=${search}&mnp=${mnp}&s=${sort}&mxp=${mxp}`,
+    sort?: string,
+    ps?: number
+  ) => `search/query?q=${search}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=${ps}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 
   // review Endpoints

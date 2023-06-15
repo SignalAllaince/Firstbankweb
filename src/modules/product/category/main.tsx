@@ -4,7 +4,6 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
-import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
@@ -17,7 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 
 function CategoryMain({
   categoryName,
@@ -78,15 +77,6 @@ function CategoryMain({
                   ))}
                 </MenuItems>
               </Menu>
-              <div className="absolute -right-6 top-1">
-                <ClipLoader
-                  color="#003B65"
-                  loading={isRefetching}
-                  size={20}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-              </div>
             </div>
           </div>
         </Section>
@@ -94,7 +84,19 @@ function CategoryMain({
 
       {/* second section */}
 
-      <section className="pb-24 pt-6">
+      <section className="relative pb-24 pt-6">
+        <div className="absolute right-0 top-0 z-30 w-full">
+          <BarLoader
+            color="#003B65"
+            loading={isRefetching}
+            height={2}
+            speedMultiplier={0.8}
+            width="100%"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+
         <Section className="grid grid-cols-12 gap-x-5">
           <div className="sticky top-24 col-span-3 h-fit space-y-3 border-t border-brand-darkest font-light">
             <Accordion title="Price">
@@ -138,9 +140,9 @@ function CategoryMain({
               ))}
             </div>
 
-            <div className="flex items-center justify-center">
+            {/* <div className="flex items-center justify-center">
               <Pagination />
-            </div>
+            </div> */}
           </div>
         </Section>
       </section>

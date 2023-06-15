@@ -8,6 +8,7 @@ import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
+import { usePagination } from "@/hooks/use-pagination";
 import { displayValue } from "@/lib/utils/common.utils";
 import { SearchResponse } from "@/types/api.types";
 import {
@@ -17,7 +18,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 
 const SearchMainSection = ({
   search,
@@ -34,6 +35,7 @@ const SearchMainSection = ({
   sort?: string;
 }) => {
   const [rating, setRating] = useState(null);
+  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
 
   return (
     <div className="">
@@ -84,22 +86,24 @@ const SearchMainSection = ({
                   ))}
                 </MenuItems>
               </Menu>
-              <div className="absolute -right-6 top-1">
-                <ClipLoader
-                  color="#003B65"
-                  loading={isRefetching}
-                  size={20}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-              </div>
             </div>
           </div>
         </Section>
       </div>
 
       {/* second section */}
-      <section className="pb-20 pt-6">
+      <section className="relative pb-20 pt-6">
+        <div className="absolute right-0 top-0 z-30 w-full">
+          <BarLoader
+            color="#003B65"
+            loading={isRefetching}
+            height={2}
+            speedMultiplier={0.8}
+            width="100%"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
         <Section className="grid grid-cols-12 gap-x-8">
           <div className="sticky top-0 col-span-4 h-fit space-y-3 font-light md:col-span-3">
             <Accordion title="Price">
@@ -143,7 +147,14 @@ const SearchMainSection = ({
             </div>
             {/* Pagination */}
             <div className="flex items-center justify-center">
-              <Pagination />
+              <Pagination
+                onNext={onNext}
+                onPrev={onPrev}
+                currentPageNumber={currentPageNumber}
+                isPrevDisabled={currentPageNumber === 1}
+                isNextDisabled={currentPageNumber === totalPages}
+                totalPages={totalPages}
+              />
             </div>
           </div>
         </Section>
