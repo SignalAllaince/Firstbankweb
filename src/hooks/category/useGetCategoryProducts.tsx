@@ -8,12 +8,14 @@ const useGetCategoryProducts = ({
   mxp,
   sort,
   ps,
+  page,
 }: {
   categoryId: number;
   mnp?: string | number;
   mxp?: string | number;
   sort?: string;
   ps?: number;
+  page?: number;
 }) => {
   return useQueryActionHook<CategoryItems>({
     method: "get",
@@ -22,7 +24,8 @@ const useGetCategoryProducts = ({
       mnp,
       mxp,
       sort,
-      ps
+      ps,
+      page
     ),
     queryKey: [
       NAMESPACE.GET_SINGLE_CATEGORY_DETAILS,
@@ -31,6 +34,7 @@ const useGetCategoryProducts = ({
       mxp,
       sort,
       ps,
+      page,
     ],
     enabled: !!categoryId,
   });

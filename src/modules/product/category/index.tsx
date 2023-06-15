@@ -2,6 +2,8 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
+import useDebounce from "@/hooks/use-debounce";
+import PaginationContextProvider from "@/hooks/use-pagination";
 import { stringifyCategory } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -26,14 +28,30 @@ const CategoryPage: NextPageWithLayout<
 > &
   ProtectedComponentType = (props) => {
   const [sort, setSortValue] = React.useState<string | undefined>(undefined);
+  const [currentPageNumber, setPage] = React.useState(1);
+  const pageSize = 3;
+
+  const [max, setMax] = React.useState("");
+  const [min, setMin] = React.useState("");
+
+  const onMaxChange = (value: string) => setMax(value);
+
+  const onMinChange = (value: string) => setMin(value.trim());
+
+  const debouncedMin = useDebounce(min, 2000);
+  const debouncedMax = useDebounce(max, 2000);
+
   const categoryProducts = useGetCategoryProducts({
     categoryId: props?.query?.categoryId as unknown as number,
     sort,
+    page: currentPageNumber,
+    ps: pageSize,
+    mnp: debouncedMin,
+    mxp: debouncedMax,
   });
 
   const changeSortHandler = (value: string) => setSortValue(value);
 
-  console.log(categoryProducts.isRefetching, "categoryProducts.isRefetching?");
   return (
     <div className="">
       <PageHead
@@ -46,13 +64,24 @@ const CategoryPage: NextPageWithLayout<
         ifOnElse={categoryProducts.isLoading && !categoryProducts?.value}
         onElse={<CategoryLoading />}
       >
-        <CategoryMain
-          categoryName={props?.query?.categoryName as string}
-          categoryProducts={categoryProducts?.value!}
-          sort={sort}
-          onChangeSort={changeSortHandler}
-          isRefetching={categoryProducts.isRefetching}
-        />
+        <PaginationContextProvider
+          currentPageNumber={currentPageNumber}
+          setPage={setPage}
+          total={categoryProducts?.value?.totalProduct!}
+          pageSize={pageSize}
+        >
+          <CategoryMain
+            categoryName={props?.query?.categoryName as string}
+            categoryProducts={categoryProducts?.value!}
+            sort={sort}
+            onChangeSort={changeSortHandler}
+            isRefetching={categoryProducts.isRefetching}
+            max={max}
+            onMaxChange={onMaxChange}
+            min={min}
+            onMinChange={onMinChange}
+          />
+        </PaginationContextProvider>
       </IfElse>
     </div>
   );

@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import Accordion from "@/components/accordion";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 import Ratings from "@/components/rating";
 import Section from "@/components/section";
+import { usePagination } from "@/hooks/use-pagination";
 import { displayValue, stringifyCategory } from "@/lib/utils/common.utils";
 import { CategoryItems } from "@/types/api.types";
 import {
@@ -15,7 +18,7 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
 
 function CategoryMain({
@@ -24,15 +27,31 @@ function CategoryMain({
   sort,
   onChangeSort,
   isRefetching,
+  max,
+  onMaxChange,
+  min,
+  onMinChange,
 }: {
   sort?: string;
   categoryName: string;
   categoryProducts: CategoryItems;
-  // eslint-disable-next-line no-unused-vars
   onChangeSort: (value: string) => void;
   isRefetching: boolean;
+  max: string;
+  onMaxChange: (value: string) => void;
+  min: string;
+  onMinChange: (value: string) => void;
 }) {
   const [rating, setRating] = useState(null);
+  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    sectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [currentPageNumber]);
 
   return (
     <div>
@@ -85,6 +104,7 @@ function CategoryMain({
       {/* second section */}
 
       <section className="relative pb-24 pt-6">
+        <div ref={sectionRef} />
         <div className="absolute right-0 top-0 z-30 w-full">
           <BarLoader
             color="#003B65"
@@ -107,14 +127,28 @@ function CategoryMain({
                     borderColor="border-brand-light"
                     bg="bg-white"
                     name="min"
+                    type="number"
                     placeholder="min"
+                    min={0}
+                    max={max}
+                    value={min}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      onMinChange(e.target.value);
+                    }}
                   />
                   <Icon IconComp={MinusIcon} />
                   <CustomInput
                     borderColor="border-brand-light"
                     bg="bg-white"
+                    type="number"
                     name="max"
                     placeholder="max"
+                    min={!!min && +min > -1 ? min : 0}
+                    isDisabled={!min}
+                    value={max}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      onMaxChange(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -140,9 +174,16 @@ function CategoryMain({
               ))}
             </div>
 
-            {/* <div className="flex items-center justify-center">
-              <Pagination />
-            </div> */}
+            <div className="flex items-center justify-center">
+              <Pagination
+                onNext={onNext}
+                onPrev={onPrev}
+                currentPageNumber={currentPageNumber}
+                isPrevDisabled={currentPageNumber === 1}
+                isNextDisabled={currentPageNumber === totalPages}
+                totalPages={totalPages}
+              />
+            </div>
           </div>
         </Section>
       </section>

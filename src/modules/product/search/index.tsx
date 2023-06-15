@@ -2,6 +2,7 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import useGetSearchResult from "@/hooks/search/useGetSearchResult";
+import useDebounce from "@/hooks/use-debounce";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
@@ -27,12 +28,24 @@ const SearchPage: NextPageWithLayout<
   ProtectedComponentType = (props) => {
   const [sort, setSortValue] = React.useState<string | undefined>(undefined);
   const [currentPageNumber, setPage] = React.useState(1);
-  const pageSize = 6;
+  const pageSize = 3;
+  const [max, setMax] = React.useState("");
+  const [min, setMin] = React.useState("");
+
+  const onMaxChange = (value: string) => setMax(value);
+
+  const onMinChange = (value: string) => setMin(value.trim());
+
+  const debouncedMin = useDebounce(min, 2000);
+  const debouncedMax = useDebounce(max, 2000);
 
   const searchResult = useGetSearchResult({
     search: props?.query?.searchQuery as string,
     sort,
     ps: pageSize,
+    page: currentPageNumber,
+    mnp: debouncedMin,
+    mxp: debouncedMax,
   });
 
   const changeSortHandler = (value: string) => setSortValue(value);
@@ -57,6 +70,10 @@ const SearchPage: NextPageWithLayout<
             sort={sort}
             onChangeSort={changeSortHandler}
             isRefetching={searchResult.isRefetching}
+            max={max}
+            onMaxChange={onMaxChange}
+            min={min}
+            onMinChange={onMinChange}
           />
         </PaginationContextProvider>
       </IfElse>

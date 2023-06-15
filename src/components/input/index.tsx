@@ -94,6 +94,7 @@ const CustomInput = React.forwardRef<
           className={cn(className, inputClasses({ variant, inputSize }))}
           min={others.min}
           max={others.max}
+          disabled={isDisabled}
         />
       </InputWrapper>
     );

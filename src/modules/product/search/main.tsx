@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Accordion from "@/components/accordion";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
@@ -17,7 +18,7 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useState } from "react";
+import React from "react";
 import { BarLoader } from "react-spinners";
 
 const SearchMainSection = ({
@@ -26,16 +27,31 @@ const SearchMainSection = ({
   sort,
   onChangeSort,
   isRefetching,
+  max,
+  onMaxChange,
+  min,
+  onMinChange,
 }: {
   search: string;
   searchResult: SearchResponse;
-  // eslint-disable-next-line no-unused-vars
   onChangeSort: (value: string) => void;
   isRefetching: boolean;
   sort?: string;
+  max: string;
+  onMaxChange: (value: string) => void;
+  min: string;
+  onMinChange: (value: string) => void;
 }) => {
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = React.useState(null);
   const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const sectionRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    sectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [currentPageNumber]);
 
   return (
     <div className="">
@@ -93,6 +109,7 @@ const SearchMainSection = ({
 
       {/* second section */}
       <section className="relative pb-20 pt-6">
+        <div ref={sectionRef} />
         <div className="absolute right-0 top-0 z-30 w-full">
           <BarLoader
             color="#003B65"
@@ -115,6 +132,12 @@ const SearchMainSection = ({
                     bg="bg-white"
                     name="min"
                     placeholder="min"
+                    min={0}
+                    max={max}
+                    value={min}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      onMinChange(e.target.value);
+                    }}
                   />
                   <Icon IconComp={MinusIcon} />
                   <CustomInput
@@ -122,6 +145,12 @@ const SearchMainSection = ({
                     bg="bg-white"
                     name="max"
                     placeholder="max"
+                    min={!!min && +min > -1 ? min : 0}
+                    isDisabled={!min}
+                    value={max}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      onMaxChange(e.target.value);
+                    }}
                   />
                 </div>
               </div>
