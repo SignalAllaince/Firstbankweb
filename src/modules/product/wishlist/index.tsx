@@ -16,7 +16,8 @@ import WishListMainSection from "./main";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [currentPageNumber, setPage] = React.useState(1);
-  const getWishList = useGetWishlist(currentPageNumber, 6);
+  const pageSize = 4;
+  const getWishList = useGetWishlist(currentPageNumber, pageSize);
 
   return (
     <div className="bg-white">
@@ -45,6 +46,7 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
           currentPageNumber={currentPageNumber}
           setPage={setPage}
           total={getWishList?.value?.totalItems!}
+          pageSize={pageSize}
         >
           <WishListMainSection
             wishlistResult={getWishList?.value!}

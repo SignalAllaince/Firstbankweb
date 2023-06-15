@@ -2,7 +2,23 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Button from "../button";
 import Icon from "../icon";
 
-function Pagination() {
+interface PaginationProps {
+  onNext: () => void;
+  onPrev: () => void;
+  currentPageNumber: number;
+  isPrevDisabled: boolean;
+  isNextDisabled: boolean;
+  totalPages: number;
+}
+
+function Pagination({
+  onNext,
+  onPrev,
+  currentPageNumber,
+  isPrevDisabled,
+  isNextDisabled,
+  totalPages,
+}: PaginationProps) {
   return (
     <div className="flex items-center gap-3 pt-10">
       {/* <Button className="px-[8px]" variant="secondary" size="xs">
@@ -16,13 +32,16 @@ function Pagination() {
         className="px-[8px] outline-none focus:ring focus:ring-blue-300"
         variant="secondary"
         size="xs"
+        onClick={onPrev}
+        aria-label="prev page button"
+        disabled={isPrevDisabled}
       >
         <Icon boxSize={5} className="" IconComp={ChevronLeftIcon} />
       </Button>
       <div className="flex h-8 items-center justify-center rounded border border-brand-blue px-[14px]">
-        1
+        {currentPageNumber}
       </div>
-      <p className="text-md font-light">of 1</p>
+      <p className="text-md font-light">of {totalPages}</p>
 
       {/* <Button className="px-[8px]" variant="secondary" size="xs">
         <Icon
@@ -35,7 +54,9 @@ function Pagination() {
         className="px-[8px] outline-none focus:ring focus:ring-blue-300"
         variant="secondary"
         size="xs"
-        disabled
+        onClick={onNext}
+        aria-label="next page button"
+        disabled={isNextDisabled}
       >
         <Icon boxSize={5} IconComp={ChevronRightIcon} />
       </Button>

@@ -4,12 +4,14 @@ interface PaginationContextInterface {
   onNext: () => void;
   onPrev: () => void;
   currentPageNumber: number;
+  totalPages: number;
 }
 interface PaginationPropsInterface {
   children?: React.ReactNode;
   currentPageNumber: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   total: number;
+  pageSize?: number;
 }
 
 const PaginationCtx = React.createContext<PaginationContextInterface>(
@@ -21,8 +23,8 @@ const PaginationContextProvider = ({
   setPage,
   currentPageNumber,
   total,
+  pageSize = 10,
 }: PaginationPropsInterface) => {
-  const pageSize = 10;
   const totalPages = Math.ceil(total / pageSize);
 
   const onNext = () => {
@@ -36,7 +38,9 @@ const PaginationContextProvider = ({
   };
 
   return (
-    <PaginationCtx.Provider value={{ currentPageNumber, onNext, onPrev }}>
+    <PaginationCtx.Provider
+      value={{ currentPageNumber, onNext, onPrev, totalPages }}
+    >
       {children}
     </PaginationCtx.Provider>
   );
