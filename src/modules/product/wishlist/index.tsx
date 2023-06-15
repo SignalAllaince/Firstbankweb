@@ -4,17 +4,19 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
+import PaginationContextProvider from "@/hooks/use-pagination";
 import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import WishListSkeleton from "./loading";
-import WishListRow from "./wishlist-row";
+import WishListMainSection from "./main";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const getWishList = useGetWishlist(1);
+  const [currentPageNumber, setPage] = React.useState(1);
+  const getWishList = useGetWishlist(currentPageNumber, 6);
 
   return (
     <div className="bg-white">
@@ -39,21 +41,17 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
         ifOnElse={getWishList.isLoading && !getWishList?.value}
         onElse={<WishListSkeleton />}
       >
-        <section className="pb-20 pt-6">
-          <Section className="space-y-5">
-            {getWishList?.value?.items?.map((item) => (
-              <WishListRow
-                name={item.productName}
-                productId={item.productId}
-                price={item.productPriceString}
-                slug={item.slug}
-                key={item.id}
-                refetchWishList={getWishList.refetch}
-                isRefetching={getWishList.isRefetching}
-              />
-            ))}
-          </Section>
-        </section>
+        <PaginationContextProvider
+          currentPageNumber={currentPageNumber}
+          setPage={setPage}
+          total={getWishList?.value?.totalItems!}
+        >
+          <WishListMainSection
+            wishlistResult={getWishList?.value!}
+            onRefetch={getWishList.refetch}
+            isRefetching={getWishList.isRefetching}
+          />
+        </PaginationContextProvider>
       </IfElse>
       {/* second section */}
     </div>
