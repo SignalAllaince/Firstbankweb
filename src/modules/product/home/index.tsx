@@ -2,7 +2,6 @@ import Catergory from "@/components/category";
 import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
-import Pagination from "@/components/paginate";
 import Section from "@/components/section";
 import useGetSearchCategories from "@/hooks/category/useGetSearchCategories";
 import { NextPageWithLayout } from "@/types/component.types";
@@ -40,9 +39,6 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
               ))}
           </>
         </IfElse>
-      </Section>
-      <Section className="flex items-center justify-center">
-        <Pagination />
       </Section>
     </div>
   );

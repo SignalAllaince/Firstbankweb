@@ -11,9 +11,10 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
 import useCounter from "@/hooks/use-couter";
 import useNotification from "@/hooks/use-notification";
+import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Button from "../button";
 import Icon from "../icon";
 import Modal from "../modal";
@@ -96,17 +97,19 @@ function ProductWithImageGallery({
   const { toast } = useNotification();
   const addToCart = useAddItemToCart();
   const { quantity, increaseQuantity, decreaseQuantity } = useCounter(5);
+  const addToWishlist = useAddItemToWishlist(productDetails.id);
 
-  const handleLike = () => {
-    setLike((prev) => !prev);
-    if (!like) {
+  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addToWishlist.refetch().then(() => {
+      setLike(true);
       toast({
         appearance: "info",
-        description: "Item Successfully added to wishlist",
+        description: `${productDetails.name} successfully added to wishlist`,
       });
-      return;
-    }
+    });
   };
+
   const addToCartHandler = () => {
     addToCart
       .mutateAsync({
@@ -260,6 +263,8 @@ function ProductWithImageGallery({
                     onClick={handleLike}
                     variant="secondary"
                     className="relative  rounded-full px-[12px] ring-blue-200 focus:ring-1"
+                    isLoading={addToWishlist.isFetching}
+                    spinnerColor="#003B65"
                   >
                     <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
                   </Button>

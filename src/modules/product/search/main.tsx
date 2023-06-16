@@ -179,9 +179,11 @@ const SearchMainSection = ({
               <Pagination
                 onNext={onNext}
                 onPrev={onPrev}
-                currentPageNumber={currentPageNumber}
+                currentPageNumber={Math.min(currentPageNumber, totalPages)}
                 isPrevDisabled={currentPageNumber === 1}
-                isNextDisabled={currentPageNumber === totalPages}
+                isNextDisabled={
+                  currentPageNumber === totalPages || totalPages === 0
+                }
                 totalPages={totalPages}
               />
             </div>
