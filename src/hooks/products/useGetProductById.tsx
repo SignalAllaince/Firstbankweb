@@ -1,12 +1,14 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
+import { ProductDetailsRes } from "@/types/api.types";
 import useQueryActionHook from "../use-queryaction";
 
-const useGetProduct = (productId: string) => {
-  return useQueryActionHook({
+const useGetProductById = (productId: string) => {
+  return useQueryActionHook<ProductDetailsRes>({
     method: "get",
     endpoint: ENDPOINTS.GET_PRODUCT_BY_ID(productId),
     queryKey: [NAMESPACE.GET_PRODUCT_BY_ID, productId],
+    enabled: !!productId,
   });
 };
 
-export default useGetProduct;
+export default useGetProductById;

@@ -1,42 +1,34 @@
 // Api Endpoints
 export const ENDPOINTS = {
-  API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
+  // API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
+  API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
 
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
     `account/cart/add-item-result?productId=${productId}`,
-  ADD_ITEM_TO_CART: `account/cart/add-cart-item`,
+  ADD_ITEM_TO_CART: `account/cart/add-item`,
   UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
   CART_VALIDATION_SELECTION: "account/cart/validate-selection",
-  DELETE_CART_ITEM: (itemId: string) => `account/cart/remove-item?id=${itemId}`,
+  DELETE_CART_ITEM: (itemId: number) => `account/cart/remove-item?id=${itemId}`,
   CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
-  GET_CATEGORY_PARENT: "categories/parent-only",
-  GET_CATEGORY_LIST: "categories/list",
-  GET_SINGLE_CATEGORY: (categoryId: string) => `categories/read/${categoryId}`,
-  CREATE_CATEGORY: "categories/create",
-  UPDATE_CATEGORY: "categories/update",
-  DELETE_CATEGORY: (categoryId: string) => `categories/delete/${categoryId}`,
-  ADD_PRODUCT_TO_CATEGORY: (categoryId: string) =>
-    `categories/${categoryId}/products`,
-  UPDATE_PRODUCT_IN_CATEGORY: (categoryId: string) =>
-    `categories/update-product/${categoryId}`,
-  UPDATE_CATEGORY_STATUS: "categories/change-status",
+  GET_SEARCHED_CATEGORIES: "category-view/search-categories",
+  GET_ALL_CATEGORIES: "category-view/all-categories",
+  GET_SINGLE_CATEGORY_DETAILS: (
+    categoryId: number,
+    mnp?: string | number,
+    mxp?: string | number,
+    sort?: string,
+    ps?: number,
+    page?: number
+  ) =>
+    `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=${ps}&p=${page}`,
 
   // Products Endpoints
-  GET_PRODUCT_BY_SEARCH: (name: string) => `products/basic-search/${name}`,
   GET_PRODUCT_BY_ID: (productId: string) =>
     `product-catalog/product-details/${productId}`,
-  GET_PRODUCTS_BY_SEARCH: "products/search",
-  CREATE_PRODUCTS: "products/create",
-  UPDATE_PRODUCT: "products/update",
-  UPDATE_PRODUCT_STATUS: "products/change-status",
-  DELETE_PRODUCT: (productId: string) => `products/delete/${productId}`,
-  GET_PRODUCTS_SEARCH_OPTIONS: "products/search-options",
-  GET_PRODUCTS_ORDERBY: "products/product-orderby",
-
   // Tax Endpoints
   GET_TAX_RATE_LIST: "tax-rates/read",
   GET_SINGLE_TAX: (taxId: string) => `tax-rates/read/${taxId}`,
@@ -68,7 +60,15 @@ export const ENDPOINTS = {
   DELETE_ADDRESS: "account/address/confirm-delete",
 
   // search Endpoint
-  GET_SEARCH_RESULT: (search: string) => `search/q?q=${search}`,
+  GET_SEARCH_RESULT: (
+    search: string,
+    mnp?: string | number,
+    mxp?: string | number,
+    sort?: string,
+    ps?: number,
+    page?: number
+  ) =>
+    `search/query?q=${search}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=${ps}&p=${page}`,
   GET_MOST_SEARCHED_KEYWORDS: "search-stats/most-serach-keywords",
 
   // review Endpoints
@@ -108,8 +108,9 @@ export const ENDPOINTS = {
   // Wishlist Endpoint
   GET_WISHLIST: (pageNumber: number, pageSize: number) =>
     `account/wishlist/${pageNumber}/${pageSize}`,
-  ADD_ITEM_TO_WISHLIST: "account/wishlist/",
-  REMOVE_ITEM_FROM_WISHLIST: "account/wishlist/",
+  ADD_ITEM_TO_WISHLIST: (id: number) => `account/wishlist/add-item?id=${id}`,
+  REMOVE_ITEM_FROM_WISHLIST: (id: number) =>
+    `account/wishlist/remove-item?id=${id}`,
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
 
   // Checkout Endpoints
@@ -149,11 +150,12 @@ export const ENDPOINTS = {
   GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
 };
 
+export const STOREID = "fbn46374683";
 export const NAMESPACE = {
   // categories
-  GET_CATEGORY_PARENT: "GET_CATEGORY_PARENT",
-  GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
-  GET_SINGLE_CATEGORY: "GET_SINGLE_CATEGORY",
+  GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",
+  GET_ALL_CATEGORIES: "GET_ALL_CATEGORIES",
+  GET_SINGLE_CATEGORY_DETAILS: "GET_SINGLE_CATEGORY",
   CREATE_CATEGORY: "CREATE_CATEGORY",
   UPDATE_CATEGORY: "UPDATE_CATEGORY",
   DELETE_CATEGORY: "DELETE_CATEGORY",

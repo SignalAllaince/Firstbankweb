@@ -2,12 +2,38 @@ import Button from "@/components/button";
 import Icon from "@/components/icon";
 import DeleteFromWishListModal from "@/components/modal/remove-wishlist";
 import useDisclosure from "@/hooks/use-disclosure";
+import useRemoveFromWishlist from "@/hooks/wishlist/useRemoveFromWishlist";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import productImg from "../../../../../public/images/shirt.jpg";
 
-function WishListRow() {
+function WishListRow({
+  name,
+  refetchWishList,
+  productId,
+  price,
+  slug,
+  isRefetching,
+}: {
+  refetchWishList: () => void;
+  name: string;
+  productId: number;
+  price: string;
+  slug: string;
+  isRefetching: boolean;
+}) {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const removeFromWishlist = useRemoveFromWishlist(productId);
+
+  const onRemoveHandler = () => {
+    removeFromWishlist
+      .mutateAsync({})
+      .catch((err) => console.log(err))
+      .then(() => {
+        refetchWishList();
+        onClose();
+      });
+  };
 
   return (
     <>
@@ -23,17 +49,15 @@ function WishListRow() {
             />
           </div>
           <div className="flex h-[100px] flex-col justify-between">
-            <p>
-              This Description should carry only the full name of the product.
-            </p>
-            <p className="text-xs font-medium">₦ 10,000</p>
+            <p>{name}</p>
+            <p className="text-xs font-medium">{price}</p>
           </div>
         </div>
         <div className="flex flex-shrink-0 flex-col items-end gap-y-5">
           <Button
             variant="cart"
             size="xs"
-            href="/category/others/umbrella"
+            href={`/${slug}`}
             className="border-brand-darkest text-brand-darkest"
           >
             View Item
@@ -49,7 +73,12 @@ function WishListRow() {
           </Button>
         </div>
       </div>
-      <DeleteFromWishListModal isOpen={isOpen} onClose={onClose} />
+      <DeleteFromWishListModal
+        isLoading={isRefetching || removeFromWishlist.isLoading}
+        onRemoveHandler={onRemoveHandler}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </>
   );
 }

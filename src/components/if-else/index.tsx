@@ -17,18 +17,20 @@ const IfElse = ({
   ifOnElse = true,
 }: IfElseProps) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="popLayout">
       {ifOn && (
         <motion.div
           initial={{ opacity: 0.3 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0.3 }}
+          className="relative"
         >
           {children}
         </motion.div>
       )}
       {ifOnElse && (
         <motion.div
+          className="relative"
           initial={{ opacity: 0.3 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0.3 }}
@@ -39,6 +41,7 @@ const IfElse = ({
 
       {!ifOn && elseThen && !ifOnElse ? (
         <motion.div
+          className="relative"
           initial={{ opacity: 0.3 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0.3 }}

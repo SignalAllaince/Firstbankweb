@@ -27,6 +27,6 @@ OpenOrdersPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-OpenOrdersPage.auth = false;
+OpenOrdersPage.auth = true;
 
 export default OpenOrdersPage;

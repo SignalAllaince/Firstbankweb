@@ -45,8 +45,9 @@ const buttonClasses = cva(
           "focus:border-brand-lightblue",
           "focus:text-brand-lightblue",
           "focus:ring-0",
-          "disabled:border-[#E4E4EE]",
-          "disabled:text-[#E4E4EE]",
+          "disabled:opacity-50",
+          // "disabled:border-[#E4E4EE]",
+          // "disabled:text-[#E4E4EE]",
         ],
         warning: ["bg-brand-accent", "text-brand-darkest", "focus:ring-0"],
         menu: [
@@ -128,8 +129,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       size,
       href,
-      spinnerColor = "text-white",
+      spinnerColor = "currentColor",
       isLoading = false,
+      disabled,
       className = "",
       ...others
     },
@@ -153,7 +155,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={classNames}
         {...others}
-        disabled={isLoading ? true : false}
+        disabled={isLoading || disabled}
       >
         {leftIcon && (
           <span
@@ -183,7 +185,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading && (
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <svg
-              className={`h-5 w-5 animate-spin ${spinnerColor}`}
+              className={`h-5 w-5 animate-spin text-white`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -198,7 +200,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ></circle>
               <path
                 className="opacity-75"
-                fill="currentColor"
+                fill={`${spinnerColor}`}
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>

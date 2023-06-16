@@ -99,6 +99,6 @@ DetailedSingleOrderPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-DetailedSingleOrderPage.auth = false;
+DetailedSingleOrderPage.auth = true;
 
 export default DetailedSingleOrderPage;

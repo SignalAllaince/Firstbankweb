@@ -1,3 +1,4 @@
+import useGetCartList from "@/hooks/cart/useGetCartList";
 import {
   ArrowLeftOnRectangleIcon,
   ChevronDownIcon,
@@ -22,15 +23,17 @@ import Section from "../section";
 function Navbar() {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const getCartList = useGetCartList();
 
   const searchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!search.trim()) return;
-    router.push(`/search/${search}`);
+    router.push(`/search/${search.trim()}`);
+    setSearch("");
   };
 
   return (
-    <div className="w-full bg-white py-4">
+    <div className="sticky top-0 z-30 w-full border-b bg-white py-4">
       <Section className="item-center flex justify-between ">
         <div className="flex w-[100px] items-center">
           <Link href="/">
@@ -89,7 +92,7 @@ function Navbar() {
           >
             <Icon IconComp={ShoppingCartIcon} />
             <div className="absolute left-4 top-1 rounded bg-brand-darkest p-1 py-0 text-xs text-white">
-              3
+              {getCartList?.value && getCartList?.value?.items?.length}
             </div>
           </Button>
           <Menu>

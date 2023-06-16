@@ -29,6 +29,6 @@ ReviewsPage.getLayout = function getLayout(page: ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
 
-ReviewsPage.auth = false;
+ReviewsPage.auth = true;
 
 export default ReviewsPage;

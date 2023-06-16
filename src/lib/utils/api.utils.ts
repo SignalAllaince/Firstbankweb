@@ -1,6 +1,7 @@
 import { CustomMethod, SecureRequestProps } from "@/types/api.types";
 import axios from "axios";
 import { getSession } from "next-auth/react";
+import { STOREID } from "../constants";
 
 export const secureRequest = async ({
   url,
@@ -11,9 +12,11 @@ export const secureRequest = async ({
   const session = await getSession();
   //   const token = session?.accessToken;
   const token = session;
+  const myToken = JSON.parse(localStorage.getItem(STOREID) as string) ?? "";
   const givenMethod = method.toLocaleLowerCase() as CustomMethod;
+
   const creathorHeader = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${myToken}`,
   };
 
   const headers = { ...creathorHeader, ...requestHeader };

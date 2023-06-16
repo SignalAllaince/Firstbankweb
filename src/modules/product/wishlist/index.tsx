@@ -1,16 +1,24 @@
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
+import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
+import PaginationContextProvider from "@/hooks/use-pagination";
+import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { ReactElement } from "react";
-import WishListRow from "./wishlist-row";
+import React, { ReactElement } from "react";
+import WishListSkeleton from "./loading";
+import WishListMainSection from "./main";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const [currentPageNumber, setPage] = React.useState(1);
+  const pageSize = 4;
+  const getWishList = useGetWishlist(currentPageNumber, pageSize);
+
   return (
     <div className="bg-white">
       <PageHead title="Wishlist" />
@@ -29,15 +37,25 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
         </Section>
       </div>
 
+      <IfElse
+        ifOn={!getWishList.isLoading && !!getWishList?.value}
+        ifOnElse={getWishList.isLoading && !getWishList?.value}
+        onElse={<WishListSkeleton />}
+      >
+        <PaginationContextProvider
+          currentPageNumber={currentPageNumber}
+          setPage={setPage}
+          total={getWishList?.value?.totalItems!}
+          pageSize={pageSize}
+        >
+          <WishListMainSection
+            wishlistResult={getWishList?.value!}
+            onRefetch={getWishList.refetch}
+            isRefetching={getWishList.isRefetching}
+          />
+        </PaginationContextProvider>
+      </IfElse>
       {/* second section */}
-      <section className="pb-20 pt-6">
-        <Section className="space-y-5">
-          <WishListRow />
-          <WishListRow />
-          <WishListRow />
-          <WishListRow />
-        </Section>
-      </section>
     </div>
   );
 };
@@ -46,6 +64,6 @@ WishListPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-WishListPage.auth = false;
+WishListPage.auth = true;
 
 export default WishListPage;

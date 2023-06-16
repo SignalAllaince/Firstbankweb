@@ -25,7 +25,8 @@ export interface FirstBankResponseType<D = Record<string, unknown>> {
   data: {
     response_code: string;
     data: D;
-    content: string;
+    errors: Record<string, unknown>;
+    errorCode: number;
     status: string;
   };
 }
@@ -65,4 +66,207 @@ export interface CreateProductResponse {
 export interface CartQuantityUpdate {
   cartItemId: number;
   quantity: number;
+}
+
+export interface SearchCategories {
+  icon: string | null;
+  id: number;
+  name: string;
+  slug: string;
+  shortDescription: string;
+  thumbnailImage: null;
+  thumbnailUrl: null;
+}
+
+export interface CategoryProduct {
+  price: number;
+  oldPrice: number;
+  specialPrice: number;
+  stockQuantity: number;
+  specialPriceStart: string;
+  specialPriceEnd: string;
+  reviewsCount: number;
+  ratingAverage: null;
+  calculatedProductPrice: {
+    price: number;
+    oldPrice: number;
+    percentOfSaving: number;
+    priceString: "string";
+    oldPriceString: "string";
+  };
+  id: number;
+  name: string;
+  slug: string;
+  shortDescription: string;
+  thumbnailUrl: null;
+}
+export interface CategoryItems {
+  categoryId: number;
+  parentCategorId: null;
+  categoryName: string;
+  categorySlug: string;
+  seoKeywords: string;
+  shortDescription: string;
+  primaryImage: null;
+  thumbnailImage: null;
+  totalProduct: number;
+  products: CategoryProduct[];
+  filterOption: {
+    categories: {
+      id: number;
+      name: string;
+      slug: string;
+      count: number;
+      parentId: null;
+    }[];
+    price: {
+      maxPrice: number;
+      minPrice: number;
+    };
+  };
+  currentSearchOption: {
+    q: null;
+    b: null;
+    c: null;
+    p: 1;
+    ps: 10;
+    tp: 1.0;
+    s: null;
+    mnp: null;
+    mxp: null;
+  };
+  availableSortOptions: {
+    value: string;
+    display: string;
+  }[];
+}
+
+export interface ProductDetailsRes {
+  id: number;
+  name: string;
+  slug: string;
+  sku: null;
+  thumbnailUrl: string;
+  shortDescription: string;
+  seoKeywords: string;
+  calculatedProductPrice: {
+    price: number;
+    oldPrice: number;
+    percentOfSaving: number;
+    priceString: string;
+    oldPriceString: string;
+  };
+  description: string;
+  specification: string;
+  isAllowToOrder: boolean;
+  stockQuantity: number;
+  reviewsCount: number;
+  ratingAverage: null;
+  availableOptions: any[];
+  optionDisplayValues: {};
+  images: any[];
+  variations: any[];
+  attributes: any[];
+  categories: {
+    id: number;
+    name: string;
+    slug: string;
+  }[];
+}
+
+export interface CartListResponse {
+  id: 7;
+  items: {
+    id: number;
+    productId: number;
+    slug: string;
+    productName: string;
+    productImage: null;
+    productPrice: number;
+    productPriceString: string;
+    productStockQuantity: number;
+    isProductAvailabeToOrder: boolean;
+    quantity: number;
+    total: number;
+    totalString: string;
+    optionCombination: null;
+  }[];
+  subTotal: number;
+  subTotalString: string;
+  customerId: string;
+  isValid: false;
+}
+
+export interface WishlistResponse {
+  id: number;
+  pageNumber: number;
+  pageSize: number;
+  totalItems: number;
+  items: {
+    id: number;
+    wishListId: number;
+    productId: number;
+    productName: string;
+    slug: string;
+    productPriceString: string;
+    productOldPriceString: string;
+    productImage: any[];
+    description: null;
+    quantity: number;
+  }[];
+}
+
+export interface SearchResponse {
+  totalProduct: number;
+  products: [
+    {
+      price: number;
+      oldPrice: number;
+      specialPrice: number;
+      stockQuantity: number;
+      specialPriceStart: string;
+      specialPriceEnd: string;
+      reviewsCount: number;
+      ratingAverage: null;
+      calculatedProductPrice: {
+        price: number;
+        oldPrice: number;
+        percentOfSaving: number;
+        priceString: string;
+        oldPriceString: string;
+      };
+      id: number;
+      name: string;
+      slug: string;
+      shortDescription: string;
+      thumbnailUrl: null;
+    }
+  ];
+  filterOption: {
+    categories: {
+      id: number;
+      name: string;
+      slug: string;
+      count: number;
+      parentId: null;
+    }[];
+    price: {
+      maxPrice: number;
+      minPrice: number;
+    };
+  };
+  currentSearchOption: {
+    q: string;
+    c: null;
+    p: number;
+    ps: number;
+    tp: number;
+    s: null;
+    mnp: null;
+    mxp: null;
+  };
+  availableSortOptions: {
+    value: string;
+    display: string;
+  }[];
 }

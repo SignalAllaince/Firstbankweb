@@ -27,6 +27,6 @@ ClosedOrdersPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-ClosedOrdersPage.auth = false;
+ClosedOrdersPage.auth = true;
 
 export default ClosedOrdersPage;

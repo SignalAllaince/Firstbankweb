@@ -178,6 +178,6 @@ CheckoutPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-CheckoutPage.auth = false;
+CheckoutPage.auth = true;
 
 export default CheckoutPage;

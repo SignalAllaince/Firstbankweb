@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/modules/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -30,7 +31,7 @@ module.exports = {
           primary: "#0072BC",
           grayt: "#B2B2C2",
           graybg: "#F4F5F9",
-          input: "#879AA8"
+          input: "#879AA8",
         },
       },
     },

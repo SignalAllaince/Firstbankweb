@@ -9,9 +9,11 @@
 }
 
 .custom-bg {
-  background-image: linear-gradient(to bottom,
+  background-image: linear-gradient(
+      to bottom,
       rgba(20, 38, 51, 0.8),
-      rgba(20, 38, 51, 0.8)),
+      rgba(20, 38, 51, 0.8)
+    ),
     url("../../public/images/authBg.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,12 +21,10 @@
 }
 
 .custom-hero {
-  background-image:
-    url("../../public/images/banner.svg");
-  background-color: rgb(0, 208, 255);
+  background-image: url("../../public/images/banner.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-position: 100% 35%; */
+  background-position: 100% 35%;
 }
 
 .toast-container {
@@ -44,7 +44,15 @@
 }
 
 .product-grid {
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.profile-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.banner-row {
+  grid-template-rows: auto 1fr;
 }
 
 /* .notistack-MuiContent.notistack-MuiContent-error.go167266335.go3651055292  */

@@ -23,7 +23,6 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
     ? "border-red-400"
     : props.borderColor ?? "border-transparent";
 
-  console.log(borderColor);
   return (
     <div
       className={`relative w-full text-brand-darkest ${

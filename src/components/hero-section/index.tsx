@@ -1,15 +1,17 @@
+import Heading from "../heading";
 import Section from "../section";
 
 function HeroSection() {
   return (
     <Section>
-      <div className="custom-hero my-4 flex h-[244px] flex-col items-start justify-center rounded-md pl-20 text-black">
-        {/* <Heading size="h1">Flash Sale</Heading>
-      <p className="max-w-[450px] text-sm">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam,
-      earum voluptatibus natus eveniet nulla quis incidunt quibusdam
-      blanditiis veniam vero eos repellendus?
-    </p> */}
+      <div className="custom-hero my-4 flex h-[244px] flex-col items-start justify-center space-y-4 rounded-md bg-blue-950 pl-20 ">
+        <Heading style={{ color: "#F0BD2D" }} size="h1">
+          Flash Sale
+        </Heading>
+        <p className="max-w-[400px] text-sm font-light text-white">
+          Take this oppurtunity to get amazing discounts on the prices of your
+          favorite items.
+        </p>
       </div>
     </Section>
   );

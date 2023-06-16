@@ -1,10 +1,20 @@
 import useDisclosure from "@/hooks/use-disclosure";
+import { ProductDetailsRes } from "@/types/api.types";
 import { RadioGroup } from "@headlessui/react";
-import { StarIcon } from "@heroicons/react/20/solid";
+import {
+  HeartIcon as HeartSolidIcon,
+  StarIcon,
+} from "@heroicons/react/20/solid";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
+
+import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
+import useCounter from "@/hooks/use-couter";
+import useNotification from "@/hooks/use-notification";
+import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Button from "../button";
 import Icon from "../icon";
 import Modal from "../modal";
@@ -45,8 +55,6 @@ const product = {
     { name: "L", inStock: true },
     { name: "XL", inStock: false },
   ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
   highlights: [
     "Hand cut and sewn locally",
     "Dyed with our proprietary colors",
@@ -78,10 +86,47 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ProductWithImageGallery() {
+function ProductWithImageGallery({
+  productDetails,
+}: {
+  productDetails: ProductDetailsRes;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImg, setSelectedImg] = useState(product.images[0]);
+  const [like, setLike] = useState(false);
+  const { toast } = useNotification();
+  const addToCart = useAddItemToCart();
+  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(5);
+  const addToWishlist = useAddItemToWishlist(productDetails.id);
 
+  const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addToWishlist.refetch().then(() => {
+      setLike(true);
+      toast({
+        appearance: "info",
+        description: `${productDetails.name} successfully added to wishlist`,
+      });
+    });
+  };
+
+  const addToCartHandler = () => {
+    addToCart
+      .mutateAsync({
+        ProductId: productDetails.id,
+        Quantity: quantity,
+      })
+      .then(() => {
+        // toast({
+        //   appearance: "success",
+        //   description: `${productDetails.name} was added to wishlist`,
+        // });
+        onOpen();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <div className="rounded-lg bg-white">
@@ -148,7 +193,9 @@ function ProductWithImageGallery() {
             <div className="space-y-8 px-4 pb-10 sm:px-0">
               <div className="space-y-2">
                 <div className="flex flex-col gap-4 text-2xl text-slate-800">
-                  <h2 className="text-3xl font-bold">{product.name}</h2>
+                  <h2 className="text-3xl font-bold capitalize">
+                    {productDetails.name}
+                  </h2>
                   <div className="flex items-end space-x-3">
                     <div className="flex items-center">
                       {[0, 1, 2, 3, 4].map((rating) => (
@@ -164,40 +211,62 @@ function ProductWithImageGallery() {
                         />
                       ))}
                     </div>
-                    <p className="text-xs ">(8 verified ratings)</p>
+                    <p className="text-xs ">
+                      ({productDetails.reviewsCount} verified ratings)
+                    </p>
 
-                    <p className="sr-only">{reviews.average} out of 5 stars</p>
+                    <p className="sr-only">
+                      {productDetails.reviewsCount} out of 5 stars
+                    </p>
                   </div>
-                  <h2 className="text-[18px]">{product.price}</h2>
+                  <h2 className="text-[18px]">
+                    {productDetails.calculatedProductPrice.priceString}
+                  </h2>
                 </div>
 
                 <div className="space-y-3 pt-4 font-light text-brand-darkest">
                   <p className="text-md font-bold">Description</p>
-                  <p className="text-sm">{product.description}</p>
+                  <p className="text-sm">{productDetails.description}</p>
                 </div>
               </div>
               <div className="flex items-center gap-8">
                 <p className="text-sm text-brand-medium">Net weight: 2kg</p>
                 <div className="bg-[#F5F8FA] p-1 px-2">
-                  <p className="text-xs font-light">27 Remaining</p>
+                  <p className="text-xs font-light">
+                    {productDetails.stockQuantity} Remaining
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-8">
                 <p className="font-light">Quantity:</p>
-                <CartProductBtn />
+                <CartProductBtn
+                  quantity={quantity}
+                  onIncrease={increaseQuantity}
+                  onDecrease={decreaseQuantity}
+                />
               </div>
               {/* color radio */}
               <div className="mt-10">
                 <div className="mt-10 flex items-center space-x-5">
                   <Button
                     variant="primary"
-                    onClick={onOpen}
+                    onClick={addToCartHandler}
+                    isLoading={addToCart.isLoading}
                     className="w-full py-6 text-sm uppercase"
                     leftIcon={
                       <Icon IconComp={PlusIcon} className="text-white" />
                     }
                   >
                     Add to Cart
+                  </Button>
+                  <Button
+                    onClick={handleLike}
+                    variant="secondary"
+                    className="relative  rounded-full px-[12px] ring-blue-200 focus:ring-1"
+                    isLoading={addToWishlist.isFetching}
+                    spinnerColor="#003B65"
+                  >
+                    <Icon IconComp={like ? HeartSolidIcon : HeartIcon} />
                   </Button>
                 </div>
               </div>
@@ -215,6 +284,7 @@ function ProductWithImageGallery() {
             <Button
               className="w-full px-2 text-sm uppercase"
               variant="secondary"
+              onClick={onClose}
             >
               Continue shopping
             </Button>

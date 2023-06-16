@@ -30,7 +30,6 @@ const Favicon = () => {
       <meta name="application-name" content="First bank store" />
       <meta name="msapplication-TileColor" content="#003B65" />
       <meta name="theme-color" content="#ffffff" />
-      <title>FirstBank Store</title>
     </>
   );
 };
