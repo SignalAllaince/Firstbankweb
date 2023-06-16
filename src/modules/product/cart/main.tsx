@@ -75,7 +75,7 @@ const CartPageSection = ({
                           {cartDetails.items.map((item) => (
                             <CartProductRow
                               price={item.productPriceString}
-                              quantity={item.quantity}
+                              productQuantity={item.quantity}
                               onCartRefetch={getCartList.refetch}
                               isLoading={getCartList.isRefetching}
                               key={item.id}

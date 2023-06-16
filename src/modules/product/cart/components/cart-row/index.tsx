@@ -3,9 +3,13 @@ import Icon from "@/components/icon";
 import CartModal from "@/components/modal/cart";
 import CartProductBtn from "@/components/product-btn";
 import useDeleteItemFromCart from "@/hooks/cart/useDeleteItemFromCart";
+import useUpdateItemInCart from "@/hooks/cart/useUpdateItemInCart";
+import useCounter from "@/hooks/use-couter";
+import useDebounce from "@/hooks/use-debounce";
 import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import React from "react";
 import productImg from "../../../../../../public/images/shirt.jpg";
 
 function CartProductRow({
@@ -14,17 +18,37 @@ function CartProductRow({
   isLoading,
   productId,
   price,
-  quantity,
+  productQuantity,
 }: {
   onCartRefetch: any;
   name: string;
   productId: number;
   price: string;
-  quantity: number;
+  productQuantity: number;
   isLoading: boolean;
 }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const deleteFromCart = useDeleteItemFromCart(productId);
+  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(
+    10,
+    productQuantity
+  );
+  const debouncedQuantity = useDebounce(quantity, 2000);
+  const updateCartItem = useUpdateItemInCart();
+
+  React.useEffect(() => {
+    if (debouncedQuantity !== productQuantity) {
+      updateCartItem
+        .mutateAsync({
+          cartItemId: productId,
+          quantity: debouncedQuantity,
+        })
+        .then(() => {
+          onCartRefetch();
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuantity, productQuantity]);
 
   const onRemoveHandler = () => {
     deleteFromCart
@@ -71,7 +95,11 @@ function CartProductRow({
         <div className="w-[200px] space-y-4 py-4 text-center">
           <p className="text-lg font-bold">{price}</p>
           <div className="bg-full flex w-full items-center justify-center">
-            <CartProductBtn quantity={quantity} />
+            <CartProductBtn
+              quantity={quantity}
+              onIncrease={increaseQuantity}
+              onDecrease={decreaseQuantity}
+            />
           </div>
         </div>
       </div>
