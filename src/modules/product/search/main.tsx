@@ -68,7 +68,9 @@ const SearchMainSection = ({
             </div>
             <div>
               <p className="text-sm text-brand-medium">
-                1-{Math.min(searchResult.totalProduct, 10)} of{" "}
+                {searchResult.totalProduct !== 0 && (
+                  <>1-{Math.min(searchResult.totalProduct, 10)} of </>
+                )}
                 {searchResult.totalProduct} results
               </p>
             </div>
