@@ -218,30 +218,28 @@ export interface WishlistResponse {
 
 export interface SearchResponse {
   totalProduct: number;
-  products: [
-    {
+  products: {
+    price: number;
+    oldPrice: number;
+    specialPrice: number;
+    stockQuantity: number;
+    specialPriceStart: string;
+    specialPriceEnd: string;
+    reviewsCount: number;
+    ratingAverage: null;
+    calculatedProductPrice: {
       price: number;
       oldPrice: number;
-      specialPrice: number;
-      stockQuantity: number;
-      specialPriceStart: string;
-      specialPriceEnd: string;
-      reviewsCount: number;
-      ratingAverage: null;
-      calculatedProductPrice: {
-        price: number;
-        oldPrice: number;
-        percentOfSaving: number;
-        priceString: string;
-        oldPriceString: string;
-      };
-      id: number;
-      name: string;
-      slug: string;
-      shortDescription: string;
-      thumbnailUrl: null;
-    }
-  ];
+      percentOfSaving: number;
+      priceString: string;
+      oldPriceString: string;
+    };
+    id: number;
+    name: string;
+    slug: string;
+    shortDescription: string;
+    thumbnailUrl: null;
+  }[];
   filterOption: {
     categories: {
       id: number;

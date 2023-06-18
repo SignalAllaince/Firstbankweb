@@ -110,7 +110,7 @@ const CartPageSection = ({
                                     animate={{ opacity: 1, height: "auto" }}
                                     exit={{ opacity: 0, height: 0 }}
                                     transition={{
-                                      opacity: { duration: 0.3 },
+                                      opacity: { duration: 0.2 },
                                       layout: {
                                         duration: 1,
                                       },

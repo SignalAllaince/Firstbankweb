@@ -181,3 +181,9 @@ type Menu = {
 
 export const displayValue = (arr: Menu[], sort: string) =>
   arr.find((item) => item.value === sort)?.display;
+
+export const truncateWord = (str: string, len = 30) => {
+  if (str.trim().length < len) return str;
+
+  return `${str.substring(0, len - 1)}..`;
+};

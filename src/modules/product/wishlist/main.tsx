@@ -8,7 +8,7 @@ import { WishlistResponse } from "@/types/api.types";
 import Image from "next/image";
 import React from "react";
 import { BarLoader } from "react-spinners";
-import cartImg from "../../../../public/images/wishlist.svg";
+import wishlistImg from "../../../../public/images/wishlist.svg";
 import WishListRow from "./wishlist-row";
 
 const WishListMainSection = ({
@@ -51,7 +51,7 @@ const WishListMainSection = ({
           <div>
             <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
               <div className="max-w-xl">
-                <Image src={cartImg} alt={"djsdsd"} />
+                <Image src={wishlistImg} alt={"djsdsd"} />
               </div>
               <div className="flex flex-col items-center">
                 <Heading size="h3">You haven’t saved anything yet!</Heading>
