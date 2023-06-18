@@ -1,3 +1,4 @@
+import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
@@ -6,6 +7,7 @@ import useDebounce from "@/hooks/use-debounce";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { AnimatePresence } from "framer-motion";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React, { ReactElement } from "react";
@@ -53,30 +55,38 @@ const SearchPage: NextPageWithLayout<
   return (
     <div className="">
       <PageHead title={`${props?.query?.searchQuery ?? "***"} - Search`} />
-      <IfElse
-        ifOn={!searchResult.isLoading && !!searchResult?.value}
-        ifOnElse={searchResult.isLoading && !searchResult?.value}
-        onElse={<CategoryLoading />}
-      >
-        <PaginationContextProvider
-          currentPageNumber={currentPageNumber}
-          setPage={setPage}
-          total={searchResult?.value?.totalProduct!}
-          pageSize={pageSize}
+      <AnimatePresence>
+        <IfElse
+          ifOn={!searchResult.isLoading && !!searchResult?.value}
+          ifOnElse={searchResult.isLoading && !searchResult?.value}
+          onElse={
+            <FadeInOut>
+              <CategoryLoading />
+            </FadeInOut>
+          }
         >
-          <SearchMainSection
-            searchResult={searchResult?.value!}
-            search={props?.query?.searchQuery as string}
-            sort={sort}
-            onChangeSort={changeSortHandler}
-            isRefetching={searchResult.isRefetching}
-            max={max}
-            onMaxChange={onMaxChange}
-            min={min}
-            onMinChange={onMinChange}
-          />
-        </PaginationContextProvider>
-      </IfElse>
+          <FadeInOut>
+            <PaginationContextProvider
+              currentPageNumber={currentPageNumber}
+              setPage={setPage}
+              total={searchResult?.value?.totalProduct!}
+              pageSize={pageSize}
+            >
+              <SearchMainSection
+                searchResult={searchResult?.value!}
+                search={props?.query?.searchQuery as string}
+                sort={sort}
+                onChangeSort={changeSortHandler}
+                isRefetching={searchResult.isRefetching}
+                max={max}
+                onMaxChange={onMaxChange}
+                min={min}
+                onMinChange={onMinChange}
+              />
+            </PaginationContextProvider>
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
     </div>
   );
 };

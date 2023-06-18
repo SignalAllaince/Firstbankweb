@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
@@ -13,6 +14,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { BarLoader } from "react-spinners";
 import cartImg from "../../../../public/images/cart.svg";
 import CartProductRow from "./components/cart-row";
 
@@ -32,12 +34,7 @@ const CartPageSection = ({
             ifOn={cartDetails.items.length !== 0}
             ifOnElse={cartDetails.items.length === 0}
             onElse={
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
+              <FadeInOut>
                 <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12 bg-white py-10">
                   <div className="max-w-xl">
                     <Image src={cartImg} alt={"djsdsd"} />
@@ -46,25 +43,26 @@ const CartPageSection = ({
                     <Heading size="h3">Your cart is empty!</Heading>
                     <p>Browse our categories and discover our best deals!</p>
                   </div>
-                  <Button className="uppercase">start shopping</Button>
+                  <Button className="uppercase" href="/">
+                    start shopping
+                  </Button>
                 </Section>
-              </motion.div>
+              </FadeInOut>
             }
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              //  transition={{
-              //    opacity: { duration: 0.6 },
-              //    layout: {
-              //      duration: 1,
-              //    },
-              //  }}
-              className="w-full bg-white"
-            >
-              <div className="w-full border-b border-gray-200 ">
+            <FadeInOut className="w-full bg-white">
+              <div className="relative w-full border-b border-gray-200">
+                <div className="absolute bottom-0 right-0 z-30 w-full">
+                  <BarLoader
+                    color="#003B65"
+                    loading={getCartList.isRefetching}
+                    height={2}
+                    speedMultiplier={0.8}
+                    width="100%"
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
                 <Section className="space-y-4 py-8">
                   <div className="flex items-center">
                     <div className="flex items-center gap-1 text-sm">
@@ -112,7 +110,7 @@ const CartPageSection = ({
                                     animate={{ opacity: 1, height: "auto" }}
                                     exit={{ opacity: 0, height: 0 }}
                                     transition={{
-                                      opacity: { duration: 0.6 },
+                                      opacity: { duration: 0.3 },
                                       layout: {
                                         duration: 1,
                                       },
@@ -166,7 +164,7 @@ const CartPageSection = ({
                   </div>
                 </div>
               </Section>
-            </motion.div>
+            </FadeInOut>
           </IfElse>
         </AnimatePresence>
       </div>
