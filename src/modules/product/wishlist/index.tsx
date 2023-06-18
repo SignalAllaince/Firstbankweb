@@ -20,9 +20,9 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   const getWishList = useGetWishlist(currentPageNumber, pageSize);
 
   return (
-    <div className="bg-white">
+    <div className="">
       <PageHead title="Wishlist" />
-      <div className="w-full border-b border-brand-light">
+      <div className="w-full border-b border-brand-light bg-white">
         <Section className="space-y-7 py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-sm">
