@@ -50,19 +50,19 @@ function Banner() {
               <p className="text-sm font-light">
                 with the newly added customized converse shoes.
               </p>
+              <div className="pt-5">
+                <Button
+                  size="small"
+                  rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
+                  variant="warning"
+                  className="w-fit"
+                  href="/product/7/watch"
+                >
+                  View product
+                </Button>
+              </div>
             </div>
 
-            <div className="pt-5">
-              <Button
-                size="small"
-                rightIcon={<Icon IconComp={ArrowRightIcon} boxSize={4} />}
-                variant="warning"
-                className="w-fit"
-                href="/product/7/watch"
-              >
-                View product
-              </Button>
-            </div>
             <div className="flex items-center gap-1 pt-10">
               {Array(images.length)
                 .fill(0)

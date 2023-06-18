@@ -1,8 +1,10 @@
+import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import useGetProductById from "@/hooks/products/useGetProductById";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import ProductPageLoader from "./loading";
@@ -14,13 +16,22 @@ const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
 
   return (
     <div className="bg-white pb-10">
-      <IfElse
-        ifOn={!getProduct.isLoading && !!getProduct?.value}
-        ifOnElse={getProduct.isLoading && !getProduct?.value}
-        onElse={<ProductPageLoader />}
-      >
-        <ProductMainSection productDetails={getProduct?.value!} />
-      </IfElse>
+      <AnimatePresence>
+        <IfElse
+          ifOn={!getProduct.isLoading && !!getProduct?.value}
+          ifOnElse={getProduct.isLoading && !getProduct?.value}
+          onElse={
+            <FadeInOut>
+              <ProductPageLoader />
+            </FadeInOut>
+          }
+        >
+          <FadeInOut>
+            <ProductMainSection productDetails={getProduct?.value!} />
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
+
       {/* second section */}
     </div>
   );
