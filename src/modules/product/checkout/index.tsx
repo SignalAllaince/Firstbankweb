@@ -8,9 +8,8 @@ import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { ReactElement, useState } from "react";
-import productImg from "../../../../public/images/shirt.jpg";
+import CheckoutProduct from "./components/checkout-product";
 import PaymentMethods from "./components/payment-methods";
 import StaffDetails from "./components/staff-details";
 
@@ -50,73 +49,37 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
         </div>
         <div>
           <Section className="py-10">
-            <div className="mx-auto max-w-3xl">
+            <div className="mx-auto max-w-[800px]">
               <Heading size="h5" className="pb-6">
                 Item(s) Details
               </Heading>
               <div className="space-y-6">
                 {/* Item rows */}
-                <div className="flex items-start justify-between border-b border-brand-light pb-4">
-                  <div className="item-start flex max-w-sm gap-3 text-sm font-light">
-                    <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
-                      <Image
-                        src={productImg}
-                        alt="product image"
-                        width={400}
-                        height={400}
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    <div className="flex h-[100px] flex-col justify-between">
-                      <p className="break-words">
-                        This Description should carry only the full name of the
-                        product.
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <p>Quantity: 1</p>
-                      </div>
-                    </div>
-                  </div>
-                  <h2 className="font-bold">₦ 25,000</h2>
-                </div>
-                <div className="flex items-start justify-between border-b border-brand-light pb-4">
-                  <div className="item-start flex max-w-sm gap-3 text-sm font-light">
-                    <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
-                      <Image
-                        src={productImg}
-                        alt="product image"
-                        width={400}
-                        height={400}
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    <div className="flex h-[100px] flex-col justify-between">
-                      <p className="break-words">
-                        This Description should carry only the full name of the
-                        product.
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <p>Quantity: 1</p>
-                      </div>
-                    </div>
-                  </div>
-                  <h2 className="font-bold">₦ 25,000</h2>
+                <div className="grid grid-cols-2 gap-4 border-b border-brand-light">
+                  <CheckoutProduct />
+                  <CheckoutProduct />
+                  <CheckoutProduct />
+                  <CheckoutProduct />
                 </div>
 
                 {/* Total Price Row */}
                 <div className="flex items-center justify-between border-b border-brand-light pb-4">
-                  <h2 className="font-bold uppercase">ITEM(S) TOTAL</h2>
+                  <h2 className="font-bold uppercase">SUBTOTAL</h2>
                   <h2 className="text-lg font-bold">₦ 25,000</h2>
                 </div>
                 {/* Shipping details */}
                 <div className="space-y-4 pt-7 font-light">
-                  <Heading size="h5">Shipping Details</Heading>
+                  <Heading size="h5">Delivery Details</Heading>
                   <div className="space-y-1">
                     <p className="text-xs">Delivery Address</p>
                     <p className="text-sm">
                       Plot 72, Unknown Estate, along Unknown Road, Unknown Town,
                       Lagos State, Nigeria.
                     </p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs">Phone Number</p>
+                    <p className="text-sm">09099096797</p>
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-4">

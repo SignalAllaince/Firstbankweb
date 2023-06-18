@@ -48,7 +48,7 @@ function CartProductRow({
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedQuantity, productQuantity]);
+  }, [debouncedQuantity]);
 
   const onRemoveHandler = () => {
     deleteFromCart

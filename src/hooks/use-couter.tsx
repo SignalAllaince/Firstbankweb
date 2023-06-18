@@ -4,9 +4,10 @@ function useCounter(limit = 10, start = 1) {
   const [quantity, setQuantity] = React.useState(start);
 
   React.useEffect(() => {
-    setQuantity(quantity);
+    setQuantity(start);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start]);
+  console.log(quantity, "start");
 
   const increaseQuantity = () => setQuantity((prev) => Math.min(++prev, limit));
   const decreaseQuantity = () => quantity > 1 && setQuantity((prev) => --prev);

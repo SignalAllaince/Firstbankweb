@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ReactElement } from "react";
 
 interface IfElseProps {
@@ -17,7 +17,7 @@ const IfElse = ({
   ifOnElse = true,
 }: IfElseProps) => {
   return (
-    <AnimatePresence mode="popLayout">
+    <>
       {ifOn && (
         <motion.div
           initial={{ opacity: 0.3 }}
@@ -49,7 +49,7 @@ const IfElse = ({
           {elseThen}
         </motion.div>
       ) : null}
-    </AnimatePresence>
+    </>
   );
 };
 

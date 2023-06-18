@@ -58,7 +58,7 @@ function PaymentMethods({
                       active && checked ? "ring-2" : "",
                       checked ? "bg-brand-darkest" : "",
                       !active && checked ? "ring-2" : "",
-                      "relative block h-[16px] w-[16px] rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
+                      "relative block h-[14px] w-[14px] rounded-full border-2 border-black border-opacity-80 ring-offset-2 focus:outline-none"
                     )}
                   />
                   <span className="text-sm font-light">{method.name}</span>
