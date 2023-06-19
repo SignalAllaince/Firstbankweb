@@ -119,7 +119,8 @@ export const ENDPOINTS = {
     `checkout/shipping?oid=${oid}&sta=${sta}&ers=${ers}`,
   SAVE_CHECKOUT_ORDERNOTE: (orderId: string) =>
     `checkout/${orderId}/save-ordernote`,
-  APPLY_CHECKOUT_COUPON: (name: string) => `checkout/${name}`,
+  APPLY_CHECKOUT_COUPON: (orderId: string) =>
+    `checkout/${orderId}/apply-coupon`,
   GET_CHECKOUT_DETAILS: (userId: string, oid: string) =>
     `checkout/checkout-details?userId=${userId}&oid=${oid}`,
   GET_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
@@ -128,7 +129,8 @@ export const ENDPOINTS = {
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
-  GET_SHIPPING_AS_BILLING: (name: string) => `checkout/${name}`,
+  GET_SHIPPING_AS_BILLING: (orderId: string) =>
+    `checkout/${orderId}/use-shipping-as-billing/true`,
   GET_CHECKOUT_SHIPPING_STATES: (name: string) => `checkout/${name}`,
   GET_CHANGE_SHIPPING_PROVIDER: (name: string) => `checkout/${name}`,
   GET_ALL_CHECKOUT: `checkout/checkout-all`,

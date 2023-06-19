@@ -279,3 +279,7 @@ export interface CreateShippingAdress {
   city: string;
   zipCode: string;
 }
+
+export interface ApplyCoupon {
+  couponCode: string;
+}
