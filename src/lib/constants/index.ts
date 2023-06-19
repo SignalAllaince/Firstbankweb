@@ -120,16 +120,18 @@ export const ENDPOINTS = {
   SAVE_CHECKOUT_ORDERNOTE: (orderId: string) =>
     `checkout/${orderId}/save-ordernote`,
   APPLY_CHECKOUT_COUPON: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_DETAILS: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_DETAILS: (userId: string, oid: string) =>
+    `checkout/checkout-details?userId=${userId}&oid=${oid}`,
   GET_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
-  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (orderId: string) =>
+    `checkout/${orderId}/new-shipping-address`,
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_SHIPPING_AS_BILLING: (name: string) => `checkout/${name}`,
   GET_CHECKOUT_SHIPPING_STATES: (name: string) => `checkout/${name}`,
   GET_CHANGE_SHIPPING_PROVIDER: (name: string) => `checkout/${name}`,
-  GET_ALL_CHECKOUT: (name: string) => `checkout/${name}`,
+  GET_ALL_CHECKOUT: `checkout/checkout-all`,
   UPDATE_CHECKOUT_ITEM: (name: string) => `checkout/${name}`,
   GET_CHECKOUT_PAYMENT: (name: string) => `checkout/${name}`,
   GET_CHECKOUT_ORDER_SUCCESS: (name: string) => `checkout/${name}`,

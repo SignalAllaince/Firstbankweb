@@ -1,3 +1,4 @@
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
@@ -9,6 +10,7 @@ import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import React, { ReactElement } from "react";
 import WishListSkeleton from "./loading";
@@ -37,24 +39,32 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
         </Section>
       </div>
 
-      <IfElse
-        ifOn={!getWishList.isLoading && !!getWishList?.value}
-        ifOnElse={getWishList.isLoading && !getWishList?.value}
-        onElse={<WishListSkeleton />}
-      >
-        <PaginationContextProvider
-          currentPageNumber={currentPageNumber}
-          setPage={setPage}
-          total={getWishList?.value?.totalItems!}
-          pageSize={pageSize}
+      <AnimatePresence>
+        <IfElse
+          ifOn={!getWishList.isLoading && !!getWishList?.value}
+          ifOnElse={getWishList.isLoading && !getWishList?.value}
+          onElse={
+            <FadeInOut>
+              <WishListSkeleton />
+            </FadeInOut>
+          }
         >
-          <WishListMainSection
-            wishlistResult={getWishList?.value!}
-            onRefetch={getWishList.refetch}
-            isRefetching={getWishList.isRefetching}
-          />
-        </PaginationContextProvider>
-      </IfElse>
+          <FadeInOut>
+            <PaginationContextProvider
+              currentPageNumber={currentPageNumber}
+              setPage={setPage}
+              total={getWishList?.value?.totalItems!}
+              pageSize={pageSize}
+            >
+              <WishListMainSection
+                wishlistResult={getWishList?.value!}
+                onRefetch={getWishList.refetch}
+                isRefetching={getWishList.isRefetching}
+              />
+            </PaginationContextProvider>
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
       {/* second section */}
     </div>
   );

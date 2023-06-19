@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Accordion from "@/components/accordion";
 import Button from "@/components/button";
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
@@ -18,6 +19,7 @@ import {
   ChevronRightIcon,
   MinusIcon,
 } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -166,58 +168,63 @@ const SearchMainSection = ({
             </Accordion>
           </div>
           <div className="col-span-8 md:col-span-9">
-            <IfElse
-              ifOn={searchResult.products.length !== 0}
-              ifOnElse={searchResult.products.length === 0}
-              onElse={
-                <div>
-                  <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
-                    <div className="max-w-xl">
-                      <Image src={searchImg} alt={"djsdsd"} />
-                    </div>
-                    <div className="flex flex-col items-center space-y-3 text-center">
-                      <Heading size="h3">
-                        There are no results for “{search}”
-                      </Heading>
-                      <p>
-                        try searching for more general terms or shop from the
-                        categories above.
-                      </p>
-                    </div>
-                  </Section>
-                </div>
-              }
-            >
-              <>
-                <div className="product-grid grid gap-x-4 gap-y-12">
-                  {searchResult.products.map((product) => (
-                    <ProductCard
-                      isCategoryPage
-                      href={`/${product.slug}`}
-                      id={product.id}
-                      imageAlt={product.name}
-                      key={product.id}
-                      name={product.name}
-                      stockQuantity={product.stockQuantity}
-                      price={product.calculatedProductPrice.priceString}
+            <AnimatePresence>
+              <IfElse
+                ifOn={searchResult.products.length !== 0}
+                ifOnElse={searchResult.products.length === 0}
+                onElse={
+                  <FadeInOut>
+                    <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
+                      <div className="max-w-xl">
+                        <Image src={searchImg} alt={"djsdsd"} />
+                      </div>
+                      <div className="flex flex-col items-center space-y-3 text-center">
+                        <Heading size="h3">
+                          There are no results for “{search}”
+                        </Heading>
+                        <p>
+                          try searching for more general terms or shop from the
+                          categories above.
+                        </p>
+                      </div>
+                    </Section>
+                  </FadeInOut>
+                }
+              >
+                <FadeInOut>
+                  <div className="product-grid grid gap-x-4 gap-y-12">
+                    {searchResult.products.map((product) => (
+                      <ProductCard
+                        isCategoryPage
+                        href={`/${product.slug}`}
+                        id={product.id}
+                        imageAlt={product.name}
+                        key={product.id}
+                        name={product.name}
+                        stockQuantity={product.stockQuantity}
+                        price={product.calculatedProductPrice.priceString}
+                      />
+                    ))}
+                  </div>
+                  {/* Pagination */}
+                  <div className="flex items-center justify-center">
+                    <Pagination
+                      onNext={onNext}
+                      onPrev={onPrev}
+                      currentPageNumber={Math.min(
+                        currentPageNumber,
+                        totalPages
+                      )}
+                      isPrevDisabled={currentPageNumber === 1}
+                      isNextDisabled={
+                        currentPageNumber === totalPages || totalPages === 0
+                      }
+                      totalPages={totalPages}
                     />
-                  ))}
-                </div>
-                {/* Pagination */}
-                <div className="flex items-center justify-center">
-                  <Pagination
-                    onNext={onNext}
-                    onPrev={onPrev}
-                    currentPageNumber={Math.min(currentPageNumber, totalPages)}
-                    isPrevDisabled={currentPageNumber === 1}
-                    isNextDisabled={
-                      currentPageNumber === totalPages || totalPages === 0
-                    }
-                    totalPages={totalPages}
-                  />
-                </div>
-              </>
-            </IfElse>
+                  </div>
+                </FadeInOut>
+              </IfElse>
+            </AnimatePresence>
           </div>
         </Section>
       </section>

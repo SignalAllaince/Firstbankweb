@@ -23,7 +23,7 @@ function Modal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-30"
+          className="relative z-50"
           onClose={closeOnOverlayClick ? closeModal : () => null}
         >
           <Transition.Child

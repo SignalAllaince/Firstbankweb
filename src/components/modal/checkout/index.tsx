@@ -29,7 +29,7 @@ function CheckoutModal({
     router.push("/cart/checkout");
   };
   return (
-    <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick size="md">
+    <Modal isOpen={isOpen} closeModal={onClose} size="md">
       <div className="space-y-8 py-6 md:px-5">
         <div className="text-md font-medium text-brand-darkest ">
           <p>

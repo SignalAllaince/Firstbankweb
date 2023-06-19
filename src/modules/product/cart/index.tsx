@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
@@ -12,6 +13,7 @@ import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
 import { ReactElement } from "react";
 import CartLoadingPage from "./loading";
 import CartPageSection from "./main";
@@ -23,13 +25,21 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
     <>
       <PageHead title="Cart" />
-      <IfElse
-        ifOn={!getCartList.isLoading && !!getCartList?.value}
-        ifOnElse={getCartList.isLoading && !getCartList?.value}
-        onElse={<CartLoadingPage />}
-      >
-        <CartPageSection cartDetails={getCartList.value!} />
-      </IfElse>
+      <AnimatePresence>
+        <IfElse
+          ifOn={!getCartList.isLoading && !!getCartList?.value}
+          ifOnElse={getCartList.isLoading && !getCartList?.value}
+          onElse={
+            <FadeInOut>
+              <CartLoadingPage />
+            </FadeInOut>
+          }
+        >
+          <FadeInOut>
+            <CartPageSection cartDetails={getCartList.value!} />
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
 
       <Section>
         <div className="space-y-6 py-10">
@@ -49,33 +59,35 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
               See all
             </Button>
           </div>
-          <IfElse
-            ifOn={!getWishList.isLoading && !!getWishList?.value}
-            ifOnElse={getWishList.isLoading && !getWishList?.value}
-            onElse={
-              <div className="product-grid grid gap-x-3 gap-y-10">
-                {[1, 2, 3, 4].map((i) => (
-                  <ProductCardSkeleton key={i} />
+          <AnimatePresence>
+            <IfElse
+              ifOn={!getWishList.isLoading && !!getWishList?.value}
+              ifOnElse={getWishList.isLoading && !getWishList?.value}
+              onElse={
+                <FadeInOut className="product-grid grid gap-x-3 gap-y-10">
+                  {[1, 2, 3, 4].map((i) => (
+                    <ProductCardSkeleton key={i} />
+                  ))}
+                </FadeInOut>
+              }
+            >
+              <FadeInOut className="product-grid grid gap-x-3 gap-y-10">
+                {getWishList?.value?.items.map((product) => (
+                  <ProductCard
+                    name={product.productName}
+                    key={product.id}
+                    href={`/${product.slug}`}
+                    // isFinished={product.stockQuantity === 0}
+                    stockQuantity={product.productId}
+                    price={product.productPriceString}
+                    imageAlt={`${product.productName} image`}
+                    isCategoryPage
+                    id={product.productId}
+                  />
                 ))}
-              </div>
-            }
-          >
-            <div className="product-grid grid gap-x-3 gap-y-10">
-              {getWishList?.value?.items.map((product) => (
-                <ProductCard
-                  name={product.productName}
-                  key={product.id}
-                  href={`/${product.slug}`}
-                  // isFinished={product.stockQuantity === 0}
-                  stockQuantity={product.productId}
-                  price={product.productPriceString}
-                  imageAlt={`${product.productName} image`}
-                  isCategoryPage
-                  id={product.productId}
-                />
-              ))}
-            </div>
-          </IfElse>
+              </FadeInOut>
+            </IfElse>
+          </AnimatePresence>
         </div>
       </Section>
     </>

@@ -10,10 +10,10 @@ function FadeInOut(
 ) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.2 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0.2 }}
+      transition={{ duration: 0.8 }}
       className={`w-full ${props.className}`}
     >
       {props.children}

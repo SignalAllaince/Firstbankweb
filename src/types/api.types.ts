@@ -268,3 +268,14 @@ export interface SearchResponse {
     display: string;
   }[];
 }
+
+// Checkout
+export interface CreateShippingAdress {
+  contactName: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  stateId: number;
+  city: string;
+  zipCode: string;
+}

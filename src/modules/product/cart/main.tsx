@@ -5,6 +5,7 @@ import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import Section from "@/components/section";
 import useGetCartList from "@/hooks/cart/useGetCartList";
+import useCheckoutAll from "@/hooks/checkout/useCheckoutAll";
 import { CartListResponse } from "@/types/api.types";
 import {
   ArrowRightIcon,
@@ -23,8 +24,14 @@ const CartPageSection = ({
 }: {
   cartDetails: CartListResponse;
 }) => {
-  const checkoutCreateOrder = () => {};
+  const checkoutAll = useCheckoutAll();
   const getCartList = useGetCartList();
+
+  const checkoutCreateOrder = () => {
+    checkoutAll.refetch().then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <>
@@ -158,6 +165,7 @@ const CartPageSection = ({
                     <Button
                       className="w-full uppercase"
                       onClick={checkoutCreateOrder}
+                      isLoading={checkoutAll.isFetching}
                     >
                       Checkout
                     </Button>

@@ -1,6 +1,8 @@
 import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
 import Button from "../button";
+import FadeInOut from "../fade";
 import Heading from "../heading";
 import Icon from "../icon";
 import IfElse from "../if-else";
@@ -47,31 +49,33 @@ function Catergory({
           </Button>
         )}
       </div>
-      <IfElse
-        ifOn={!categoryProducts.isLoading && !!categoryProducts?.value}
-        ifOnElse={categoryProducts.isLoading && !categoryProducts?.value}
-        onElse={
-          <div className="product-grid grid gap-x-3 gap-y-10">
-            {[1, 2, 3, 4].map((i) => (
-              <ProductCardSkeleton key={i} />
+      <AnimatePresence>
+        <IfElse
+          ifOn={!categoryProducts.isLoading && !!categoryProducts?.value}
+          ifOnElse={categoryProducts.isLoading && !categoryProducts?.value}
+          onElse={
+            <FadeInOut className="product-grid grid gap-x-3 gap-y-10">
+              {[1, 2, 3, 4].map((i) => (
+                <ProductCardSkeleton key={i} />
+              ))}
+            </FadeInOut>
+          }
+        >
+          <FadeInOut className="product-grid grid gap-x-3 gap-y-10">
+            {categoryProducts?.value?.products.map((product) => (
+              <ProductCard
+                name={product.name}
+                key={product.id}
+                href={`/${product.slug}`}
+                // isFinished={product.stockQuantity === 0}
+                stockQuantity={product.stockQuantity}
+                price={product.calculatedProductPrice.priceString}
+                imageAlt={`${product.name} image`}
+              />
             ))}
-          </div>
-        }
-      >
-        <div className="product-grid grid gap-x-3 gap-y-10">
-          {categoryProducts?.value?.products.map((product) => (
-            <ProductCard
-              name={product.name}
-              key={product.id}
-              href={`/${product.slug}`}
-              // isFinished={product.stockQuantity === 0}
-              stockQuantity={product.stockQuantity}
-              price={product.calculatedProductPrice.priceString}
-              imageAlt={`${product.name} image`}
-            />
-          ))}
-        </div>
-      </IfElse>
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
     </div>
   );
 }
