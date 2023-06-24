@@ -6,7 +6,7 @@ const useGetCheckoutDetails = (userId: string, oid: string) => {
     method: "get",
     endpoint: ENDPOINTS.GET_CHECKOUT_DETAILS(userId, oid),
     queryKey: [NAMESPACE.GET_CHECKOUT_DETAILS],
-    enabled: !!userId || !!oid,
+    enabled: !!userId && !!oid,
   });
 };
 

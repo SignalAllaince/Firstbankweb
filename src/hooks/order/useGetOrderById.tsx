@@ -6,6 +6,7 @@ const useGetOrderById = (orderId: string) => {
     method: "get",
     endpoint: ENDPOINTS.GET_SINGLE_ORDERS(orderId),
     queryKey: [NAMESPACE.GET_SINGLE_ORDERS, orderId],
+    enabled: !!orderId,
   });
 };
 

@@ -4,6 +4,7 @@ import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import PageHead from "@/components/page-head";
+import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -11,6 +12,8 @@ import { ReactElement, SVGProps } from "react";
 import SingleOrder from "../components/order-row";
 
 const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const getOrders = useGetAllOrders();
+  console.log(getOrders, "getOrders");
   return (
     <div className="space-y-5">
       <PageHead title="Orders" />

@@ -3,17 +3,33 @@ import Button from "@/components/button";
 import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import ItemReviewModal from "@/components/modal/review";
+import useGetOrderById from "@/hooks/order/useGetOrderById";
 import useDisclosure from "@/hooks/use-disclosure";
-import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
+import { ProtectedNextPage } from "@/types/component.types";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { usePathname } from "next/navigation";
+import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
 import OrderProductRow from "../components/order-section";
 
-const DetailedSingleOrderPage: NextPageWithLayout &
-  ProtectedComponentType = () => {
+export const getServerSideProps: GetServerSideProps<{
+  query: ParsedUrlQuery;
+}> = async (params) => {
+  return {
+    props: {
+      query: params.query,
+    },
+  };
+};
+
+const DetailedSingleOrderPage: ProtectedNextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = (props) => {
   const pathname = usePathname();
+  const getOrder = useGetOrderById(props?.query?.orderId as string);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  console.log(getOrder, "get single order details");
   return (
     <>
       <div className="space-y-5 pt-5">

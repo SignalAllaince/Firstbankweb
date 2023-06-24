@@ -131,11 +131,11 @@ export const ENDPOINTS = {
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_SHIPPING_AS_BILLING: (orderId: string) =>
     `checkout/${orderId}/use-shipping-as-billing/true`,
-  GET_CHECKOUT_SHIPPING_STATES: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_SHIPPING_STATES: `checkout/shipping-states`,
   GET_CHANGE_SHIPPING_PROVIDER: (name: string) => `checkout/${name}`,
   GET_ALL_CHECKOUT: `checkout/checkout-all`,
   UPDATE_CHECKOUT_ITEM: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_PAYMENT: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_PAYMENT: (oid: string) => `checkout/payment?oid=${oid}`,
   GET_CHECKOUT_ORDER_SUCCESS: (name: string) => `checkout/${name}`,
   GET_CHECKOUT_ORDER_ERROR: (name: string) => `checkout/${name}`,
   ADD_ITEM_TO_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
@@ -155,6 +155,7 @@ export const ENDPOINTS = {
 };
 
 export const STOREID = "fbn46374683";
+
 export const NAMESPACE = {
   // categories
   GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",
