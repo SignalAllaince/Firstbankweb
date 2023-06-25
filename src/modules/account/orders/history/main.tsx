@@ -7,6 +7,7 @@ import { SVGProps } from "react";
 import SingleOrder from "../components/order-row";
 
 function OrderHistory({ orders }: { orders: IOrderResponse[] }) {
+  console.log(orders);
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between border-b border-brand-light py-3">

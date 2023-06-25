@@ -17,7 +17,7 @@ function OrderLoading() {
         <div className="">
           <table className="min-w-[640px] text-left text-sm font-light sm:min-w-full">
             <tbody>
-              {[1, 2, 3].map((item) => (
+              {[1, 2, 3, 4].map((item) => (
                 <div
                   key={item}
                   className="flex items-start justify-between border-b"

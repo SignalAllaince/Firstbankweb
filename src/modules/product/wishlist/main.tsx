@@ -26,7 +26,7 @@ const WishListMainSection = ({
   React.useEffect(() => {
     sectionRef.current?.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
   }, [currentPageNumber]);
 
