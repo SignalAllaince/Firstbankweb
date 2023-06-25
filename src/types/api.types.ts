@@ -283,3 +283,9 @@ export interface CreateShippingAdress {
 export interface ApplyCoupon {
   couponCode: string;
 }
+
+// Orders
+export interface IOrderResponse {
+  name: string;
+  status: string;
+}
