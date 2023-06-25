@@ -4,7 +4,6 @@ import { VariantProps } from "class-variance-authority";
 import React, { DetailedHTMLProps } from "react";
 import { inputClasses } from ".";
 import InputWrapper from "./input-wrapper";
-
 export type Ref = HTMLSelectElement;
 
 export interface SelectProps
@@ -15,19 +14,16 @@ export interface SelectProps
     VariantProps<typeof inputClasses> {
   isLoading?: boolean;
 }
-const CustomSelect = React.forwardRef<
-  Ref,
-  SelectProps & Omit<InputWrapperProps, "type">
->(
+const CustomSelect = React.forwardRef<Ref, SelectProps & InputWrapperProps>(
   (
     {
-      value,
+      value = undefined,
       onChange,
       name,
       onBlur,
       placeholder,
       options,
-      className = "",
+      className = "cursor-pointer",
       isDisabled,
       variant,
       inputSize,
@@ -35,21 +31,18 @@ const CustomSelect = React.forwardRef<
     },
     ref
   ) => {
-    const [show, setShow] = React.useState(false);
-    const handleClick = () => setShow(!show);
     return (
       <InputWrapper
         type={"select"}
         isDisabled={isDisabled}
         name={name}
-        isShown={show}
-        handleClick={handleClick}
         {...others}
       >
         <select
           name={name}
           onChange={onChange}
           value={value}
+          defaultValue={placeholder}
           id={name}
           ref={ref}
           onBlur={onBlur}

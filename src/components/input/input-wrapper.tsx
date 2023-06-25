@@ -42,16 +42,8 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         className={`relative flex h-11 items-center overflow-hidden rounded-[4px] border ${
           props.h ?? "h-11"
         } ${bgColor} ${borderColor} ${label ? "mt-2" : ""} ${
-          type === "select" ? "pr-1" : ""
+          type === "select" ? "cursor-not-allowed pr-1" : ""
         }`}
-        // pr={props.pr || 0}
-        // transition="all 0.25s linear"
-        // bg={hasError ? "red.100" : "white"}
-        // _focusWithin={{
-        //   bg: bgColor,
-        //   shadow: "none",
-        //   borderColor: brColor,
-        // }}
       >
         {inputIcon && (
           <Icon IconComp={inputIcon} boxSize={7} className="text-gray-300" />

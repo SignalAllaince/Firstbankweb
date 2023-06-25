@@ -9,6 +9,7 @@ import Modal from "..";
 type Inputs = {
   address: string;
   phoneNumber: string;
+  state: string;
 };
 
 function CheckoutAddressModal({
@@ -40,10 +41,10 @@ function CheckoutAddressModal({
         </div>
         <form className="space-y-5" onSubmit={handleSubmit(setAddressHandler)}>
           <CustomSelect
-            {...register("phoneNumber", { required: true })}
+            {...register("state", { required: true })}
             errors={errors}
             bg="bg-brand-lightest"
-            label="Phone Number"
+            label="State"
             placeholder="08000000000"
             options={[
               { label: "King", value: "king" },
