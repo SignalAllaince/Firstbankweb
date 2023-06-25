@@ -2,6 +2,7 @@ import { InputWrapperProps } from "@/types/component.types";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { ErrorMessage } from "@hookform/error-message";
 import { get } from "react-hook-form";
+import { ClipLoader } from "react-spinners";
 import Button from "../button";
 import Icon from "../icon";
 
@@ -38,9 +39,11 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         </label>
       )}
       <div
-        className={`flex h-11 items-center overflow-hidden rounded-[4px] border ${
+        className={`relative flex h-11 items-center overflow-hidden rounded-[4px] border ${
           props.h ?? "h-11"
-        } ${bgColor} ${borderColor} ${label ? "mt-2" : ""}`}
+        } ${bgColor} ${borderColor} ${label ? "mt-2" : ""} ${
+          type === "select" ? "pr-1" : ""
+        }`}
         // pr={props.pr || 0}
         // transition="all 0.25s linear"
         // bg={hasError ? "red.100" : "white"}
@@ -56,18 +59,21 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         {/* The child input element which can be input, textarea, select etc */}
         {children}
         {/* To indicate loading, usefull when input default value is gotten from the server */}
-        {/* {isLoading && type !== "select" && (
-          <Spinner
-            thickness="2px"
-            speed="0.4s"
-            emptyColor="gray.200"
-            color="main.700"
-            size="md"
-          />
-        )} */}
+        {isLoading && (
+          <div className={`absolute right-1 top-3 ${bgColor}`}>
+            <ClipLoader
+              color="#003B65"
+              size={20}
+              loading={true}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        )}
         {/* Icon used to indicate error state */}
 
         {/* password type switcher use to toggle password fields */}
+
         {type === "password" && !isLoading && (
           <Button
             variant="secondary"

@@ -27,11 +27,11 @@ const CartPageSection = ({
   const checkoutAll = useCheckoutAll();
   const getCartList = useGetCartList();
 
-  const checkoutCreateOrder = () => {
-    checkoutAll.refetch().then((res) => {
-      console.log(res);
-    });
-  };
+  // const checkoutCreateOrder = () => {
+  //   checkoutAll.refetch().then((res) => {
+  //     console.log(res);
+  //   });
+  // };
 
   return (
     <>
@@ -164,7 +164,8 @@ const CartPageSection = ({
                     <div className="border-t border-brand-light"></div>
                     <Button
                       className="w-full uppercase"
-                      onClick={checkoutCreateOrder}
+                      // onClick={checkoutCreateOrder}
+                      href="/cart/checkout"
                       isLoading={checkoutAll.isFetching}
                     >
                       Checkout

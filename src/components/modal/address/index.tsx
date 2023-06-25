@@ -1,5 +1,6 @@
 import Button from "@/components/button";
 import CustomInput from "@/components/input";
+import CustomSelect from "@/components/input/select";
 import Textarea from "@/components/input/text-area";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ type Inputs = {
   phoneNumber: string;
 };
 
-function CheckoutModal({
+function CheckoutAddressModal({
   isOpen,
   onClose,
 }: {
@@ -38,6 +39,18 @@ function CheckoutModal({
           </p>
         </div>
         <form className="space-y-5" onSubmit={handleSubmit(setAddressHandler)}>
+          <CustomSelect
+            {...register("phoneNumber", { required: true })}
+            errors={errors}
+            bg="bg-brand-lightest"
+            label="Phone Number"
+            placeholder="08000000000"
+            options={[
+              { label: "King", value: "king" },
+              { label: "Queen", value: "queen" },
+              { label: "Price", value: "prince" },
+            ]}
+          />
           <Textarea
             {...register("address", { required: true })}
             errors={errors}
@@ -63,4 +76,4 @@ function CheckoutModal({
   );
 }
 
-export default CheckoutModal;
+export default CheckoutAddressModal;

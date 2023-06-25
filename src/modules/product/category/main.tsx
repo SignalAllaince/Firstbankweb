@@ -75,7 +75,7 @@ function CategoryMain({
                   as={Button}
                   variant="secondary"
                   size="small"
-                  className="h-8 min-w-[130px] border-brand-light px-[6px] text-brand-darkest"
+                  className="h-8 min-w-[130px] border-brand-light px-[6px] text-xs text-brand-darkest"
                   rightIcon={<Icon IconComp={ChevronDownIcon} boxSize={4} />}
                 >
                   {sort
@@ -90,6 +90,7 @@ function CategoryMain({
                       onClick={() => {
                         onChangeSort(item.value!);
                       }}
+                      className="w-full border-0 text-center text-[13px]"
                     >
                       {item.display}
                     </MenuItem>

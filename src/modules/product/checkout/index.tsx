@@ -9,6 +9,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useState } from "react";
+import AddressDetails from "./components/address-details";
 import CheckoutProduct from "./components/checkout-product";
 import PaymentMethods from "./components/payment-methods";
 import StaffDetails from "./components/staff-details";
@@ -68,34 +69,7 @@ const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
                   <h2 className="text-lg font-bold">₦ 25,000</h2>
                 </div>
                 {/* Shipping details */}
-                <div className="space-y-4 pt-7 font-light">
-                  <Heading size="h5">Delivery Details</Heading>
-                  <div className="space-y-1">
-                    <p className="text-xs">Delivery Address</p>
-                    <p className="text-sm">
-                      Plot 72, Unknown Estate, along Unknown Road, Unknown Town,
-                      Lagos State, Nigeria.
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-xs">Phone Number</p>
-                    <p className="text-sm">09099096797</p>
-                  </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center gap-4">
-                      <p className="w-[170px]">Delivery/Shipping Cost:</p>
-                      <p className="font-medium">₦ 2,000</p>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <p className="w-[170px]">Product Tax (7.5%):</p>
-                      <p className="font-medium">₦ 3,875</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between border-b border-t border-brand-light py-4">
-                    <h2 className="font-bold uppercase">TOTAL COST</h2>
-                    <h2 className="text-lg font-bold">₦ 55,875</h2>
-                  </div>
-                </div>
+                <AddressDetails />
                 {/* Toggle staff details and payment option */}
                 <AnimatePresence mode="wait">
                   <motion.div
