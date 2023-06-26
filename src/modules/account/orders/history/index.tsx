@@ -13,7 +13,6 @@ import OrderHistory from "./main";
 
 const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
   const getOrders = useGetAllOrders();
-  console.log(getOrders?.value, "getOrders");
   return (
     <>
       <PageHead title="Orders" />
@@ -22,7 +21,7 @@ const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
           ifOn={!getOrders.isLoading && !!getOrders?.value}
           ifOnElse={getOrders.isLoading && !getOrders?.value}
           // ifOnElse={true}
-          onElse={<OrderLoading />}
+          onElse={<OrderLoading isMainPage />}
         >
           <FadeInOut>
             <OrderHistory orders={getOrders?.value!} />

@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 
 const links = [
   { text: "Order History", href: "/account/orders" },
-  { text: "Open Orders (2)", href: "/account/orders/open" },
+  { text: "Open Orders (0)", href: "/account/orders/open" },
   { text: "Closed Orders", href: "/account/orders/closed" },
 ];
 

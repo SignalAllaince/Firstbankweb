@@ -1,18 +1,20 @@
-function OrderLoading() {
+function OrderLoading({ isMainPage = false }: { isMainPage?: boolean }) {
   return (
     <div>
       {/* second section */}
-      <section className="animate-pulse space-y-7 border-b pb-4 pt-7">
-        <div className="flex items-center justify-between">
+      {!isMainPage && (
+        <section className="animate-pulse space-y-7 border-b pb-4 pt-7">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1 text-sm">
-              <div className="h-8 w-10 rounded bg-slate-300"></div>
-              <div className="h-8 w-20 rounded bg-slate-300"></div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1 text-sm">
+                <div className="h-8 w-10 rounded bg-slate-300"></div>
+                <div className="h-8 w-20 rounded bg-slate-300"></div>
+              </div>
             </div>
+            <div className="h-8 w-28 rounded bg-slate-300"></div>
           </div>
-          <div className="h-8 w-28 rounded bg-slate-300"></div>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="pb-24 pt-4">
         <div className="">
           <table className="min-w-[640px] text-left text-sm font-light sm:min-w-full">

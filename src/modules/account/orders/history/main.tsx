@@ -1,9 +1,16 @@
 import Button from "@/components/button";
+import FadeInOut from "@/components/fade";
+import Heading from "@/components/heading";
 import Icon from "@/components/icon";
+import IfElse from "@/components/if-else";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
+import Section from "@/components/section";
 import { IOrderResponse } from "@/types/api.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { SVGProps } from "react";
+import shirtImg from "../../../../../public/images/top.svg";
 import SingleOrder from "../components/order-row";
 
 function OrderHistory({ orders }: { orders: IOrderResponse[] }) {
@@ -39,11 +46,40 @@ function OrderHistory({ orders }: { orders: IOrderResponse[] }) {
           Export Result
         </Button>
       </div>
-      <div className="space-y-5">
-        <SingleOrder />
-        <SingleOrder status="pending" />
-        <SingleOrder />
-        <SingleOrder status="success" />
+
+      {/* Second section */}
+      <div className="col-span-8 md:col-span-9">
+        <AnimatePresence>
+          <IfElse
+            ifOn={orders.length !== 0}
+            ifOnElse={orders.length === 0}
+            onElse={
+              <FadeInOut>
+                <Section className="my-4 flex w-full flex-col items-center justify-center space-y-4 py-4">
+                  <div className="max-w-xl">
+                    <Image src={shirtImg} alt={"djsdsd"} />
+                  </div>
+                  <div className="flex flex-col items-center space-y-3 text-center">
+                    <Heading size="h4">You have no orders yet!</Heading>
+                    <p className="font-light">
+                      Browse our categories and order something nice for
+                      yourself!
+                    </p>
+                  </div>
+                </Section>
+              </FadeInOut>
+            }
+          >
+            <FadeInOut>
+              <div className="space-y-5">
+                {orders.map((order) => (
+                  <SingleOrder status="pending" key={order.name} />
+                ))}
+              </div>
+              {/* Pagination */}
+            </FadeInOut>
+          </IfElse>
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import CustomInput from "@/components/input";
 import CustomSelect from "@/components/input/select";
 import Textarea from "@/components/input/text-area";
+import useGetShippingState from "@/hooks/checkout/useGetShippingStates";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "..";
@@ -25,7 +26,8 @@ function CheckoutAddressModal({
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
+  const shippingStates = useGetShippingState();
+  console.log(shippingStates);
   const setAddressHandler: SubmitHandler<Inputs> = (data) => {
     console.log(data);
     router.push("/cart/checkout");

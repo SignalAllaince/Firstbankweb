@@ -1,21 +1,34 @@
+import FadeInOut from "@/components/fade";
+import IfElse from "@/components/if-else";
 import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import PageHead from "@/components/page-head";
+import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { AnimatePresence } from "framer-motion";
 import { ReactElement } from "react";
-import SingleOrder from "../components/order-row";
+import OrderLoading from "../history/loading";
+import OrderHistory from "./main";
 
 const ClosedOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const getOrders = useGetAllOrders();
   return (
-    <div className="space-y-5 pt-5">
-      <PageHead title="Closed orders" />
-      <div className="space-y-5">
-        <SingleOrder status="success" />
-        <SingleOrder status="error" />
-        <SingleOrder status="success" />
-      </div>
-    </div>
+    <>
+      <PageHead title="Closed Orders" />
+      <AnimatePresence>
+        <IfElse
+          ifOn={!getOrders.isLoading && !!getOrders?.value}
+          ifOnElse={getOrders.isLoading && !getOrders?.value}
+          // ifOnElse={true}
+          onElse={<OrderLoading />}
+        >
+          <FadeInOut>
+            <OrderHistory orders={getOrders?.value!} />
+          </FadeInOut>
+        </IfElse>
+      </AnimatePresence>
+    </>
   );
 };
 
