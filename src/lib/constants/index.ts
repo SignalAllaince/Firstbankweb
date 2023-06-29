@@ -1,7 +1,8 @@
 // Api Endpoints
 export const ENDPOINTS = {
   // API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
-  API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
+  // API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
+  API_BASE_URL: "https://66b0-105-113-12-34.ngrok-free.app/",
 
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
