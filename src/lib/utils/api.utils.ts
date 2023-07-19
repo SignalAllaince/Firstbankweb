@@ -15,11 +15,15 @@ export const secureRequest = async ({
   const myToken = JSON.parse(localStorage.getItem(STOREID) as string) ?? "";
   const givenMethod = method.toLocaleLowerCase() as CustomMethod;
 
-  const creathorHeader = {
+  const fbnHeader = {
     Authorization: `Bearer ${myToken}`,
   };
 
-  const headers = { ...creathorHeader, ...requestHeader };
+  const headers = {
+    "content-type": "application/json",
+    ...fbnHeader,
+    ...requestHeader,
+  };
 
   if (givenMethod === "get" || givenMethod === "delete") {
     //dont include body in GET request request will fail

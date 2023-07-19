@@ -69,7 +69,7 @@ const WishListMainSection = ({
             {wishlistResult.items?.map((item) => (
               <WishListRow
                 name={item.productName}
-                productId={item.productId}
+                productId={item.id}
                 price={item.productPriceString}
                 slug={item.slug}
                 key={item.id}
@@ -77,16 +77,18 @@ const WishListMainSection = ({
                 isRefetching={isRefetching}
               />
             ))}
-            <div className="flex items-center justify-center">
-              <Pagination
-                onNext={onNext}
-                onPrev={onPrev}
-                currentPageNumber={currentPageNumber}
-                isPrevDisabled={currentPageNumber === 1}
-                isNextDisabled={currentPageNumber === totalPages}
-                totalPages={totalPages}
-              />
-            </div>
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center">
+                <Pagination
+                  onNext={onNext}
+                  onPrev={onPrev}
+                  currentPageNumber={currentPageNumber}
+                  isPrevDisabled={currentPageNumber === 1}
+                  isNextDisabled={currentPageNumber === totalPages}
+                  totalPages={totalPages}
+                />
+              </div>
+            )}
           </Section>
         </div>
       </IfElse>

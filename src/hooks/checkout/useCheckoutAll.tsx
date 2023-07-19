@@ -1,12 +1,10 @@
-import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
-import useQueryActionHook from "../use-queryaction";
+import { ENDPOINTS } from "@/lib/constants";
+import useCustomMutation from "../use-mutationaction";
 
 const useCheckoutAll = () => {
-  return useQueryActionHook({
-    method: "get",
+  return useCustomMutation({
+    method: "post",
     endpoint: ENDPOINTS.GET_ALL_CHECKOUT,
-    queryKey: [NAMESPACE.GET_ALL_CHECKOUT],
-    enabled: false,
   });
 };
 

@@ -28,9 +28,10 @@ const CartPageSection = ({
   const getCartList = useGetCartList();
 
   const checkoutCreateOrder = () => {
-    checkoutAll.refetch().then((res) => {
-      console.log(res);
-    });
+    checkoutAll
+      .mutateAsync({})
+      .then((res) => console.log(res, "resddd"))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -166,7 +167,7 @@ const CartPageSection = ({
                       className="w-full uppercase"
                       onClick={checkoutCreateOrder}
                       // href="/cart/checkout"
-                      isLoading={checkoutAll.isFetching}
+                      isLoading={checkoutAll.isLoading}
                     >
                       Checkout
                     </Button>

@@ -18,7 +18,7 @@ import WishListMainSection from "./main";
 
 const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   const [currentPageNumber, setPage] = React.useState(1);
-  const pageSize = 4;
+  const pageSize = 8;
   const getWishList = useGetWishlist(currentPageNumber, pageSize);
 
   return (
