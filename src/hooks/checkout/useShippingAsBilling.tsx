@@ -1,12 +1,11 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
-import useQueryActionHook from "../use-queryaction";
+import useCustomMutation from "../use-mutationaction";
 
 const useShippingAsBilling = (orderId: string) => {
-  return useQueryActionHook({
-    method: "get",
+  return useCustomMutation({
+    method: "put",
     endpoint: ENDPOINTS.GET_SHIPPING_AS_BILLING(orderId),
     queryKey: [NAMESPACE.GET_SHIPPING_AS_BILLING],
-    enabled: false,
   });
 };
 

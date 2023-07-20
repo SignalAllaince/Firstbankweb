@@ -36,7 +36,11 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
           }
         >
           <FadeInOut>
-            <CartPageSection cartDetails={getCartList.value!} />
+            <CartPageSection
+              refetchCartDetails={getCartList.refetch}
+              isRefetching={getCartList.isRefetching}
+              cartDetails={getCartList.value!}
+            />
           </FadeInOut>
         </IfElse>
       </AnimatePresence>
@@ -77,8 +81,6 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                     name={product.productName}
                     key={product.id}
                     href={`/${product.slug}`}
-                    // isFinished={product.stockQuantity === 0}
-                    stockQuantity={product.productId}
                     price={product.productPriceString}
                     imageAlt={`${product.productName} image`}
                     isCategoryPage

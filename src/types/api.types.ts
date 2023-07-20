@@ -23,6 +23,7 @@ export interface RequestResponse<T = Record<string, unknown>> {
 
 export interface FirstBankResponseType<D = Record<string, unknown>> {
   data: {
+    oid: any;
     response_code: string;
     data: D;
     errors: Record<string, unknown>;
@@ -275,7 +276,7 @@ export interface CreateShippingAdress {
   phone: string;
   addressLine1: string;
   addressLine2: string;
-  stateId: number;
+  stateId: string;
   city: string;
   zipCode: string;
 }

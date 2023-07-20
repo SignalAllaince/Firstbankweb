@@ -1,108 +1,55 @@
-import Button from "@/components/button";
-import Heading from "@/components/heading";
+import FadeInOut from "@/components/fade";
+import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
-import PaymentModal from "@/components/modal/payment";
 import PageHead from "@/components/page-head";
-import Section from "@/components/section";
-import useDisclosure from "@/hooks/use-disclosure";
+import useGetCheckoutDetails from "@/hooks/checkout/useGetCheckoutDetails";
+import useShippingAsBilling from "@/hooks/checkout/useShippingAsBilling";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { AnimatePresence, motion } from "framer-motion";
-import { ReactElement, useState } from "react";
-import AddressDetails from "./components/address-details";
-import CheckoutProduct from "./components/checkout-product";
-import PaymentMethods from "./components/payment-methods";
-import StaffDetails from "./components/staff-details";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
+import React, { ReactElement } from "react";
+import CategoryLoading from "../category/loading";
+import CheckoutMain from "./main";
 
-const btnText = {
-  details: "Proceed to payment",
-  payment: "Confirm Order",
-};
-const CheckoutPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const [checked, setChecked] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState(null);
-  const [level, setLevel] = useState<"details" | "payment">("details");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const checkoutHandler = () => {
-    if (level === "details" && checked) {
-      setLevel("payment");
-      return;
-    }
-    onOpen();
+export const getServerSideProps: GetServerSideProps<{
+  query: ParsedUrlQuery;
+}> = async (params) => {
+  return {
+    props: {
+      query: params.query,
+    },
   };
-  const disable =
-    (level === "details" && !checked) ||
-    (level === "payment" && !paymentMethod);
+};
+
+const CheckoutPage: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> &
+  ProtectedComponentType = ({ query }) => {
+  const userId = "7B0030007800640033006600640035003000";
+  const checkoutDetails = useGetCheckoutDetails(userId, query?.id as string);
+  const shippingAsBilling = useShippingAsBilling(query?.id as string);
+
+  React.useEffect(() => {
+    shippingAsBilling.mutateAsync({}).then(() => {
+      checkoutDetails.refetch();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <PageHead title="Checkout" />
-      <PaymentModal isOpen={isOpen} onClose={onClose} isLoading={false} />
-      <div className="bg-white pb-10">
-        <div className="w-full border-b border-gray-200 ">
-          <Section className="py-4">
-            <div className="flex items-center">
-              <Heading size="h4" className="text-brand-darkest">
-                Checkout
-              </Heading>
-            </div>
-          </Section>
-        </div>
-        <div>
-          <Section className="py-10">
-            <div className="mx-auto max-w-[800px]">
-              <Heading size="h5" className="pb-6">
-                Item(s) Details
-              </Heading>
-              <div className="space-y-6">
-                {/* Item rows */}
-                <div className="grid grid-cols-2 gap-4 border-b border-brand-light">
-                  <CheckoutProduct />
-                  <CheckoutProduct />
-                  <CheckoutProduct />
-                  <CheckoutProduct />
-                </div>
-
-                {/* Total Price Row */}
-                <div className="flex items-center justify-between border-b border-brand-light pb-4">
-                  <h2 className="font-bold uppercase">SUBTOTAL</h2>
-                  <h2 className="text-lg font-bold">₦ 25,000</h2>
-                </div>
-                {/* Shipping details */}
-                <AddressDetails />
-                {/* Toggle staff details and payment option */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={level}
-                    initial={{ opacity: 0.3 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0.3 }}
-                  >
-                    {level === "details" ? (
-                      <StaffDetails checked={checked} setChecked={setChecked} />
-                    ) : (
-                      <PaymentMethods
-                        paymentMethod={paymentMethod}
-                        setPaymentMethod={setPaymentMethod}
-                      />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                <div>
-                  <Button
-                    className="w-full text-sm uppercase"
-                    disabled={disable}
-                    onClick={checkoutHandler}
-                  >
-                    {btnText[level]}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Section>
-        </div>
-      </div>
+      <IfElse
+        ifOn={!checkoutDetails.isLoading && !!checkoutDetails?.data?.data}
+        // @ts-expect-error
+        ifOnElse={checkoutDetails.isLoading && !checkoutDetails?.data?.data}
+        onElse={<CategoryLoading />}
+      >
+        <FadeInOut>
+          <CheckoutMain checkoutDetails={checkoutDetails?.data?.data!} />
+        </FadeInOut>
+      </IfElse>
     </>
   );
 };

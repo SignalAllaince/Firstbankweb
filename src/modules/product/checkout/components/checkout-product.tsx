@@ -1,7 +1,13 @@
 import Image from "next/image";
 import productImg from "../../../../../public/images/shirt.jpg";
 
-function CheckoutProduct() {
+function CheckoutProduct({
+  name,
+  quantity,
+}: {
+  name: string;
+  quantity: number;
+}) {
   return (
     <div className="flex items-start justify-between pb-4">
       <div className="item-start flex max-w-sm gap-3 text-sm font-light">
@@ -15,9 +21,9 @@ function CheckoutProduct() {
           />
         </div>
         <div className="flex h-[100px] flex-col justify-between">
-          <p className="break-words">Ashawo gown</p>
+          <p className="break-words">{name}</p>
           <div className="flex items-center gap-2">
-            <p>Quantity: 1</p>
+            <p>Quantity: {quantity}</p>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import Section from "@/components/section";
-import useGetCartList from "@/hooks/cart/useGetCartList";
 import useCheckoutAll from "@/hooks/checkout/useCheckoutAll";
 import { CartListResponse } from "@/types/api.types";
 import {
@@ -15,22 +14,30 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BarLoader } from "react-spinners";
 import cartImg from "../../../../public/images/cart.svg";
 import CartProductRow from "./components/cart-row";
 
 const CartPageSection = ({
   cartDetails,
+  isRefetching,
+  refetchCartDetails,
 }: {
   cartDetails: CartListResponse;
+  isRefetching: boolean;
+  refetchCartDetails: () => void;
 }) => {
   const checkoutAll = useCheckoutAll();
-  const getCartList = useGetCartList();
+  const router = useRouter();
 
   const checkoutCreateOrder = () => {
     checkoutAll
       .mutateAsync({})
-      .then((res) => console.log(res, "resddd"))
+      .then((res) => {
+        console.log(res, "resddd");
+        router.push(`/cart/checkout?id=${res?.data?.oid}`);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -63,7 +70,7 @@ const CartPageSection = ({
                 <div className="absolute bottom-0 right-0 z-30 w-full">
                   <BarLoader
                     color="#003B65"
-                    loading={getCartList.isRefetching}
+                    loading={isRefetching}
                     height={2}
                     speedMultiplier={0.8}
                     width="100%"
@@ -129,8 +136,8 @@ const CartPageSection = ({
                                     <CartProductRow
                                       price={item.productPriceString}
                                       productQuantity={item.quantity}
-                                      onCartRefetch={getCartList.refetch}
-                                      isLoading={getCartList.isRefetching}
+                                      onCartRefetch={refetchCartDetails}
+                                      isLoading={isRefetching}
                                       name={item.productName}
                                       productId={item.id}
                                     />
@@ -166,10 +173,10 @@ const CartPageSection = ({
                     <Button
                       className="w-full uppercase"
                       onClick={checkoutCreateOrder}
-                      // href="/cart/checkout"
                       isLoading={checkoutAll.isLoading}
+                      disabled={isRefetching}
                     >
-                      Checkout
+                      {isRefetching ? "Updating cart" : "Checkout"}
                     </Button>
                   </div>
                 </div>
