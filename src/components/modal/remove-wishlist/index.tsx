@@ -13,7 +13,7 @@ function DeleteFromWishListModal({
   isLoading: boolean;
 }) {
   return (
-    <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick>
+    <Modal isOpen={isOpen} closeModal={onClose}>
       <div className="space-y-8 py-6 md:px-5">
         <div className="text-md mx-auto max-w-sm text-center font-light">
           <p>Are you sure you want to remove this item from your wishlist?</p>
