@@ -66,7 +66,6 @@ const CheckoutMain = () => {
               <div className="space-y-6">
                 {/* Item rows */}
                 <div className="grid grid-cols-2 gap-4 border-b border-brand-light">
-                  {/* @ts-expect-error */}
                   {checkoutDetails.checkoutProducts.map((product) => (
                     <CheckoutProduct
                       key={product.id}

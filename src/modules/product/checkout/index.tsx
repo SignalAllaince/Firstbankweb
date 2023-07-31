@@ -47,12 +47,11 @@ const CheckoutPage: NextPageWithLayout<
     <>
       <PageHead title="Checkout" />
       <IfElse
-        ifOn={!checkoutDetails.isLoading && !!checkoutDetails?.data?.data}
-        // @ts-expect-error
-        ifOnElse={checkoutDetails.isLoading && !checkoutDetails?.data?.data}
+        ifOn={!checkoutDetails.isLoading && !!checkoutDetails?.value}
+        ifOnElse={checkoutDetails.isLoading && !checkoutDetails?.value}
         onElse={<CategoryLoading />}
       >
-        <CheckoutContextProvider details={checkoutDetails?.data?.data!}>
+        <CheckoutContextProvider details={checkoutDetails?.value!}>
           <FadeInOut>
             <CheckoutMain />
           </FadeInOut>

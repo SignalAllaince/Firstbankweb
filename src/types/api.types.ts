@@ -290,3 +290,60 @@ export interface IOrderResponse {
   name: string;
   status: string;
 }
+export type AddressType = {
+  id: number;
+  contactName: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  zipCode: null | number;
+  stateId: number;
+  stateName: string;
+  cityName: string;
+  isCityEnabled: boolean;
+  isZipCodeEnabled: boolean;
+};
+
+export type CheckoutProduct = {
+  name: string;
+  productId: number;
+  slug: string;
+  thumbnailUrl: string;
+  id: number;
+  quantity: number;
+  price: string;
+  priceString: string;
+  total: string;
+  totalString: string;
+  shippingPrice: number;
+  shippingPriceString: string;
+  isAvailableToOrder: boolean;
+  productStockQuantity: number;
+};
+export interface ICategoryDetails {
+  orderId: string;
+  orderStatus: number;
+  customerId: string;
+  shippingAddress: null;
+  billingAddress: null;
+  isValid: true;
+  useShippingAddressAsBillingAddress: false;
+  selectedShippingAddressId: number;
+  selectedBillingAddressId: number;
+  existingShippingAddresses: AddressType[];
+  existingBillingAddresses: AddressType[];
+  taxAmount: number;
+  taxAmountString: string;
+  orderNote: null;
+  couponCode: null;
+  subTotal: number;
+  subTotalString: string;
+  orderTotal: number;
+  orderTotalString: string;
+  shippingTotal: number;
+  shippingTotalString: string;
+  selectedShippingProviderId: number;
+  shippingProviders: null;
+  error: null;
+  checkoutProducts: CheckoutProduct[];
+}

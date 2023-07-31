@@ -1,9 +1,10 @@
+import { ICategoryDetails } from "@/types/api.types";
 import React from "react";
 
 interface CheckoutContextInterface {
-  checkoutDetails: any;
+  checkoutDetails: ICategoryDetails;
   // eslint-disable-next-line no-unused-vars
-  updateCheckoutDetails: (details: any) => void;
+  updateCheckoutDetails: (details: ICategoryDetails) => void;
 }
 interface CheckoutPropsInterface {
   children: React.ReactNode;
@@ -18,7 +19,8 @@ const CheckoutContextProvider = ({
   children,
   details,
 }: CheckoutPropsInterface) => {
-  const [checkoutDetails, setCheckoutDetails] = React.useState(details);
+  const [checkoutDetails, setCheckoutDetails] =
+    React.useState<ICategoryDetails>(details);
 
   const updateCheckoutDetails = React.useCallback((details: any) => {
     setCheckoutDetails(details);

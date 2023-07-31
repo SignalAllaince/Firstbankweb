@@ -10,7 +10,10 @@ function AddressDetails() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { checkoutDetails } = useCheckout();
 
-  const total = checkoutDetails.subTotal + checkoutDetails.taxAmount;
+  const total =
+    checkoutDetails.subTotal +
+    checkoutDetails.taxAmount +
+    checkoutDetails.shippingTotal;
   return (
     <>
       <CheckoutAddressModal
@@ -22,16 +25,33 @@ function AddressDetails() {
       <div className="relative space-y-4 pt-7 font-light">
         <>
           <Heading size="h5">Delivery Details</Heading>
-          <div className="space-y-1">
-            <p className="text-xs">Delivery Address</p>
-            <p className="text-sm">
-              Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos
-              State, Nigeria.
-            </p>
+          <div className="flex justify-between">
+            <div className="space-y-1">
+              <p className="text-xs">Delivery Address</p>
+              <p className="text-sm">
+                {checkoutDetails.existingBillingAddresses[0].addressLine1}
+              </p>
+            </div>
+
+            <div className="space-y-1">
+              <p className="text-xs">City</p>
+              <p className="text-sm">
+                {checkoutDetails.existingBillingAddresses[0].cityName}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs">State</p>
+              <p className="text-sm">
+                {checkoutDetails.existingBillingAddresses[0].stateName}
+              </p>
+            </div>
           </div>
+
           <div className="space-y-1">
             <p className="text-xs">Phone Number</p>
-            <p className="text-sm">09099096797</p>
+            <p className="text-sm">
+              {checkoutDetails.existingBillingAddresses[0].phone}
+            </p>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-4">

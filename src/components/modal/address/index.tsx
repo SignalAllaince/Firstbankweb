@@ -3,8 +3,9 @@ import Icon from "@/components/icon";
 import CustomInput from "@/components/input";
 import CustomSelect from "@/components/input/select";
 import Textarea from "@/components/input/text-area";
-import useCreateBillingAddress from "@/hooks/checkout/useCreateBillingAddress";
+import useCreateShippingAddress from "@/hooks/checkout/useCreateShippingAddress";
 import useGetShippingState from "@/hooks/checkout/useGetShippingStates";
+import { useCheckout } from "@/lib/context/checkout-context";
 import { cn } from "@/lib/utils/component.utils";
 import { RadioGroup } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
@@ -39,8 +40,9 @@ function CheckoutAddressModal({
     reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const createShippingAddress = useCreateBillingAddress(orderId);
+  const createShippingAddress = useCreateShippingAddress(orderId);
   const shippingStates = useGetShippingState();
+  const { updateCheckoutDetails } = useCheckout();
 
   const setAddressHandler: SubmitHandler<Inputs> = (data) => {
     createShippingAddress
@@ -54,7 +56,7 @@ function CheckoutAddressModal({
         zipCode: "",
       })
       .then((res) => {
-        console.log(res);
+        updateCheckoutDetails(res?.data?.data);
         reset();
         onClose();
       })
@@ -81,7 +83,7 @@ function CheckoutAddressModal({
             placeholder="08000000000"
             isLoading={shippingStates.isLoading}
             // @ts-expect-error
-            options={shippingStates?.data?.data?.map((item) => ({
+            options={shippingStates?.value?.map((item) => ({
               label: item.name,
               value: item.id,
             }))}
