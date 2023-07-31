@@ -4,6 +4,7 @@ import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import useGetCheckoutDetails from "@/hooks/checkout/useGetCheckoutDetails";
 import useShippingAsBilling from "@/hooks/checkout/useShippingAsBilling";
+import CheckoutContextProvider from "@/lib/context/checkout-context";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -30,10 +31,15 @@ const CheckoutPage: NextPageWithLayout<
   const checkoutDetails = useGetCheckoutDetails(userId, query?.id as string);
   const shippingAsBilling = useShippingAsBilling(query?.id as string);
 
-  React.useEffect(() => {
+  const makeCalls = React.useCallback(() => {
     shippingAsBilling.mutateAsync({}).then(() => {
       checkoutDetails.refetch();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    makeCalls();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,9 +52,11 @@ const CheckoutPage: NextPageWithLayout<
         ifOnElse={checkoutDetails.isLoading && !checkoutDetails?.data?.data}
         onElse={<CategoryLoading />}
       >
-        <FadeInOut>
-          <CheckoutMain checkoutDetails={checkoutDetails?.data?.data!} />
-        </FadeInOut>
+        <CheckoutContextProvider details={checkoutDetails?.data?.data!}>
+          <FadeInOut>
+            <CheckoutMain />
+          </FadeInOut>
+        </CheckoutContextProvider>
       </IfElse>
     </>
   );

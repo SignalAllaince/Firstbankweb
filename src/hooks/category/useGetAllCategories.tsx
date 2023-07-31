@@ -7,6 +7,7 @@ const useGetAllCategories = () => {
     method: "get",
     endpoint: ENDPOINTS.GET_ALL_CATEGORIES,
     queryKey: [NAMESPACE.GET_ALL_CATEGORIES],
+    staleTime: 3600000,
   });
 };
 

@@ -37,6 +37,7 @@ const useGetCategoryProducts = ({
       page,
     ],
     enabled: !!categoryId,
+    // staleTime: 3600000,
   });
 };
 

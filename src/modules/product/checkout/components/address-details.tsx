@@ -3,11 +3,12 @@ import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import CheckoutAddressModal from "@/components/modal/address";
 import useDisclosure from "@/hooks/use-disclosure";
+import { useCheckout } from "@/lib/context/checkout-context";
 import { PencilIcon } from "@heroicons/react/24/outline";
 
-function AddressDetails({ checkoutDetails }: { checkoutDetails: any }) {
+function AddressDetails() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(checkoutDetails);
+  const { checkoutDetails } = useCheckout();
 
   const total = checkoutDetails.subTotal + checkoutDetails.taxAmount;
   return (

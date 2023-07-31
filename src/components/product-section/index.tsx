@@ -16,6 +16,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { MouseEvent, useState } from "react";
 import Button from "../button";
+import Heading from "../heading";
 import Icon from "../icon";
 import Modal from "../modal";
 import CartProductBtn from "../product-btn";
@@ -193,9 +194,7 @@ function ProductWithImageGallery({
             <div className="space-y-8 px-4 pb-10 sm:px-0">
               <div className="space-y-2">
                 <div className="flex flex-col gap-4 text-2xl text-slate-800">
-                  <h2 className="text-3xl font-bold capitalize">
-                    {productDetails.name}
-                  </h2>
+                  <Heading size="h2">{productDetails.name}</Heading>
                   <div className="flex items-end space-x-3">
                     <div className="flex items-center">
                       {[0, 1, 2, 3, 4].map((rating) => (
@@ -224,8 +223,8 @@ function ProductWithImageGallery({
                   </h2>
                 </div>
 
-                <div className="space-y-3 pt-4 font-light text-brand-darkest">
-                  <p className="text-md font-bold">Description</p>
+                <div className="space-y-2 pt-4 font-light text-brand-darkest">
+                  <Heading size="h5">Description</Heading>
                   <p className="text-sm">{productDetails.description}</p>
                 </div>
               </div>

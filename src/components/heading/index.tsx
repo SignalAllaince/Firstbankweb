@@ -1,10 +1,11 @@
 import { VariantProps, cva } from "class-variance-authority";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils/component.utils";
 
-const inter = Inter({ subsets: ["cyrillic"], weight: ["700"] });
+// const inter = Inter({ subsets: ["cyrillic"], weight: ["700"] });
+const inter = Rubik({ subsets: ["cyrillic"], weight: ["700"] });
 
 const headerClasses = cva(["w-fit"], {
   variants: {

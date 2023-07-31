@@ -5,6 +5,7 @@ import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useMakeCheckoutPayment from "@/hooks/checkout/useMakeCheckoutPayment";
 import useDisclosure from "@/hooks/use-disclosure";
+import { useCheckout } from "@/lib/context/checkout-context";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import AddressDetails from "./components/address-details";
@@ -16,11 +17,12 @@ const btnText = {
   details: "Proceed to payment",
   payment: "Confirm Order",
 };
-const CheckoutMain = ({ checkoutDetails }: { checkoutDetails: any }) => {
+const CheckoutMain = () => {
   const [checked, setChecked] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [level, setLevel] = useState<"details" | "payment">("details");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { checkoutDetails } = useCheckout();
 
   const makePayment = useMakeCheckoutPayment(checkoutDetails.orderId as string);
 
@@ -29,16 +31,10 @@ const CheckoutMain = ({ checkoutDetails }: { checkoutDetails: any }) => {
       setLevel("payment");
       return;
     }
-    makePayment
-      .refetch()
-      .catch((err) => {
-        console.log(err);
-        return;
-      })
-      .then((res) => {
-        onOpen();
-        console.log(res);
-      });
+    makePayment.refetch().then((res) => {
+      onOpen();
+      console.log(res);
+    });
   };
 
   const disable =
@@ -88,7 +84,7 @@ const CheckoutMain = ({ checkoutDetails }: { checkoutDetails: any }) => {
                   </h2>
                 </div>
                 {/* Shipping details */}
-                <AddressDetails checkoutDetails={checkoutDetails} />
+                <AddressDetails />
                 {/* Toggle staff details and payment option */}
                 <AnimatePresence mode="wait">
                   <motion.div

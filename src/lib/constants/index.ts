@@ -123,7 +123,7 @@ export const ENDPOINTS = {
   APPLY_CHECKOUT_COUPON: (orderId: string) =>
     `checkout/${orderId}/apply-coupon`,
   GET_CHECKOUT_DETAILS: (userId: string, oid: string) =>
-    `checkout/checkout-details?userId=${userId}&oid=${oid}`,
+    `checkout/checkout-details/?oid=${oid}`,
   GET_CHECKOUT_SHIPPING_ADDRESS: (userId: string) =>
     `checkout/shipping-addresses/${userId}?userId=${userId}`,
   CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (orderId: string) =>

@@ -7,6 +7,7 @@ const useGetSearchCategories = () => {
     method: "get",
     endpoint: ENDPOINTS.GET_SEARCHED_CATEGORIES,
     queryKey: [NAMESPACE.GET_SEARCHED_CATEGORIES],
+    staleTime: 3600000,
   });
 };
 

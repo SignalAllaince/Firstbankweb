@@ -39,8 +39,8 @@ function Banner() {
 
   return (
     <div className="banner-row grid w-full grid-cols-1 space-y-3">
-      <Heading size="h4" className="h-fit pb-4 text-lg font-medium">
-        Hi Trima, what items would you like to buy today?
+      <Heading size="h5" className="h-fit pb-4">
+        Hi Emeka, what items would you like to buy today?
       </Heading>
       <div className="relative flex flex-1 justify-center overflow-hidden rounded-[4px] bg-brand-blue px-8 py-6 text-brand-lightest">
         <div className="flex  w-full items-center justify-between">

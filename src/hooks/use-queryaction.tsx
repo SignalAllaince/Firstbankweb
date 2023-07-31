@@ -41,6 +41,7 @@ function useQueryActionHook<T>(data: any) {
       return;
     },
     retry: false,
+    // cacheTime: 3600000,
     refetchOnWindowFocus: false,
     keepPreviousData: true,
     ...others,

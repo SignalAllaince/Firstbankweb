@@ -14,7 +14,7 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
 
   return (
     <div className="pb-20">
-      <PageHead title="Landing Page" />
+      <PageHead title="Home Page" />
       <Section className="gap-y-20">
         <IfElse
           ifOn={!searchCategories.isLoading && !!searchCategories?.value}

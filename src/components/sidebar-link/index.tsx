@@ -1,7 +1,10 @@
+import { Rubik } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Icon, { IconType } from "../icon";
+
+const inter = Rubik({ subsets: ["latin"], weight: ["400"] });
 
 function SidebarLink({
   href,
@@ -19,7 +22,7 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className="flex w-full items-center gap-4 rounded-[4px] p-4 text-sm text-brand-darkest transition duration-200"
+      className={`flex w-full ${inter.className} items-center gap-4 rounded-[4px] p-4 text-sm text-brand-blue transition duration-200`}
       style={{
         backgroundColor: active ? "#F5F8FA" : "transparent",
       }}

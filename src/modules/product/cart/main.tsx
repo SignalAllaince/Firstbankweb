@@ -35,8 +35,7 @@ const CartPageSection = ({
     checkoutAll
       .mutateAsync({})
       .then((res) => {
-        console.log(res, "resddd");
-        router.push(`/cart/checkout?id=${res?.data?.oid}`);
+        router.push(`/cart/checkout?id=${res?.data?.data?.oid}`);
       })
       .catch((err) => console.log(err));
   };
