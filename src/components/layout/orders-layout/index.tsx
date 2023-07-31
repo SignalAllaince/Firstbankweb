@@ -64,7 +64,7 @@ function OrderLayout({
           </div>
         ) : null}
       </div>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={changer}
           initial={{ opacity: 0.3 }}

@@ -5,7 +5,7 @@ import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Section from "@/components/section";
-import { IOrderResponse } from "@/types/api.types";
+import { IOrderDetails } from "@/types/api.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -13,8 +13,7 @@ import { SVGProps } from "react";
 import shirtImg from "../../../../../public/images/top.svg";
 import SingleOrder from "../components/order-row";
 
-function OrderHistory({ orders }: { orders: IOrderResponse[] }) {
-  console.log(orders);
+function OrderHistory({ orders }: { orders: IOrderDetails[] }) {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between border-b border-brand-light py-3">
@@ -73,7 +72,7 @@ function OrderHistory({ orders }: { orders: IOrderResponse[] }) {
             <FadeInOut>
               <div className="space-y-5">
                 {orders.map((order) => (
-                  <SingleOrder status="pending" key={order.name} />
+                  <SingleOrder status="pending" key={order.id} order={order} />
                 ))}
               </div>
               {/* Pagination */}

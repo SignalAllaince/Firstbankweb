@@ -2,17 +2,17 @@ import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import IfElse from "@/components/if-else";
 import Section from "@/components/section";
-import { IOrderResponse } from "@/types/api.types";
+import { IOrderDetails } from "@/types/api.types";
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import shirtImg from "../../../../../public/images/top.svg";
 import SingleOrder from "../components/order-row";
 
-function OpenOrderHistory({ orders }: { orders: IOrderResponse[] }) {
+function OpenOrderHistory({ orders }: { orders: IOrderDetails[] }) {
   return (
     <div className="space-y-5">
-      <div className="col-span-8 md:col-span-9">
-        <AnimatePresence>
+      <div className="col-span-8 py-3 md:col-span-9">
+        <AnimatePresence mode="sync">
           <IfElse
             ifOn={orders.length !== 0}
             ifOnElse={orders.length === 0}
@@ -36,7 +36,7 @@ function OpenOrderHistory({ orders }: { orders: IOrderResponse[] }) {
             <FadeInOut>
               <div className="space-y-5">
                 {orders.map((order) => (
-                  <SingleOrder status="pending" key={order.name} />
+                  <SingleOrder status="pending" key={order.id} order={order} />
                 ))}
               </div>
               {/* Pagination */}

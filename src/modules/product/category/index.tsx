@@ -48,6 +48,7 @@ const CategoryPage: NextPageWithLayout<
     ps: pageSize,
     mnp: debouncedMin,
     mxp: debouncedMax,
+    staleTime: 0,
   });
 
   const changeSortHandler = (value: string) => setSortValue(value);

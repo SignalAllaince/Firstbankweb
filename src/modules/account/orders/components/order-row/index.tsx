@@ -1,5 +1,7 @@
 import Badge from "@/components/badge";
 import Button from "@/components/button";
+import { IOrderDetails } from "@/types/api.types";
+import dayjs from "dayjs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import productImg from "../../../../../../public/images/shirt.jpg";
@@ -12,7 +14,9 @@ const texts = {
 
 function SingleOrder({
   status = "error",
+  order,
 }: {
+  order: IOrderDetails;
   status?: "pending" | "success" | "error";
 }) {
   const router = useRouter();
@@ -29,11 +33,11 @@ function SingleOrder({
           />
         </div>
         <div className="flex h-[100px] flex-col justify-between">
-          <p>
-            This Description should carry only the full name of the product.
-          </p>
+          <p>Order No. - {order.id}</p>
           <div className="flex items-center gap-3">
-            <p className="text-xs text-brand-dark">Order No. - BS83748748</p>
+            <p className="text-xs text-brand-dark">
+              Day Create. - {dayjs(order.dateCreated).format("DD MMMM YYYY")}
+            </p>
             <Badge variant={status}>{texts[status]}</Badge>
           </div>
           <div className="flex items-center gap-2">
@@ -47,7 +51,7 @@ function SingleOrder({
         <Button
           variant="secondary"
           size="xs"
-          onClick={() => router.push("/account/orders/3jdy37827hedhi")}
+          onClick={() => router.push(`/account/orders/${order.id}`)}
         >
           Order Details
         </Button>

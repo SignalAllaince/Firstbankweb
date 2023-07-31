@@ -1,12 +1,13 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
-import { IOrderResponse } from "@/types/api.types";
+import { IOrderDetails } from "@/types/api.types";
 import useQueryActionHook from "../use-queryaction";
 
 const useGetAllOrders = () => {
-  return useQueryActionHook<IOrderResponse[]>({
+  return useQueryActionHook<IOrderDetails[]>({
     method: "get",
     endpoint: ENDPOINTS.GET_ALL_ORDERS,
     queryKey: [NAMESPACE.GET_ALL_ORDERS],
+    staleTime: 1800000,
   });
 };
 

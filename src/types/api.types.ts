@@ -347,3 +347,86 @@ export interface ICategoryDetails {
   error: null;
   checkoutProducts: CheckoutProduct[];
 }
+
+export type OrderItem = {
+  productId: number;
+  productName: string;
+  productOptions: [];
+  productOptionString: string;
+  quantity: number;
+  thumbnailImage: null | string;
+  id: null;
+  productImage: null | string;
+  slug: null;
+  productPrice: number;
+  productStockQuantity: number;
+  isAvailableToOrder: false;
+  shippedQuantity: number;
+  shippingPrice: number;
+  shippingPriceString: string;
+  taxAmount: number;
+  taxPercent: number;
+  discountAmount: number;
+  total: number;
+  taxIncludedAmount: number;
+  rowTotal: number;
+  taxAmountString: string;
+  productPriceString: string;
+  discountAmountString: string;
+  totalString: string;
+  taxIncludedAmountString: string;
+  rowTotalString: string;
+};
+export interface IOrderDetails {
+  id: string;
+  mId: string;
+  dateCreated: string;
+  subTotal: number;
+  subTotalString: string;
+  orderStatus: number;
+  orderItems: OrderItem[];
+}
+export interface ISinglOrderDetails extends IOrderDetails {
+  shippingAddress: AddressType;
+  customerId: string;
+  customerName: string;
+  customerEmail: string;
+  orderStatusString: string;
+  discountAmount: number;
+  subTotalWithDiscount: number;
+  taxAmount: number;
+  shippingAmount: number;
+  orderTotal: number;
+  shippingMethod: null;
+  paymentMethod: null;
+  paymentFee: number;
+  discountAmountString: string;
+  subtotalWithDiscountString: string;
+  taxAmountString: string;
+  shippingAmountString: string;
+  paymentFeeAmountString: string;
+  orderTotalString: string;
+  subOrderIds: null;
+  isMasterOrder: boolean;
+  isProductPriceIncludeTax: boolean;
+  orderNote: null;
+}
+export const UserResponse = {
+  1: "New",
+  2: "PendingCheckout",
+  3: "PendingPaymen",
+  4: "PaymentFailed",
+  5: "PaymentReceived",
+  6: "InsufficientInventory",
+  7: "OutOfStock",
+  8: "OnHold",
+  9: "UserCancelled",
+  10: "Refunded",
+  11: "Shipping",
+  12: "Shipped",
+  13: "Closed",
+  14: "Complete",
+  15: "Deleted",
+  16: "Cancelled",
+  17: "Invoiced",
+};
