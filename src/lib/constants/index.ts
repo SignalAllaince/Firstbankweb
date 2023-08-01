@@ -75,7 +75,7 @@ export const ENDPOINTS = {
   // review Endpoints
   ADD_PRODUCT_REVIEW: "review-product/add-review",
   GET_PRODUCT_REVIEWS: (
-    productId: string,
+    productId: number,
     pageNumber: number,
     pageSize: number
   ) =>
