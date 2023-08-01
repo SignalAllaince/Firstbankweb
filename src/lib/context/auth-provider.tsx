@@ -6,7 +6,6 @@ import { HashLoader } from "react-spinners";
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status } = useSession();
 
-  console.log(session, status, "session, status");
   const isUser = !!session?.user;
   React.useEffect(() => {
     if (status === "loading") return; // Do nothing while loading

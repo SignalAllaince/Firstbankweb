@@ -51,6 +51,7 @@ export default NextAuth({
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
@@ -79,8 +80,7 @@ export default NextAuth({
       return session;
     },
   },
-  session: { strategy: "jwt" }, // session token expires after 30 mins of user inactivity
-  secret: process.env.NEXTAUTH_SECRET,
+  session: { strategy: "jwt", maxAge: 1800000 }, // session token expires after 30 mins of user inactivity
   pages: {
     signIn: "/login",
   },

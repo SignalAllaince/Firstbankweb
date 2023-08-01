@@ -28,7 +28,7 @@
     "eslint-config-next": "13.3.0",
     "framer-motion": "^10.11.2",
     "next": "13.3.0",
-    "next-auth": "^4.22.0",
+    "next-auth": "^4.22.3",
     "notistack": "^3.0.1",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",

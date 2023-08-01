@@ -40,7 +40,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
       redirect: false,
       userId: data.staffId,
       token: data.password,
-      callbackUrl: "/login/branch",
+      callbackUrl: "/login",
     }).then((res) => {
       setIsLoading(false);
       if (!res?.ok) {
@@ -51,7 +51,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
       }
       toast({
         appearance: "success",
-        description: "Login Successful",
+        title: "Login Successful",
       });
       router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
     });

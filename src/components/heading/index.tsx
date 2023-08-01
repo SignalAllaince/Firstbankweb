@@ -15,6 +15,7 @@ const headerClasses = cva(["w-fit"], {
       h3: ["text-[28px] font-bold leading-[36px]"],
       h4: ["text-[24px] font-bold leading-[32px]"],
       h5: ["text-[18px] font-bold leading-[24px]"],
+      h6: ["text-[14px] font-bold leading-[24px]"],
     },
   },
   //   Variants that apply when multiple other variant conditions are met.

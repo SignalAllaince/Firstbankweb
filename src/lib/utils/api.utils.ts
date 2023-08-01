@@ -10,7 +10,6 @@ export const secureRequest = async ({
 }: SecureRequestProps) => {
   const session = await getSession();
   const givenMethod = method.toLocaleLowerCase() as CustomMethod;
-  console.log(session, "session from lib");
 
   const fbnHeader = {
     // @ts-expect-error

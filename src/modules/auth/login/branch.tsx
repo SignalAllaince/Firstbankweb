@@ -47,7 +47,7 @@ const BranchLogin: ProtectedNextPage<LogininType> = ({ csrfToken, query }) => {
       }
       toast({
         appearance: "success",
-        description: "Login Successful",
+        title: "Login Successful",
       });
       router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
     });

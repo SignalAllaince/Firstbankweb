@@ -9,6 +9,7 @@ import {
   UserCircleIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -128,7 +129,10 @@ function Navbar() {
               >
                 Ratings & Reviews
               </MenuItem>
-              <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
+              <MenuItem
+                leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}
+                onClick={() => signOut()}
+              >
                 Logout
               </MenuItem>
             </MenuItems>
