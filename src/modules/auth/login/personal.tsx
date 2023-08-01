@@ -52,6 +52,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
       toast({
         appearance: "success",
         title: "Login Successful",
+        description: "You have successfully logged into your account",
       });
       router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
     });

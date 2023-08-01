@@ -39,7 +39,12 @@ function OrderProductRow({ product }: { product: OrderItem }) {
           </div>
         </div>
       </div>
-      <ItemReviewModal isOpen={isOpen} onClose={onClose} />
+      <ItemReviewModal
+        isOpen={isOpen}
+        onClose={onClose}
+        productId={product.productId}
+        productName={product.productName}
+      />
     </>
   );
 }

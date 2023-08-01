@@ -3,10 +3,8 @@ import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Section from "@/components/section";
 import { IOrderDetails } from "@/types/api.types";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { SVGProps } from "react";
@@ -17,25 +15,7 @@ function OrderHistory({ orders }: { orders: IOrderDetails[] }) {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between border-b border-brand-light py-3">
-        <div className="flex items-center gap-2 font-light">
-          <p className="text-xs">Filter</p>
-          <Menu>
-            <MenuButton
-              as={Button}
-              variant="secondary"
-              size="small"
-              className="h-9 px-[8px]"
-              rightIcon={<Icon IconComp={ChevronDownIcon} />}
-            >
-              All
-            </MenuButton>
-            <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-3">
-              <MenuItem>Yesterday</MenuItem>
-              <MenuItem>Last week</MenuItem>
-              <MenuItem>This Month</MenuItem>
-            </MenuItems>
-          </Menu>
-        </div>
+        <div className="flex items-center gap-2 font-light"></div>
         <Button
           size="small"
           //   @ts-expect-error

@@ -1,22 +1,59 @@
 import Button from "@/components/button";
 import Textarea from "@/components/input/text-area";
-import { emojiRatingsList } from "@/lib/constants/rating";
+import useAddReview from "@/hooks/review/useAddReview";
+import { EmojiModel, emojiRatingsList } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "..";
+
+type Inputs = {
+  comment: "string";
+};
 
 function ItemReviewModal({
   isOpen,
   onClose,
+  productId,
+  productName,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  productId: number;
+  productName: string;
 }) {
-  const [rating, setRating] = useState(null);
-  const [count, setCount] = useState(0);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const [rating, setRating] = useState<EmojiModel | null>(null);
+  const [count, setCount] = useState(1);
+  const addReview = useAddReview();
+
+  const setAddressHandler: SubmitHandler<Inputs> = (data) => {
+    addReview
+      .mutateAsync({
+        rating: count,
+        title: rating?.text!,
+        comment: data.comment,
+        reviewerName: "string",
+        productId: productId,
+        hasBoughtProduct: true,
+      })
+      .then((res) => {
+        console.log(res);
+        onClose();
+        reset();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Modal isOpen={isOpen} closeModal={onClose} size="md">
       <div className="space-y-4 py-4 md:px-5">
@@ -24,11 +61,9 @@ function ItemReviewModal({
           <p className="text-md font-medium">Item Review</p>
           <p>Select emoji to the product</p>
         </div>
-        <div className="flex gap-3 text-sm font-light text-brand-darkest">
-          <div className="h-12 w-12 flex-shrink-0 rounded-[4px] bg-brand-light" />
-          <p>
-            This Description should carry only the full name of the product.
-          </p>
+        <div className="mb-2 flex gap-3 text-sm font-light text-brand-darkest">
+          <div className="h-14 w-14 flex-shrink-0 rounded-[4px] bg-brand-light" />
+          <p>{productName}</p>
         </div>
         <div>
           <RadioGroup value={rating} onChange={setRating}>
@@ -78,8 +113,13 @@ function ItemReviewModal({
             ))}
           </div>
         </div>
-        <form className="space-y-5 border-t border-brand-light pt-3">
+        <form
+          className="space-y-5 border-t border-brand-light pt-3"
+          onSubmit={handleSubmit(setAddressHandler)}
+        >
           <Textarea
+            {...register("comment", { required: true })}
+            errors={errors}
             name="comment"
             bg="bg-brand-lightest"
             label="Comment"
@@ -87,7 +127,14 @@ function ItemReviewModal({
           />
 
           <div className="pt-4">
-            <Button className="w-full text-sm uppercase">Submit</Button>
+            <Button
+              className="w-full text-sm uppercase"
+              type="submit"
+              disabled={!rating}
+              isLoading={addReview.isLoading}
+            >
+              Submit
+            </Button>
           </div>
         </form>
       </div>

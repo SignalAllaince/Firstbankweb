@@ -430,3 +430,12 @@ export const UserResponse = {
   16: "Cancelled",
   17: "Invoiced",
 };
+
+export type ReviewModel = {
+  rating: number;
+  title: string;
+  comment: string;
+  reviewerName: string;
+  productId: number;
+  hasBoughtProduct: boolean;
+};

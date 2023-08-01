@@ -8,7 +8,13 @@ type OptionsType = {
   value: string;
 };
 
-export const emojiRatingsList = [
+export type EmojiModel = {
+  value: number;
+  img: any;
+  text: string;
+};
+
+export const emojiRatingsList: EmojiModel[] = [
   {
     value: 5,
     img: smileEmoji,

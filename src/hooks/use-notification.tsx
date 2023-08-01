@@ -38,7 +38,7 @@ function useNotification() {
       appearance: VariantType;
     }) => {
       enqueueSnackbar(
-        <div className={inter.className}>
+        <div className={`${inter.className} max-w-[120px]`}>
           <div className="space-y-0 px-2 py-1">
             {title && <Heading size="h6">{title}</Heading>}
             <p className="text-[12px]">{description}</p>
