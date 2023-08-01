@@ -2,7 +2,7 @@ import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import useQueryActionHook from "../use-queryaction";
 
 const useGetProductReview = (
-  productId: string,
+  productId: number,
   pageNumber: number,
   pageSize: number
 ) => {

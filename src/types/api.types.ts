@@ -23,6 +23,7 @@ export interface RequestResponse<T = Record<string, unknown>> {
 
 export interface FirstBankResponseType<D = Record<string, unknown>> {
   data: {
+    oid: any;
     response_code: string;
     data: D;
     errors: Record<string, unknown>;
@@ -218,30 +219,28 @@ export interface WishlistResponse {
 
 export interface SearchResponse {
   totalProduct: number;
-  products: [
-    {
+  products: {
+    price: number;
+    oldPrice: number;
+    specialPrice: number;
+    stockQuantity: number;
+    specialPriceStart: string;
+    specialPriceEnd: string;
+    reviewsCount: number;
+    ratingAverage: null;
+    calculatedProductPrice: {
       price: number;
       oldPrice: number;
-      specialPrice: number;
-      stockQuantity: number;
-      specialPriceStart: string;
-      specialPriceEnd: string;
-      reviewsCount: number;
-      ratingAverage: null;
-      calculatedProductPrice: {
-        price: number;
-        oldPrice: number;
-        percentOfSaving: number;
-        priceString: string;
-        oldPriceString: string;
-      };
-      id: number;
-      name: string;
-      slug: string;
-      shortDescription: string;
-      thumbnailUrl: null;
-    }
-  ];
+      percentOfSaving: number;
+      priceString: string;
+      oldPriceString: string;
+    };
+    id: number;
+    name: string;
+    slug: string;
+    shortDescription: string;
+    thumbnailUrl: null;
+  }[];
   filterOption: {
     categories: {
       id: number;
@@ -270,3 +269,173 @@ export interface SearchResponse {
     display: string;
   }[];
 }
+
+// Checkout
+export interface CreateShippingAdress {
+  contactName: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  stateId: string;
+  city: string;
+  zipCode: string;
+}
+
+export interface ApplyCoupon {
+  couponCode: string;
+}
+
+// Orders
+export interface IOrderResponse {
+  name: string;
+  status: string;
+}
+export type AddressType = {
+  id: number;
+  contactName: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  zipCode: null | number;
+  stateId: number;
+  stateName: string;
+  cityName: string;
+  isCityEnabled: boolean;
+  isZipCodeEnabled: boolean;
+};
+
+export type CheckoutProduct = {
+  name: string;
+  productId: number;
+  slug: string;
+  thumbnailUrl: string;
+  id: number;
+  quantity: number;
+  price: string;
+  priceString: string;
+  total: string;
+  totalString: string;
+  shippingPrice: number;
+  shippingPriceString: string;
+  isAvailableToOrder: boolean;
+  productStockQuantity: number;
+};
+export interface ICategoryDetails {
+  orderId: string;
+  orderStatus: number;
+  customerId: string;
+  shippingAddress: null;
+  billingAddress: null;
+  isValid: true;
+  useShippingAddressAsBillingAddress: false;
+  selectedShippingAddressId: number;
+  selectedBillingAddressId: number;
+  existingShippingAddresses: AddressType[];
+  existingBillingAddresses: AddressType[];
+  taxAmount: number;
+  taxAmountString: string;
+  orderNote: null;
+  couponCode: null;
+  subTotal: number;
+  subTotalString: string;
+  orderTotal: number;
+  orderTotalString: string;
+  shippingTotal: number;
+  shippingTotalString: string;
+  selectedShippingProviderId: number;
+  shippingProviders: null;
+  error: null;
+  checkoutProducts: CheckoutProduct[];
+}
+
+export type OrderItem = {
+  productId: number;
+  productName: string;
+  productOptions: [];
+  productOptionString: string;
+  quantity: number;
+  thumbnailImage: null | string;
+  id: null;
+  productImage: null | string;
+  slug: null;
+  productPrice: number;
+  productStockQuantity: number;
+  isAvailableToOrder: false;
+  shippedQuantity: number;
+  shippingPrice: number;
+  shippingPriceString: string;
+  taxAmount: number;
+  taxPercent: number;
+  discountAmount: number;
+  total: number;
+  taxIncludedAmount: number;
+  rowTotal: number;
+  taxAmountString: string;
+  productPriceString: string;
+  discountAmountString: string;
+  totalString: string;
+  taxIncludedAmountString: string;
+  rowTotalString: string;
+};
+export interface IOrderDetails {
+  id: string;
+  mId: string;
+  dateCreated: string;
+  subTotal: number;
+  subTotalString: string;
+  orderStatus: number;
+  orderItems: OrderItem[];
+}
+export interface ISinglOrderDetails extends IOrderDetails {
+  shippingAddress: AddressType;
+  customerId: string;
+  customerName: string;
+  customerEmail: string;
+  orderStatusString: string;
+  discountAmount: number;
+  subTotalWithDiscount: number;
+  taxAmount: number;
+  shippingAmount: number;
+  orderTotal: number;
+  shippingMethod: null;
+  paymentMethod: null;
+  paymentFee: number;
+  discountAmountString: string;
+  subtotalWithDiscountString: string;
+  taxAmountString: string;
+  shippingAmountString: string;
+  paymentFeeAmountString: string;
+  orderTotalString: string;
+  subOrderIds: null;
+  isMasterOrder: boolean;
+  isProductPriceIncludeTax: boolean;
+  orderNote: null;
+}
+export const UserResponse = {
+  1: "New",
+  2: "PendingCheckout",
+  3: "PendingPaymen",
+  4: "PaymentFailed",
+  5: "PaymentReceived",
+  6: "InsufficientInventory",
+  7: "OutOfStock",
+  8: "OnHold",
+  9: "UserCancelled",
+  10: "Refunded",
+  11: "Shipping",
+  12: "Shipped",
+  13: "Closed",
+  14: "Complete",
+  15: "Deleted",
+  16: "Cancelled",
+  17: "Invoiced",
+};
+
+export type ReviewModel = {
+  rating: number;
+  title: string;
+  comment: string;
+  reviewerName: string;
+  productId: number;
+  hasBoughtProduct: boolean;
+};

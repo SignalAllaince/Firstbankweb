@@ -1,5 +1,5 @@
 import BannerNav from "@/components/banner-nav";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { ReactNode } from "react";
 import Banner from "../../banner";
 import Footer from "../../footer";
@@ -9,7 +9,7 @@ import CheckoutNavbar from "../../navbar/checkout";
 import MiniNavbar from "../../navbar/mini";
 import Section from "../../section";
 
-const inter = Inter({ subsets: ["cyrillic"] });
+const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
 
 function AppLayout({
   children,

@@ -6,7 +6,7 @@ const useAddItemToWishlist = (id: number) => {
     method: "get",
     endpoint: ENDPOINTS.ADD_ITEM_TO_WISHLIST(id),
     queryKey: [NAMESPACE.ADD_ITEM_TO_WISHLIST, id],
-    enabled: !id,
+    enabled: false,
   });
 };
 

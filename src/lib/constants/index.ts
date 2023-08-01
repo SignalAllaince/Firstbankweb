@@ -2,6 +2,7 @@
 export const ENDPOINTS = {
   // API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
   API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
+  // https://brandshopapi.azurewebsites.net
 
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
@@ -74,7 +75,7 @@ export const ENDPOINTS = {
   // review Endpoints
   ADD_PRODUCT_REVIEW: "review-product/add-review",
   GET_PRODUCT_REVIEWS: (
-    productId: string,
+    productId: number,
     pageNumber: number,
     pageSize: number
   ) =>
@@ -119,19 +120,25 @@ export const ENDPOINTS = {
     `checkout/shipping?oid=${oid}&sta=${sta}&ers=${ers}`,
   SAVE_CHECKOUT_ORDERNOTE: (orderId: string) =>
     `checkout/${orderId}/save-ordernote`,
-  APPLY_CHECKOUT_COUPON: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_DETAILS: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
-  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
-  CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
+  APPLY_CHECKOUT_COUPON: (orderId: string) =>
+    `checkout/${orderId}/apply-coupon`,
+  GET_CHECKOUT_DETAILS: (userId: string, oid: string) =>
+    `checkout/checkout-details/?oid=${oid}`,
+  GET_CHECKOUT_SHIPPING_ADDRESS: (userId: string) =>
+    `checkout/shipping-addresses/${userId}?userId=${userId}`,
+  CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (orderId: string) =>
+    `checkout/${orderId}/new-shipping-address`,
+  CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (orderId: string) =>
+    `checkout/${orderId}/new-billing-address`,
   GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
-  GET_SHIPPING_AS_BILLING: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_SHIPPING_STATES: (name: string) => `checkout/${name}`,
+  GET_SHIPPING_AS_BILLING: (orderId: string) =>
+    `checkout/${orderId}/use-shipping-as-billing/true`,
+  GET_CHECKOUT_SHIPPING_STATES: `checkout/shipping-states`,
   GET_CHANGE_SHIPPING_PROVIDER: (name: string) => `checkout/${name}`,
-  GET_ALL_CHECKOUT: (name: string) => `checkout/${name}`,
+  GET_ALL_CHECKOUT: `checkout/checkout-all`,
   UPDATE_CHECKOUT_ITEM: (name: string) => `checkout/${name}`,
-  GET_CHECKOUT_PAYMENT: (name: string) => `checkout/${name}`,
+  GET_CHECKOUT_PAYMENT: (oid: string) => `checkout/start-payment?oid=${oid}`,
   GET_CHECKOUT_ORDER_SUCCESS: (name: string) => `checkout/${name}`,
   GET_CHECKOUT_ORDER_ERROR: (name: string) => `checkout/${name}`,
   ADD_ITEM_TO_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
@@ -151,6 +158,7 @@ export const ENDPOINTS = {
 };
 
 export const STOREID = "fbn46374683";
+
 export const NAMESPACE = {
   // categories
   GET_SEARCHED_CATEGORIES: "GET_SEARCHED_CATEGORIES",

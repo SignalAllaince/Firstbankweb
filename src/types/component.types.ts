@@ -15,6 +15,9 @@ export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
 export interface AppPropsWithAuth extends AppProps {
   Component: NextPageWithLayout & ProtectedComponentType;
 }
+
+export type ProtectedNextPage<P = Record<string, unknown>> =
+  NextPageWithLayout<P> & ProtectedComponentType;
 // Box props
 export type BoxProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,

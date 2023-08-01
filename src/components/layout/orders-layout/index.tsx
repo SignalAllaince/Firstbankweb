@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 
 const links = [
   { text: "Order History", href: "/account/orders" },
-  { text: "Open Orders (2)", href: "/account/orders/open" },
+  { text: "Open Orders (0)", href: "/account/orders/open" },
   { text: "Closed Orders", href: "/account/orders/closed" },
 ];
 
@@ -64,7 +64,7 @@ function OrderLayout({
           </div>
         ) : null}
       </div>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={changer}
           initial={{ opacity: 0.3 }}

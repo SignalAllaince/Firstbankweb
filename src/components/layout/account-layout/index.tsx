@@ -4,18 +4,19 @@ import {
   UserCircleIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { ReactNode } from "react";
 import Footer from "../../footer";
 import Navbar from "../../navbar";
 import Section from "../../section";
 import SidebarLink from "../../sidebar-link";
 
-const inter = Inter({ subsets: ["cyrillic"] });
+// const inter = Inter({ subsets: ["cyrillic"] });
+const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
 
 const links = [
   { text: "My Account", href: "/account", icon: UserCircleIcon, exact: true },
-  { text: "Order", href: "/account/orders", icon: WalletIcon, exact: false },
+  { text: "Orders", href: "/account/orders", icon: WalletIcon, exact: false },
   {
     text: "Rating & Reviews",
     href: "/account/reviews",
@@ -25,7 +26,7 @@ const links = [
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   return (
-    <div className={`${inter.className} flex min-h-screen w-full flex-col`}>
+    <div className={`flex ${inter.className} min-h-screen w-full flex-col`}>
       <Navbar />
       <div className="flex-1 border-t border-brand-light bg-white pt-6">
         <Section className="flex items-start gap-6">

@@ -5,6 +5,7 @@ import PageHead from "@/components/page-head";
 import ProductReview from "@/components/product-review";
 import ProductWithImageGallery from "@/components/product-section";
 import Section from "@/components/section";
+import useGetProductReview from "@/hooks/review/useGetProductReview";
 import { ProductDetailsRes } from "@/types/api.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
@@ -15,6 +16,8 @@ function ProductMainSection({
 }: {
   productDetails: ProductDetailsRes;
 }) {
+  const productReview = useGetProductReview(productDetails.id, 1, 10);
+
   return (
     <div className="bg-white pb-10">
       <PageHead title={productDetails.name} />

@@ -1,1 +1,1 @@
-export { default } from "@/modules/product/checkout";
+export { default, getServerSideProps } from "@/modules/product/checkout";

@@ -1,12 +1,13 @@
 import { VariantProps, cva } from "class-variance-authority";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import Link from "next/link";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400"],
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   weight: ["400"],
+// });
+const inter = Rubik({ subsets: ["latin"], weight: ["400"] });
 
 const buttonClasses = cva(
   [

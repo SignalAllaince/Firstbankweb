@@ -1,1 +1,4 @@
-export { default } from "@/modules/account/orders/single-order";
+export {
+  default,
+  getServerSideProps,
+} from "@/modules/account/orders/single-order";

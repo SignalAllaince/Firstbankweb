@@ -28,8 +28,8 @@ function useCustomMutation<
   const {
     mutationFn,
     endpoint,
-    showSuccessToast = true,
-    showFailureToast = true,
+    showSuccessToast = false,
+    showFailureToast = false,
     ...others
   } = getMutationAction({
     ...mutationData,

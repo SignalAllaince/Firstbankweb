@@ -1,5 +1,3 @@
-import * as CryptoJS from "crypto-js";
-
 const defaultDuration = 500;
 
 export const sleep = (duration = defaultDuration): Promise<undefined> => {
@@ -10,27 +8,27 @@ export const sleep = (duration = defaultDuration): Promise<undefined> => {
   });
 };
 
-export const decryptResponse = (body: string) => {
-  const cipher = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Hex.parse(body));
-  const key = CryptoJS.lib.WordArray.create(
-    new Uint8Array([
-      47, 21, 93, 79, 222, 129, 39, 96, 105, 244, 50, 31, 80, 5, 101, 48,
-    ]) as unknown as number[]
-  );
+// export const decryptResponse = (body: string) => {
+//   const cipher = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Hex.parse(body));
+//   const key = CryptoJS.lib.WordArray.create(
+//     new Uint8Array([
+//       47, 21, 93, 79, 222, 129, 39, 96, 105, 244, 50, 31, 80, 5, 101, 48,
+//     ]) as unknown as number[]
+//   );
 
-  const iv = CryptoJS.lib.WordArray.create(
-    new Uint8Array([
-      119, 12, 100, 5, 56, 0, 208, 140, 23, 170, 7, 209, 87, 167, 178, 255,
-    ]) as unknown as number[]
-  );
+//   const iv = CryptoJS.lib.WordArray.create(
+//     new Uint8Array([
+//       119, 12, 100, 5, 56, 0, 208, 140, 23, 170, 7, 209, 87, 167, 178, 255,
+//     ]) as unknown as number[]
+//   );
 
-  const decrypted = CryptoJS.AES.decrypt(cipher, key, {
-    iv: iv,
-  });
-  const plainText = decrypted.toString(CryptoJS.enc.Utf8);
+//   const decrypted = CryptoJS.AES.decrypt(cipher, key, {
+//     iv: iv,
+//   });
+//   const plainText = decrypted.toString(CryptoJS.enc.Utf8);
 
-  return plainText;
-};
+//   return plainText;
+// };
 
 export const block = (duration = defaultDuration) => {
   const start = performance.now();
@@ -181,3 +179,9 @@ type Menu = {
 
 export const displayValue = (arr: Menu[], sort: string) =>
   arr.find((item) => item.value === sort)?.display;
+
+export const truncateWord = (str: string, len = 30) => {
+  if (str.trim().length < len) return str;
+
+  return `${str.substring(0, len - 1)}..`;
+};

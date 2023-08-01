@@ -9,6 +9,7 @@ const useGetCategoryProducts = ({
   sort,
   ps,
   page,
+  staleTime = 3600000,
 }: {
   categoryId: number;
   mnp?: string | number;
@@ -16,6 +17,7 @@ const useGetCategoryProducts = ({
   sort?: string;
   ps?: number;
   page?: number;
+  staleTime?: number;
 }) => {
   return useQueryActionHook<CategoryItems>({
     method: "get",
@@ -37,6 +39,7 @@ const useGetCategoryProducts = ({
       page,
     ],
     enabled: !!categoryId,
+    staleTime,
   });
 };
 

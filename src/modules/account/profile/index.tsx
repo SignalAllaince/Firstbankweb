@@ -1,25 +1,11 @@
-import Button from "@/components/button";
 import Heading from "@/components/heading";
 import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
-import useValidateToken from "@/hooks/auth/useValidateToken";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
-  const validateToken = useValidateToken();
-  const validateTokenHandler = () => {
-    validateToken
-      .mutateAsync({
-        userId: "7B0030007800640033006600640035003000",
-        token: "johnbosco",
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  };
-
   return (
     <Section className="space-y-4 pb-10">
       <PageHead title="Profile" />
@@ -46,13 +32,6 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
         <div className="space-y-2">
           <p className="text-xs font-medium">Email address</p>
           <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
-          <Button
-            className="flex-shrink-0"
-            onClick={validateTokenHandler}
-            isLoading={validateToken.isLoading}
-          >
-            Validate Token
-          </Button>
         </div>
       </div>
     </Section>

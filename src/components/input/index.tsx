@@ -5,7 +5,7 @@ import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import InputWrapper from "./input-wrapper";
 export type Ref = HTMLInputElement;
 
-const inputClasses = cva(
+export const inputClasses = cva(
   [
     "focus:ring-0",
     "transition",

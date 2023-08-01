@@ -29,7 +29,7 @@ const CategoryPage: NextPageWithLayout<
   ProtectedComponentType = (props) => {
   const [sort, setSortValue] = React.useState<string | undefined>(undefined);
   const [currentPageNumber, setPage] = React.useState(1);
-  const pageSize = 3;
+  const pageSize = 10;
 
   const [max, setMax] = React.useState("");
   const [min, setMin] = React.useState("");
@@ -48,6 +48,7 @@ const CategoryPage: NextPageWithLayout<
     ps: pageSize,
     mnp: debouncedMin,
     mxp: debouncedMax,
+    staleTime: 0,
   });
 
   const changeSortHandler = (value: string) => setSortValue(value);

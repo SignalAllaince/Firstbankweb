@@ -9,6 +9,7 @@ import {
   UserCircleIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -33,15 +34,18 @@ function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-30 w-full border-b bg-white py-4">
-      <Section className="item-center flex justify-between ">
-        <div className="flex w-[100px] items-center">
+    <div className="sticky top-0 z-40 w-full border-b bg-white py-4">
+      <Section className="item-center flex justify-between space-x-3">
+        <div className="flex w-[100px] flex-shrink-0 items-center">
           <Link href="/">
             <Image src={logoImg} alt="first bank logo" />
           </Link>
         </div>
-        <div className="flex items-center space-x-10">
-          <form onSubmit={searchHandler} className="flex w-[400px] space-x-1">
+        <div className="flex items-center space-x-3 md:space-x-10">
+          <form
+            onSubmit={searchHandler}
+            className="flex w-[300px] space-x-1 md:w-[400px]"
+          >
             <CustomInput
               borderColor="border-brand-input"
               name="search"
@@ -125,7 +129,10 @@ function Navbar() {
               >
                 Ratings & Reviews
               </MenuItem>
-              <MenuItem leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}>
+              <MenuItem
+                leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}
+                onClick={() => signOut()}
+              >
                 Logout
               </MenuItem>
             </MenuItems>

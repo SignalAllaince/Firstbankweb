@@ -15,7 +15,7 @@ function StaffDetails({
   return (
     <div>
       {/* Staff details Section */}
-      <div className="space-y-4 pt-6">
+      {/* <div className="space-y-4 pt-6">
         <Heading size="h5">Staff/Customer Details</Heading>
         <div className="grid max-w-xl grid-cols-3 gap-x-4 gap-y-8 font-light capitalize">
           <div className="space-y-2">
@@ -39,7 +39,7 @@ function StaffDetails({
             <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Estimated delivery time */}
       <div className="space-y-4 pt-7 font-light">
         <Heading size="h5">Estimated delivery time</Heading>
@@ -55,10 +55,10 @@ function StaffDetails({
           <span
             aria-hidden="true"
             className={cn(
-              "ring-brand-darkest",
+              "ring-brand-blue",
               checked ? "ring-2" : "",
-              checked ? "bg-brand-darkest" : "",
-              "relative flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded border-2 border-black border-opacity-80  ring-offset-1 focus:outline-none"
+              checked ? "bg-brand-blue" : "",
+              "relative flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded border-2 border-brand-darkest border-opacity-80  ring-offset-1 focus:outline-none"
             )}
           >
             {checked && <Icon IconComp={CheckIcon} className="text-white" />}

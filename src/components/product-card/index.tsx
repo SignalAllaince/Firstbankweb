@@ -22,7 +22,7 @@ function ProductCard({
   isFinished = false,
   isCategoryPage = false,
   name = "office shirt",
-  stockQuantity = 27,
+  stockQuantity = 0,
   price,
   id,
 }: {
@@ -124,11 +124,13 @@ function ProductCard({
                 />
               ))}
             </div>
-            <div className="bg-[#F5F8FA] p-1 px-2">
-              <p className="text-[10px] font-light">
-                {stockQuantity} Remaining
-              </p>
-            </div>
+            {stockQuantity !== undefined && stockQuantity > 0 && (
+              <div className="bg-[#F5F8FA] p-1 px-2">
+                <p className="text-[10px] font-light">
+                  {stockQuantity} Remaining
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

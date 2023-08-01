@@ -2,47 +2,68 @@ import Button from "@/components/button";
 import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import PageHead from "@/components/page-head";
-import useValidateToken from "@/hooks/auth/useValidateToken";
-import useLocalStore from "@/hooks/use-localstore";
-import { STOREID } from "@/lib/constants";
-import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
+import useNotification from "@/hooks/use-notification";
+import { ProtectedNextPage } from "@/types/component.types";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ReactElement } from "react";
+import { ParsedUrlQuery } from "querystring";
+import React, { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+type LogininType = {
+  csrfToken: string;
+  query: ParsedUrlQuery;
+};
 
 type Inputs = {
   staffId: string;
   password: string;
 };
-const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
+
+const PersonalLogin: ProtectedNextPage<LogininType> = ({
+  csrfToken,
+  query,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const validateToken = useValidateToken();
-  const store = useLocalStore(STOREID);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const router = useRouter();
+  const { toast } = useNotification();
 
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    validateToken
-      .mutateAsync({
-        userId: "7B0030007800640033006600640035003000",
-        token: "johnbosco",
-      })
-      .then((res) => {
-        store?.setItem(res.data?.data);
-        router.replace("/");
+    setIsLoading(true);
+    signIn("credentials", {
+      redirect: false,
+      userId: data.staffId,
+      token: data.password,
+      callbackUrl: "/login",
+    }).then((res) => {
+      setIsLoading(false);
+      if (!res?.ok) {
+        return toast({
+          appearance: "error",
+          description: "Authorization failed",
+        });
+      }
+      toast({
+        appearance: "success",
+        title: "Login Successful",
+        description: "You have successfully logged into your account",
       });
+      router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
+    });
   };
 
   return (
     <>
       <PageHead title="Staff Login" />
       <form className="gap-7" onSubmit={handleSubmit(submitLoginRequest)}>
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
         <div className="space-y-4">
           <CustomInput
             {...register("staffId", { required: true })}
@@ -64,7 +85,7 @@ const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
         <div>
           <div className="pt-8"></div>
           <Button
-            isLoading={validateToken.isLoading}
+            isLoading={isLoading}
             variant="primary"
             className="w-full bg-black"
             type="submit"
@@ -76,6 +97,7 @@ const PersonalLogin: NextPageWithLayout & ProtectedComponentType = () => {
     </>
   );
 };
+
 PersonalLogin.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout authType="personal">{page}</AuthLayout>;
 };
