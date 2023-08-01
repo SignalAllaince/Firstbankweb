@@ -18,7 +18,7 @@ function ItemReviewModal({
   const [rating, setRating] = useState(null);
   const [count, setCount] = useState(0);
   return (
-    <Modal isOpen={isOpen} closeModal={onClose} closeOnOverlayClick size="md">
+    <Modal isOpen={isOpen} closeModal={onClose} size="md">
       <div className="space-y-4 py-4 md:px-5">
         <div className=" space-y-1 border-b border-brand-light pb-4 text-sm font-light text-brand-darkest">
           <p className="text-md font-medium">Item Review</p>
@@ -87,9 +87,7 @@ function ItemReviewModal({
           />
 
           <div className="pt-4">
-            <Button className="w-full text-sm uppercase" href="/cart/checkout">
-              Submit
-            </Button>
+            <Button className="w-full text-sm uppercase">Submit</Button>
           </div>
         </form>
       </div>

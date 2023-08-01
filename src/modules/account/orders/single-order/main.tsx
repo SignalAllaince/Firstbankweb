@@ -1,14 +1,11 @@
 import Badge from "@/components/badge";
 import Button from "@/components/button";
-import ItemReviewModal from "@/components/modal/review";
-import useDisclosure from "@/hooks/use-disclosure";
 import { ISinglOrderDetails } from "@/types/api.types";
 import { usePathname } from "next/navigation";
 import OrderProductRow from "../components/order-section";
 
 const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
   const pathname = usePathname();
-  const { isOpen, onClose, onOpen } = useDisclosure();
   const total = order.subTotal + order.taxAmount + order.shippingAmount;
   return (
     <>
@@ -21,17 +18,29 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
             <Badge variant="pending">order placed</Badge>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              size="small"
-              className="h-8 px-[8px]"
-              href={`${pathname}/track`}
-            >
-              Track Order
-            </Button>
+            {order.orderStatusString === "New" ? (
+              <Button
+                size="small"
+                className="h-8 px-[8px]"
+                href={`/cart/checkout?id=${order.id}`}
+              >
+                Continue to Checkout
+              </Button>
+            ) : (
+              <Button
+                size="small"
+                className="h-8 px-[8px]"
+                href={`${pathname}/track`}
+              >
+                Track Order
+              </Button>
+            )}
 
-            <Button size="small" className="h-8 px-[8px]" onClick={onOpen}>
-              Rate Item
-            </Button>
+            {!(order.orderStatusString === "New") && (
+              <Button size="small" className="h-8 px-[8px]">
+                Rate Item
+              </Button>
+            )}
           </div>
         </div>
         <div className="space-y-5">
@@ -95,7 +104,6 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
           </div>
         </div>
       </div>
-      <ItemReviewModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

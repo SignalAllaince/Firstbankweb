@@ -1,5 +1,7 @@
+import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Rubik } from "next/font/google";
 import {
   closeSnackbar,
   enqueueSnackbar,
@@ -7,6 +9,8 @@ import {
   VariantType,
 } from "notistack";
 import React, { ReactNode } from "react";
+
+const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
 
 function useNotification() {
   const action = React.useCallback(
@@ -34,9 +38,9 @@ function useNotification() {
       appearance: VariantType;
     }) => {
       enqueueSnackbar(
-        <div>
+        <div className={inter.className}>
           <div className="space-y-0 px-2 py-2">
-            {title && <h1 className="text-md font-mono font-bold">{title}</h1>}
+            {title && <Heading className="text-md font-bold">{title}</Heading>}
             <p className="text-[12px]">{description}</p>
           </div>
         </div>,

@@ -1,22 +1,21 @@
 import FadeInOut from "@/components/fade";
-import useLocalStore from "@/hooks/use-localstore";
-import { useRouter } from "next/router";
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 import { HashLoader } from "react-spinners";
-import { STOREID } from "../constants";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const store = useLocalStore(STOREID);
-  const router = useRouter();
+  const { data: session, status } = useSession();
 
+  console.log(session, status, "session, status");
+  const isUser = !!session?.user;
   React.useEffect(() => {
-    if (!store?.getItem()) {
-      router.replace("/login");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.pathname]);
+    if (status === "loading") return; // Do nothing while loading
+    // @ts-expect-error
+    if (!isUser || session?.error) signIn(); // If not authenticated, force log in
+    // @ts-expect-error
+  }, [isUser, status, session?.error]);
 
-  if (store?.getItem()) {
+  if (isUser) {
     return <>{children}</>;
   }
 

@@ -108,6 +108,7 @@ const CheckoutMain = () => {
                     className="w-full text-sm uppercase"
                     disabled={disable}
                     onClick={checkoutHandler}
+                    isLoading={makePayment.isFetching}
                   >
                     {btnText[level]}
                   </Button>
