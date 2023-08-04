@@ -97,7 +97,9 @@ function ProductWithImageGallery({
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
   const addToCart = useAddItemToCart();
-  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(5);
+  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(
+    productDetails.stockQuantity
+  );
   const addToWishlist = useAddItemToWishlist(productDetails.id);
 
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {

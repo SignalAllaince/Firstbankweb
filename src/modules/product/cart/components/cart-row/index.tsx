@@ -31,10 +31,8 @@ function CartProductRow({
 }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const deleteFromCart = useDeleteItemFromCart(productId);
-  const { quantity, increaseQuantity, decreaseQuantity } = useCounter(
-    10,
-    productQuantity
-  );
+  const { quantity, increaseQuantity, decreaseQuantity } =
+    useCounter(productQuantity);
   const debouncedQuantity = useDebounce(quantity, 1500);
   const updateCartItem = useUpdateItemInCart();
 
