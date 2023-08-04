@@ -69,6 +69,7 @@ const WishListMainSection = ({
             {wishlistResult.items?.map((item) => (
               <WishListRow
                 name={item.productName}
+                imageSrc={item.productImage}
                 productId={item.id}
                 price={item.productPriceString}
                 slug={item.slug}

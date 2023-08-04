@@ -192,6 +192,7 @@ function CategoryMain({
                         name={product.name}
                         key={product.id}
                         id={product.id}
+                        imageSrc={product.thumbnailUrl}
                         href={`/${product.slug}`}
                         // isFinished={product.stockQuantity === 0}
                         stockQuantity={product.stockQuantity}

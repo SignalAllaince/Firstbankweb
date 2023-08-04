@@ -99,7 +99,7 @@ export interface CategoryProduct {
   name: string;
   slug: string;
   shortDescription: string;
-  thumbnailUrl: null;
+  thumbnailUrl: string;
 }
 export interface CategoryItems {
   categoryId: number;
@@ -109,7 +109,7 @@ export interface CategoryItems {
   seoKeywords: string;
   shortDescription: string;
   primaryImage: null;
-  thumbnailImage: null;
+  thumbnailImage: string;
   totalProduct: number;
   products: CategoryProduct[];
   filterOption: {
@@ -165,7 +165,10 @@ export interface ProductDetailsRes {
   ratingAverage: null;
   availableOptions: any[];
   optionDisplayValues: {};
-  images: any[];
+  images: {
+    url: string;
+    thumbnailUrl: string;
+  }[];
   variations: any[];
   attributes: any[];
   categories: {
@@ -182,7 +185,7 @@ export interface CartListResponse {
     productId: number;
     slug: string;
     productName: string;
-    productImage: null;
+    productImage: string | undefined;
     productPrice: number;
     productPriceString: string;
     productStockQuantity: number;
@@ -211,7 +214,7 @@ export interface WishlistResponse {
     slug: string;
     productPriceString: string;
     productOldPriceString: string;
-    productImage: any[];
+    productImage: string | undefined;
     description: null;
     quantity: number;
   }[];
@@ -385,6 +388,15 @@ export interface IOrderDetails {
   subTotalString: string;
   orderStatus: number;
   orderItems: OrderItem[];
+}
+export interface IOrderContainer {
+  items: IOrderDetails[];
+  totalItems: number;
+  currentPage: number;
+  pageSize: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  totalPages: number;
 }
 export interface ISinglOrderDetails extends IOrderDetails {
   shippingAddress: AddressType;

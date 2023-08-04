@@ -93,7 +93,7 @@ function ProductWithImageGallery({
   productDetails: ProductDetailsRes;
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedImg, setSelectedImg] = useState(product.images[0]);
+  const [selectedImg, setSelectedImg] = useState(productDetails.images[0]);
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
   const addToCart = useAddItemToCart();
@@ -137,15 +137,15 @@ function ProductWithImageGallery({
               <div className="rounded-[4px] bg-gray-100 ">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={selectedImg.src}
+                    key={selectedImg.url}
                     initial={{ opacity: 0.3 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0.3 }}
                     className="aspect-h-1 aspect-w-1 max-h-[100px] overflow-hidden rounded-[4px] "
                   >
                     <Image
-                      src={selectedImg.src}
-                      alt={selectedImg.alt}
+                      src={selectedImg.url}
+                      alt={productDetails.shortDescription}
                       width={300}
                       height={300}
                       className="h-full w-full cursor-zoom-in object-cover object-center transition-all duration-200"
@@ -163,9 +163,9 @@ function ProductWithImageGallery({
                   Choose an image preview{" "}
                 </RadioGroup.Label>
                 <div className="flex items-center justify-center gap-3 px-3 sm:px-0">
-                  {product.images.map((img) => (
+                  {productDetails.images.map((img) => (
                     <RadioGroup.Option
-                      key={img.alt}
+                      key={img.url}
                       value={img}
                       className={({ active, checked }) =>
                         classNames(
@@ -175,12 +175,12 @@ function ProductWithImageGallery({
                       }
                     >
                       <RadioGroup.Label as="span" className="sr-only">
-                        {img.alt}
+                        {productDetails.shortDescription}
                       </RadioGroup.Label>
                       <div className="h-[80px] w-[100px]  overflow-hidden rounded-[4px]">
                         <Image
-                          src={img.src}
-                          alt={img.alt}
+                          src={img.url}
+                          alt={productDetails.shortDescription}
                           width={300}
                           height={300}
                           className="h-full w-full object-cover object-center"
