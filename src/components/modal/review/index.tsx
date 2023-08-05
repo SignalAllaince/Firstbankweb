@@ -99,7 +99,7 @@ function ItemReviewModal({
             <div>
               <RadioGroup value={rating} onChange={setRating}>
                 <RadioGroup.Label className="sr-only">Ratings</RadioGroup.Label>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 ">
                   {emojiRatingsList.map((rating) => (
                     <RadioGroup.Option value={rating} key={rating.value}>
                       {({ checked, active }) => (
@@ -109,7 +109,7 @@ function ItemReviewModal({
                             className={cn(
                               checked ? "bg-blue-50 ring-1" : "bg-white",
                               active && !checked ? "opacity-80" : "",
-                              "relative w-20 space-y-1 rounded-[4px] p-3 shadow ring-brand-blue transition focus:outline-none"
+                              "relative w-20 space-y-1 rounded-[4px] p-3 shadow ring-brand-blue transition hover:scale-110 focus:outline-none"
                             )}
                           >
                             <Image
@@ -137,7 +137,7 @@ function ItemReviewModal({
                     key={rating}
                     className={cn(
                       count >= rating ? "text-brand-accent" : "text-gray-200",
-                      "h-5 w-5 flex-shrink-0 cursor-pointer"
+                      "h-5 w-5 flex-shrink-0 cursor-pointer transition-all hover:scale-150"
                     )}
                     aria-hidden="true"
                   />

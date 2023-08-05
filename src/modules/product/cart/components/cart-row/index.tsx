@@ -34,7 +34,7 @@ function CartProductRow({
     10,
     productQuantity
   );
-  const debouncedQuantity = useDebounce(quantity, 1500);
+  const debouncedQuantity = useDebounce(quantity, 1000);
   const updateCartItem = useUpdateItemInCart();
 
   React.useEffect(() => {

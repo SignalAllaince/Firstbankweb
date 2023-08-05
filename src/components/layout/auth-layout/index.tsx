@@ -1,9 +1,12 @@
+import { Rubik } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logoImg from "../../../../public/images/logo-blue.svg";
 import Footer from "../../footer";
 import Heading from "../../heading";
+
+const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
 
 const section = {
   personal: {
@@ -26,7 +29,7 @@ function AuthLayout({
   authType: "personal" | "branch";
 }) {
   return (
-    <div className=" flex min-h-screen flex-col">
+    <div className={`${inter.className} flex min-h-screen flex-col`}>
       <div className="custom-bg flex flex-1 items-center justify-center  py-10">
         <div className="-mt-10 flex w-full max-w-xl flex-1 flex-col items-center space-y-4 sm:mt-0">
           <div className="max-w-[180px]">
