@@ -35,7 +35,7 @@ const MyApp = ({
               />
             ),
           }}
-          autoHideDuration={4000}
+          autoHideDuration={5000}
           anchorOrigin={{
             horizontal: "right",
             vertical: "top",

@@ -1,5 +1,5 @@
 import { QueryFunction, QueryKey } from "@tanstack/react-query";
-import { AxiosRequestHeaders, Method } from "axios";
+import { AxiosRequestHeaders, AxiosResponse, Method } from "axios";
 
 export type MethodTypes = "get" | "post" | "patch" | "put" | "delete";
 
@@ -21,16 +21,30 @@ export interface RequestResponse<T = Record<string, unknown>> {
   queryFn?: QueryFunction<FirstBankResponseType<T>, QueryKey>;
 }
 
-export interface FirstBankResponseType<D = Record<string, unknown>> {
-  data: {
-    oid: any;
-    response_code: string;
-    data: D;
-    errors: Record<string, unknown>;
-    errorCode: number;
-    status: string;
-  };
-}
+// export interface FirstBankResponseType<D = Record<string, unknown>> {
+//   data: {
+//     oid: any;
+//     response_code: string;
+//     data: D;
+//     errors: Record<string, unknown>;
+//     errorCode: number;
+//     status: string;
+//   };
+// }
+
+export type FirstBankResponseType<D> = AxiosResponse<
+  CredentialsServerResponseModel<D>
+>;
+
+export type CredentialsServerResponseModel<T> = {
+  data: T;
+  oid: any;
+  response_code: string;
+  errors: Record<string, unknown>;
+  errorCode: number;
+  status: string;
+  message: string;
+};
 
 export interface ResponseErrorType {
   message: string;
@@ -75,8 +89,8 @@ export interface SearchCategories {
   name: string;
   slug: string;
   shortDescription: string;
-  thumbnailImage: null;
-  thumbnailUrl: null;
+  thumbnailImage: string;
+  thumbnailUrl: string;
 }
 
 export interface CategoryProduct {
@@ -185,7 +199,7 @@ export interface CartListResponse {
     productId: number;
     slug: string;
     productName: string;
-    productImage: string | undefined;
+    productImage: string;
     productPrice: number;
     productPriceString: string;
     productStockQuantity: number;
@@ -214,7 +228,7 @@ export interface WishlistResponse {
     slug: string;
     productPriceString: string;
     productOldPriceString: string;
-    productImage: string | undefined;
+    productImage: string;
     description: null;
     quantity: number;
   }[];
@@ -242,7 +256,7 @@ export interface SearchResponse {
     name: string;
     slug: string;
     shortDescription: string;
-    thumbnailUrl: null;
+    thumbnailUrl: string;
   }[];
   filterOption: {
     categories: {
@@ -357,9 +371,9 @@ export type OrderItem = {
   productOptions: [];
   productOptionString: string;
   quantity: number;
-  thumbnailImage: null | string;
+  thumbnailImage: string;
   id: null;
-  productImage: null | string;
+  productImage: string;
   slug: null;
   productPrice: number;
   productStockQuantity: number;

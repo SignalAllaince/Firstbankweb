@@ -5,7 +5,6 @@ import useDisclosure from "@/hooks/use-disclosure";
 import useRemoveFromWishlist from "@/hooks/wishlist/useRemoveFromWishlist";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import productImg from "../../../../../public/images/shirt.jpg";
 
 function WishListRow({
   name,
@@ -16,7 +15,7 @@ function WishListRow({
   slug,
   isRefetching,
 }: {
-  imageSrc?: string;
+  imageSrc: string;
   refetchWishList: () => void;
   name: string;
   productId: number;
@@ -43,7 +42,7 @@ function WishListRow({
         <div className="item-start flex max-w-md gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
             <Image
-              src={imageSrc ?? productImg}
+              src={imageSrc}
               alt="product image"
               width={400}
               height={400}
@@ -79,6 +78,7 @@ function WishListRow({
         isLoading={isRefetching || removeFromWishlist.isLoading}
         onRemoveHandler={onRemoveHandler}
         isOpen={isOpen}
+        productName={name}
         onClose={onClose}
       />
     </>

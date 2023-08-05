@@ -9,6 +9,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
+import useGetCartList from "@/hooks/cart/useGetCartList";
 import useCounter from "@/hooks/use-couter";
 import useNotification from "@/hooks/use-notification";
 import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
@@ -21,66 +22,6 @@ import Icon from "../icon";
 import Modal from "../modal";
 import CartProductBtn from "../product-btn";
 
-const product = {
-  name: "FirstBank Brandshop",
-  price: "₦ 25,000",
-  href: "#",
-  breadcrumbs: [
-    { id: 1, name: "Women", href: "#" },
-    { id: 2, name: "Clothing", href: "#" },
-  ],
-  images: [
-    {
-      src: "https://images.unsplash.com/photo-1481834209647-66e1705e7402?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2549&q=80",
-      alt: "Two each of gray, white, and black shirts laying flat.",
-    },
-    {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
-      alt: "Model wearing plain black basic tee.",
-    },
-    {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
-      alt: "Model wearing plain white basic tee.",
-    },
-  ],
-  colors: [
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-  ],
-  sizes: [
-    { name: "XXS", inStock: true },
-    { name: "XS", inStock: true },
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: false },
-  ],
-  highlights: [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-  section: [
-    {
-      header: "Care",
-      content:
-        "Foreon Network is a decentralized prediction market built on the Cardano blockchain. It allows anyone to create a market for anything and participate in the market using Djed stablecoin.",
-    },
-    {
-      header: "Shipping",
-      content:
-        "Foreon Network uses a pari-mutuel model for prediction markets, which means that participants are betting against each other instead of against a centralized bookmaker. Additionally, automatic settlement ensures that participants receive their payouts immediately after the outcome is determined.",
-    },
-  ],
-};
-
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
 function classNames(...classes: string[]) {
@@ -92,7 +33,7 @@ function ProductWithImageGallery({
 }: {
   productDetails: ProductDetailsRes;
 }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
   const [selectedImg, setSelectedImg] = useState(productDetails.images[0]);
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
@@ -101,6 +42,7 @@ function ProductWithImageGallery({
     productDetails.stockQuantity
   );
   const addToWishlist = useAddItemToWishlist(productDetails.id);
+  const getCartList = useGetCartList(null);
 
   const handleLike = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -120,11 +62,12 @@ function ProductWithImageGallery({
         Quantity: quantity,
       })
       .then(() => {
-        // toast({
-        //   appearance: "success",
-        //   description: `${productDetails.name} was added to wishlist`,
-        // });
-        onOpen();
+        getCartList.refetch();
+        toast({
+          appearance: "success",
+          description: `${productDetails.name} was added to wishlist`,
+        });
+        // onOpen();
       })
       .catch((err) => {
         console.log(err);

@@ -1,5 +1,6 @@
 import Button from "@/components/button";
 import { signOut } from "next-auth/react";
+import React from "react";
 import Modal from "..";
 
 function LogoutModal({
@@ -9,6 +10,7 @@ function LogoutModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const [loading, setLoading] = React.useState(false);
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
       <div className="space-y-8 py-6 md:px-5">
@@ -18,7 +20,11 @@ function LogoutModal({
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <Button
             spinnerColor="#003B65"
-            onClick={() => signOut()}
+            isLoading={loading}
+            onClick={() => {
+              setLoading(true);
+              signOut();
+            }}
             className="w-full px-2 text-sm uppercase"
             variant="secondary"
           >

@@ -5,6 +5,7 @@ import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import Section from "@/components/section";
 import useCheckoutAll from "@/hooks/checkout/useCheckoutAll";
+import useNotification from "@/hooks/use-notification";
 import { CartListResponse } from "@/types/api.types";
 import {
   ArrowRightIcon,
@@ -30,11 +31,17 @@ const CartPageSection = ({
 }) => {
   const checkoutAll = useCheckoutAll();
   const router = useRouter();
+  const { toast } = useNotification();
 
   const checkoutCreateOrder = () => {
     checkoutAll
       .mutateAsync({})
       .then((res) => {
+        toast({
+          appearance: "success",
+          title: "Order Created Successfully",
+          description: `Order id #${res?.data?.data?.oid}`,
+        });
         router.push(`/cart/checkout?id=${res?.data?.data?.oid}`);
       })
       .catch((err) => console.log(err));

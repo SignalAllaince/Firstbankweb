@@ -9,7 +9,7 @@ import CustomInput from "@/components/input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
-import Ratings from "@/components/rating";
+// import Ratings from "@/components/rating";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { displayValue, truncateWord } from "@/lib/utils/common.utils";
@@ -47,7 +47,7 @@ const SearchMainSection = ({
   min: string;
   onMinChange: (value: string) => void;
 }) => {
-  const [rating, setRating] = React.useState(null);
+  // const [rating, setRating] = React.useState(null);
   const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
@@ -131,7 +131,7 @@ const SearchMainSection = ({
         </div>
         <Section className="grid grid-cols-12 gap-x-8">
           <div className="sticky top-0 col-span-4 h-fit space-y-3 font-light md:col-span-3">
-            <Accordion title="Price">
+            <Accordion title="Price" initialState>
               <div className="space-y-3 pt-1">
                 <p>Custom Price Range</p>
                 <div className="flex max-w-[230px] items-center gap-2">
@@ -163,9 +163,9 @@ const SearchMainSection = ({
                 </div>
               </div>
             </Accordion>
-            <Accordion title="Rating">
+            {/* <Accordion title="Rating">
               <Ratings rating={rating} setRating={setRating} />
-            </Accordion>
+            </Accordion> */}
           </div>
           <div className="col-span-8 md:col-span-9">
             <AnimatePresence>
@@ -198,6 +198,7 @@ const SearchMainSection = ({
                         isCategoryPage
                         href={`/${product.slug}`}
                         id={product.id}
+                        imageSrc={product.thumbnailUrl}
                         imageAlt={product.name}
                         key={product.id}
                         name={product.name}

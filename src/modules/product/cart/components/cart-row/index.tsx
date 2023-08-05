@@ -10,7 +10,6 @@ import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
-import productImg from "../../../../../../public/images/shirt.jpg";
 
 function CartProductRow({
   name,
@@ -21,7 +20,7 @@ function CartProductRow({
   price,
   productQuantity,
 }: {
-  imageSrc?: string;
+  imageSrc: string;
   onCartRefetch: any;
   name: string;
   productId: number;
@@ -35,7 +34,7 @@ function CartProductRow({
     10,
     productQuantity
   );
-  const debouncedQuantity = useDebounce(quantity, 1500);
+  const debouncedQuantity = useDebounce(quantity, 1000);
   const updateCartItem = useUpdateItemInCart();
 
   React.useEffect(() => {
@@ -67,9 +66,9 @@ function CartProductRow({
       <div className="flex items-center justify-between border-b">
         <div className="max-w-[400px] py-4 text-slate-700">
           <div className="item-start flex gap-3">
-            <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
+            <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
               <Image
-                src={imageSrc ?? productImg}
+                src={imageSrc}
                 alt="product image"
                 width={400}
                 height={400}

@@ -41,7 +41,7 @@ function useNotification() {
         <div className={`${inter.className} max-w-[120px]`}>
           <div className="space-y-0 px-2 py-1">
             {title && <Heading size="h6">{title}</Heading>}
-            <p className="text-[12px]">{description}</p>
+            <p className="text-[11px]">{description}</p>
           </div>
         </div>,
         {

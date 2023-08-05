@@ -9,7 +9,7 @@ import CustomInput from "@/components/input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
-import Ratings from "@/components/rating";
+// import Ratings from "@/components/rating";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { displayValue, stringifyCategory } from "@/lib/utils/common.utils";
@@ -22,7 +22,7 @@ import {
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { BarLoader } from "react-spinners";
 import shirtImg from "../../../../public/images/top.svg";
 
@@ -47,7 +47,7 @@ function CategoryMain({
   min: string;
   onMinChange: (value: string) => void;
 }) {
-  const [rating, setRating] = useState(null);
+  // const [rating, setRating] = useState(null);
   const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
@@ -159,9 +159,9 @@ function CategoryMain({
                 </div>
               </div>
             </Accordion>
-            <Accordion title="Rating">
+            {/* <Accordion title="Rating">
               <Ratings rating={rating} setRating={setRating} />
-            </Accordion>
+            </Accordion> */}
           </div>
           <div className="col-span-9">
             <AnimatePresence>

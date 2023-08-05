@@ -68,7 +68,7 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="w-[170px] text-sm font-medium">Total</p>
-                  <p className="font-medium">₦ {total}</p>
+                  <p className="font-medium">₦ {total}.00</p>
                 </div>
               </div>
             </div>
