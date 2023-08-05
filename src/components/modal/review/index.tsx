@@ -14,7 +14,6 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "..";
 import handshakeImg from "../../../../public/images/handshake.svg";
-import productImg from "../../../../public/images/shirt.jpg";
 
 type Inputs = {
   comment: "string";
@@ -31,7 +30,7 @@ function ItemReviewModal({
   onClose: () => void;
   productId: number;
   productName: string;
-  productImage: string | null;
+  productImage: string;
 }) {
   const {
     register,
@@ -76,7 +75,7 @@ function ItemReviewModal({
           ifOnElse={status === "success"}
           onElse={
             <FadeInOut className="space-y-4 py-4 md:px-5">
-              <SuccessReview onClose={onClose} />
+              <SuccessReview onClose={onClose} name={userData?.user?.name!} />
             </FadeInOut>
           }
         >
@@ -88,7 +87,7 @@ function ItemReviewModal({
             <div className="mb-4 flex gap-3 text-sm font-light text-brand-darkest">
               <div className="flex h-16 w-16 flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
                 <Image
-                  src={productImage ?? productImg}
+                  src={productImage}
                   alt="product image"
                   width={400}
                   height={400}
@@ -178,7 +177,13 @@ function ItemReviewModal({
 
 export default ItemReviewModal;
 
-function SuccessReview({ onClose }: { onClose: () => void }) {
+function SuccessReview({
+  onClose,
+  name,
+}: {
+  onClose: () => void;
+  name: string;
+}) {
   return (
     <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
       <div className="mx-auto grid max-w-[100px] place-items-center">
@@ -187,8 +192,8 @@ function SuccessReview({ onClose }: { onClose: () => void }) {
 
       <div>
         <p>
-          Thank you, [Staff/Buyer Name] for your comment. We look forward to
-          your next purchase
+          Thank you, {name} for your comment. We look forward to your next
+          purchase
         </p>
       </div>
       <div className="pt-10">

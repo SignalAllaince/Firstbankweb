@@ -3,7 +3,6 @@ import ItemReviewModal from "@/components/modal/review";
 import useDisclosure from "@/hooks/use-disclosure";
 import { OrderItem } from "@/types/api.types";
 import Image from "next/image";
-import productImg from "../../../../../../public/images/shirt.jpg";
 
 function OrderProductRow({ product }: { product: OrderItem }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -14,7 +13,7 @@ function OrderProductRow({ product }: { product: OrderItem }) {
         <div className="item-start flex w-full  gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
             <Image
-              src={product.productImage ?? productImg}
+              src={product.productImage}
               // src={product.productImage ? product.productImage : productImg}
               alt="product image"
               width={400}

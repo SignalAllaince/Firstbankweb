@@ -10,7 +10,6 @@ import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React from "react";
-import productImg from "../../../../../../public/images/shirt.jpg";
 
 function CartProductRow({
   name,
@@ -69,7 +68,7 @@ function CartProductRow({
           <div className="item-start flex gap-3">
             <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
               <Image
-                src={imageSrc ?? productImg}
+                src={imageSrc}
                 alt="product image"
                 width={400}
                 height={400}

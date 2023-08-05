@@ -89,8 +89,8 @@ export interface SearchCategories {
   name: string;
   slug: string;
   shortDescription: string;
-  thumbnailImage: null;
-  thumbnailUrl: null;
+  thumbnailImage: string;
+  thumbnailUrl: string;
 }
 
 export interface CategoryProduct {
@@ -199,7 +199,7 @@ export interface CartListResponse {
     productId: number;
     slug: string;
     productName: string;
-    productImage: string | undefined;
+    productImage: string;
     productPrice: number;
     productPriceString: string;
     productStockQuantity: number;
@@ -228,7 +228,7 @@ export interface WishlistResponse {
     slug: string;
     productPriceString: string;
     productOldPriceString: string;
-    productImage: string | undefined;
+    productImage: string;
     description: null;
     quantity: number;
   }[];
@@ -256,7 +256,7 @@ export interface SearchResponse {
     name: string;
     slug: string;
     shortDescription: string;
-    thumbnailUrl: null;
+    thumbnailUrl: string;
   }[];
   filterOption: {
     categories: {
@@ -371,9 +371,9 @@ export type OrderItem = {
   productOptions: [];
   productOptionString: string;
   quantity: number;
-  thumbnailImage: null | string;
+  thumbnailImage: string;
   id: null;
-  productImage: null | string;
+  productImage: string;
   slug: null;
   productPrice: number;
   productStockQuantity: number;

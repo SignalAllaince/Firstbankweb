@@ -34,7 +34,9 @@ function Navbar() {
     e.preventDefault();
     if (!search.trim()) return;
     router.push(`/search/${search.trim()}`);
-    setSearch("");
+    setTimeout(() => {
+      setSearch("");
+    }, 5000);
   };
 
   return (

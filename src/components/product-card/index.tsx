@@ -11,7 +11,6 @@ import { HeartIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
-import productImg from "../../../public/images/shirt.jpg";
 import Button from "../button";
 import Icon from "../icon";
 
@@ -85,7 +84,7 @@ function ProductCard({
     >
       <div className="h-[200px] w-full overflow-hidden rounded-t-[4px] bg-gray-300 transition-all duration-200 group-hover:opacity-75">
         <Image
-          src={imageSrc ?? productImg}
+          src={imageSrc}
           //   src={imageSrc}
           alt={imageAlt}
           width={400}
