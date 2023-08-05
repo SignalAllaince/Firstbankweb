@@ -10,11 +10,13 @@ import productImg from "../../../../../public/images/shirt.jpg";
 function WishListRow({
   name,
   refetchWishList,
+  imageSrc,
   productId,
   price,
   slug,
   isRefetching,
 }: {
+  imageSrc?: string;
   refetchWishList: () => void;
   name: string;
   productId: number;
@@ -41,7 +43,7 @@ function WishListRow({
         <div className="item-start flex max-w-md gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
             <Image
-              src={productImg}
+              src={imageSrc ?? productImg}
               alt="product image"
               width={400}
               height={400}

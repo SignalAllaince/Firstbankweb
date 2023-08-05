@@ -133,6 +133,7 @@ const CartPageSection = ({
                                     key={item.id}
                                   >
                                     <CartProductRow
+                                      imageSrc={item.productImage}
                                       price={item.productPriceString}
                                       productQuantity={item.quantity}
                                       onCartRefetch={refetchCartDetails}

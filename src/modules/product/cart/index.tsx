@@ -80,6 +80,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                   <ProductCard
                     name={product.productName}
                     key={product.id}
+                    imageSrc={product.productImage}
                     href={`/${product.slug}`}
                     price={product.productPriceString}
                     imageAlt={`${product.productName} image`}

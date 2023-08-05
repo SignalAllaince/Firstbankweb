@@ -20,7 +20,11 @@ function Pagination({
   totalPages,
 }: PaginationProps) {
   return (
-    <div className="flex items-center gap-3 pt-10">
+    <div
+      className={`${
+        totalPages <= 1 ? "hidden" : "flex"
+      } items-center gap-3 pt-10`}
+    >
       <Button
         className="px-[8px] outline-none focus:ring focus:ring-blue-300"
         variant="secondary"

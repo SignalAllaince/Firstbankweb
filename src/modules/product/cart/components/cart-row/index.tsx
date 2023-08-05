@@ -15,11 +15,13 @@ import productImg from "../../../../../../public/images/shirt.jpg";
 function CartProductRow({
   name,
   onCartRefetch,
+  imageSrc,
   isLoading,
   productId,
   price,
   productQuantity,
 }: {
+  imageSrc?: string;
   onCartRefetch: any;
   name: string;
   productId: number;
@@ -33,7 +35,7 @@ function CartProductRow({
     10,
     productQuantity
   );
-  const debouncedQuantity = useDebounce(quantity, 1000);
+  const debouncedQuantity = useDebounce(quantity, 1500);
   const updateCartItem = useUpdateItemInCart();
 
   React.useEffect(() => {
@@ -67,7 +69,7 @@ function CartProductRow({
           <div className="item-start flex gap-3">
             <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
               <Image
-                src={productImg}
+                src={imageSrc ?? productImg}
                 alt="product image"
                 width={400}
                 height={400}

@@ -7,8 +7,8 @@ const useGetCategoryProducts = ({
   mnp,
   mxp,
   sort,
-  ps,
-  page,
+  ps = 10,
+  page = 1,
   staleTime = 3600000,
 }: {
   categoryId: number;

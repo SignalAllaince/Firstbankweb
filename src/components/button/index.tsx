@@ -1,6 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { Rubik } from "next/font/google";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 // const inter = Inter({
@@ -106,12 +106,14 @@ const buttonClasses = cva(
   }
 );
 
+// @ts-expect-error
 export interface ButtonProps
   extends DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
     >,
-    VariantProps<typeof buttonClasses> {
+    VariantProps<typeof buttonClasses>,
+    LinkProps {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   href?: string;

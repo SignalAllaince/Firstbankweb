@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import Accordion from "@/components/accordion";
 import Button from "@/components/button";
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
+import IfElse from "@/components/if-else";
 import CustomInput from "@/components/input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Pagination from "@/components/paginate";
@@ -17,9 +19,12 @@ import {
   ChevronRightIcon,
   MinusIcon,
 } from "@heroicons/react/24/outline";
+import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
+import shirtImg from "../../../../public/images/top.svg";
 
 function CategoryMain({
   categoryName,
@@ -159,32 +164,57 @@ function CategoryMain({
             </Accordion>
           </div>
           <div className="col-span-9">
-            <div className="product-grid grid grid-cols-3 gap-x-4 gap-y-12">
-              {categoryProducts?.products.map((product) => (
-                <ProductCard
-                  name={product.name}
-                  key={product.id}
-                  id={product.id}
-                  href={`/${product.slug}`}
-                  // isFinished={product.stockQuantity === 0}
-                  stockQuantity={product.stockQuantity}
-                  price={product.calculatedProductPrice.priceString}
-                  imageAlt={`${product.name} image`}
-                  isCategoryPage
-                />
-              ))}
-            </div>
-
-            <div className="flex items-center justify-center">
-              <Pagination
-                onNext={onNext}
-                onPrev={onPrev}
-                currentPageNumber={currentPageNumber}
-                isPrevDisabled={currentPageNumber === 1}
-                isNextDisabled={currentPageNumber === totalPages}
-                totalPages={totalPages}
-              />
-            </div>
+            <AnimatePresence>
+              <IfElse
+                ifOn={categoryProducts?.products.length !== 0}
+                ifOnElse={categoryProducts?.products.length === 0}
+                onElse={
+                  <FadeInOut>
+                    <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
+                      <div className="max-w-xl">
+                        <Image src={shirtImg} alt={"djsdsd"} />
+                      </div>
+                      <div className="flex flex-col items-center space-y-3 text-center">
+                        <Heading size="h3">No products found</Heading>
+                        <p className="text-sm">
+                          Try searching for more general terms or shop from
+                          other categories above.
+                        </p>
+                      </div>
+                    </Section>
+                  </FadeInOut>
+                }
+              >
+                <FadeInOut>
+                  <div className="product-grid grid grid-cols-3 gap-x-4 gap-y-12">
+                    {categoryProducts?.products.map((product) => (
+                      <ProductCard
+                        name={product.name}
+                        key={product.id}
+                        id={product.id}
+                        imageSrc={product.thumbnailUrl}
+                        href={`/${product.slug}`}
+                        // isFinished={product.stockQuantity === 0}
+                        stockQuantity={product.stockQuantity}
+                        price={product.calculatedProductPrice.priceString}
+                        imageAlt={`${product.name} image`}
+                        isCategoryPage
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Pagination
+                      onNext={onNext}
+                      onPrev={onPrev}
+                      currentPageNumber={currentPageNumber}
+                      isPrevDisabled={currentPageNumber === 1}
+                      isNextDisabled={currentPageNumber === totalPages}
+                      totalPages={totalPages}
+                    />
+                  </div>
+                </FadeInOut>
+              </IfElse>
+            </AnimatePresence>
           </div>
         </Section>
       </section>
