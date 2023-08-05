@@ -25,7 +25,7 @@ function ProductCard({
   price,
   id,
 }: {
-  imageSrc?: string;
+  imageSrc: string;
   imageAlt?: string;
   href?: string;
   price?: string;
@@ -52,7 +52,8 @@ function ProductCard({
         getCartList.refetch();
         toast({
           appearance: "success",
-          description: `${name} was added to wishlist`,
+          title: "Added to cart",
+          description: `${name} was added to cart`,
         });
       })
       .catch((err) => {

@@ -15,7 +15,7 @@ function WishListRow({
   slug,
   isRefetching,
 }: {
-  imageSrc?: string;
+  imageSrc: string;
   refetchWishList: () => void;
   name: string;
   productId: number;

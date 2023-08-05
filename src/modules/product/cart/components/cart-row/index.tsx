@@ -20,7 +20,7 @@ function CartProductRow({
   price,
   productQuantity,
 }: {
-  imageSrc?: string;
+  imageSrc: string;
   onCartRefetch: any;
   name: string;
   productId: number;
