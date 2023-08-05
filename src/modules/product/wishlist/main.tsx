@@ -5,6 +5,7 @@ import Pagination from "@/components/paginate";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { WishlistResponse } from "@/types/api.types";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 import { BarLoader } from "react-spinners";
@@ -24,10 +25,12 @@ const WishListMainSection = ({
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    sectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 800);
   }, [currentPageNumber]);
 
   return (
@@ -64,7 +67,7 @@ const WishListMainSection = ({
           </div>
         }
       >
-        <div className="w-full bg-white pb-20 pt-6">
+        <motion.div layout className="w-full bg-white pb-20 pt-6">
           <Section className="space-y-5">
             {wishlistResult.items?.map((item) => (
               <WishListRow
@@ -91,7 +94,7 @@ const WishListMainSection = ({
               </div>
             )}
           </Section>
-        </div>
+        </motion.div>
       </IfElse>
     </>
   );

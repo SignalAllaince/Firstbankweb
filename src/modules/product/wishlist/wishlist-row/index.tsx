@@ -78,6 +78,7 @@ function WishListRow({
         isLoading={isRefetching || removeFromWishlist.isLoading}
         onRemoveHandler={onRemoveHandler}
         isOpen={isOpen}
+        productName={name}
         onClose={onClose}
       />
     </>

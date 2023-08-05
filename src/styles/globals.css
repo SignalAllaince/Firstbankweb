@@ -25,7 +25,6 @@
   background-position: 100% 35%;
 }
 
-
 /* Toast Styles */
 .toast-container {
   max-width: 400px;
@@ -64,3 +63,34 @@
 }
 
 /* .notistack-MuiContent.notistack-MuiContent-error.go167266335.go3651055292  */
+
+
+.track_right {
+  animation: marquee 30s linear infinite;
+  animation-direction: reverse;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  /* animation-composition: ; */
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-18%);
+  }
+}
+
+/* 
+@keyframes marquees {
+  from {
+    transform: translateX(50%);
+  }
+
+  to {
+    transform: translateX(-95.5%);
+  }
+} */
