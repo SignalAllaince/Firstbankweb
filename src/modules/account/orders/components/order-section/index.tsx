@@ -14,7 +14,7 @@ function OrderProductRow({ product }: { product: OrderItem }) {
         <div className="item-start flex w-full  gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
             <Image
-              src={productImg}
+              src={product.productImage ?? productImg}
               // src={product.productImage ? product.productImage : productImg}
               alt="product image"
               width={400}
@@ -44,6 +44,7 @@ function OrderProductRow({ product }: { product: OrderItem }) {
         onClose={onClose}
         productId={product.productId}
         productName={product.productName}
+        productImage={product.productImage}
       />
     </>
   );

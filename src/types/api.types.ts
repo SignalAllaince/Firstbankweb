@@ -1,5 +1,5 @@
 import { QueryFunction, QueryKey } from "@tanstack/react-query";
-import { AxiosRequestHeaders, Method } from "axios";
+import { AxiosRequestHeaders, AxiosResponse, Method } from "axios";
 
 export type MethodTypes = "get" | "post" | "patch" | "put" | "delete";
 
@@ -21,16 +21,30 @@ export interface RequestResponse<T = Record<string, unknown>> {
   queryFn?: QueryFunction<FirstBankResponseType<T>, QueryKey>;
 }
 
-export interface FirstBankResponseType<D = Record<string, unknown>> {
-  data: {
-    oid: any;
-    response_code: string;
-    data: D;
-    errors: Record<string, unknown>;
-    errorCode: number;
-    status: string;
-  };
-}
+// export interface FirstBankResponseType<D = Record<string, unknown>> {
+//   data: {
+//     oid: any;
+//     response_code: string;
+//     data: D;
+//     errors: Record<string, unknown>;
+//     errorCode: number;
+//     status: string;
+//   };
+// }
+
+export type FirstBankResponseType<D> = AxiosResponse<
+  CredentialsServerResponseModel<D>
+>;
+
+export type CredentialsServerResponseModel<T> = {
+  data: T;
+  oid: any;
+  response_code: string;
+  errors: Record<string, unknown>;
+  errorCode: number;
+  status: string;
+  message: string;
+};
 
 export interface ResponseErrorType {
   message: string;

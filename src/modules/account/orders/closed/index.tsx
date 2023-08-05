@@ -19,8 +19,8 @@ const ClosedOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
       <PageHead title="Closed Orders" />
       <AnimatePresence>
         <IfElse
-          ifOn={!getOrders.isLoading && !!getOrders?.value}
-          ifOnElse={getOrders.isLoading && !getOrders?.value}
+          ifOn={!getOrders.isLoading && !!orders}
+          ifOnElse={getOrders.isLoading && !orders}
           // ifOnElse={true}
           onElse={<OrderLoading />}
         >
