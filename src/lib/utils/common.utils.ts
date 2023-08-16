@@ -185,3 +185,5 @@ export const truncateWord = (str: string, len = 30) => {
 
   return `${str.substring(0, len - 1)}..`;
 };
+
+export const numberFormat = new Intl.NumberFormat("de-DE");

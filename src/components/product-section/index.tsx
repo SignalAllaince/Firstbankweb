@@ -22,8 +22,6 @@ import Icon from "../icon";
 import Modal from "../modal";
 import CartProductBtn from "../product-btn";
 
-const reviews = { href: "#", average: 4, totalCount: 117 };
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -65,7 +63,7 @@ function ProductWithImageGallery({
         getCartList.refetch();
         toast({
           appearance: "success",
-          description: `${productDetails.name} was added to wishlist`,
+          description: `${productDetails.name} successfully added to cart`,
         });
         // onOpen();
       })
@@ -73,6 +71,9 @@ function ProductWithImageGallery({
         console.log(err);
       });
   };
+  const ratingAverage = productDetails.ratingAverage
+    ? productDetails.ratingAverage
+    : 0;
   return (
     <>
       <div className="rounded-lg bg-white">
@@ -145,12 +146,11 @@ function ProductWithImageGallery({
                       {[0, 1, 2, 3, 4].map((rating) => (
                         <StarIcon
                           key={rating}
-                          className={classNames(
-                            reviews.average > rating
-                              ? "text-brand-accent"
-                              : "text-gray-200",
-                            "h-4 w-4 flex-shrink-0"
-                          )}
+                          className={`h-4 ${
+                            rating + 1 > ratingAverage
+                              ? "text-gray-300"
+                              : "text-brand-accent"
+                          } w-4 flex-shrink-0 `}
                           aria-hidden="true"
                         />
                       ))}
