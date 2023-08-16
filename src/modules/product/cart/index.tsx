@@ -86,6 +86,7 @@ const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
                     imageAlt={`${product.productName} image`}
                     isCategoryPage
                     id={product.productId}
+                    rating={undefined}
                   />
                 ))}
               </FadeInOut>

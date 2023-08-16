@@ -72,7 +72,7 @@ function ProductWithImageGallery({
       });
   };
   const ratingAverage = productDetails.ratingAverage
-    ? productDetails.ratingAverage
+    ? (productDetails.ratingAverage as number)
     : 0;
   return (
     <>

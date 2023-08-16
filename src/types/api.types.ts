@@ -101,7 +101,7 @@ export interface CategoryProduct {
   specialPriceStart: string;
   specialPriceEnd: string;
   reviewsCount: number;
-  ratingAverage: null;
+  ratingAverage: null | string | number;
   calculatedProductPrice: {
     price: number;
     oldPrice: number;
@@ -176,7 +176,7 @@ export interface ProductDetailsRes {
   isAllowToOrder: boolean;
   stockQuantity: number;
   reviewsCount: number;
-  ratingAverage: null;
+  ratingAverage: null | string | number;
   availableOptions: any[];
   optionDisplayValues: {};
   images: {
@@ -244,7 +244,7 @@ export interface SearchResponse {
     specialPriceStart: string;
     specialPriceEnd: string;
     reviewsCount: number;
-    ratingAverage: null;
+    ratingAverage: null | string | number;
     calculatedProductPrice: {
       price: number;
       oldPrice: number;

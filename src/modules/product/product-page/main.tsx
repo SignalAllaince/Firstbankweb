@@ -18,7 +18,7 @@ function ProductMainSection({
 }) {
   const productReview = useGetProductReview(productDetails.id, 1, 10);
   const ratingAverage = productDetails.ratingAverage
-    ? productDetails.ratingAverage
+    ? (productDetails.ratingAverage as number)
     : 0;
   return (
     <div className="bg-white pb-10">
@@ -96,7 +96,7 @@ function ProductMainSection({
             <>
               {!productReview?.value && (
                 <div className="ml-auto w-full max-w-sm">
-                  <p className="font-light ">
+                  <p className="text-sm font-light">
                     Be the first to order and this product; and don’t forget to
                     leave a rating/review!
                   </p>

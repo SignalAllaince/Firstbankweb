@@ -101,6 +101,7 @@ function Catergory({
                     stockQuantity={product.stockQuantity}
                     price={product.calculatedProductPrice.priceString}
                     imageAlt={`${product.name} image`}
+                    rating={product.ratingAverage}
                   />
                 ))}
               </FadeInOut>
