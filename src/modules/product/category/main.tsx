@@ -194,6 +194,7 @@ function CategoryMain({
                         id={product.id}
                         imageSrc={product.thumbnailUrl}
                         href={`/${product.slug}`}
+                        rating={product.ratingAverage}
                         // isFinished={product.stockQuantity === 0}
                         stockQuantity={product.stockQuantity}
                         price={product.calculatedProductPrice.priceString}

@@ -2,7 +2,6 @@ import useAddItemToCart from "@/hooks/cart/useAddItemToCart";
 import useGetCartList from "@/hooks/cart/useGetCartList";
 import useNotification from "@/hooks/use-notification";
 import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
-import { cn } from "@/lib/utils/component.utils";
 import {
   HeartIcon as HeartSolidIcon,
   StarIcon,
@@ -23,6 +22,7 @@ function ProductCard({
   name = "office shirt",
   stockQuantity = 0,
   price,
+  rating,
   id,
 }: {
   imageSrc: string;
@@ -34,12 +34,15 @@ function ProductCard({
   name?: string;
   stockQuantity?: number;
   id?: string | number;
+  rating: string | null | number;
 }) {
   const addToCart = useAddItemToCart();
   const [like, setLike] = useState(false);
   const { toast } = useNotification();
   const addToWishlist = useAddItemToWishlist(id as number);
   const getCartList = useGetCartList(addToCart.value);
+
+  const ratingAverage = rating ? (rating as number) : 0;
 
   const addToCartHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -112,18 +115,21 @@ function ProductCard({
         <div className="space-y-1 pb-3">
           <p className="font-medium text-gray-900">{price}</p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              {[0, 1, 2, 3, 4].map((rating) => (
-                <StarIcon
-                  key={rating}
-                  className={cn(
-                    4 > rating ? "text-yellow-400" : "text-blue-100",
-                    "h-4 w-4 flex-shrink-0"
-                  )}
-                  aria-hidden="true"
-                />
-              ))}
-            </div>
+            {rating !== undefined && (
+              <div className="flex items-center">
+                {[0, 1, 2, 3, 4].map((rating) => (
+                  <StarIcon
+                    key={rating}
+                    className={`h-4 ${
+                      rating + 1 > ratingAverage
+                        ? "text-gray-300"
+                        : "text-brand-accent"
+                    } w-4 flex-shrink-0 `}
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
+            )}
             {stockQuantity !== undefined && stockQuantity > 0 && (
               <div className="bg-[#F5F8FA] p-1 px-2">
                 <p className="text-[10px] font-light">

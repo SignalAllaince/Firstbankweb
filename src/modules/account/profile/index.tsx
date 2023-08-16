@@ -1,11 +1,29 @@
+import Button from "@/components/button";
 import Heading from "@/components/heading";
+import Textarea from "@/components/input/text-area";
 import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type Inputs = {
+  address: string;
+  alternateAddress: string;
+};
 
 const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const updateAddressHandler: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+  };
+
   return (
     <Section className="space-y-4 pb-10">
       <PageHead title="Profile" />
@@ -34,6 +52,28 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
           <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
         </div>
       </div>
+      <form
+        onSubmit={handleSubmit(updateAddressHandler)}
+        className="space-y-4 pt-8"
+      >
+        <Textarea
+          {...register("address", { required: true })}
+          errors={errors}
+          bg="bg-brand-lightest"
+          label="Delivery Address"
+          placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
+        />
+        <Textarea
+          {...register("alternateAddress", { required: true })}
+          errors={errors}
+          bg="bg-brand-lightest"
+          label="Alternate Address"
+          placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
+        />
+        <Button className=" text-sm uppercase" type="submit">
+          Save Changes
+        </Button>
+      </form>
     </Section>
   );
 };

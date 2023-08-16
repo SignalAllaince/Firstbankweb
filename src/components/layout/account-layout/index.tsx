@@ -1,3 +1,6 @@
+import Icon from "@/components/icon";
+import LogoutModal from "@/components/modal/logout";
+import useDisclosure from "@/hooks/use-disclosure";
 import {
   ArrowLeftOnRectangleIcon,
   StarIcon,
@@ -13,6 +16,7 @@ import SidebarLink from "../../sidebar-link";
 
 // const inter = Inter({ subsets: ["cyrillic"] });
 const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
+const boldInter = Rubik({ subsets: ["latin"], weight: ["400"] });
 
 const links = [
   { text: "My Account", href: "/account", icon: UserCircleIcon, exact: true },
@@ -25,6 +29,7 @@ const links = [
   },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
+  const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <div className={`flex ${inter.className} min-h-screen w-full flex-col`}>
       <Navbar />
@@ -42,9 +47,13 @@ function AccountLayout({ children }: { children: ReactNode }) {
               </SidebarLink>
             ))}
             <div className="border-t border-brand-light">
-              <SidebarLink LinkIcon={ArrowLeftOnRectangleIcon} href="">
-                Logout
-              </SidebarLink>
+              <button
+                onClick={onOpen}
+                className={`flex w-full ${boldInter.className} items-center gap-4 rounded-[4px] p-4 text-sm text-brand-blue transition duration-200`}
+              >
+                <Icon IconComp={ArrowLeftOnRectangleIcon} />
+                <span>Logout</span>
+              </button>
             </div>
           </div>
 
@@ -52,6 +61,7 @@ function AccountLayout({ children }: { children: ReactNode }) {
         </Section>
       </div>
       <Footer />
+      <LogoutModal onClose={onClose} isOpen={isOpen} />
     </div>
   );
 }

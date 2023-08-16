@@ -204,6 +204,7 @@ const SearchMainSection = ({
                         name={product.name}
                         stockQuantity={product.stockQuantity}
                         price={product.calculatedProductPrice.priceString}
+                        rating={product.ratingAverage}
                       />
                     ))}
                   </div>

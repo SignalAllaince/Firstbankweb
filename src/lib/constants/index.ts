@@ -2,6 +2,8 @@
 export const ENDPOINTS = {
   // API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
   API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
+  // API_BASE_URL: "https://newfbnbackend.azurewebsites.net/",
+
   // https://brandshopapi.azurewebsites.net
 
   // Cart Endpoints

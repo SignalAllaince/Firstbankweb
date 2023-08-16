@@ -17,7 +17,9 @@ function ProductMainSection({
   productDetails: ProductDetailsRes;
 }) {
   const productReview = useGetProductReview(productDetails.id, 1, 10);
-
+  const ratingAverage = productDetails.ratingAverage
+    ? (productDetails.ratingAverage as number)
+    : 0;
   return (
     <div className="bg-white pb-10">
       <PageHead title={productDetails.name} />
@@ -47,45 +49,64 @@ function ProductMainSection({
           <div className="space-y-4">
             <Heading size="h4">Ratings & Reviews</Heading>
             <div className="flex w-fit items-center gap-4 bg-brand-lightest px-6 py-9">
-              <h1 className="text-2xl font-medium md:text-[64px]">4.0</h1>
+              <h1 className="text-2xl font-medium md:text-[64px]">
+                {ratingAverage.toFixed(1)}
+              </h1>
               <div className="space-y-2">
                 <div className="flex items-center">
                   {[0, 1, 2, 3, 4].map((rating) => (
                     <StarIcon
                       key={rating}
-                      className={"h-4 w-4 flex-shrink-0 text-brand-accent"}
+                      className={`h-4 ${
+                        rating + 1 > ratingAverage
+                          ? "text-gray-300"
+                          : "text-brand-accent"
+                      } w-4 flex-shrink-0 `}
                       aria-hidden="true"
                     />
                   ))}
                 </div>
-                <p className="text-sm font-light">8 Reviews</p>
+                <p className="text-sm font-light">
+                  {productDetails.reviewsCount} Reviews
+                </p>
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center md:mt-10">
-            <div className="w-full max-w-md space-y-8">
-              <ProductReview />
-              <ProductReview />
-              <ProductReview />
-              <ProductReview />
-
-              <div className="flex items-center justify-between">
-                <p className="font-light text-brand-medium">1-4 of 8 reviews</p>
-                <div className="flex items-center gap-2">
-                  <Button variant="secondary" size="xs">
-                    Previous
-                  </Button>
-                  <Button variant="secondary" size="xs">
-                    Next
-                  </Button>
+          <div className="flex  justify-center">
+            <>
+              {productReview?.value && (
+                <div className="w-full max-w-md space-y-8">
+                  <ProductReview />
+                  <div className="flex items-center justify-between">
+                    <p className="font-light text-brand-medium">
+                      1-4 of 8 reviews
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <Button variant="secondary" size="xs">
+                        Previous
+                      </Button>
+                      <Button variant="secondary" size="xs">
+                        Next
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              )}
+            </>
+            <>
+              {!productReview?.value && (
+                <div className="ml-auto w-full max-w-sm">
+                  <p className="text-sm font-light">
+                    Be the first to order and this product; and don’t forget to
+                    leave a rating/review!
+                  </p>
+                </div>
+              )}
+            </>
           </div>
         </Section>
       </section>
     </div>
   );
 }
-
 export default ProductMainSection;
