@@ -17,7 +17,6 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
