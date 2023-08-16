@@ -5,7 +5,7 @@ import Pagination from "@/components/paginate";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { WishlistResponse } from "@/types/api.types";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 import { BarLoader } from "react-spinners";
@@ -67,20 +67,36 @@ const WishListMainSection = ({
           </div>
         }
       >
-        <motion.div layout className="w-full bg-white pb-20 pt-6">
+        <motion.div className="w-full bg-white pb-20 pt-6">
           <Section className="space-y-5">
-            {wishlistResult.items?.map((item) => (
-              <WishListRow
-                name={item.productName}
-                imageSrc={item.productImage}
-                productId={item.id}
-                price={item.productPriceString}
-                slug={item.slug}
-                key={item.id}
-                refetchWishList={onRefetch}
-                isRefetching={isRefetching}
-              />
-            ))}
+            <AnimatePresence>
+              {wishlistResult.items?.map((item) => (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{
+                    opacity: { duration: 0.2 },
+                    layout: {
+                      duration: 1,
+                    },
+                  }}
+                  style={{ originX: 1 }}
+                  key={item.id}
+                >
+                  <WishListRow
+                    name={item.productName}
+                    imageSrc={item.productImage}
+                    productId={item.id}
+                    price={item.productPriceString}
+                    slug={item.slug}
+                    key={item.id}
+                    refetchWishList={onRefetch}
+                    isRefetching={isRefetching}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
             {totalPages > 1 && (
               <div className="flex items-center justify-center">
                 <Pagination

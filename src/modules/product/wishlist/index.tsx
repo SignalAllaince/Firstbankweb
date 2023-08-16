@@ -21,6 +21,16 @@ const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
   const pageSize = 4;
   const getWishList = useGetWishlist(currentPageNumber, pageSize);
 
+  React.useEffect(() => {
+    if (
+      getWishList?.value?.items &&
+      getWishList?.value?.items.length === 0 &&
+      currentPageNumber > 1
+    ) {
+      setPage(1);
+    }
+  }, [getWishList?.value?.items, currentPageNumber]);
+
   return (
     <div className="">
       <PageHead title="Wishlist" />
