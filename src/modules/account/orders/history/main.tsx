@@ -1,7 +1,5 @@
-import Button from "@/components/button";
 import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
-import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
 import Section from "@/components/section";
 import { IOrderDetails } from "@/types/api.types";
@@ -16,14 +14,14 @@ function OrderHistory({ orders }: { orders: IOrderDetails[] }) {
     <div className="space-y-5">
       <div className="flex items-center justify-between border-b border-brand-light py-3">
         <div className="flex items-center gap-2 font-light"></div>
-        <Button
+        {/* <Button
           size="small"
           //   @ts-expect-error
           leftIcon={<Icon IconComp={ExcelIcon} />}
           className="h-8"
         >
           Export Result
-        </Button>
+        </Button> */}
       </div>
 
       {/* Second section */}

@@ -1,9 +1,10 @@
+import ErrorMessage from "@/components/error-message";
 import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
 import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import PageHead from "@/components/page-head";
-import { useOrders } from "@/lib/context/order.context";
+import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
@@ -12,20 +13,21 @@ import OrderLoading from "../history/loading";
 import OrderHistory from "./main";
 
 const OpenOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const { getOrders, orders } = useOrders();
+  const getOrders = useGetAllOrders();
 
   return (
     <>
       <PageHead title="Open Orders" />
       <AnimatePresence>
         <IfElse
-          ifOn={!getOrders.isLoading && !!orders}
-          ifOnElse={getOrders.isLoading && !orders}
-          // ifOnElse={true}
+          ifOn={!getOrders.isLoading && !!getOrders?.value}
+          ifOnElse={getOrders.isLoading && !getOrders?.value}
+          elseThen={<ErrorMessage />}
           onElse={<OrderLoading />}
         >
           <FadeInOut>
-            <OrderHistory orders={orders?.items!} />
+            {/* @ts-expect-error */}
+            <OrderHistory orders={getOrders?.value} />
           </FadeInOut>
         </IfElse>
       </AnimatePresence>

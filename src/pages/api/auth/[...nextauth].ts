@@ -42,7 +42,7 @@ export default NextAuth({
           };
         } catch (err: unknown) {
           if (err instanceof Error) {
-            // console.log(err, "from here");
+            console.log(err.message, "from here");
             throw new Error(err.message, {
               cause: err,
             });

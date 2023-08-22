@@ -2,7 +2,6 @@ import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import Section from "@/components/section";
-import OrderContextProvider from "@/lib/context/order.context";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -65,18 +64,16 @@ function OrderLayout({
           </div>
         ) : null}
       </div>
-      <AnimatePresence mode="sync">
-        <OrderContextProvider>
-          <motion.div
-            key={changer}
-            initial={{ opacity: 0.3 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0.3 }}
-            className="flex-1"
-          >
-            {children}
-          </motion.div>
-        </OrderContextProvider>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={changer}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0.3 }}
+          className="flex-1"
+        >
+          {children}
+        </motion.div>
       </AnimatePresence>
     </Section>
   );
