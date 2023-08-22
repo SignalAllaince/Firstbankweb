@@ -1,10 +1,10 @@
 import { ENDPOINTS, NAMESPACE } from "@/lib/constants";
 import { IOrderContainer } from "@/types/api.types";
-import useCustomMutation from "../use-mutationaction";
+import useQueryActionHook from "../use-queryaction";
 
 const useGetAllOrders = () => {
-  return useCustomMutation<IOrderContainer>({
-    method: "post",
+  return useQueryActionHook<IOrderContainer>({
+    method: "get",
     endpoint: ENDPOINTS.GET_ALL_ORDERS,
     queryKey: [NAMESPACE.GET_ALL_ORDERS],
   });

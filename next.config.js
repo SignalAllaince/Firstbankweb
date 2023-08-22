@@ -27,8 +27,15 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'newfbnbackend.azurewebsites.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
 
 module.exports = nextConfig;
+
