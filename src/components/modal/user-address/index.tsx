@@ -30,7 +30,7 @@ function UserAddressModal({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  refetch: () => void;
+  refetch?: () => void;
   defaultValues?: IAddressItem;
 }) {
   const shippingStates = useGetShippingState();
@@ -87,7 +87,7 @@ function UserAddressModal({
         displayCity: true,
       })
       .then(() => {
-        refetch();
+        refetch && refetch();
         closeHandler();
       })
       .catch(console.log);
