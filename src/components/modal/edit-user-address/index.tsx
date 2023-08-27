@@ -5,7 +5,6 @@ import CustomInput from "@/components/input";
 import CustomSelect from "@/components/input/select";
 import Textarea from "@/components/input/text-area";
 import useCreatedAddress from "@/hooks/address/useCreateAddress";
-import useUpdateAddress from "@/hooks/address/useUpdateAddress";
 import useGetShippingState from "@/hooks/checkout/useGetShippingStates";
 import { cn } from "@/lib/utils/component.utils";
 import { IAddressItem } from "@/types/api.types";
@@ -52,9 +51,6 @@ function UserAddressModal({
     },
   });
   const createAddress = useCreatedAddress();
-  const updateAddress = useUpdateAddress(defaultValues?.addressId!);
-  const toggleAddress = defaultValues ? updateAddress : createAddress;
-
   const [isDefault, setDefault] = React.useState(
     defaultValues?.isDefaultShippingAddress ?? false
   );
@@ -67,8 +63,7 @@ function UserAddressModal({
     const stateName = shippingStates?.value?.find(
       (item) => item.id === data.state
     )?.name;
-
-    toggleAddress
+    createAddress
       .mutateAsync({
         contactName: data.contactName,
         phone: data.phoneNumber,
@@ -161,7 +156,7 @@ function UserAddressModal({
             <Button
               className="w-full text-sm uppercase"
               type="submit"
-              isLoading={toggleAddress.isLoading}
+              isLoading={createAddress.isLoading}
             >
               Continue
             </Button>

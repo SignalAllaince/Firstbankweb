@@ -467,7 +467,7 @@ export type ReviewModel = {
 };
 
 export type IAddressItem = {
-  addressId: number;
+  addressId: string;
   contactName: string;
   phone: string;
   addressLine1: string;
