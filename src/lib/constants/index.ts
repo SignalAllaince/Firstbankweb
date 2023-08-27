@@ -132,7 +132,8 @@ export const ENDPOINTS = {
     `checkout/${orderId}/new-shipping-address`,
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (orderId: string) =>
     `checkout/${orderId}/new-billing-address`,
-  GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  UPDATE_ORDER_SHIPPING_ADDRESS: (addresId: string, orderId: string) =>
+    `checkout/${addresId}/update-shipping-address/${orderId}`,
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_SHIPPING_AS_BILLING: (orderId: string) =>
     `checkout/${orderId}/use-shipping-as-billing/true`,
@@ -260,7 +261,7 @@ export const NAMESPACE = {
   GET_CHECKOUT_SHIPPING_ADDRESS: "GET_CHECKOUT_SHIPPING_ADDRESS",
   CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: "CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS",
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: "CREATE_NEW_CHECKOUT_BILLING_ADDRESS",
-  GET_UPDATED_SHIPPING_ADDRESS: "GET_UPDATED_SHIPPING_ADDRESS",
+  UPDATE_ORDER_SHIPPING_ADDRESS: "UPDATE_ORDER_SHIPPING_ADDRESS",
   GET_UPDATED_BILLING_ADDRESS: "GET_UPDATED_BILLING_ADDRESS",
   GET_SHIPPING_AS_BILLING: "GET_SHIPPING_AS_BILLING",
   GET_CHECKOUT_SHIPPING_STATES: "GET_CHECKOUT_SHIPPING_STATES",

@@ -5,9 +5,10 @@ import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useMakeCheckoutPayment from "@/hooks/checkout/useMakeCheckoutPayment";
 import useDisclosure from "@/hooks/use-disclosure";
+import useNotification from "@/hooks/use-notification";
 import { useCheckout } from "@/lib/context/checkout-context";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddressDetails from "./components/address-details";
 import CheckoutProduct from "./components/checkout-product";
 import PaymentMethods from "./components/payment-methods";
@@ -23,9 +24,24 @@ const CheckoutMain = () => {
   const [level, setLevel] = useState<"details" | "payment">("details");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { checkoutDetails } = useCheckout();
-
+  const { toast } = useNotification();
+  const metric = useRef(1);
   const makePayment = useMakeCheckoutPayment(checkoutDetails.orderId as string);
 
+  useEffect(() => {
+    if (
+      metric.current === 1 &&
+      checkoutDetails.selectedShippingAddressId === 0
+    ) {
+      toast({
+        appearance: "warning",
+        title: "Address Error",
+        description: "Shipping Address is not set for this order",
+      });
+      metric.current = 2;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const checkoutHandler = () => {
     if (level === "details" && checked) {
       setLevel("payment");
@@ -106,7 +122,9 @@ const CheckoutMain = () => {
                 <div>
                   <Button
                     className="w-full text-sm uppercase"
-                    disabled={disable}
+                    disabled={
+                      disable || checkoutDetails.selectedShippingAddressId === 0
+                    }
                     onClick={checkoutHandler}
                     isLoading={makePayment.isFetching}
                   >
