@@ -15,7 +15,17 @@ function AddressDetails() {
     onClose: onSelectClose,
   } = useDisclosure();
   const { checkoutDetails } = useCheckout();
-
+  const usedAddress =
+    checkoutDetails.selectedShippingAddressId === 0
+      ? {
+          addressLine1: "",
+          cityName: "",
+          stateName: "",
+          phone: "",
+        }
+      : checkoutDetails.existingShippingAddresses?.find(
+          (item) => item.id === checkoutDetails.selectedShippingAddressId
+        );
   const total =
     checkoutDetails.subTotal +
     checkoutDetails.taxAmount +
@@ -47,30 +57,22 @@ function AddressDetails() {
               <div className="flex justify-between">
                 <div className="space-y-1">
                   <p className="text-xs">Delivery Address</p>
-                  <p className="text-sm">
-                    {/* {checkoutDetails.existingBillingAddresses[0].addressLine1} */}
-                  </p>
+                  <p className="text-sm">{usedAddress?.addressLine1}</p>
                 </div>
 
                 <div className="space-y-1">
                   <p className="text-xs">City</p>
-                  <p className="text-sm">
-                    {/* {checkoutDetails.existingBillingAddresses[0].cityName} */}
-                  </p>
+                  <p className="text-sm">{usedAddress?.cityName}</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs">State</p>
-                  <p className="text-sm">
-                    {/* {checkoutDetails.existingBillingAddresses[0].stateName} */}
-                  </p>
+                  <p className="text-sm">{usedAddress?.stateName}</p>
                 </div>
               </div>
 
               <div className="space-y-1">
                 <p className="text-xs">Phone Number</p>
-                <p className="text-sm">
-                  {/* {checkoutDetails.existingBillingAddresses[0].phone} */}
-                </p>
+                <p className="text-sm">{usedAddress?.phone}</p>
               </div>
             </>
           )}
