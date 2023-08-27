@@ -4,6 +4,7 @@ import Textarea from "@/components/input/text-area";
 import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
+import useGetAddressList from "@/hooks/address/useGetAddressList";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -19,10 +20,12 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
+  const addressList = useGetAddressList();
   const updateAddressHandler: SubmitHandler<Inputs> = (data) => {
     console.log(data);
   };
+
+  console.log(addressList?.value, "addressList?.value");
 
   return (
     <Section className="space-y-4 pb-10">
@@ -52,28 +55,32 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
           <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
         </div>
       </div>
-      <form
-        onSubmit={handleSubmit(updateAddressHandler)}
-        className="space-y-4 pt-8"
-      >
-        <Textarea
-          {...register("address", { required: true })}
-          errors={errors}
-          bg="bg-brand-lightest"
-          label="Delivery Address"
-          placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
-        />
-        <Textarea
-          {...register("alternateAddress", { required: true })}
-          errors={errors}
-          bg="bg-brand-lightest"
-          label="Alternate Address"
-          placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
-        />
-        <Button className=" text-sm uppercase" type="submit">
-          Save Changes
-        </Button>
-      </form>
+
+      <div className="space-y-2 pt-8">
+        <Heading size="h5">Addresses</Heading>
+        <form
+          onSubmit={handleSubmit(updateAddressHandler)}
+          className="space-y-4"
+        >
+          <Textarea
+            {...register("address", { required: true })}
+            errors={errors}
+            bg="bg-brand-lightest"
+            label="Delivery Address"
+            placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
+          />
+          <Textarea
+            {...register("alternateAddress", { required: true })}
+            errors={errors}
+            bg="bg-brand-lightest"
+            label="Alternate Address"
+            placeholder="Plot 72, Unknown Estate, along Unknown Road, Unknown Town, Lagos State, Nigeria."
+          />
+          <Button className=" text-sm uppercase" type="submit">
+            Save Changes
+          </Button>
+        </form>
+      </div>
     </Section>
   );
 };

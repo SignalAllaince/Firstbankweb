@@ -465,3 +465,13 @@ export type ReviewModel = {
   productId: number;
   hasBoughtProduct: boolean;
 };
+
+export type IAddressItem = {
+  addressId: number;
+  contactName: string;
+  phone: string;
+  addressLine1: string;
+  addressLine2: string;
+  stateName: string;
+  isDefaultShippingAddress: boolean;
+};

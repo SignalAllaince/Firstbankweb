@@ -29,20 +29,20 @@ function AddressDetails() {
             <div className="space-y-1">
               <p className="text-xs">Delivery Address</p>
               <p className="text-sm">
-                {checkoutDetails.existingBillingAddresses[0].addressLine1}
+                {/* {checkoutDetails.existingBillingAddresses[0].addressLine1} */}
               </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs">City</p>
               <p className="text-sm">
-                {checkoutDetails.existingBillingAddresses[0].cityName}
+                {/* {checkoutDetails.existingBillingAddresses[0].cityName} */}
               </p>
             </div>
             <div className="space-y-1">
               <p className="text-xs">State</p>
               <p className="text-sm">
-                {checkoutDetails.existingBillingAddresses[0].stateName}
+                {/* {checkoutDetails.existingBillingAddresses[0].stateName} */}
               </p>
             </div>
           </div>
@@ -50,7 +50,7 @@ function AddressDetails() {
           <div className="space-y-1">
             <p className="text-xs">Phone Number</p>
             <p className="text-sm">
-              {checkoutDetails.existingBillingAddresses[0].phone}
+              {/* {checkoutDetails.existingBillingAddresses[0].phone} */}
             </p>
           </div>
           <div className="space-y-2 text-sm">
