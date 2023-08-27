@@ -79,19 +79,19 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
                 <div className="space-y-1">
                   <p className="text-xs font-medium">Delivery Address</p>
                   <p className="text-[13px]">
-                    {/* {order.shippingAddress.addressLine1} */}
+                    {order?.shippingAddress?.addressLine1}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-medium">State</p>
                   <p className="text-[13px]">
-                    {/* {order.shippingAddress.stateName} */}
+                    {order?.shippingAddress?.stateName}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-medium">City</p>
                   <p className="text-[13px]">
-                    {/* {order.shippingAddress.cityName} */}
+                    {order?.shippingAddress?.cityName}
                   </p>
                 </div>
               </div>
