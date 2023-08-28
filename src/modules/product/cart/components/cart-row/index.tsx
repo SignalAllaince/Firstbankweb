@@ -19,6 +19,7 @@ function CartProductRow({
   productId,
   price,
   productQuantity,
+  limit,
 }: {
   imageSrc: string;
   onCartRefetch: any;
@@ -27,11 +28,12 @@ function CartProductRow({
   price: string;
   productQuantity: number;
   isLoading: boolean;
+  limit: number;
 }) {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const deleteFromCart = useDeleteItemFromCart(productId);
   const { quantity, increaseQuantity, decreaseQuantity } = useCounter(
-    10,
+    limit,
     productQuantity
   );
   const debouncedQuantity = useDebounce(quantity, 1000);

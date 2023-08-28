@@ -134,7 +134,7 @@ const CartPageSection = ({
                             </thead>
                             <tbody>
                               <AnimatePresence>
-                                {cartDetails.items.map((item) => (
+                                {cartDetails?.items?.map((item) => (
                                   <motion.div
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: "auto" }}
@@ -152,6 +152,7 @@ const CartPageSection = ({
                                       imageSrc={item.productImage}
                                       price={item.productPriceString}
                                       productQuantity={item.quantity}
+                                      limit={item.productStockQuantity}
                                       onCartRefetch={refetchCartDetails}
                                       isLoading={isRefetching}
                                       name={item.productName}

@@ -10,6 +10,7 @@ function CartProductBtn({
   onIncrease?: () => void;
   onDecrease?: () => void;
 }) {
+  console.log(quantity, "quantity");
   return (
     <div className="flex h-9 w-fit items-center gap-0 divide-x divide-brand-light rounded-[4px] border border-brand-light">
       <button
