@@ -113,7 +113,7 @@ export const ENDPOINTS = {
     `account/wishlist/${pageNumber}/${pageSize}`,
   ADD_ITEM_TO_WISHLIST: (id: number) => `account/wishlist/add-item?id=${id}`,
   REMOVE_ITEM_FROM_WISHLIST: (id: number) =>
-    `account/wishlist/remove-item?id=${id}`,
+    `account/wishlist/remove-item?productId=${id}`,
   UPDATE_WISHLIST_ITEM: "account/wishlist/",
 
   // Checkout Endpoints
@@ -125,14 +125,15 @@ export const ENDPOINTS = {
   APPLY_CHECKOUT_COUPON: (orderId: string) =>
     `checkout/${orderId}/apply-coupon`,
   GET_CHECKOUT_DETAILS: (userId: string, oid: string) =>
-    `checkout/checkout-details/?oid=${oid}`,
+    `checkout/checkout-details?oid=${oid}&userId=7B0030007800640033006600640035003000`,
   GET_CHECKOUT_SHIPPING_ADDRESS: (userId: string) =>
     `checkout/shipping-addresses/${userId}?userId=${userId}`,
   CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: (orderId: string) =>
     `checkout/${orderId}/new-shipping-address`,
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: (orderId: string) =>
     `checkout/${orderId}/new-billing-address`,
-  GET_UPDATED_SHIPPING_ADDRESS: (name: string) => `checkout/${name}`,
+  UPDATE_ORDER_SHIPPING_ADDRESS: (addresId: string, orderId: string) =>
+    `checkout/${addresId}/update-shipping-address/${orderId}`,
   GET_UPDATED_BILLING_ADDRESS: (name: string) => `checkout/${name}`,
   GET_SHIPPING_AS_BILLING: (orderId: string) =>
     `checkout/${orderId}/use-shipping-as-billing/true`,
@@ -260,7 +261,7 @@ export const NAMESPACE = {
   GET_CHECKOUT_SHIPPING_ADDRESS: "GET_CHECKOUT_SHIPPING_ADDRESS",
   CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS: "CREATE_NEW_CHECKOUT_SHIPPING_ADDRESS",
   CREATE_NEW_CHECKOUT_BILLING_ADDRESS: "CREATE_NEW_CHECKOUT_BILLING_ADDRESS",
-  GET_UPDATED_SHIPPING_ADDRESS: "GET_UPDATED_SHIPPING_ADDRESS",
+  UPDATE_ORDER_SHIPPING_ADDRESS: "UPDATE_ORDER_SHIPPING_ADDRESS",
   GET_UPDATED_BILLING_ADDRESS: "GET_UPDATED_BILLING_ADDRESS",
   GET_SHIPPING_AS_BILLING: "GET_SHIPPING_AS_BILLING",
   GET_CHECKOUT_SHIPPING_STATES: "GET_CHECKOUT_SHIPPING_STATES",

@@ -51,6 +51,11 @@
   /* border-left: 4px solid #d6ffe7; */
 }
 
+.notistack-MuiContent-warning {
+  color: #333 !important;
+  /* border-left: 4px solid #d6ffe7; */
+}
+
 /* End of toast styles */
 .product-grid {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

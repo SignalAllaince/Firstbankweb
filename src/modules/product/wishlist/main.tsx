@@ -87,7 +87,7 @@ const WishListMainSection = ({
                   <WishListRow
                     name={item.productName}
                     imageSrc={item.productImage}
-                    productId={item.id}
+                    productId={item.productId}
                     price={item.productPriceString}
                     slug={item.slug}
                     key={item.id}

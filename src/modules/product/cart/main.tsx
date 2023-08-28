@@ -3,8 +3,11 @@ import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
+import UserAddressModal from "@/components/modal/user-address";
 import Section from "@/components/section";
+import useGetAddressList from "@/hooks/address/useGetAddressList";
 import useCheckoutAll from "@/hooks/checkout/useCheckoutAll";
+import useDisclosure from "@/hooks/use-disclosure";
 import useNotification from "@/hooks/use-notification";
 import { CartListResponse } from "@/types/api.types";
 import {
@@ -30,8 +33,14 @@ const CartPageSection = ({
   refetchCartDetails: () => void;
 }) => {
   const checkoutAll = useCheckoutAll();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const { toast } = useNotification();
+  const addressList = useGetAddressList();
+
+  const isDisabled = addressList?.value
+    ? addressList?.value?.length === 0
+    : false;
 
   const checkoutCreateOrder = () => {
     checkoutAll
@@ -176,12 +185,42 @@ const CartPageSection = ({
                       <h2 className="text-lg">{cartDetails.subTotalString}</h2>
                     </div>
 
+                    {isDisabled && (
+                      <>
+                        <div className="border-t border-brand-light"></div>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h2 className="text-sm uppercase">
+                              No Address Found
+                            </h2>
+                            <p className="mt-0.5 flex items-center space-x-1 text-[10px] font-light">
+                              <Icon
+                                IconComp={ExclamationCircleIcon}
+                                boxSize={4}
+                              />
+                              <span>
+                                Please create an address before checkout
+                              </span>
+                            </p>
+                          </div>
+                          <Button
+                            onClick={onOpen}
+                            variant="cart"
+                            size="xs"
+                            className="border-brand-blue text-sm text-brand-blue"
+                          >
+                            Create Address
+                          </Button>
+                        </div>
+                      </>
+                    )}
+
                     <div className="border-t border-brand-light"></div>
                     <Button
                       className="w-full uppercase"
                       onClick={checkoutCreateOrder}
                       isLoading={checkoutAll.isLoading}
-                      disabled={isRefetching}
+                      disabled={isRefetching || isDisabled}
                     >
                       {isRefetching ? "Updating cart" : "Checkout"}
                     </Button>
@@ -192,6 +231,11 @@ const CartPageSection = ({
           </IfElse>
         </AnimatePresence>
       </div>
+      <UserAddressModal
+        isOpen={isOpen}
+        onClose={onClose}
+        refetch={addressList.refetch}
+      />
     </>
   );
 };
