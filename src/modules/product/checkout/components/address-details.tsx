@@ -49,7 +49,7 @@ function AddressDetails() {
 
           {checkoutDetails.selectedShippingAddressId === 0 ? (
             <p className="text-sm font-bold text-red-400">
-              No shipping address selected for this order, you can&apos:t
+              No shipping address selected for this order, you can&apos;t
               proceed until you set an address
             </p>
           ) : (
