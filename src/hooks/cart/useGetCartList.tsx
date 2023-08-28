@@ -8,7 +8,6 @@ const useGetCartList = (key: any = "key") => {
     endpoint: ENDPOINTS.GET_CART_LIST,
     queryKey: [NAMESPACE.GET_CART_LIST],
     enabled: !!key,
-    staleTime: 3600000,
   });
 };
 

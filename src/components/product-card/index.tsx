@@ -83,20 +83,20 @@ function ProductCard({
         isFinished && e.preventDefault();
       }}
       className={`${
-        isFinished ? "cursor-not-allowed opacity-50" : "group shadow"
-      }  relative flex w-full flex-col overflow-hidden rounded-[4px] bg-white`}
+        isFinished ? "cursor-not-allowed opacity-50" : "shadow"
+      }  group relative flex w-full flex-col overflow-hidden rounded-[4px] bg-white`}
     >
-      <div className="h-[200px] w-full overflow-hidden rounded-t-[4px] bg-gray-300 transition-all duration-200 group-hover:opacity-75">
+      <div className="h-[180px] w-full overflow-hidden rounded-t-[4px] bg-gray-300 transition-all duration-200 group-hover:opacity-80">
         <Image
           src={imageSrc}
           //   src={imageSrc}
           alt={imageAlt}
           width={400}
           height={400}
-          className=" h-[220px] w-full object-cover object-center"
+          className=" h-[200px] w-full object-cover object-center transition-all duration-300 group-hover:scale-105"
         />
       </div>
-      <div className="mt-5 flex flex-1 flex-col justify-between space-y-6 px-[10px] pb-2">
+      <div className="mt-5 flex flex-1 flex-col justify-between space-y-5 px-[10px] pb-2">
         <div className="flex items-center justify-between">
           <p className="text-sm capitalize">{name}</p>
           {isCategoryPage && (

@@ -20,35 +20,6 @@ const imgs = [
   homeImg,
 ];
 
-// const links = [
-//   { text: "Branch", href: "/branch", img: branchImg, exact: true },
-//   {
-//     text: "Stationery",
-//     href: "/stationery",
-//     img: penImg,
-//     exact: false,
-//   },
-//   {
-//     text: "Uniform",
-//     href: "/uniform",
-//     img: shirtImg,
-//     exact: true,
-//   },
-//   {
-//     text: "Office Equipments",
-//     href: "/office-equipment",
-//     img: officeImg,
-//     exact: true,
-//   },
-//   {
-//     text: "Home Appliance",
-//     href: "/home-appliance",
-//     img: homeImg,
-//     exact: true,
-//   },
-//   { text: "Others", href: "/others", img: tagImg, exact: true },
-// ];
-
 function BannerNav() {
   const allCategories = useGetAllCategories();
 
@@ -65,13 +36,13 @@ function BannerNav() {
           </div>
         }
       >
-        <div className="h-full w-[270px] flex-shrink-0 bg-white">
+        <div className="h-full w-[270px] flex-shrink-0 overflow-hidden rounded-md bg-white">
           {allCategories?.value &&
             allCategories?.value?.map((link, i) => (
               <Link
                 key={link.id}
                 href={`/${link.slug}`}
-                className="flex w-full items-center gap-4 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
+                className="flex w-full items-center gap-4 border-b border-gray-100 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
               >
                 {/* <Icon IconComp={LinkIcon} /> */}
                 <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
