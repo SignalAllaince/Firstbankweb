@@ -2,13 +2,15 @@ import Button from "@/components/button";
 import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import PageHead from "@/components/page-head";
+import useUserAuth from "@/hooks/auth/useUserAuth";
 import useNotification from "@/hooks/use-notification";
 import { ProtectedNextPage } from "@/types/component.types";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { ParsedUrlQuery } from "querystring";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
+import TokenComp from "./token";
 
 type LogininType = {
   csrfToken: string;
@@ -16,9 +18,14 @@ type LogininType = {
 };
 
 type Inputs = {
-  staffId: string;
+  userName: string;
   password: string;
 };
+
+const staffSchema = yup.object({
+  userName: yup.string().required("User name is required").min(5).trim(),
+  password: yup.string().required("Password is required").min(5).trim(),
+});
 
 const PersonalLogin: ProtectedNextPage<LogininType> = ({
   csrfToken,
@@ -27,37 +34,43 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<Inputs>();
-
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
+  } = useForm<Inputs>({
+    resolver: yupResolver(staffSchema),
+  });
+  const userAuth = useUserAuth(watch("userName"), watch("password"));
   const { toast } = useNotification();
 
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
-    setIsLoading(true);
-    signIn("credentials", {
-      redirect: false,
-      userId: data.staffId,
-      token: data.password,
-      callbackUrl: "/login",
-    }).then((res) => {
-      setIsLoading(false);
-      if (!res?.ok) {
-        return toast({
+    userAuth
+      .mutateAsync(data)
+      .then((res) => {
+        if (res.status === 200) {
+          toast({
+            appearance: "success",
+            title: "Token Generated",
+            description: "Your token have been generated successfully",
+          });
+        }
+      })
+      .catch(() => {
+        toast({
           appearance: "error",
           description: "Authorization failed",
         });
-      }
-      toast({
-        appearance: "success",
-        title: "Login Successful",
-        description: "You have successfully logged into your account",
       });
-      router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
-    });
   };
 
+  if (userAuth?.value && userAuth.isSuccess) {
+    return (
+      <TokenComp
+        csrfToken={csrfToken}
+        query={query}
+        userId={userAuth?.value as unknown as string}
+      />
+    );
+  }
   return (
     <>
       <PageHead title="Staff Login" />
@@ -66,7 +79,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
 
         <div className="space-y-4">
           <CustomInput
-            {...register("staffId", { required: true })}
+            {...register("userName", { required: true })}
             errors={errors}
             label="Staff Number"
             autoComplete="off"
@@ -85,7 +98,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
         <div>
           <div className="pt-8"></div>
           <Button
-            isLoading={isLoading}
+            isLoading={userAuth.isLoading}
             variant="primary"
             className="w-full bg-black"
             type="submit"
