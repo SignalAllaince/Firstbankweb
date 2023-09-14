@@ -6,6 +6,10 @@ export const ENDPOINTS = {
 
   // https://brandshopapi.azurewebsites.net
 
+  // Auth
+  AUTH_USER: (userName: string, password: string) =>
+    `user-authentication?Username=${userName}&Password=${password}`,
+
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>

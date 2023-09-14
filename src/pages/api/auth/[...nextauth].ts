@@ -16,15 +16,15 @@ export default NextAuth({
         token: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // const data = {
-        //   userId: credentials?.userId,
-        //   token: credentials?.token,
-        // };
-
         const data = {
-          userId: "7B0030007800640033006600640035003000",
-          token: "johnbosco",
+          userId: credentials?.userId,
+          token: credentials?.token,
         };
+
+        // const data = {
+        //   userId: "7B0030007800640033006600640035003000",
+        //   token: "johnbosco",
+        // };
 
         try {
           const response: AxiosResponse<
@@ -42,7 +42,6 @@ export default NextAuth({
           };
         } catch (err: unknown) {
           if (err instanceof Error) {
-            console.log(err.message, "from here");
             throw new Error(err.message, {
               cause: err,
             });

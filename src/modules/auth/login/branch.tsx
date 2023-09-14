@@ -2,13 +2,15 @@ import Button from "@/components/button";
 import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import PageHead from "@/components/page-head";
+import useUserAuth from "@/hooks/auth/useUserAuth";
 import useNotification from "@/hooks/use-notification";
 import { ProtectedNextPage } from "@/types/component.types";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { ParsedUrlQuery } from "querystring";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
+import TokenComp from "./token";
 
 type LogininType = {
   csrfToken: string;
@@ -19,47 +21,62 @@ type Inputs = {
   branchId: string;
   password: string;
 };
-const BranchLogin: ProtectedNextPage<LogininType> = ({ csrfToken, query }) => {
+
+const staffSchema = yup.object({
+  branchId: yup.string().required("Branch ID is required").min(5).trim(),
+  password: yup.string().required("Password is required").min(5).trim(),
+});
+
+const PersonalLogin: ProtectedNextPage<LogininType> = ({
+  csrfToken,
+  query,
+}) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<Inputs>();
-
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const router = useRouter();
+  } = useForm<Inputs>({
+    resolver: yupResolver(staffSchema),
+  });
+  const userAuth = useUserAuth(watch("branchId"), watch("password"));
   const { toast } = useNotification();
 
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
-    setIsLoading(true);
-    signIn("credentials", {
-      redirect: false,
-      userId: data.branchId,
-      token: data.password,
-      callbackUrl: "/login/branch",
-    }).then((res) => {
-      setIsLoading(false);
-      if (!res?.ok) {
-        return toast({
+    userAuth
+      .mutateAsync(data)
+      .then((res) => {
+        if (res.status === 200) {
+          toast({
+            appearance: "success",
+            title: "Token Generated",
+            description: "Your token have been generated successfully",
+          });
+        }
+      })
+      .catch(() => {
+        toast({
           appearance: "error",
           description: "Authorization failed",
         });
-      }
-      toast({
-        appearance: "success",
-        title: "Login Successful",
-        description: "You have successfully logged into your account",
       });
-      router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
-    });
   };
 
+  if (userAuth?.value && userAuth.isSuccess) {
+    return (
+      <TokenComp
+        csrfToken={csrfToken}
+        query={query}
+        userId={userAuth?.value as unknown as string}
+      />
+    );
+  }
   return (
     <>
-      <PageHead title="Branch Login" />
-
+      <PageHead title="Staff Login" />
       <form className="gap-7" onSubmit={handleSubmit(submitLoginRequest)}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
         <div className="space-y-4">
           <CustomInput
             {...register("branchId")}
@@ -69,20 +86,21 @@ const BranchLogin: ProtectedNextPage<LogininType> = ({ csrfToken, query }) => {
             placeholder="4783IEDH2893"
           />
           <CustomInput
-            {...register("password")}
+            {...register("password", { required: true })}
             errors={errors}
             type="password"
             label="Password"
             autoComplete="off"
+            // value="4783IEDH2893"
           />
         </div>
         <div>
           <div className="pt-8"></div>
           <Button
+            isLoading={userAuth.isLoading}
             variant="primary"
-            className="w-full"
+            className="w-full bg-black"
             type="submit"
-            isLoading={isLoading}
           >
             Login
           </Button>
@@ -92,9 +110,10 @@ const BranchLogin: ProtectedNextPage<LogininType> = ({ csrfToken, query }) => {
   );
 };
 
-BranchLogin.getLayout = function getLayout(page: ReactElement) {
-  return <AuthLayout authType="branch">{page}</AuthLayout>;
+PersonalLogin.getLayout = function getLayout(page: ReactElement) {
+  return <AuthLayout authType="personal">{page}</AuthLayout>;
 };
 
-BranchLogin.auth = false;
-export default BranchLogin;
+PersonalLogin.auth = false;
+
+export default PersonalLogin;
