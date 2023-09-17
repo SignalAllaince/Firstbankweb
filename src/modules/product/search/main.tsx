@@ -10,6 +10,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 // import Ratings from "@/components/rating";
+import BlurImage from "@/components/image";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { displayValue, truncateWord } from "@/lib/utils/common.utils";
@@ -20,7 +21,6 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BarLoader } from "react-spinners";
@@ -176,7 +176,7 @@ const SearchMainSection = ({
                   <FadeInOut>
                     <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
                       <div className="max-w-xl">
-                        <Image src={searchImg} alt={"djsdsd"} />
+                        <BlurImage src={searchImg} alt={"djsdsd"} />
                       </div>
                       <div className="flex flex-col items-center space-y-3 text-center">
                         <Heading size="h3">

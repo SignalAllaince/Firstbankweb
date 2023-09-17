@@ -1,13 +1,13 @@
 import useGetCategoryProducts from "@/hooks/category/useGetCategoryProducts";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import shirtImg from "../../../public/images/top.svg";
 import Button from "../button";
 import FadeInOut from "../fade";
 import Heading from "../heading";
 import Icon from "../icon";
 import IfElse from "../if-else";
+import BlurImage from "../image";
 import ProductCard from "../product-card";
 import ProductCardSkeleton from "../product-card/skeleton";
 import Section from "../section";
@@ -77,7 +77,7 @@ function Catergory({
                 <FadeInOut>
                   <Section className="flex w-full flex-col items-center justify-center space-y-2">
                     <div className="max-w-lg">
-                      <Image src={shirtImg} alt={"djsdsd"} />
+                      <BlurImage src={shirtImg} alt={"djsdsd"} />
                     </div>
                     <div className="flex flex-col items-center space-y-3 text-center">
                       <Heading size="h3">No products found</Heading>

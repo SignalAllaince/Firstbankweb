@@ -3,6 +3,7 @@ import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import IfElse from "@/components/if-else";
+import BlurImage from "@/components/image";
 import UserAddressModal from "@/components/modal/user-address";
 import Section from "@/components/section";
 import useGetAddressList from "@/hooks/address/useGetAddressList";
@@ -16,7 +17,6 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BarLoader } from "react-spinners";
@@ -67,7 +67,7 @@ const CartPageSection = ({
               <FadeInOut>
                 <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12 bg-white py-10">
                   <div className="max-w-xl">
-                    <Image src={cartImg} alt={"djsdsd"} />
+                    <BlurImage src={cartImg} alt={"djsdsd"} />
                   </div>
                   <div className="flex flex-col items-center">
                     <Heading size="h3">Your cart is empty!</Heading>

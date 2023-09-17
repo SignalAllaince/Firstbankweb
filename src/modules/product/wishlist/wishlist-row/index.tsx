@@ -1,10 +1,10 @@
 import Button from "@/components/button";
 import Icon from "@/components/icon";
+import BlurImage from "@/components/image";
 import DeleteFromWishListModal from "@/components/modal/remove-wishlist";
 import useDisclosure from "@/hooks/use-disclosure";
 import useRemoveFromWishlist from "@/hooks/wishlist/useRemoveFromWishlist";
 import { TrashIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 
 function WishListRow({
   name,
@@ -41,7 +41,7 @@ function WishListRow({
       <div className="flex items-start justify-between border-b border-brand-light pb-4">
         <div className="item-start flex max-w-md gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light">
-            <Image
+            <BlurImage
               src={imageSrc}
               alt="product image"
               width={400}

@@ -1,5 +1,4 @@
 import useGetAllCategories from "@/hooks/category/useGetAllCategories";
-import Image from "next/image";
 import Link from "next/link";
 import branchImg from "../../../public/images/icons/branch.svg";
 import homeImg from "../../../public/images/icons/home.svg";
@@ -8,6 +7,7 @@ import penImg from "../../../public/images/icons/pen.svg";
 import shirtImg from "../../../public/images/icons/shirt.svg";
 import tagImg from "../../../public/images/icons/tag.svg";
 import IfElse from "../if-else";
+import BlurImage from "../image";
 
 const imgs = [
   branchImg,
@@ -45,7 +45,7 @@ function BannerNav() {
                 className="flex w-full items-center gap-4 border-b border-gray-100 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
               >
                 {/* <Icon IconComp={LinkIcon} /> */}
-                <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
+                <BlurImage src={imgs[i]} className="h-5 w-5" alt={link.name} />
                 <span>{link.name}</span>
               </Link>
             ))}

@@ -1,10 +1,10 @@
 import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import IfElse from "@/components/if-else";
+import BlurImage from "@/components/image";
 import Section from "@/components/section";
 import { IOrderDetails } from "@/types/api.types";
 import { AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import shirtImg from "../../../../../public/images/top.svg";
 import SingleOrder from "../components/order-row";
 
@@ -33,7 +33,7 @@ function OrderHistory({ orders }: { orders: IOrderDetails[] }) {
               <FadeInOut>
                 <Section className="my-4 flex w-full flex-col items-center justify-center space-y-4 py-4">
                   <div className="max-w-xl">
-                    <Image src={shirtImg} alt={"djsdsd"} />
+                    <BlurImage src={shirtImg} alt={"djsdsd"} />
                   </div>
                   <div className="flex flex-col items-center space-y-3 text-center">
                     <Heading size="h4">You have no orders yet!</Heading>

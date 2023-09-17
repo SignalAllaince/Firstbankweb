@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
+import BlurImage from "@/components/image";
 import Textarea from "@/components/input/text-area";
 import useAddReview from "@/hooks/review/useAddReview";
 import { EmojiModel, emojiRatingsList } from "@/lib/constants/rating";
@@ -9,7 +10,6 @@ import { RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "..";
@@ -86,7 +86,7 @@ function ItemReviewModal({
             </div>
             <div className="mb-4 flex gap-3 text-sm font-light text-brand-darkest">
               <div className="flex h-16 w-16 flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
-                <Image
+                <BlurImage
                   src={productImage}
                   alt="product image"
                   width={400}
@@ -112,7 +112,7 @@ function ItemReviewModal({
                               "relative w-20 space-y-1 rounded-[4px] p-3 shadow ring-brand-blue transition hover:scale-110 focus:outline-none"
                             )}
                           >
-                            <Image
+                            <BlurImage
                               src={rating.img}
                               alt="emoji"
                               className="mx-auto h-6 w-6"
@@ -187,7 +187,7 @@ function SuccessReview({
   return (
     <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
       <div className="mx-auto grid max-w-[100px] place-items-center">
-        <Image src={handshakeImg} alt="success icon" />
+        <BlurImage src={handshakeImg} alt="success icon" />
       </div>
 
       <div>

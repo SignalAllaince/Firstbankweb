@@ -1,12 +1,12 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import IfElse from "@/components/if-else";
+import BlurImage from "@/components/image";
 import Pagination from "@/components/paginate";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { WishlistResponse } from "@/types/api.types";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import React from "react";
 import { BarLoader } from "react-spinners";
 import wishlistImg from "../../../../public/images/wishlist.svg";
@@ -54,7 +54,7 @@ const WishListMainSection = ({
           <div>
             <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
               <div className="max-w-xl">
-                <Image src={wishlistImg} alt={"djsdsd"} />
+                <BlurImage src={wishlistImg} alt={"djsdsd"} />
               </div>
               <div className="flex flex-col items-center">
                 <Heading size="h3">You haven’t saved anything yet!</Heading>

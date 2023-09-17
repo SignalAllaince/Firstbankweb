@@ -1,6 +1,5 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import React from "react";
 import shirtImg from "../../../public/images/shirt.svg";
 import shoeImg from "../../../public/images/shoe.svg";
@@ -8,6 +7,7 @@ import umbrellaImg from "../../../public/images/umbrella.svg";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
+import BlurImage from "../image";
 
 const images = [
   {
@@ -93,7 +93,7 @@ function Banner() {
               transition={{ type: "spring", stiffness: 50, duration: 2000 }}
               className="z-20 max-h-[300px] max-w-[270px]"
             >
-              <Image
+              <BlurImage
                 src={images[active].src}
                 alt=""
                 width={400}

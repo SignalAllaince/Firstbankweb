@@ -6,7 +6,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
 // import WishListRow from "./components/review";
-import Image from "next/image";
+import BlurImage from "@/components/image";
 import starImg from "../../../../public/images/star.svg";
 
 const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
@@ -21,7 +21,7 @@ const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
       <div className="space-y-5">
         <Section className="my-4 flex w-full flex-col items-center justify-center space-y-4 py-4">
           <div className="max-w-xl">
-            <Image src={starImg} alt={"djsdsd"} />
+            <BlurImage src={starImg} alt={"djsdsd"} />
           </div>
           <div className="flex flex-col items-center space-y-3 text-center">
             <Heading size="h4">No reviews here right now!</Heading>
