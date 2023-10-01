@@ -157,12 +157,14 @@ export const ENDPOINTS = {
   GET_DELETE_CHECKOUT_ORDER: (name: string) => `checkout/${name}`,
 
   // Homepage Endpoint
-  GET_HOMEPAGE_CONTENT: "homepage/index-content",
+  GET_HOMEPAGE_BANNERS: "homeservice/catalog-banners",
+  GET_HOMEPAGE_CONTENT: "homeservice/home-content",
 
   // order Endpoints
   GET_ALL_ORDERS: (pageNumber: number, pageSize: number) =>
     `account/orders?Pagination.RequestedPage=${pageNumber}&Pagination.PageSize=${pageSize}`,
   GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
+  CANCEL_ORDER: (orderId: string) => `account/${orderId}/cancel-order`,
   DELETE_ORDER: (orderId: string) => `account/${orderId}/delete-order`,
 };
 
@@ -287,8 +289,10 @@ export const NAMESPACE = {
 
   // Homepage Endpoint
   GET_HOMEPAGE_CONTENT: "GET_HOMEPAGE_CONTENT",
+  GET_HOMEPAGE_BANNERS: "GET_HOMEPAGE_BANNERS",
 
   // order Endpoints
   GET_ALL_ORDERS: "GET_ALL_ORDERS",
   GET_SINGLE_ORDERS: "GET_SINGLE_ORDERS",
+  CANCEL_ORDER: "CANCEL_ORDER",
 };
