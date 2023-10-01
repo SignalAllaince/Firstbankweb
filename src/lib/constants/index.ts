@@ -160,8 +160,10 @@ export const ENDPOINTS = {
   GET_HOMEPAGE_CONTENT: "homepage/index-content",
 
   // order Endpoints
-  GET_ALL_ORDERS: "account/orders",
+  GET_ALL_ORDERS: (pageNumber: number, pageSize: number) =>
+    `account/orders?Pagination.RequestedPage=${pageNumber}&Pagination.PageSize=${pageSize}`,
   GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
+  DELETE_ORDER: (orderId: string) => `account/${orderId}/delete-order`,
 };
 
 export const STOREID = "fbn46374683";
