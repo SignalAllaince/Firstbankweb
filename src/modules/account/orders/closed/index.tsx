@@ -8,12 +8,14 @@ import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import OrderLoading from "../history/loading";
 import OrderHistory from "./main";
 
 const ClosedOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const getOrders = useGetAllOrders();
+  const [currentPageNumber, setPage] = React.useState(1);
+  const pageSize = 6;
+  const getOrders = useGetAllOrders(currentPageNumber, pageSize);
 
   return (
     <>

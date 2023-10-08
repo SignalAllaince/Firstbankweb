@@ -8,12 +8,14 @@ import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import OrderLoading from "./loading";
 import OrderHistory from "./main";
 
 const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
-  const getOrders = useGetAllOrders();
+  const [currentPageNumber, setPage] = React.useState(1);
+  const pageSize = 10;
+  const getOrders = useGetAllOrders(currentPageNumber, pageSize);
 
   return (
     <>
@@ -26,8 +28,7 @@ const OrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
           onElse={<OrderLoading isMainPage />}
         >
           <FadeInOut>
-            {/* @ts-expect-error */}
-            <OrderHistory orders={getOrders?.value!} />
+            <OrderHistory orders={getOrders?.value?.items!} />
           </FadeInOut>
         </IfElse>
       </AnimatePresence>

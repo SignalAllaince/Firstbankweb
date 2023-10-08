@@ -3,6 +3,7 @@ import LogoutModal from "@/components/modal/logout";
 import useDisclosure from "@/hooks/use-disclosure";
 import {
   ArrowLeftOnRectangleIcon,
+  HomeModernIcon,
   StarIcon,
   UserCircleIcon,
   WalletIcon,
@@ -27,6 +28,7 @@ const links = [
     icon: StarIcon,
     exact: true,
   },
+  { text: "My Address", href: "/address", icon: HomeModernIcon, exact: true },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   const { isOpen, onClose, onOpen } = useDisclosure();

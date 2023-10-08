@@ -14,8 +14,6 @@ export default function BlurImage({
     <Image
       alt={alt}
       src={src}
-      layout="fill"
-      objectFit="cover"
       className={cn(
         className,
         "duration-700 ease-in-out group-hover:opacity-75",
