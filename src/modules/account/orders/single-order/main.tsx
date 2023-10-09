@@ -16,7 +16,7 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
             <p className="text-sm font-medium text-brand-darkest">
               Order No. - {order.id}
             </p>
-            <Badge variant="pending">order placed</Badge>
+            <Badge variant={order.orderStatus}>{order.orderStatus}</Badge>
           </div>
           <div className="flex items-center gap-2">
             {order.orderStatusString === "New" ? (
