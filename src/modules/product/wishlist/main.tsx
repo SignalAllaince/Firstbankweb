@@ -21,7 +21,7 @@ const WishListMainSection = ({
   onRefetch: () => void;
   isRefetching: boolean;
 }) => {
-  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const { currentPageNumber, totalPages } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -99,14 +99,7 @@ const WishListMainSection = ({
             </AnimatePresence>
             {totalPages > 1 && (
               <div className="flex items-center justify-center">
-                <Pagination
-                  onNext={onNext}
-                  onPrev={onPrev}
-                  currentPageNumber={currentPageNumber}
-                  isPrevDisabled={currentPageNumber === 1}
-                  isNextDisabled={currentPageNumber === totalPages}
-                  totalPages={totalPages}
-                />
+                <Pagination />
               </div>
             )}
           </Section>

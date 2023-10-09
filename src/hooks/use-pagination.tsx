@@ -2,8 +2,11 @@ import React from "react";
 
 interface PaginationContextInterface {
   onNext: () => void;
+  onDoubleNext: () => void;
   onPrev: () => void;
+  onDoublePrev: () => void;
   currentPageNumber: number;
+  isLoading: boolean;
   totalPages: number;
 }
 interface PaginationPropsInterface {
@@ -11,7 +14,8 @@ interface PaginationPropsInterface {
   currentPageNumber: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   total: number;
-  pageSize?: number;
+  isLoading?: boolean;
+  pageSize: number;
 }
 
 const PaginationCtx = React.createContext<PaginationContextInterface>(
@@ -23,10 +27,10 @@ const PaginationContextProvider = ({
   setPage,
   currentPageNumber,
   total,
-  pageSize = 10,
+  isLoading = false,
+  pageSize,
 }: PaginationPropsInterface) => {
   const totalPages = Math.ceil(total / pageSize);
-
   const onNext = () => {
     if (totalPages === currentPageNumber) return;
     setPage((prev) => prev + 1);
@@ -37,9 +41,27 @@ const PaginationContextProvider = ({
     setPage((prev) => prev - 1);
   };
 
+  const onDoubleNext = () => {
+    if (currentPageNumber + 2 > totalPages) return;
+    setPage((prev) => prev + 2);
+  };
+
+  const onDoublePrev = () => {
+    if (currentPageNumber - 2 <= 0) return;
+    setPage((prev) => prev - 2);
+  };
+
   return (
     <PaginationCtx.Provider
-      value={{ currentPageNumber, onNext, onPrev, totalPages }}
+      value={{
+        currentPageNumber,
+        onNext,
+        onPrev,
+        onDoubleNext,
+        isLoading,
+        onDoublePrev,
+        totalPages,
+      }}
     >
       {children}
     </PaginationCtx.Provider>

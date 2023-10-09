@@ -28,7 +28,12 @@ const links = [
     icon: StarIcon,
     exact: true,
   },
-  { text: "My Address", href: "/address", icon: HomeModernIcon, exact: true },
+  {
+    text: "My Address",
+    href: "/account/address",
+    icon: HomeModernIcon,
+    exact: true,
+  },
 ];
 function AccountLayout({ children }: { children: ReactNode }) {
   const { isOpen, onClose, onOpen } = useDisclosure();

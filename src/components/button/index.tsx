@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/component.utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { Rubik } from "next/font/google";
 import Link, { LinkProps } from "next/link";
@@ -140,7 +141,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const classNames = buttonClasses({ variant, size, className });
+    const classNames = cn(buttonClasses({ variant, size }), className);
 
     if (href) {
       return (

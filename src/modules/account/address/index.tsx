@@ -17,46 +17,13 @@ const AccountAddress: NextPageWithLayout & ProtectedComponentType = () => {
   const addressList = useGetAddressList();
 
   return (
-    <Section className="space-y-4 pb-10">
+    <Section className="space-y-6 pb-10">
       <PageHead title="Profile" />
       <div className="border-b border-brand-light pb-3">
-        <Heading size="h5">Account Overview</Heading>
-      </div>
-      <div className="profile-grid grid gap-x-4 gap-y-8 font-light capitalize">
-        <div className="space-y-2">
-          <p className="text-xs font-medium">First Name</p>
-          <div className="text-sm">Emeka</div>
-        </div>
-        <div className="space-y-2">
-          <p className="text-xs font-medium">Middle Name</p>
-          <div className="text-sm">Christain</div>
-        </div>
-        <div className="space-y-2">
-          <p className="text-xs font-medium">Last Name</p>
-          <div className="text-sm">Nzekwe</div>
-        </div>
-        <div className="space-y-2">
-          <p className="text-xs font-medium">Account Number</p>
-          <div className="text-sm">0123456789</div>
-        </div>
-        <div className="space-y-2">
-          <p className="text-xs font-medium">Email address</p>
-          <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
-        </div>
+        <Heading size="h5">Address</Heading>
       </div>
 
-      <div className="space-y-5 pt-8">
-        <div className="flex w-full items-center justify-between">
-          <Heading size="h5">Address</Heading>
-          <Button
-            onClick={onOpen}
-            variant="cart"
-            size="xs"
-            className="border-brand-blue text-brand-blue"
-          >
-            Add Address
-          </Button>
-        </div>
+      <div className="space-y-5">
         <div className="space-y-4">
           <AnimatePresence>
             <IfElse
@@ -87,7 +54,7 @@ const AccountAddress: NextPageWithLayout & ProtectedComponentType = () => {
                 </div>
               }
             >
-              <>
+              <div className="space-y-6">
                 {addressList?.value?.map((address) => (
                   <AddressCard
                     refetch={addressList.refetch}
@@ -95,9 +62,14 @@ const AccountAddress: NextPageWithLayout & ProtectedComponentType = () => {
                     key={address.addressId}
                   />
                 ))}
-              </>
+              </div>
             </IfElse>
           </AnimatePresence>
+        </div>
+        <div className="flex w-full items-center justify-between">
+          <Button onClick={onOpen} size="small" className="">
+            Add Address
+          </Button>
         </div>
       </div>
       <UserAddressModal

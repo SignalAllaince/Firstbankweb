@@ -2,6 +2,7 @@ import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import IfElse from "@/components/if-else";
 import BlurImage from "@/components/image";
+import Pagination from "@/components/paginate";
 import Section from "@/components/section";
 import { IOrderDetails } from "@/types/api.types";
 import { AnimatePresence } from "framer-motion";
@@ -36,10 +37,11 @@ function OpenOrderHistory({ orders }: { orders: IOrderDetails[] }) {
             <FadeInOut>
               <div className="space-y-5">
                 {orders.map((order) => (
-                  <SingleOrder status="pending" key={order.id} order={order} />
+                  <SingleOrder key={order.id} order={order} />
                 ))}
               </div>
               {/* Pagination */}
+              <Pagination />
             </FadeInOut>
           </IfElse>
         </AnimatePresence>

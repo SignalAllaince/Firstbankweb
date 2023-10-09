@@ -6,19 +6,13 @@ import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 
-const texts = {
-  pending: "order placed",
-  error: "order cancelled - unsuccessful payment",
-  success: "delivered",
-};
+// const texts = {
+//   pending: "order placed",
+//   error: "order cancelled - unsuccessful payment",
+//   success: "delivered",
+// };
 
-function SingleOrder({
-  status = "error",
-  order,
-}: {
-  order: IOrderDetails;
-  status?: "pending" | "success" | "error";
-}) {
+function SingleOrder({ order }: { order: IOrderDetails }) {
   const router = useRouter();
   return (
     <div className="flex items-start justify-between border-b border-brand-light pb-4">
@@ -36,7 +30,7 @@ function SingleOrder({
             <p className="text-xs text-brand-dark">
               Date - {dayjs(order.dateCreated).format("DD MMMM YYYY")}
             </p>
-            <Badge variant={status}>{texts[status]}</Badge>
+            <Badge variant={order.orderStatus}>{order.orderStatus}</Badge>
           </div>
           <div className="flex items-center gap-2">
             <p className="text-xs">

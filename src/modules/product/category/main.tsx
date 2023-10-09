@@ -48,7 +48,7 @@ function CategoryMain({
   onMinChange: (value: string) => void;
 }) {
   // const [rating, setRating] = useState(null);
-  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const { currentPageNumber } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -204,14 +204,7 @@ function CategoryMain({
                     ))}
                   </div>
                   <div className="flex items-center justify-center">
-                    <Pagination
-                      onNext={onNext}
-                      onPrev={onPrev}
-                      currentPageNumber={currentPageNumber}
-                      isPrevDisabled={currentPageNumber === 1}
-                      isNextDisabled={currentPageNumber === totalPages}
-                      totalPages={totalPages}
-                    />
+                    <Pagination />
                   </div>
                 </FadeInOut>
               </IfElse>

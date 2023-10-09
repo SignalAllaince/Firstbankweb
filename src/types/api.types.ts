@@ -400,7 +400,7 @@ export interface IOrderDetails {
   dateCreated: string;
   subTotal: number;
   subTotalString: string;
-  orderStatus: number;
+  orderStatus: "New";
   orderItems: OrderItem[];
 }
 export interface IOrderContainer {

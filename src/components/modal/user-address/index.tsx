@@ -19,7 +19,7 @@ type Inputs = {
   address: string;
   phoneNumber: string;
   state: string;
-  city: string;
+  city: string | undefined;
   contactName: string;
 };
 
@@ -123,7 +123,7 @@ function UserAddressModal({
             }))}
           />
           <CustomInput
-            {...register("city", { required: true })}
+            {...register("city")}
             errors={errors}
             bg="bg-brand-lightest"
             label="City"

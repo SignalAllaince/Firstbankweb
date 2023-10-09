@@ -48,7 +48,7 @@ const SearchMainSection = ({
   onMinChange: (value: string) => void;
 }) => {
   // const [rating, setRating] = React.useState(null);
-  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const { currentPageNumber, totalPages } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -210,19 +210,7 @@ const SearchMainSection = ({
                   </div>
                   {/* Pagination */}
                   <div className="flex items-center justify-center">
-                    <Pagination
-                      onNext={onNext}
-                      onPrev={onPrev}
-                      currentPageNumber={Math.min(
-                        currentPageNumber,
-                        totalPages
-                      )}
-                      isPrevDisabled={currentPageNumber === 1}
-                      isNextDisabled={
-                        currentPageNumber === totalPages || totalPages === 0
-                      }
-                      totalPages={totalPages}
-                    />
+                    <Pagination />
                   </div>
                 </FadeInOut>
               </IfElse>
