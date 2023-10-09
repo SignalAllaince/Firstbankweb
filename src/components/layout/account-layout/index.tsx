@@ -3,6 +3,7 @@ import LogoutModal from "@/components/modal/logout";
 import useDisclosure from "@/hooks/use-disclosure";
 import {
   ArrowLeftOnRectangleIcon,
+  HomeModernIcon,
   StarIcon,
   UserCircleIcon,
   WalletIcon,
@@ -25,6 +26,12 @@ const links = [
     text: "Rating & Reviews",
     href: "/account/reviews",
     icon: StarIcon,
+    exact: true,
+  },
+  {
+    text: "My Address",
+    href: "/account/address",
+    icon: HomeModernIcon,
     exact: true,
   },
 ];

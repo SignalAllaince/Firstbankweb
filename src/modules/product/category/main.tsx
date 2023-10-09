@@ -10,6 +10,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@/components/menu";
 import Pagination from "@/components/paginate";
 import ProductCard from "@/components/product-card";
 // import Ratings from "@/components/rating";
+import BlurImage from "@/components/image";
 import Section from "@/components/section";
 import { usePagination } from "@/hooks/use-pagination";
 import { displayValue, stringifyCategory } from "@/lib/utils/common.utils";
@@ -20,7 +21,6 @@ import {
   MinusIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BarLoader } from "react-spinners";
@@ -48,7 +48,7 @@ function CategoryMain({
   onMinChange: (value: string) => void;
 }) {
   // const [rating, setRating] = useState(null);
-  const { onNext, onPrev, currentPageNumber, totalPages } = usePagination();
+  const { currentPageNumber } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -172,7 +172,7 @@ function CategoryMain({
                   <FadeInOut>
                     <Section className="my-4 flex w-full flex-col items-center justify-center space-y-12  py-10">
                       <div className="max-w-xl">
-                        <Image src={shirtImg} alt={"djsdsd"} />
+                        <BlurImage src={shirtImg} alt={"djsdsd"} />
                       </div>
                       <div className="flex flex-col items-center space-y-3 text-center">
                         <Heading size="h3">No products found</Heading>
@@ -204,14 +204,7 @@ function CategoryMain({
                     ))}
                   </div>
                   <div className="flex items-center justify-center">
-                    <Pagination
-                      onNext={onNext}
-                      onPrev={onPrev}
-                      currentPageNumber={currentPageNumber}
-                      isPrevDisabled={currentPageNumber === 1}
-                      isNextDisabled={currentPageNumber === totalPages}
-                      totalPages={totalPages}
-                    />
+                    <Pagination />
                   </div>
                 </FadeInOut>
               </IfElse>

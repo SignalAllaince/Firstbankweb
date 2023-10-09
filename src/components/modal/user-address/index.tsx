@@ -7,6 +7,7 @@ import Textarea from "@/components/input/text-area";
 import useCreatedAddress from "@/hooks/address/useCreateAddress";
 import useUpdateAddress from "@/hooks/address/useUpdateAddress";
 import useGetShippingState from "@/hooks/checkout/useGetShippingStates";
+import useGetStatesList from "@/hooks/state/useGetStatesList";
 import { cn } from "@/lib/utils/component.utils";
 import { IAddressItem } from "@/types/api.types";
 import { CheckIcon } from "@heroicons/react/24/outline";
@@ -18,7 +19,7 @@ type Inputs = {
   address: string;
   phoneNumber: string;
   state: string;
-  city: string;
+  city: string | undefined;
   contactName: string;
 };
 
@@ -34,7 +35,7 @@ function UserAddressModal({
   defaultValues?: IAddressItem;
 }) {
   const shippingStates = useGetShippingState();
-
+  useGetStatesList();
   const {
     register,
     handleSubmit,
@@ -97,7 +98,9 @@ function UserAddressModal({
     <Modal isOpen={isOpen} closeModal={closeHandler} size="md">
       <div className="space-y-4 py-3 font-light md:px-5">
         <div className="text-md font-medium text-brand-darkest ">
-          <Heading size="h5">Create Address</Heading>
+          <Heading size="h5">
+            {defaultValues ? "Edit" : "Create"} Address
+          </Heading>
         </div>
         <form className="space-y-2" onSubmit={handleSubmit(setAddressHandler)}>
           <CustomInput
@@ -120,7 +123,7 @@ function UserAddressModal({
             }))}
           />
           <CustomInput
-            {...register("city", { required: true })}
+            {...register("city")}
             errors={errors}
             bg="bg-brand-lightest"
             label="City"

@@ -5,6 +5,7 @@ const badgeClasses = cva(["uppercase", "rounded-[4px]", "font-medium"], {
   variants: {
     variant: {
       success: ["text-white", "bg-[#47C96B]"],
+      New: ["text-white", "bg-[#506473]"],
       pending: ["text-white", "bg-[#506473]"],
       error: ["text-white", "bg-[#879AA8]"],
     },

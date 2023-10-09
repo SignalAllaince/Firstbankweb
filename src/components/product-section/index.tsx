@@ -14,11 +14,11 @@ import useCounter from "@/hooks/use-couter";
 import useNotification from "@/hooks/use-notification";
 import useAddItemToWishlist from "@/hooks/wishlist/useAddItemToWishlist";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { MouseEvent, useState } from "react";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
+import BlurImage from "../image";
 import Modal from "../modal";
 import CartProductBtn from "../product-btn";
 
@@ -89,7 +89,7 @@ function ProductWithImageGallery({
                     exit={{ opacity: 0.3 }}
                     className="aspect-h-1 aspect-w-1 max-h-[100px] overflow-hidden rounded-[4px] "
                   >
-                    <Image
+                    <BlurImage
                       src={selectedImg.url}
                       alt={productDetails.shortDescription}
                       width={300}
@@ -124,7 +124,7 @@ function ProductWithImageGallery({
                         {productDetails.shortDescription}
                       </RadioGroup.Label>
                       <div className="h-[80px] w-[100px]  overflow-hidden rounded-[4px]">
-                        <Image
+                        <BlurImage
                           src={img.url}
                           alt={productDetails.shortDescription}
                           width={300}

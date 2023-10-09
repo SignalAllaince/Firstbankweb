@@ -1,6 +1,6 @@
 import Button from "@/components/button";
+import BlurImage from "@/components/image";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Modal from "..";
 import errorImg from "../../../../public/images/failed.svg";
 import successImg from "../../../../public/images/success.svg";
@@ -42,7 +42,7 @@ function ErrorComp() {
   return (
     <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
       <div className="mx-auto grid max-w-[100px] place-items-center">
-        <Image src={errorImg} alt="success icon" />
+        <BlurImage src={errorImg} alt="success icon" />
       </div>
       <div>
         <p className="text-lg">Payment failed! Please try again</p>
@@ -55,7 +55,7 @@ function SuccessComp() {
   return (
     <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
       <div className="mx-auto grid max-w-[100px] place-items-center">
-        <Image src={successImg} alt="success icon" />
+        <BlurImage src={successImg} alt="success icon" />
       </div>
       <div>
         <p className="text-lg">Payment successful!</p>

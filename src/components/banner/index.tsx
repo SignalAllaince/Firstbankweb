@@ -1,6 +1,5 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import React from "react";
 import shirtImg from "../../../public/images/shirt.svg";
 import shoeImg from "../../../public/images/shoe.svg";
@@ -8,6 +7,7 @@ import umbrellaImg from "../../../public/images/umbrella.svg";
 import Button from "../button";
 import Heading from "../heading";
 import Icon from "../icon";
+import BlurImage from "../image";
 
 const images = [
   {
@@ -43,8 +43,8 @@ function Banner() {
         Hi Emeka, what items would you like to buy today?
       </Heading>
       <div className="relative flex flex-1 justify-center overflow-hidden rounded-[4px] bg-brand-blue px-8 py-6 text-brand-lightest">
-        <div className="flex  min-h-[300px] w-full items-center justify-between">
-          <div className="flex h-full max-h-[300px] flex-col justify-between">
+        <div className="flex h-[300px] w-full items-center justify-between">
+          <div className="flex h-full max-h-[300px] flex-col justify-between py-4">
             <div className="space-y-2">
               <Heading size="h2">Live in style</Heading>
               <p className="text-sm font-light">
@@ -93,7 +93,7 @@ function Banner() {
               transition={{ type: "spring", stiffness: 50, duration: 2000 }}
               className="z-20 max-h-[300px] max-w-[270px]"
             >
-              <Image
+              <BlurImage
                 src={images[active].src}
                 alt=""
                 width={400}

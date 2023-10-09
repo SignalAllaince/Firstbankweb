@@ -1,5 +1,6 @@
 import Button from "@/components/button";
 import Icon from "@/components/icon";
+import BlurImage from "@/components/image";
 import CartModal from "@/components/modal/cart";
 import CartProductBtn from "@/components/product-btn";
 import useDeleteItemFromCart from "@/hooks/cart/useDeleteItemFromCart";
@@ -8,7 +9,6 @@ import useCounter from "@/hooks/use-couter";
 import useDebounce from "@/hooks/use-debounce";
 import useDisclosure from "@/hooks/use-disclosure";
 import { TrashIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import React from "react";
 
 function CartProductRow({
@@ -69,7 +69,7 @@ function CartProductRow({
         <div className="max-w-[400px] py-4 text-slate-700">
           <div className="item-start flex gap-3">
             <div className="flex h-[110px] w-[110px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
-              <Image
+              <BlurImage
                 src={imageSrc}
                 alt="product image"
                 width={400}

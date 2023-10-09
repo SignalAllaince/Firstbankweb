@@ -1,9 +1,9 @@
 import Button from "@/components/button";
+import BlurImage from "@/components/image";
 import DeleteReviewModal from "@/components/modal/delete-review";
 import useDisclosure from "@/hooks/use-disclosure";
 import { cn } from "@/lib/utils/component.utils";
 import { StarIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
 import smileEmoji from "../../../../../../public/images/emoji/smile.svg";
 
 function WishListRow() {
@@ -31,7 +31,7 @@ function WishListRow() {
               ))}
             </div>
             <div className="flex items-center gap-3 pb-1">
-              <Image src={smileEmoji} alt="" className="h-4 w-4" />
+              <BlurImage src={smileEmoji} alt="" className="h-4 w-4" />
               <p className="text-sm">
                 I like it, it was exactly what I expected!
               </p>

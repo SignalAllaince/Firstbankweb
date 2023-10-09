@@ -7,11 +7,11 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { HeartIcon, PlusIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import Button from "../button";
 import Icon from "../icon";
+import BlurImage from "../image";
 
 function ProductCard({
   imageSrc,
@@ -87,7 +87,7 @@ function ProductCard({
       }  group relative flex w-full flex-col overflow-hidden rounded-[4px] bg-white`}
     >
       <div className="h-[180px] w-full overflow-hidden rounded-t-[4px] bg-gray-300 transition-all duration-200 group-hover:opacity-80">
-        <Image
+        <BlurImage
           src={imageSrc}
           //   src={imageSrc}
           alt={imageAlt}
