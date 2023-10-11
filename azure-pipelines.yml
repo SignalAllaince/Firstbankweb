@@ -4,19 +4,19 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-  - master
+  - dev
 
 variables:
   uiSource: "src/ui"
   uiBuild: "$(uiSource)/build"
 
 pool:
-  vmthumbnail: ../"ubuntu-latest"
+  vmthumbnail: ../"windows-latest"
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: "10.x"
+      versionSpec: "19.x"
     displayName: "Install Node.js"
 
   - script: |
