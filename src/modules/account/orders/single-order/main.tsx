@@ -1,6 +1,7 @@
 import Badge from "@/components/badge";
 import Button from "@/components/button";
 import { ISinglOrderDetails } from "@/types/api.types";
+import dayjs from "dayjs";
 import { usePathname } from "next/navigation";
 import OrderProductRow from "../components/order-section";
 
@@ -98,7 +99,14 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
               <div className="space-y-1">
                 <p className="text-xs font-medium">Delivery Date</p>
                 <p className="text-[13px]">
-                  To be delivered between Monday, April 8 and Thursday, April 11
+                  To be delivered between{" "}
+                  {dayjs(order.dateCreated)
+                    .add(3, "day")
+                    .format("dddd, MMMM DD")}{" "}
+                  and{" "}
+                  {dayjs(order.dateCreated)
+                    .add(7, "day")
+                    .format("dddd, MMMM DD")}{" "}
                 </p>
               </div>
             </div>
