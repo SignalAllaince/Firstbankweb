@@ -53,11 +53,17 @@ function OrderLayout({
                   href={link.href}
                   className={`${
                     pathname === link.href
-                      ? "border-brand-blue text-brand-darkest"
-                      : "border-transparent text-brand-dark"
-                  } relative -bottom-[2px] border-b-2  border-opacity-80 px-6 py-2 text-sm transition duration-200`}
+                      ? "text-brand-darkest"
+                      : "text-brand-dark"
+                  } relative -bottom-[2px] border-opacity-80 px-6 py-2 text-sm transition duration-200`}
                 >
                   {link.text}
+                  {pathname === link.href ? (
+                    <motion.div
+                      className="absolute -bottom-[2px] left-0 h-[3px] w-full bg-brand-blue"
+                      layoutId="underline"
+                    />
+                  ) : null}
                 </Link>
               ))}
             </>
