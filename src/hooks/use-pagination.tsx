@@ -8,6 +8,8 @@ interface PaginationContextInterface {
   currentPageNumber: number;
   isLoading: boolean;
   totalPages: number;
+  total: number;
+  pageSize: number;
 }
 interface PaginationPropsInterface {
   children?: React.ReactNode;
@@ -61,6 +63,8 @@ const PaginationContextProvider = ({
         isLoading,
         onDoublePrev,
         totalPages,
+        total,
+        pageSize,
       }}
     >
       {children}

@@ -64,11 +64,10 @@ const Textarea = React.forwardRef<
       onBlur,
       placeholder,
       isDisabled,
-      className = "",
+      className = "h-[100px]",
       cols = 40,
       variant,
       inputSize,
-      h = "min-h-[90px]",
       ...others
     },
     ref
@@ -78,7 +77,7 @@ const Textarea = React.forwardRef<
         type={type}
         isDisabled={isDisabled}
         name={name}
-        h={h}
+        h="min-h-[100px]"
         {...others}
       >
         <textarea
@@ -90,7 +89,7 @@ const Textarea = React.forwardRef<
           ref={ref}
           onBlur={onBlur}
           placeholder={placeholder}
-          className={cn(className, inputClasses({ variant, inputSize }))}
+          className={cn(inputClasses({ variant, inputSize }), className)}
         />
       </InputWrapper>
     );

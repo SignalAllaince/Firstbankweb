@@ -55,9 +55,9 @@ function Heading({
 
   const classNames = cn(
     headerClasses({ size }),
+    "font-bold",
     className,
-    inter.className,
-    "font-bold"
+    inter.className
   );
   return (
     <ElementType className={classNames} style={style}>

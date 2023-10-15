@@ -99,7 +99,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
           <Button
             isLoading={userAuth.isLoading}
             variant="primary"
-            className="w-full bg-black"
+            className="w-full"
             type="submit"
           >
             Login

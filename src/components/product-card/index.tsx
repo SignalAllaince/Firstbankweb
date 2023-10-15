@@ -89,11 +89,10 @@ function ProductCard({
       <div className="h-[180px] w-full overflow-hidden rounded-t-[4px] bg-gray-300 transition-all duration-200 group-hover:opacity-80">
         <BlurImage
           src={imageSrc}
-          //   src={imageSrc}
           alt={imageAlt}
           width={400}
           height={400}
-          className=" h-[200px] w-full object-cover object-center transition-all duration-300 group-hover:scale-105"
+          className="h-[200px] w-full object-cover object-center transition-all duration-300 group-hover:scale-105"
         />
       </div>
       <div className="mt-5 flex flex-1 flex-col justify-between space-y-5 px-[10px] pb-2">

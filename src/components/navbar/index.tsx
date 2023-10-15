@@ -5,6 +5,7 @@ import {
   ChevronDownIcon,
   EnvelopeIcon,
   HeartIcon,
+  HomeModernIcon,
   MagnifyingGlassIcon,
   PhoneIcon,
   ShoppingCartIcon,
@@ -12,13 +13,13 @@ import {
   UserCircleIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import logoImg from "../../../public/images/logo.svg";
 import Button from "../button";
 import Icon from "../icon";
-import BlurImage from "../image";
 import CustomInput from "../input";
 import { Menu, MenuButton, MenuItem, MenuItems } from "../menu";
 import LogoutModal from "../modal/logout";
@@ -45,7 +46,7 @@ function Navbar() {
         <Section className="item-center flex justify-between space-x-3">
           <div className="flex w-[100px] flex-shrink-0 items-center">
             <Link href="/">
-              <BlurImage src={logoImg} alt="first bank logo" />
+              <Image src={logoImg} alt="first bank logo" />
             </Link>
           </div>
           <div className="flex items-center space-x-3 md:space-x-10">
@@ -151,6 +152,13 @@ function Navbar() {
                 >
                   Ratings & Reviews
                 </MenuItem>
+                <MenuItem
+                  href="/account/address"
+                  leftIcon={<Icon IconComp={HomeModernIcon} />}
+                >
+                  Address
+                </MenuItem>
+
                 <MenuItem
                   leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}
                   onClick={onOpen}

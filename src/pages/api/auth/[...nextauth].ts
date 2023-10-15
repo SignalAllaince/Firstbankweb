@@ -80,6 +80,8 @@ export default NextAuth({
       return session;
     },
   },
+  // @ts-expect-error
+  site: process.env.NEXTAUTH_URL,
   session: { strategy: "jwt", maxAge: 1800000 }, // session token expires after 30 mins of user inactivity
   pages: {
     signIn: "/login",

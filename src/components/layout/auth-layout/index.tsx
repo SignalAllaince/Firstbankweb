@@ -1,5 +1,5 @@
-import BlurImage from "@/components/image";
 import { Rubik } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logoImg from "../../../../public/images/logo-blue.svg";
@@ -33,7 +33,7 @@ function AuthLayout({
       <div className="custom-bg flex flex-1 items-center justify-center  py-10">
         <div className="-mt-10 flex w-full max-w-xl flex-1 flex-col items-center space-y-4 sm:mt-0">
           <div className="max-w-[180px]">
-            <BlurImage src={logoImg} alt="first bank logo" />
+            <Image src={logoImg} alt="first bank logo" />
           </div>
           <Heading className="text-white" size="h3" as="h3">
             Brandshop

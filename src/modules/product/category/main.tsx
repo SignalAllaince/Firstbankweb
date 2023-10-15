@@ -203,7 +203,7 @@ function CategoryMain({
                       />
                     ))}
                   </div>
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center pt-20">
                     <Pagination />
                   </div>
                 </FadeInOut>

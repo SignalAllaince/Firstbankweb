@@ -30,7 +30,7 @@ export const inputClasses = cva(
       inputSize: {
         xs: ["h-6", "text-xs", "py-0"],
         sm: ["h-8", "text-sm", "py-2"],
-        md: ["h-10", "text-md", "py-2"],
+        md: ["h-10", "text-sm", "py-2"],
         lg: ["h-12", "text-lg", "py-2"],
       },
     },
@@ -91,7 +91,7 @@ const CustomInput = React.forwardRef<
           ref={ref}
           onBlur={onBlur}
           placeholder={placeholder}
-          className={cn(className, inputClasses({ variant, inputSize }))}
+          className={cn(inputClasses({ variant, inputSize }), className)}
           min={others.min}
           max={others.max}
           disabled={isDisabled}

@@ -31,7 +31,11 @@ export const ENDPOINTS = {
     ps?: number,
     page?: number
   ) =>
-    `category-view/details?id=${categoryId}&mnp=${mnp}&s=${sort}&mxp=${mxp}&ps=${ps}&p=${page}`,
+    `category-view/details?id=${categoryId}${mnp ? `&mnp=${mnp}` : ""}${
+      sort ? `&s=${sort}` : ""
+    }${mxp ? `&mxp=${mxp}` : ""}${ps ? `&ps=${ps}` : ""}${
+      page ? `&p=${page}` : ""
+    }`,
 
   // Products Endpoints
   GET_PRODUCT_BY_ID: (productId: string) =>

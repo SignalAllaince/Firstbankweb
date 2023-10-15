@@ -87,6 +87,7 @@ const CheckoutMain = () => {
                       key={product.id}
                       name={product.name}
                       quantity={product.quantity}
+                      img={product.thumbnailUrl}
                     />
                   ))}
                 </div>

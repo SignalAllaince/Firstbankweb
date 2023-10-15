@@ -84,7 +84,6 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
             label="Staff Number"
             autoComplete="off"
             placeholder="4783IEDH2893"
-            className="bg-black"
           />
           <CustomInput
             {...register("password", { required: true })}
@@ -100,7 +99,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
           <Button
             isLoading={userAuth.isLoading}
             variant="primary"
-            className="w-full bg-black"
+            className="w-full"
             type="submit"
           >
             Login

@@ -143,7 +143,7 @@ export interface CategoryItems {
     q: null;
     b: null;
     c: null;
-    p: 1;
+    p: number;
     ps: 10;
     tp: 1.0;
     s: null;
@@ -212,7 +212,7 @@ export interface CartListResponse {
   subTotal: number;
   subTotalString: string;
   customerId: string;
-  isValid: false;
+  isValid: boolean;
 }
 
 export interface WishlistResponse {
@@ -344,7 +344,7 @@ export interface ICategoryDetails {
   shippingAddress: null;
   billingAddress: null;
   isValid: true;
-  useShippingAddressAsBillingAddress: false;
+  useShippingAddressAsBillingAddress: boolean;
   selectedShippingAddressId: number;
   selectedBillingAddressId: number;
   existingShippingAddresses: AddressType[];
@@ -377,7 +377,7 @@ export type OrderItem = {
   slug: null;
   productPrice: number;
   productStockQuantity: number;
-  isAvailableToOrder: false;
+  isAvailableToOrder: boolean;
   shippedQuantity: number;
   shippingPrice: number;
   shippingPriceString: string;
@@ -475,3 +475,37 @@ export type IAddressItem = {
   stateName: string;
   isDefaultShippingAddress: boolean;
 };
+
+export interface IProductReview {
+  productId: number;
+  productName: string;
+  productSlug: string;
+  hasBoughtProduct: boolean;
+  loggedUserName: null;
+  reviewsCount: number;
+  ratingAverage: number;
+  rating1Count: number;
+  rating2Count: number;
+  rating3Count: number;
+  rating4Count: number;
+  rating5Count: number;
+  items: [
+    {
+      id: number;
+      rating: number;
+      title: string;
+      comment: string;
+      reviewerName: string;
+      dateCreated: string;
+      replies: [];
+    }
+  ];
+  pageinfo: {
+    totalItems: number;
+    currentPage: number;
+    totalPages: number;
+    pages: null;
+    pageSize: number;
+    routeData: null;
+  };
+}

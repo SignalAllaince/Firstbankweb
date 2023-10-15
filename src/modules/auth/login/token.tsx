@@ -78,7 +78,7 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
           <Button
             isLoading={isLoading}
             variant="primary"
-            className="w-full bg-black"
+            className="w-full"
             type="submit"
           >
             Validate token
