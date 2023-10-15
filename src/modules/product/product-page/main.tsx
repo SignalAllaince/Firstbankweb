@@ -28,8 +28,6 @@ function ProductMainSection({
   const productReview = useGetProductReview(productDetails.id, 1, 10);
   const ratingAverage = productReview?.value?.ratingAverage ?? 0;
 
-  console.log(productReview?.value, "productReview?.value");
-  console.log(productDetails, "productDetails");
   return (
     <div className="bg-white pb-10">
       <PageHead title={productDetails.name} />
@@ -83,7 +81,7 @@ function ProductMainSection({
                             ))}
                           </div>
                           <p className="text-sm font-light">
-                            {productDetails.reviewsCount} Reviews
+                            {productReview?.value?.reviewsCount} Reviews
                           </p>
                         </div>
                       </div>
@@ -127,14 +125,16 @@ function ProductMainSection({
                             ))}
                           </div>
                           <p className="text-sm font-light">
-                            {productDetails.reviewsCount} Reviews
+                            {productReview?.value?.reviewsCount} Reviews
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className="flex  justify-center">
                       <div className="w-full max-w-md space-y-8">
-                        <ProductReview />
+                        {productReview?.value?.items?.map((review) => (
+                          <ProductReview key={review.id} {...review} />
+                        ))}
                         <ReviewPagination />
                       </div>
                     </div>

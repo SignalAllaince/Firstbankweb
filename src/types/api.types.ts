@@ -476,6 +476,15 @@ export type IAddressItem = {
   isDefaultShippingAddress: boolean;
 };
 
+export type ISingleReview = {
+  id: number;
+  rating: number;
+  title: string;
+  comment: string;
+  reviewerName: string;
+  dateCreated: string;
+  replies: string[];
+};
 export interface IProductReview {
   productId: number;
   productName: string;
@@ -489,17 +498,7 @@ export interface IProductReview {
   rating3Count: number;
   rating4Count: number;
   rating5Count: number;
-  items: [
-    {
-      id: number;
-      rating: number;
-      title: string;
-      comment: string;
-      reviewerName: string;
-      dateCreated: string;
-      replies: [];
-    }
-  ];
+  items: ISingleReview[];
   pageinfo: {
     totalItems: number;
     currentPage: number;
