@@ -34,7 +34,10 @@ function SingleOrder({ order }: { order: IOrderDetails }) {
           </div>
           <div className="flex items-center gap-2">
             <p className="text-xs">
-              To be delivered between Monday, April 8 and Thursday, April 11
+              To be delivered between{" "}
+              {dayjs(order.dateCreated).add(3, "day").format("dddd, MMMM DD")}{" "}
+              and{" "}
+              {dayjs(order.dateCreated).add(7, "day").format("dddd, MMMM DD")}{" "}
             </p>
           </div>
         </div>

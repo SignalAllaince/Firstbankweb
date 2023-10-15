@@ -24,9 +24,36 @@ function ProductMainSection({
   productDetails: ProductDetailsRes;
 }) {
   const [currentPageNumber, setPage] = React.useState(1);
-  const pageSize = 6;
+  const pageSize = 4;
   const productReview = useGetProductReview(productDetails.id, 1, 10);
   const ratingAverage = productReview?.value?.ratingAverage ?? 0;
+
+  const reviewBlock = (
+    <div className="space-y-4">
+      <Heading size="h4">Ratings & Reviews</Heading>
+      <div className="flex w-fit items-center gap-4 bg-brand-lightest px-6 py-9">
+        <Heading size="h4">{ratingAverage.toFixed(1)}</Heading>
+        <div className="space-y-2">
+          <div className="flex items-center">
+            {[0, 1, 2, 3, 4].map((rating) => (
+              <StarIcon
+                key={rating}
+                className={`h-4 ${
+                  rating + 1 > ratingAverage
+                    ? "text-gray-300"
+                    : "text-brand-accent"
+                } w-4 flex-shrink-0 `}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+          <p className="text-sm font-light">
+            {productReview?.value?.reviewsCount} Reviews
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="bg-white pb-10">
@@ -66,26 +93,7 @@ function ProductMainSection({
               onElse={
                 <>
                   <Section className="grid grid-cols-2 gap-4">
-                    <div className="space-y-4">
-                      <Heading size="h4">Ratings & Reviews</Heading>
-                      <div className="flex w-fit items-center gap-4 bg-brand-lightest px-6 py-9">
-                        <Heading size="h4">{ratingAverage.toFixed(1)}</Heading>
-                        <div className="space-y-2">
-                          <div className="flex items-center">
-                            {[0, 1, 2, 3, 4].map((rating) => (
-                              <StarIcon
-                                key={rating}
-                                className={`h-4 w-4 flex-shrink-0 text-gray-300 `}
-                                aria-hidden="true"
-                              />
-                            ))}
-                          </div>
-                          <p className="text-sm font-light">
-                            {productReview?.value?.reviewsCount} Reviews
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    <>{reviewBlock}</>
                     <div className="flex  justify-center">
                       <div className="ml-auto w-full max-w-sm">
                         <p className="text-sm font-light">
@@ -106,30 +114,7 @@ function ProductMainSection({
                   pageSize={pageSize}
                 >
                   <Section className="grid grid-cols-2 gap-4">
-                    <div className="space-y-4">
-                      <Heading size="h4">Ratings & Reviews</Heading>
-                      <div className="flex w-fit items-center gap-4 bg-brand-lightest px-6 py-9">
-                        <Heading size="h4">{ratingAverage.toFixed(1)}</Heading>
-                        <div className="space-y-2">
-                          <div className="flex items-center">
-                            {[0, 1, 2, 3, 4].map((rating) => (
-                              <StarIcon
-                                key={rating}
-                                className={`h-4 ${
-                                  rating + 1 > ratingAverage
-                                    ? "text-gray-300"
-                                    : "text-brand-accent"
-                                } w-4 flex-shrink-0 `}
-                                aria-hidden="true"
-                              />
-                            ))}
-                          </div>
-                          <p className="text-sm font-light">
-                            {productReview?.value?.reviewsCount} Reviews
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    <>{reviewBlock}</>
                     <div className="flex  justify-center">
                       <div className="w-full max-w-md space-y-8">
                         {productReview?.value?.items?.map((review) => (

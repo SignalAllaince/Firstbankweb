@@ -1,12 +1,11 @@
 import Heading from "@/components/heading";
+import BlurImage from "@/components/image";
 import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
-// import WishListRow from "./components/review";
-import BlurImage from "@/components/image";
 import starImg from "../../../../public/images/star.svg";
 
 const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
@@ -31,10 +30,6 @@ const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
             </p>
           </div>
         </Section>
-
-        {/* <WishListRow />
-        <WishListRow />
-        <WishListRow /> */}
       </div>
     </Section>
   );
