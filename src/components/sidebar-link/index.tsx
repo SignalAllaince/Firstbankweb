@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Rubik } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,13 +23,19 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex w-full ${inter.className} items-center gap-4 rounded-[4px] p-4 text-sm text-brand-blue transition duration-200`}
+      className={`relative flex w-full ${inter.className} items-center gap-4 rounded-[4px] p-4 text-sm text-brand-blue transition duration-200`}
       style={{
-        backgroundColor: active ? "#F5F8FA" : "transparent",
+        backgroundColor: "transparent",
       }}
     >
-      <Icon IconComp={LinkIcon} />
-      <span>{children}</span>
+      <Icon className="z-10" IconComp={LinkIcon} />
+      <span className="z-10">{children}</span>
+      {active ? (
+        <motion.div
+          className="absolute left-0 top-0  h-full w-full bg-[#F5F8FA]"
+          layoutId="account"
+        />
+      ) : null}
     </Link>
   );
 }

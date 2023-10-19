@@ -11,11 +11,20 @@ function Footer() {
         <p>© 2023. First Bank of Nigeria Ltd. An FBNHoldings Company.</p>
         <div className="space-y-6">
           <div className="flex gap-4">
-            <a href="#" className="flex items-center gap-2">
+            <a
+              href="tel:+234-000-0000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
               <DevicePhoneMobileIcon className="h-5 w-5" />
-              234-000-0000
             </a>
-            <a href="#" className="flex items-center gap-2">
+            <a
+              href="mailto:help@firstbankltd.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
               <EnvelopeIcon className="h-5 w-5" />
               help@firstbankltd.com
             </a>

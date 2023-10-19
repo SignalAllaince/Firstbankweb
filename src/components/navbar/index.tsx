@@ -2,6 +2,7 @@ import useGetCartList from "@/hooks/cart/useGetCartList";
 import useDisclosure from "@/hooks/use-disclosure";
 import {
   ArrowLeftOnRectangleIcon,
+  ArrowsRightLeftIcon,
   ChevronDownIcon,
   EnvelopeIcon,
   HeartIcon,
@@ -9,7 +10,6 @@ import {
   MagnifyingGlassIcon,
   PhoneIcon,
   ShoppingCartIcon,
-  StarIcon,
   UserCircleIcon,
   WalletIcon,
 } from "@heroicons/react/24/outline";
@@ -146,19 +146,19 @@ function Navbar() {
                 >
                   Orders
                 </MenuItem>
-                <MenuItem
-                  href="/account/reviews"
-                  leftIcon={<Icon IconComp={StarIcon} />}
-                >
-                  Ratings & Reviews
-                </MenuItem>
+
                 <MenuItem
                   href="/account/address"
                   leftIcon={<Icon IconComp={HomeModernIcon} />}
                 >
                   Address
                 </MenuItem>
-
+                <MenuItem
+                  href="/login/branch"
+                  leftIcon={<Icon IconComp={ArrowsRightLeftIcon} />}
+                >
+                  Switch to Department
+                </MenuItem>
                 <MenuItem
                   leftIcon={<Icon IconComp={ArrowLeftOnRectangleIcon} />}
                   onClick={onOpen}

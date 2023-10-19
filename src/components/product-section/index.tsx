@@ -80,7 +80,7 @@ function ProductWithImageGallery({
         <div className="py-4">
           <div className="mx-auto mt-6 max-w-2xl  space-y-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-16 lg:space-y-0 lg:px-8">
             <div className="space-y-7">
-              <div className="rounded-[4px] bg-gray-100 ">
+              <div className="rounded-[4px] bg-gray-100 shadow-inner">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedImg.url}
