@@ -45,15 +45,7 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
     userAuth
       .mutateAsync(data)
-      .then((res) => {
-        if (res.status === 200) {
-          toast({
-            appearance: "success",
-            title: "Token Generated",
-            description: "Your token have been generated successfully",
-          });
-        }
-      })
+      .then(() => {})
       .catch(() => {
         toast({
           appearance: "error",
