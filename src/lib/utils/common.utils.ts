@@ -187,3 +187,10 @@ export const truncateWord = (str: string, len = 30) => {
 };
 
 export const numberFormat = new Intl.NumberFormat("de-DE");
+
+export const formatErrors = (error: Record<string, string[]>) => {
+  if (!error) return null;
+  const keys = Object.keys(error);
+  const errorText = keys?.map((err) => error[err]);
+  return errorText.join(". ");
+};

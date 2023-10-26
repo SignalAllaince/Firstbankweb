@@ -1,5 +1,6 @@
 import { ENDPOINTS } from "@/lib/constants";
 import { secureRequest } from "@/lib/utils/api.utils";
+import { formatErrors } from "@/lib/utils/common.utils";
 import { FirstBankResponseType, ResponseErrorType } from "@/types/api.types";
 import { useMutation } from "@tanstack/react-query";
 import useNotification from "./use-notification";
@@ -29,7 +30,7 @@ function useCustomMutation<
     mutationFn,
     endpoint,
     showSuccessToast = false,
-    showFailureToast = false,
+    showFailureToast = true,
     ...others
   } = getMutationAction({
     ...mutationData,
@@ -47,7 +48,12 @@ function useCustomMutation<
       if (showFailureToast) {
         toast({
           // title: `Request Failed`,
-          description: `${err.response?.data?.message}`,
+          description: `${
+            err?.response?.data
+              ? // @ts-expect-error
+                formatErrors(err?.response?.data)
+              : err.response?.data?.message
+          }`,
           appearance: "error",
         });
       }

@@ -66,9 +66,13 @@ function Modal({
                       <Button
                         onClick={closeModal}
                         variant="outline"
-                        className="h-auto !ring-0 focus:!ring-0"
+                        className="right-2 h-7 w-7 rounded-full border px-0 focus:!ring-1"
                       >
-                        <Icon IconComp={XMarkIcon} className="text-black" />
+                        <Icon
+                          IconComp={XMarkIcon}
+                          boxSize={4}
+                          className="text-black"
+                        />
                       </Button>
                     </div>
                   ) : null}

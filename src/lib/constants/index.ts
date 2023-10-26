@@ -170,6 +170,10 @@ export const ENDPOINTS = {
   GET_SINGLE_ORDERS: (orderId: string) => `account/${orderId}/account/orders`,
   CANCEL_ORDER: (orderId: string) => `account/${orderId}/cancel-order`,
   DELETE_ORDER: (orderId: string) => `account/${orderId}/delete-order`,
+
+  // Payment
+  COMPLETE_PAYMENT: "/checkout/complete-payment",
+  START_PAYMENT: "/checkout/start-payment",
 };
 
 export const STOREID = "fbn46374683";

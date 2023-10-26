@@ -8,35 +8,22 @@ import successImg from "../../../../public/images/success.svg";
 function PaymentModal({
   isOpen,
   onClose,
-  isLoading,
+  pass,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  isLoading: boolean;
+  pass: boolean;
 }) {
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
       <motion.div className="space-y-4 py-6 md:px-5" layout>
-        <Loading />
-        {!isLoading ? <SuccessComp /> : <Loading />}
-        <ErrorComp />
+        {!pass ? <SuccessComp /> : <ErrorComp />}
       </motion.div>
     </Modal>
   );
 }
 
 export default PaymentModal;
-
-function Loading() {
-  return (
-    <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
-      <div>
-        <p>Please wait...</p>
-        <p>we are processing your payment.</p>
-      </div>
-    </div>
-  );
-}
 
 function ErrorComp() {
   return (
@@ -65,7 +52,7 @@ function SuccessComp() {
         <p> has been successfully submitted.</p>
       </div>
       <div className="pt-10">
-        <Button className="w-full px-2 text-sm uppercase">
+        <Button className="w-full px-2 text-sm uppercase" href="/">
           Continue shopping
         </Button>
       </div>
