@@ -1,16 +1,21 @@
 import Heading from "@/components/heading";
 import Icon from "@/components/icon";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Rubik } from "next/font/google";
+import { Fira_Sans } from "next/font/google";
 import {
-  closeSnackbar,
-  enqueueSnackbar,
   SnackbarKey,
   VariantType,
+  closeSnackbar,
+  enqueueSnackbar,
 } from "notistack";
 import React, { ReactNode } from "react";
 
-const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
+const inter = Fira_Sans({
+  subsets: ["cyrillic"],
+  weight: ["400"],
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 function useNotification() {
   const action = React.useCallback(
@@ -41,7 +46,7 @@ function useNotification() {
         <div className={`${inter.className} max-w-[120px]`}>
           <div className="space-y-0 px-2 py-1">
             {title && <Heading size="h6">{title}</Heading>}
-            <p className="text-[11px]">{description}</p>
+            <p className="text-sm font-bold">{description}</p>
           </div>
         </div>,
         {
