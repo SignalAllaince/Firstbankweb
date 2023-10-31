@@ -34,7 +34,7 @@ function ProceedPaymentModal({
   } = useForm<{
     otp: number;
   }>();
-  const [stage, setStage] = React.useState<"start" | "complete">("start");
+  const [stage] = React.useState<"start" | "complete">("start");
   const startPayment = useStartPayment();
   const completePayment = useCompletePayment();
 

@@ -2,7 +2,7 @@ import Badge from "@/components/badge";
 import Button from "@/components/button";
 import useCancelOrder from "@/hooks/order/useCancelOrder";
 import useNotification from "@/hooks/use-notification";
-import { isCheckoutViable } from "@/lib/constants/rating";
+import { isCheckoutViable, isTrackingViable } from "@/lib/constants/rating";
 import { splitCapitalizeWord } from "@/lib/utils/common.utils";
 import { ISinglOrderDetails } from "@/types/api.types";
 import dayjs from "dayjs";
@@ -51,7 +51,8 @@ const MainOrderSection = ({
               >
                 Continue to Checkout
               </Button>
-            ) : (
+            ) : null}
+            {isTrackingViable(order.orderStatusString) ? (
               <Button
                 size="small"
                 className="h-8 px-[8px]"
@@ -59,7 +60,7 @@ const MainOrderSection = ({
               >
                 Track Order
               </Button>
-            )}
+            ) : null}
           </div>
         </div>
         <div className="space-y-5">

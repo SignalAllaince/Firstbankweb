@@ -44,6 +44,8 @@ export const ratingsList = [
 export const isCheckoutViable = (status: string) =>
   ["PendingPayment", "New"].includes(status);
 
+export const isTrackingViable = (status: string) =>
+  ["PaymentReceived", "Shipping", "Shipped"].includes(status);
 export const orderStatus = [
   {
     id: "New",
