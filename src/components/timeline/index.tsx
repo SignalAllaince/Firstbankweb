@@ -19,7 +19,7 @@ function TimeLine({
       <div className="flex items-center gap-4">
         {/* @ts-expect-error */}
         <Icon IconComp={TimelIneIcon} />
-        <Badge variant="pending">{badge}</Badge>
+        <Badge variant="PendingPayment">{badge}</Badge>
       </div>
       <div
         className={`ml-3 min-h-[60px] border-l border-dashed ${

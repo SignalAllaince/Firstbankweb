@@ -15,7 +15,7 @@ const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
           <p className="text-sm font-medium text-brand-darkest">
             Order No. - BS83748748
           </p>
-          <Badge variant="pending">order placed</Badge>
+          <Badge variant="New">order placed</Badge>
         </div>
         <Button size="small" className="h-8 px-[8px]">
           See tracking details
