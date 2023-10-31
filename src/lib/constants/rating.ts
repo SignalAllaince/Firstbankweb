@@ -1,12 +1,6 @@
-import { CategoryTypes } from "@/types/service.types";
 import sadEmoji from "../../../public/images/emoji/sad.svg";
 import smileEmoji from "../../../public/images/emoji/smile.svg";
 import staleEmoji from "../../../public/images/emoji/stale.svg";
-
-type OptionsType = {
-  name: string;
-  value: string;
-};
 
 export type EmojiModel = {
   value: number;
@@ -47,103 +41,76 @@ export const ratingsList = [
   },
 ];
 
-export const popularity = {
-  name: "By popularity",
-  value: "12GB",
-};
+export const isCheckoutViable = (status: string) =>
+  ["PendingPayment", "New"].includes(status);
 
-export const priceList = [
+export const orderStatus = [
   {
-    name: "Low to High",
-    value: "12GB",
+    id: "New",
+    name: "New",
   },
   {
-    name: "High to Low",
-    value: "16GB",
+    id: "PendingCheckout",
+    name: "PendingCheckout",
+  },
+  {
+    id: "PendingPayment",
+    name: "PendingPayment",
+  },
+  {
+    id: "PaymentFailed",
+    name: "PaymentFailed",
+  },
+  {
+    id: "PaymentReceived",
+    name: "PaymentReceived",
+  },
+  {
+    id: "OutOfStock",
+    name: "OutOfStock",
+  },
+  {
+    id: "OnHold",
+    name: "OnHold",
+  },
+  {
+    id: "Cancelled",
+    name: "Cancelled",
+  },
+  {
+    id: "Refunded",
+    name: "Refunded",
+  },
+  {
+    id: "Shipping",
+    name: "Shipping",
+  },
+  {
+    id: "Shipped",
+    name: "Shipped",
+  },
+  {
+    id: "Closed",
+    name: "Closed",
+  },
+  {
+    id: "Complete",
+    name: "Complete",
+  },
+  {
+    id: "Deleted",
+    name: "Deleted",
+  },
+  {
+    id: "AdminCancelled",
+    name: "AdminCancelled",
+  },
+  {
+    id: "AdminDeleted",
+    name: "AdminDeleted",
+  },
+  {
+    id: "Invoiced",
+    name: "Invoiced",
   },
 ];
-
-const getUniformList = [
-  {
-    name: "T-shirt",
-    value: "12GB",
-  },
-];
-
-const getOthersList = [
-  {
-    name: "Water Bottles",
-    value: "16GB",
-  },
-  {
-    name: "Umbrellas",
-    value: "11GB",
-  },
-  {
-    name: "Travelling Bag",
-    value: "12GB",
-  },
-];
-
-const getHomeAppList: OptionsType[] = [];
-
-const getOfficeEqipList: OptionsType[] = [];
-
-const getStationeryList = [
-  {
-    name: "Commemorative Notebook",
-    value: "notobook",
-  },
-  {
-    name: "Grey Notebook",
-    value: "grey",
-  },
-  {
-    name: "Spiral Notebook",
-    value: "spiral",
-  },
-  {
-    name: "Pen",
-    value: "pen",
-  },
-];
-
-const getBranchList = [
-  {
-    name: "Corporate Flag",
-    value: "notobook",
-  },
-  {
-    name: "National Flag",
-    value: "grey",
-  },
-  {
-    name: "A2 Snapper Frame",
-    value: "spiral",
-  },
-  {
-    name: "A3 Snapper Frame",
-    value: "pensaass",
-  },
-  {
-    name: "A4 Snapper Frame",
-    value: "frame",
-  },
-  {
-    name: "A3 Snapper Frame",
-    value: "penod",
-  },
-];
-
-export const getCategoryList = (category: CategoryTypes) => {
-  const categories = {
-    branch: getBranchList,
-    stationery: getStationeryList,
-    uniform: getUniformList,
-    others: getOthersList,
-    "office-equipment": getOfficeEqipList,
-    "home-appliance": getHomeAppList,
-  };
-
-  return categories[category];
-};

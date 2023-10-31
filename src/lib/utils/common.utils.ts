@@ -194,3 +194,6 @@ export const formatErrors = (error: Record<string, string[]>) => {
   const errorText = keys?.map((err) => error[err]);
   return errorText.join(". ");
 };
+
+export const splitCapitalizeWord = (str: string) =>
+  str.split(/(?=[A-Z])/).join(" ");

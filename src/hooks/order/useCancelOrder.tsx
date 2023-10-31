@@ -7,7 +7,7 @@ const useCancelOrder = (orderId: string) => {
     method: "get",
     endpoint: ENDPOINTS.CANCEL_ORDER(orderId),
     queryKey: [NAMESPACE.CANCEL_ORDER, orderId],
-    enabled: !!orderId,
+    enabled: !orderId,
   });
 };
 

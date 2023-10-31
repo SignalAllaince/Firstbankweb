@@ -34,7 +34,7 @@ function OrderLayout({
               <Button
                 variant="outline"
                 onClick={() => router.back()}
-                className="h-auto"
+                className="h-auto px-0"
               >
                 <Icon IconComp={ArrowLeftIcon} color="black" />
               </Button>

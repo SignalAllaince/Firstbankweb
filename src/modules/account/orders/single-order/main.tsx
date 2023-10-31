@@ -1,14 +1,35 @@
 import Badge from "@/components/badge";
 import Button from "@/components/button";
+import useCancelOrder from "@/hooks/order/useCancelOrder";
+import useNotification from "@/hooks/use-notification";
+import { isCheckoutViable } from "@/lib/constants/rating";
+import { splitCapitalizeWord } from "@/lib/utils/common.utils";
 import { ISinglOrderDetails } from "@/types/api.types";
 import dayjs from "dayjs";
 import { usePathname } from "next/navigation";
 import OrderProductRow from "../components/order-section";
 
-const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
+const MainOrderSection = ({
+  order,
+  refetch,
+}: {
+  order: ISinglOrderDetails;
+  refetch: () => void;
+}) => {
   const pathname = usePathname();
+  const cancelOrder = useCancelOrder(order.id);
+  const { toast } = useNotification();
+
+  const cancelOrderHandler = () => {
+    cancelOrder.refetch().then(() => {
+      toast({
+        appearance: "success",
+        description: `Order #${order.id} has been cancelled successfully`,
+      });
+      refetch();
+    });
+  };
   const total = order.subTotal + order.taxAmount + order.shippingAmount;
-  console.log(order, "irawo");
   return (
     <>
       <div className="space-y-5 pt-5">
@@ -17,10 +38,12 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
             <p className="text-sm font-medium text-brand-darkest">
               Order No. - {order.id}
             </p>
-            <Badge variant={order.orderStatus}>{order.orderStatus}</Badge>
+            <Badge variant={order.orderStatus}>
+              {splitCapitalizeWord(order.orderStatus)}
+            </Badge>
           </div>
           <div className="flex items-center gap-2">
-            {order.orderStatusString === "New" ? (
+            {isCheckoutViable(order.orderStatusString) ? (
               <Button
                 size="small"
                 className="h-8 px-[8px]"
@@ -35,12 +58,6 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
                 href={`${pathname}/track`}
               >
                 Track Order
-              </Button>
-            )}
-
-            {!(order.orderStatusString === "New") && (
-              <Button size="small" className="h-8 px-[8px]">
-                Rate Item
               </Button>
             )}
           </div>
@@ -109,6 +126,20 @@ const MainOrderSection = ({ order }: { order: ISinglOrderDetails }) => {
                     .format("dddd, MMMM DD")}{" "}
                 </p>
               </div>
+              {isCheckoutViable(order.orderStatusString) && (
+                <div className="pt-5">
+                  <Button
+                    variant="secondary"
+                    size="small"
+                    onClick={cancelOrderHandler}
+                    isLoading={
+                      cancelOrder.isRefetching || cancelOrder.isFetching
+                    }
+                  >
+                    Cancel Order
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

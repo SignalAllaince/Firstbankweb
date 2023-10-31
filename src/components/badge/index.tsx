@@ -1,20 +1,32 @@
 import { VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
-const badgeClasses = cva(["uppercase", "rounded-[4px]", "font-medium"], {
+const badgeClasses = cva(["capitalize", "rounded-[4px]", "font-medium"], {
   variants: {
     variant: {
-      success: ["text-white", "bg-[#47C96B]"],
+      PaymentReceived: ["text-white", "bg-[#47C96B]"],
+      Shipping: ["text-white", "bg-[#47C96B]"],
+      Invoiced: ["text-white", "bg-[#47C96B]"],
+      Shipped: ["text-white", "bg-[#47C96B]"],
+      Complete: ["text-white", "bg-[#47C96B]"],
+      Refunded: ["text-white", "bg-yellow-700"],
+      PendingPayment: ["text-white", "bg-yellow-700"],
       New: ["text-white", "bg-[#506473]"],
-      pending: ["text-white", "bg-[#506473]"],
-      error: ["text-white", "bg-[#879AA8]"],
+      PendingCheckout: ["text-white", "bg-[#506473]"],
+      PaymentFailed: ["text-white", "bg-[#879AA8]"],
+      OutOfStock: ["text-white", "bg-[#879AA8]"],
+      Cancelled: ["text-white", "bg-[#879AA8]"],
+      Closed: ["text-white", "bg-[#879AA8]"],
+      Deleted: ["text-white", "bg-[#879AA8]"],
+      AdminCancelled: ["text-white", "bg-[#879AA8]"],
+      AdminDeleted: ["text-white", "bg-[#879AA8]"],
     },
     size: {
       sm: ["text-[10px]", "py-[2px]", "px-2"],
     },
   },
   defaultVariants: {
-    variant: "pending",
+    variant: "PendingCheckout",
     size: "sm",
   },
 });

@@ -25,7 +25,7 @@ const CheckoutMain = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isStatusOpen,
-    onOpen: onStatusOpen,
+    // onOpen: onStatusOpen,
     onClose: onStatusClose,
   } = useDisclosure();
   const { checkoutDetails } = useCheckout();

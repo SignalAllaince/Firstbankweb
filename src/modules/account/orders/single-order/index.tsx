@@ -38,7 +38,10 @@ const DetailedSingleOrderPage: ProtectedNextPage<
           onElse={<OrderLoading />}
         >
           <FadeInOut>
-            <MainOrderSection order={getOrder?.value!} />
+            <MainOrderSection
+              refetch={getOrder?.refetch}
+              order={getOrder?.value!}
+            />
           </FadeInOut>
         </IfElse>
       </AnimatePresence>
