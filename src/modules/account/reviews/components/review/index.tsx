@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils/component.utils";
 import { StarIcon } from "@heroicons/react/20/solid";
 import smileEmoji from "../../../../../../public/images/emoji/smile.svg";
 
-function WishListRow() {
+function ReviewRow() {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
@@ -49,4 +49,4 @@ function WishListRow() {
   );
 }
 
-export default WishListRow;
+export default ReviewRow;

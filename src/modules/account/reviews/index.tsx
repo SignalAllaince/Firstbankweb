@@ -7,6 +7,7 @@ import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
 import starImg from "../../../../public/images/star.svg";
+import ReviewRow from "./components/review";
 
 const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
   return (
@@ -16,6 +17,9 @@ const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
         <Heading size="h5" className="capitalize">
           Ratings & Reviews
         </Heading>
+      </div>
+      <div>
+        <ReviewRow />
       </div>
       <div className="space-y-5">
         <Section className="my-4 flex w-full flex-col items-center justify-center space-y-4 py-4">

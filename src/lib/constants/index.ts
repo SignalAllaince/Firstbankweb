@@ -90,6 +90,8 @@ export const ENDPOINTS = {
     pageSize: number
   ) =>
     `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
+  GET_USER_REVIEWS: (pageNumber: number, pageSize: number) =>
+    `review-product/reviews-for-product?Pagination.RequestedPage=${pageNumber}&Pagination.PageSize=${pageSize}`,
   // Reply
   POST_REPLY: "reply/add-reply",
 
@@ -240,6 +242,7 @@ export const NAMESPACE = {
   GET_PRODUCT_REVIEWS: "GET_PRODUCT_REVIEWS",
   ADD_PRODUCT_REVIEW: "ADD_PRODUCT_REVIEW",
   POST_REPLY: "POST_REPLY",
+  GET_USER_REVIEWS: "GET_USER_REVIEWS",
 
   // Shipping rates
   GET_SHIPPING_RATES: "GET_SHIPPING_RATES",
