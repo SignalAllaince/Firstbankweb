@@ -20,7 +20,7 @@ const ReviewMainSection = ({
   onRefetch: () => void;
   isRefetching: boolean;
 }) => {
-  const { currentPageNumber, totalPages } = usePagination();
+  const { currentPageNumber } = usePagination();
   const sectionRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -35,7 +35,7 @@ const ReviewMainSection = ({
   return (
     <>
       <div ref={sectionRef} />
-      <div>
+      <div className="relative -top-5">
         <BarLoader
           color="#003B65"
           loading={isRefetching}
@@ -87,11 +87,9 @@ const ReviewMainSection = ({
                 </motion.div>
               ))}
             </AnimatePresence>
-            {totalPages > 1 && (
-              <div className="flex items-center justify-center">
-                <Pagination />
-              </div>
-            )}
+            <div className="flex items-center justify-center pt-3">
+              <Pagination />
+            </div>
           </Section>
         </motion.div>
       </IfElse>

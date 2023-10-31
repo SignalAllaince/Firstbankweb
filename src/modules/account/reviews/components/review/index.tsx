@@ -5,6 +5,7 @@ import { renderEmoji } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { IUserReviewItem } from "@/types/api.types";
 import { StarIcon } from "@heroicons/react/20/solid";
+import dayjs from "dayjs";
 
 function ReviewRow({ review }: { review: IUserReviewItem }) {
   const { isOpen, onClose } = useDisclosure();
@@ -15,7 +16,10 @@ function ReviewRow({ review }: { review: IUserReviewItem }) {
         <div className="item-start flex max-w-md gap-3 text-[13px] font-light">
           <div className="flex h-[100px] w-[100px] flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light"></div>
           <div className="flex h-[100px] flex-col justify-between">
-            <p className="capitalize">{review?.reviewerName}</p>
+            <p className="capitalize">
+              {review?.reviewerName} -{" "}
+              {dayjs(review?.dateCreated).format("DD MMMM, YYYY")}
+            </p>
             <div className="flex items-center">
               {[0, 1, 2, 3, 4].map((rating) => (
                 <StarIcon
