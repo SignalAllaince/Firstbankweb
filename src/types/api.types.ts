@@ -508,3 +508,21 @@ export interface IProductReview {
     routeData: null;
   };
 }
+
+export type IUserReviewItem = {
+  id: 41;
+  rating: 4;
+  title: "satisfied" | "Indifferent" | "Disappointed";
+  comment: string;
+  reviewerName: string;
+  dateCreated: string;
+  replies: [];
+};
+
+export interface IUserReview {
+  id: number;
+  pageNumber: number;
+  pageSize: number;
+  totalItems: number;
+  items: IUserReviewItem[];
+}

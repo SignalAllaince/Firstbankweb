@@ -1,15 +1,24 @@
+import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
-import BlurImage from "@/components/image";
+import IfElse from "@/components/if-else";
 import AccountLayout from "@/components/layout/account-layout";
 import PageHead from "@/components/page-head";
 import Section from "@/components/section";
+import useGetUserReviews from "@/hooks/review/useGetUserReview";
+import PaginationContextProvider from "@/hooks/use-pagination";
+import WishListSkeleton from "@/modules/product/wishlist/loading";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ProtectedComponentType } from "@/types/service.types";
-import { ReactElement } from "react";
-import starImg from "../../../../public/images/star.svg";
-import ReviewRow from "./components/review";
+import { AnimatePresence } from "framer-motion";
+import React, { ReactElement } from "react";
+import ReviewMainSection from "./main";
+// import ReviewMainSection from "./main";
 
 const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
+  const [currentPageNumber, setPage] = React.useState(1);
+  const pageSize = 10;
+
+  const userReviews = useGetUserReviews(currentPageNumber, pageSize);
   return (
     <Section className="space-y-5 pt-5">
       <PageHead title="Reviews" />
@@ -19,21 +28,32 @@ const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
         </Heading>
       </div>
       <div>
-        <ReviewRow />
-      </div>
-      <div className="space-y-5">
-        <Section className="my-4 flex w-full flex-col items-center justify-center space-y-4 py-4">
-          <div className="max-w-xl">
-            <BlurImage src={starImg} alt={"djsdsd"} />
-          </div>
-          <div className="flex flex-col items-center space-y-3 text-center">
-            <Heading size="h4">No reviews here right now!</Heading>
-            <p className="font-light">
-              Check your “Orders” for products that you haven’t reviewed &
-              rated!
-            </p>
-          </div>
-        </Section>
+        <AnimatePresence>
+          <IfElse
+            ifOn={!userReviews.isLoading && !!userReviews?.value}
+            ifOnElse={userReviews.isLoading && !userReviews?.value}
+            onElse={
+              <FadeInOut>
+                <WishListSkeleton />
+              </FadeInOut>
+            }
+          >
+            <FadeInOut>
+              <PaginationContextProvider
+                currentPageNumber={currentPageNumber}
+                setPage={setPage}
+                total={userReviews?.value?.totalItems!}
+                pageSize={pageSize}
+              >
+                <ReviewMainSection
+                  review={userReviews?.value!}
+                  onRefetch={userReviews.refetch}
+                  isRefetching={userReviews.isRefetching}
+                />
+              </PaginationContextProvider>
+            </FadeInOut>
+          </IfElse>
+        </AnimatePresence>
       </div>
     </Section>
   );

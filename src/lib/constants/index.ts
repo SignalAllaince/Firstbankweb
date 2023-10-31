@@ -91,7 +91,7 @@ export const ENDPOINTS = {
   ) =>
     `review-product/reviews-for-product?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,
   GET_USER_REVIEWS: (pageNumber: number, pageSize: number) =>
-    `review-product/reviews-for-product?Pagination.RequestedPage=${pageNumber}&Pagination.PageSize=${pageSize}`,
+    `review-product/user-reviews?Pagination.RequestedPage=${pageNumber}&Pagination.PageSize=${pageSize}`,
   // Reply
   POST_REPLY: "reply/add-reply",
 

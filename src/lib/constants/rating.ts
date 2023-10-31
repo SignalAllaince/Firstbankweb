@@ -11,8 +11,11 @@ type OptionsType = {
 export type EmojiModel = {
   value: number;
   img: any;
-  text: string;
+  text: "satisfied" | "Indifferent" | "Disappointed";
 };
+
+export const renderEmoji = (text: EmojiModel["text"]) =>
+  emojiRatingsList.find((item) => item.text === text)?.img;
 
 export const emojiRatingsList: EmojiModel[] = [
   {
@@ -28,7 +31,7 @@ export const emojiRatingsList: EmojiModel[] = [
   {
     value: 1,
     img: sadEmoji,
-    text: "Disappionted",
+    text: "Disappointed",
   },
 ];
 
