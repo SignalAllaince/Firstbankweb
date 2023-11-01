@@ -1,3 +1,4 @@
+import ErrorMessage from "@/components/error-message";
 import FadeInOut from "@/components/fade";
 import Heading from "@/components/heading";
 import IfElse from "@/components/if-else";
@@ -33,10 +34,11 @@ const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
             ifOn={!userReviews.isLoading && !!userReviews?.value}
             ifOnElse={userReviews.isLoading && !userReviews?.value}
             onElse={
-              <FadeInOut>
+              <FadeInOut className="-mt-4">
                 <WishListSkeleton />
               </FadeInOut>
             }
+            elseThen={<ErrorMessage />}
           >
             <FadeInOut>
               <PaginationContextProvider
