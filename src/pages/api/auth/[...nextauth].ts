@@ -18,7 +18,7 @@ export default NextAuth({
       async authorize(credentials) {
         const data = {
           UserId: credentials?.userId,
-          oken: credentials?.token,
+          Token: credentials?.token,
         };
         console.log(data, "data");
         try {
