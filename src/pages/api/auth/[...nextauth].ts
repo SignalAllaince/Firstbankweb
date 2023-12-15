@@ -21,11 +21,6 @@ export default NextAuth({
           token: credentials?.token,
         };
 
-        // const data = {
-        //   userId: "7B0030007800640033006600640035003000",
-        //   token: "johnbosco",
-        // };
-
         try {
           const response: AxiosResponse<
             CredentialsServerResponseModel<IAuthUserSigninResponse>
@@ -33,6 +28,7 @@ export default NextAuth({
             `${ENDPOINTS.API_BASE_URL}token-validation`,
             data
           );
+          console.log(response, "from err");
 
           return {
             id: credentials?.userId!,
@@ -41,6 +37,7 @@ export default NextAuth({
             accessToken: response.data.data,
           };
         } catch (err: unknown) {
+          console.log(err, "from err");
           if (err instanceof Error) {
             throw new Error(err.message, {
               cause: err,

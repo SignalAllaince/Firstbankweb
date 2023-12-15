@@ -2,9 +2,9 @@
 export const ENDPOINTS = {
   // API_BASE_URL: process.env.NEXT_PUBLIC_BACKEND,
   // API_BASE_URL: "https://brandshopapi.azurewebsites.net/",
-  API_BASE_URL: "https://newfbnbackend.azurewebsites.net/",
-
-  // https://brandshopapi.azurewebsites.net
+  // API_BASE_URL: "https://newfbnbackend.azurewebsites.net/",
+  API_BASE_URL:
+    "https://fbnbrandshopbackend-api-dev.fbn-devops-dev-asenv.appserviceenvironment.net/",
 
   // Auth
   AUTH_USER: (userName: string, password: string) =>
