@@ -3,7 +3,6 @@ import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import PageHead from "@/components/page-head";
 import useUserAuth from "@/hooks/auth/useUserAuth";
-import useNotification from "@/hooks/use-notification";
 import { ProtectedNextPage } from "@/types/component.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ParsedUrlQuery } from "querystring";
@@ -40,18 +39,12 @@ const PersonalLogin: ProtectedNextPage<LogininType> = ({
     resolver: yupResolver(staffSchema),
   });
   const userAuth = useUserAuth(watch("userName"), watch("password"));
-  const { toast } = useNotification();
 
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
     userAuth
       .mutateAsync(data)
       .then(() => {})
-      .catch(() => {
-        toast({
-          appearance: "error",
-          description: "Authorization failed",
-        });
-      });
+      .catch(console.log);
   };
 
   if (userAuth?.value && userAuth.isSuccess) {

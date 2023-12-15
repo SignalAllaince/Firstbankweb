@@ -28,6 +28,7 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<Inputs>({
     resolver: yupResolver(tokenSchema),
   });
@@ -35,14 +36,12 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const router = useRouter();
   const { toast } = useNotification();
-  const validateToken = useValidateToken();
+  const validateToken = useValidateToken(userId, watch("token"));
+
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
     setIsLoading(true);
     validateToken
-      .mutateAsync({
-        userId: userId,
-        token: data?.token,
-      })
+      .mutateAsync({})
       .then(() => {
         signIn("credentials", {
           redirect: false,
@@ -67,7 +66,10 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
           );
         });
       })
-      .catch(console.log);
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
+      });
   };
 
   return (

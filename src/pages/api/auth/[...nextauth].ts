@@ -17,15 +17,15 @@ export default NextAuth({
       },
       async authorize(credentials) {
         const data = {
-          userId: credentials?.userId,
-          token: credentials?.token,
+          UserId: credentials?.userId,
+          Token: credentials?.token,
         };
 
         try {
           const response: AxiosResponse<
             CredentialsServerResponseModel<IAuthUserSigninResponse>
           > = await axios.post(
-            `${ENDPOINTS.API_BASE_URL}token-validation`,
+            `${ENDPOINTS.API_BASE_URL}token-validation?UserId=${credentials?.userId}&Token=${credentials?.token}`,
             data
           );
           console.log(response, "from err");

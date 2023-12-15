@@ -52,7 +52,7 @@ function useCustomMutation<
             err?.response?.data
               ? // @ts-expect-error
                 formatErrors(err?.response?.data)
-              : err.response?.data?.message
+              : err.response?.data?.message ?? "Request Failed"
           }`,
           appearance: "error",
         });

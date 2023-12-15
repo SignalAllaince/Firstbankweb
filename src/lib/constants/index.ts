@@ -10,6 +10,8 @@ export const ENDPOINTS = {
   AUTH_USER: (userName: string, password: string) =>
     `user-authentication?Username=${userName}&Password=${password}`,
 
+  TOKEN_VALIDATION: (userId: string, token: string) =>
+    `token-validation?UserId=${userId}&Token=${token}`,
   // Cart Endpoints
   GET_CART_LIST: `account/cart/list`,
   GET_CART_ITEM_RESULT: (productId: string) =>
