@@ -4,6 +4,7 @@ import IfElse from "@/components/if-else";
 import BlurImage from "@/components/image";
 import Textarea from "@/components/input/text-area";
 import useAddReview from "@/hooks/review/useAddReview";
+import useGetUserInfo from "@/hooks/user/useGetUserInfo";
 import { EmojiModel, emojiRatingsList } from "@/lib/constants/rating";
 import { cn } from "@/lib/utils/component.utils";
 import { RadioGroup } from "@headlessui/react";
@@ -42,6 +43,7 @@ function ItemReviewModal({
   const [count, setCount] = useState(1);
   const [status, setStatus] = useState<"form" | "success">("form");
   const addReview = useAddReview();
+  const userInfo = useGetUserInfo();
   const { data: userData } = useSession();
 
   const setAddressHandler: SubmitHandler<Inputs> = (data) => {
@@ -50,7 +52,7 @@ function ItemReviewModal({
         rating: count,
         title: rating?.text!,
         comment: data.comment,
-        reviewerName: userData?.user?.name!,
+        reviewerName: userInfo?.value?.firstName ?? "",
         productId: productId,
         hasBoughtProduct: true,
       })
