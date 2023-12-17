@@ -14,33 +14,6 @@ function StaffDetails({
   const handleChange = () => setChecked((prev) => !prev);
   return (
     <div>
-      {/* Staff details Section */}
-      {/* <div className="space-y-4 pt-6">
-        <Heading size="h5">Staff/Customer Details</Heading>
-        <div className="grid max-w-xl grid-cols-3 gap-x-4 gap-y-8 font-light capitalize">
-          <div className="space-y-2">
-            <p className="text-xs">First Name</p>
-            <div className="text-sm">Emeka</div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs">Middle Name</p>
-            <div className="text-sm">Christain</div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs">Last Name</p>
-            <div className="text-sm">Nzekwe</div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs">Account Number</p>
-            <div className="text-sm">0123456789</div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs">Email address</p>
-            <div className="text-sm normal-case">emekanzekwe@gmail.com</div>
-          </div>
-        </div>
-      </div> */}
-      {/* Estimated delivery time */}
       <div className="space-y-4 pt-7 font-light">
         <Heading size="h5">Estimated delivery time</Heading>
         <p className="text-sm">

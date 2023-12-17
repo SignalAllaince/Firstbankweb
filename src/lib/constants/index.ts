@@ -178,6 +178,9 @@ export const ENDPOINTS = {
   // Payment
   COMPLETE_PAYMENT: "checkout/complete-payment",
   START_PAYMENT: "checkout/start-payment",
+
+  // User
+  GET_USER_INFO: "account/user/info",
 };
 
 export const STOREID = "fbn46374683";
@@ -308,4 +311,7 @@ export const NAMESPACE = {
   GET_ALL_ORDERS: "GET_ALL_ORDERS",
   GET_SINGLE_ORDERS: "GET_SINGLE_ORDERS",
   CANCEL_ORDER: "CANCEL_ORDER",
+
+  // User
+  GET_USER_INFO: "GET_USER_INFO",
 };

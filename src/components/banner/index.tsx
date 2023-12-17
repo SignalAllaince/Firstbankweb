@@ -1,3 +1,4 @@
+import useGetUserInfo from "@/hooks/user/useGetUserInfo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
@@ -26,6 +27,7 @@ function Banner() {
   const [active, setActive] = React.useState<number>(0);
   const [upset, setUpset] = React.useState<number>(1);
   const time = 3000;
+  const userInfo = useGetUserInfo();
 
   React.useEffect(() => {
     const changeCarousel = () =>
@@ -40,7 +42,8 @@ function Banner() {
   return (
     <div className="banner-row grid w-full grid-cols-1 space-y-3">
       <Heading size="h5" className="h-fit pb-4">
-        Hi Emeka, what items would you like to buy today?
+        Hi {userInfo?.value ? userInfo?.value?.firstName : "****"}, what items
+        would you like to buy today?
       </Heading>
       <div className="relative flex flex-1 justify-center overflow-hidden rounded-[4px] bg-brand-blue px-8 py-6 text-brand-lightest">
         <div className="flex h-[300px] w-full items-center justify-between">

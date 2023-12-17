@@ -33,7 +33,6 @@ export default NextAuth({
           return {
             id: credentials?.userId!,
             email: credentials?.userId!,
-            name: "Emeka",
             accessToken: response.data.data,
           };
         } catch (err: unknown) {
@@ -60,7 +59,6 @@ export default NextAuth({
           id: user.id,
           image: user.id,
           email: user.email,
-          name: user.name,
         };
         return token;
       }
