@@ -4,7 +4,7 @@ import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import PageHead from "@/components/page-head";
 import useGetOrderById from "@/hooks/order/useGetOrderById";
-import { ProtectedNextPage } from "@/types/component.types";
+import { NextPageWithLayout } from "@/types/component.types";
 import { AnimatePresence } from "framer-motion";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<{
   };
 };
 
-const DetailedSingleOrderPage: ProtectedNextPage<
+const DetailedSingleOrderPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
   const getOrder = useGetOrderById(props?.query?.orderId as string);
@@ -56,7 +56,5 @@ DetailedSingleOrderPage.getLayout = function getLayout(page: ReactElement) {
     </AccountLayout>
   );
 };
-
-DetailedSingleOrderPage.auth = true;
 
 export default DetailedSingleOrderPage;

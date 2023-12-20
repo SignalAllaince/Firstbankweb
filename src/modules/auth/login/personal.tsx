@@ -3,7 +3,7 @@ import CustomInput from "@/components/input";
 import AuthLayout from "@/components/layout/auth-layout";
 import PageHead from "@/components/page-head";
 import useUserAuth from "@/hooks/auth/useUserAuth";
-import { ProtectedNextPage } from "@/types/component.types";
+import { NextPageWithLayout } from "@/types/component.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
@@ -26,7 +26,7 @@ const staffSchema = yup.object({
   password: yup.string().required("Password is required").min(5).trim(),
 });
 
-const PersonalLogin: ProtectedNextPage<LogininType> = ({
+const PersonalLogin: NextPageWithLayout<LogininType> = ({
   csrfToken,
   query,
 }) => {
@@ -99,6 +99,6 @@ PersonalLogin.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout authType="personal">{page}</AuthLayout>;
 };
 
-PersonalLogin.auth = false;
+
 
 export default PersonalLogin;

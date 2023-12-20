@@ -5,11 +5,10 @@ import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useGetSearchCategories from "@/hooks/category/useGetSearchCategories";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
 import HomeLoader from "./loading";
 
-const Home: NextPageWithLayout & ProtectedComponentType = () => {
+const Home: NextPageWithLayout = () => {
   const searchCategories = useGetSearchCategories();
 
   return (
@@ -47,7 +46,5 @@ const Home: NextPageWithLayout & ProtectedComponentType = () => {
 Home.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout isMainPage>{page}</AppLayout>;
 };
-
-Home.auth = true;
 
 export default Home;

@@ -6,9 +6,8 @@ import PageHead from "@/components/page-head";
 import Section from "@/components/section";
 import useGetUserInfo from "@/hooks/user/useGetUserInfo";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 
-const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
+const AccountProfile: NextPageWithLayout  = () => {
   const userInfo = useGetUserInfo();
 
   return (
@@ -66,7 +65,5 @@ const AccountProfile: NextPageWithLayout & ProtectedComponentType = () => {
 AccountProfile.getLayout = function getLayout(page: React.ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
-
-AccountProfile.auth = true;
 
 export default AccountProfile;

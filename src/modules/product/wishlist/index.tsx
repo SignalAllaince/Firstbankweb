@@ -8,7 +8,6 @@ import Section from "@/components/section";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -16,7 +15,7 @@ import React, { ReactElement } from "react";
 import WishListSkeleton from "./loading";
 import WishListMainSection from "./main";
 
-const WishListPage: NextPageWithLayout & ProtectedComponentType = () => {
+const WishListPage: NextPageWithLayout = () => {
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 4;
   const getWishList = useGetWishlist(currentPageNumber, pageSize);
@@ -84,6 +83,5 @@ WishListPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-WishListPage.auth = true;
 
 export default WishListPage;

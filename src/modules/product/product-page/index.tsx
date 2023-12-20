@@ -3,14 +3,13 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import useGetProductById from "@/hooks/products/useGetProductById";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import ProductPageLoader from "./loading";
 import ProductMainSection from "./main";
 
-const ProductPage: NextPageWithLayout & ProtectedComponentType = () => {
+const ProductPage: NextPageWithLayout = () => {
   const router = useRouter();
   const getProduct = useGetProductById(router?.query?.productId as string);
 
@@ -44,7 +43,5 @@ ProductPage.getLayout = function getLayout(page: ReactElement) {
     </AppLayout>
   );
 };
-
-ProductPage.auth = true;
 
 export default ProductPage;

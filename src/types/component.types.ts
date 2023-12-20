@@ -13,7 +13,7 @@ export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
 };
 
 export interface AppPropsWithAuth extends AppProps {
-  Component: NextPageWithLayout & ProtectedComponentType;
+  Component: NextPageWithLayout;
 }
 
 export type ProtectedNextPage<P = Record<string, unknown>> =

@@ -9,13 +9,12 @@ import useGetUserReviews from "@/hooks/review/useGetUserReview";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import WishListSkeleton from "@/modules/product/wishlist/loading";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
 import React, { ReactElement } from "react";
 import ReviewMainSection from "./main";
 // import ReviewMainSection from "./main";
 
-const ReviewsPage: NextPageWithLayout & ProtectedComponentType = () => {
+const ReviewsPage: NextPageWithLayout  = () => {
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 10;
 
@@ -65,6 +64,5 @@ ReviewsPage.getLayout = function getLayout(page: ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
 
-ReviewsPage.auth = true;
 
 export default ReviewsPage;

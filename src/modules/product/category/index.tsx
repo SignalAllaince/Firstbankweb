@@ -6,7 +6,6 @@ import useDebounce from "@/hooks/use-debounce";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import { stringifyCategory } from "@/lib/utils/common.utils";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React, { ReactElement } from "react";
@@ -25,8 +24,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 const CategoryPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> &
-  ProtectedComponentType = (props) => {
+> = (props) => {
   const [sort, setSortValue] = React.useState<string | undefined>(undefined);
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 9;
@@ -91,7 +89,5 @@ const CategoryPage: NextPageWithLayout<
 CategoryPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
-
-CategoryPage.auth = true;
 
 export default CategoryPage;

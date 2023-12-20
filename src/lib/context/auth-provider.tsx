@@ -1,20 +1,22 @@
 import FadeInOut from "@/components/fade";
-import { signIn, useSession } from "next-auth/react";
+import { getCookie } from "cookies-next";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { HashLoader } from "react-spinners";
+import { AuthPages, Constants, PAGES } from "../constants";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data: session, status } = useSession();
-
-  const isUser = !!session?.user;
+  const pathname = usePathname()
+  const isUser = getCookie(Constants.token)?.toString() ?? "";
+  const isAuthPage = AuthPages.includes(pathname)
+  
   React.useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
-    // @ts-expect-error
-    if (!isUser || session?.error) signIn(); // If not authenticated, force log in
-    // @ts-expect-error
-  }, [isUser, status, session?.error]);
+    if (!isUser && !isAuthPage) {
+      window.location.href = `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`;
+    }  // If not authenticated, force log in
+  }, [isUser, isAuthPage]);
 
-  if (isUser) {
+  if (isUser || isAuthPage) {
     return <>{children}</>;
   }
 

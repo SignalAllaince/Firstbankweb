@@ -9,10 +9,9 @@ import Section from "@/components/section";
 import useGetAddressList from "@/hooks/address/useGetAddressList";
 import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
 
-const AccountAddress: NextPageWithLayout & ProtectedComponentType = () => {
+const AccountAddress: NextPageWithLayout  = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const addressList = useGetAddressList();
 
@@ -85,6 +84,5 @@ AccountAddress.getLayout = function getLayout(page: React.ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
 
-AccountAddress.auth = true;
 
 export default AccountAddress;

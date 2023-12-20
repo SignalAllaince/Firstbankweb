@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils/component.utils";
 import { RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { AnimatePresence } from "framer-motion";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "..";
@@ -44,7 +43,6 @@ function ItemReviewModal({
   const [status, setStatus] = useState<"form" | "success">("form");
   const addReview = useAddReview();
   const userInfo = useGetUserInfo();
-  const { data: userData } = useSession();
 
   const setAddressHandler: SubmitHandler<Inputs> = (data) => {
     addReview
@@ -77,7 +75,10 @@ function ItemReviewModal({
           ifOnElse={status === "success"}
           onElse={
             <FadeInOut className="space-y-4 py-4 md:px-5">
-              <SuccessReview onClose={onClose} name={userData?.user?.name!} />
+              <SuccessReview
+                onClose={onClose}
+                name={userInfo?.value?.firstName!}
+              />
             </FadeInOut>
           }
         >

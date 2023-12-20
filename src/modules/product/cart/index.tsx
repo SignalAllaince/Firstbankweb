@@ -11,14 +11,13 @@ import Section from "@/components/section";
 import useGetCartList from "@/hooks/cart/useGetCartList";
 import useGetWishlist from "@/hooks/wishlist/useGetWishList";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 import { ReactElement } from "react";
 import CartLoadingPage from "./loading";
 import CartPageSection from "./main";
 
-const CartPage: NextPageWithLayout & ProtectedComponentType = () => {
+const CartPage: NextPageWithLayout  = () => {
   const getCartList = useGetCartList();
   const getWishList = useGetWishlist(1, 4);
 
@@ -107,6 +106,5 @@ CartPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-CartPage.auth = true;
 
 export default CartPage;

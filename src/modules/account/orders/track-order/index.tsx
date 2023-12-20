@@ -4,10 +4,9 @@ import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import TimeLine from "@/components/timeline";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { ReactElement } from "react";
 
-const TrackOpenOrderPage: NextPageWithLayout & ProtectedComponentType = () => {
+const TrackOpenOrderPage: NextPageWithLayout  = () => {
   return (
     <div className="space-y-6 pt-5">
       <div className="flex items-center justify-between gap-3">
@@ -37,7 +36,5 @@ TrackOpenOrderPage.getLayout = function getLayout(page: ReactElement) {
     </AccountLayout>
   );
 };
-
-TrackOpenOrderPage.auth = true;
 
 export default TrackOpenOrderPage;

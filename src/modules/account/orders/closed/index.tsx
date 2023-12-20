@@ -7,13 +7,12 @@ import PageHead from "@/components/page-head";
 import useGetAllOrders from "@/hooks/order/useGetAllOrders";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
 import React, { ReactElement } from "react";
 import OrderLoading from "../history/loading";
 import OrderHistory from "./main";
 
-const ClosedOrdersPage: NextPageWithLayout & ProtectedComponentType = () => {
+const ClosedOrdersPage: NextPageWithLayout = () => {
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 6;
   const getOrders = useGetAllOrders(currentPageNumber, pageSize);
@@ -51,7 +50,5 @@ ClosedOrdersPage.getLayout = function getLayout(page: ReactElement) {
     </AccountLayout>
   );
 };
-
-ClosedOrdersPage.auth = true;
 
 export default ClosedOrdersPage;

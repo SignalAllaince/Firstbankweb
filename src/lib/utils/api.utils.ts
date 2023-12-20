@@ -1,6 +1,45 @@
 import { CustomMethod, SecureRequestProps } from "@/types/api.types";
-import axios from "axios";
-import { getSession } from "next-auth/react";
+import axios, { AxiosHeaders } from "axios";
+import { deleteCookie, getCookie } from "cookies-next";
+import { cookies } from "next/dist/client/components/headers";
+import { AuthPages, Constants, PAGES } from "../constants";
+
+axios.interceptors.request.use(
+  async (config) => {
+    let token = "";
+    if (typeof window !== "undefined") {
+      token = getCookie(Constants.token)?.toString() ?? "";
+    } else {
+      const cookieStore = cookies();
+      token = cookieStore.get(Constants.token)?.value ?? "";
+    }
+    config.headers = {
+      Authorization: `Bearer ${token ?? ""}`,
+      ...config.headers,
+    } as AxiosHeaders["headers"];
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (
+      error?.response &&
+      error.response.status === 401 &&
+      !AuthPages.includes(window.location.pathname)
+    ) {
+      if (typeof window !== "undefined") {
+        deleteCookie(Constants.token);
+        window.location.href = `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`;
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const secureRequest = async ({
   url,
@@ -8,17 +47,10 @@ export const secureRequest = async ({
   body = undefined,
   headers: requestHeader,
 }: SecureRequestProps) => {
-  const session = await getSession();
   const givenMethod = method.toLocaleLowerCase() as CustomMethod;
-
-  const fbnHeader = {
-    // @ts-expect-error
-    Authorization: `Bearer ${session?.accessToken}`,
-  };
 
   const headers = {
     "content-type": "application/json",
-    ...fbnHeader,
     ...requestHeader,
   };
 

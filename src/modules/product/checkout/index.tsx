@@ -5,7 +5,6 @@ import PageHead from "@/components/page-head";
 import useGetCheckoutDetails from "@/hooks/checkout/useGetCheckoutDetails";
 import CheckoutContextProvider from "@/lib/context/checkout-context";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
@@ -24,8 +23,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 const CheckoutPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> &
-  ProtectedComponentType = ({ query }) => {
+> = ({ query }) => {
   const userId = "7B0030007800640033006600640035003000";
   const checkoutDetails = useGetCheckoutDetails(userId, query?.id as string);
 
@@ -54,7 +52,5 @@ CheckoutPage.getLayout = function getLayout(page: ReactElement) {
     </AppLayout>
   );
 };
-
-CheckoutPage.auth = true;
 
 export default CheckoutPage;

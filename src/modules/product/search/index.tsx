@@ -6,7 +6,6 @@ import useGetSearchResult from "@/hooks/search/useGetSearchResult";
 import useDebounce from "@/hooks/use-debounce";
 import PaginationContextProvider from "@/hooks/use-pagination";
 import { NextPageWithLayout } from "@/types/component.types";
-import { ProtectedComponentType } from "@/types/service.types";
 import { AnimatePresence } from "framer-motion";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
@@ -26,8 +25,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 const SearchPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> &
-  ProtectedComponentType = (props) => {
+> = (props) => {
   const [sort, setSortValue] = React.useState<string | undefined>(undefined);
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 3;
@@ -94,7 +92,5 @@ const SearchPage: NextPageWithLayout<
 SearchPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
-
-SearchPage.auth = true;
 
 export default SearchPage;

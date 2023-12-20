@@ -315,3 +315,14 @@ export const NAMESPACE = {
   // User
   GET_USER_INFO: "GET_USER_INFO",
 };
+
+export const AuthPages = ["/login", "/login/branch"];
+
+export const Constants = {
+  token: "Fbn_ww839_token",
+  userId: "Fbn_user_jdujfhu",
+};
+
+export const PAGES = {
+  SIGNIN: "/login",
+};
