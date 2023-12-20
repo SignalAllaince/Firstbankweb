@@ -40,36 +40,35 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
 
   const submitLoginRequest: SubmitHandler<Inputs> = (data) => {
     setIsLoading(true);
-    validateToken
-      .mutateAsync({})
-      .then(() => {
-        signIn("credentials", {
-          redirect: false,
-          userId: userId,
-          token: data.token,
-          callbackUrl: "/login",
-        }).then((res) => {
-          setIsLoading(false);
-          if (!res?.ok) {
-            return toast({
-              appearance: "error",
-              description: "Authorization failed",
-            });
-          }
-          toast({
-            appearance: "success",
-            title: "Login Successful",
-            description: "You have successfully logged into your account",
-          });
-          router.replace(
-            query?.callbackUrl ? (query?.callbackUrl as string) : "/"
-          );
+    // validateToken
+    //   .mutateAsync({})
+    //   .then(() => {
+    signIn("credentials", {
+      redirect: false,
+      userId: userId,
+      token: data.token,
+      callbackUrl: "/login",
+    }).then((res) => {
+      setIsLoading(false);
+      if (!res?.ok) {
+        return toast({
+          appearance: "error",
+          title: "Authorization failed",
+          description: "Token Validation failed",
         });
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err);
+      }
+      toast({
+        appearance: "success",
+        title: "Login Successful",
+        description: "You have successfully logged into your account",
       });
+      router.replace(query?.callbackUrl ? (query?.callbackUrl as string) : "/");
+    });
+    // })
+    // .catch((err) => {
+    //   setIsLoading(false);
+    //   console.log(err);
+    // });
   };
 
   return (
@@ -86,7 +85,6 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
             min={8}
             max={8}
             autoComplete="off"
-            // value="4783IEDH2893"
           />
           <Button
             isLoading={isLoading}

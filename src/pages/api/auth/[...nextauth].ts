@@ -17,8 +17,8 @@ export default NextAuth({
       },
       async authorize(credentials) {
         const data = {
-          UserId: credentials?.userId,
-          Token: credentials?.token,
+          userId: credentials?.userId,
+          token: credentials?.token,
         };
         console.log(data, "data");
         try {
@@ -28,7 +28,10 @@ export default NextAuth({
             `${ENDPOINTS.API_BASE_URL}token-validation?UserId=${credentials?.userId}&Token=${credentials?.token}`,
             {}
           );
-          console.log(response, "from response");
+          console.log(
+            `${ENDPOINTS.API_BASE_URL}token-validation?UserId=${credentials?.userId}&Token=${credentials?.token}`,
+            "from response"
+          );
 
           return {
             id: credentials?.userId!,
