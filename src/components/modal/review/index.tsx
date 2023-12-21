@@ -89,13 +89,15 @@ function ItemReviewModal({
             </div>
             <div className="mb-4 flex gap-3 text-sm font-light text-brand-darkest">
               <div className="flex h-16 w-16 flex-shrink-0 overflow-hidden rounded-[4px] bg-brand-light shadow-sm">
-                <BlurImage
-                  src={productImage}
-                  alt="product image"
-                  width={400}
-                  height={400}
-                  className="h-full w-full object-cover object-center"
-                />
+                {productImage && (
+                  <BlurImage
+                    src={productImage}
+                    alt="product image"
+                    width={400}
+                    height={400}
+                    className="h-full w-full object-cover object-center"
+                  />
+                )}
               </div>
               <p>{productName}</p>
             </div>
