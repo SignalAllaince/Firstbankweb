@@ -35,26 +35,31 @@ function BannerNav() {
             ))}
           </div>
         }
-        elseThen={
-          <div className="h-[430px] w-[270px] flex-shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-2">
-            <p>No Categories</p>
-          </div>
-        }
       >
-        <div className="h-full w-[270px] flex-shrink-0 overflow-hidden rounded-md bg-white">
-          {allCategories?.value &&
-            allCategories?.value?.map((link, i) => (
-              <Link
-                key={link.id}
-                href={`/${link.slug}`}
-                className="flex w-full items-center gap-4 border-b border-gray-100 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
-              >
-                {/* <Icon IconComp={LinkIcon} /> */}
-                <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
-                <span>{link.name}</span>
-              </Link>
-            ))}
-        </div>
+        <IfElse
+          ifOn={allCategories?.value?.length! >= 1}
+          ifOnElse={allCategories?.value?.length! === 0}
+          onElse={
+            <div className="h-[430px] w-[270px] flex-shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-2">
+              <p>No Categories</p>
+            </div>
+          }
+        >
+          <div className="h-full w-[270px] flex-shrink-0 overflow-hidden rounded-md bg-white">
+            {allCategories?.value &&
+              allCategories?.value?.map((link, i) => (
+                <Link
+                  key={link.id}
+                  href={`/${link.slug}`}
+                  className="flex w-full items-center gap-4 border-b border-gray-100 bg-transparent px-5 py-4 text-sm capitalize text-brand-darkest transition-colors duration-200 hover:bg-brand-light"
+                >
+                  {/* <Icon IconComp={LinkIcon} /> */}
+                  <Image src={imgs[i]} className="h-5 w-5" alt={link.name} />
+                  <span>{link.name}</span>
+                </Link>
+              ))}
+          </div>
+        </IfElse>
       </IfElse>
     </>
   );
