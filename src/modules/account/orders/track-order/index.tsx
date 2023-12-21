@@ -1,5 +1,4 @@
 import Badge from "@/components/badge";
-import Button from "@/components/button";
 import AccountLayout from "@/components/layout/account-layout";
 import OrderLayout from "@/components/layout/orders-layout";
 import TimeLine from "@/components/timeline";
@@ -16,9 +15,9 @@ const TrackOpenOrderPage: NextPageWithLayout = () => {
           </p>
           <Badge variant="New">order placed</Badge>
         </div>
-        <Button size="small" className="h-8 px-[8px]">
+        {/* <Button size="small" className="h-8 px-[8px]">
           See tracking details
-        </Button>
+        </Button> */}
       </div>
       <div className="space-y-5">
         <TimeLine badge="Order placed" text="April 10, 2023" />
