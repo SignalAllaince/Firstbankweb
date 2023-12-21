@@ -1,3 +1,4 @@
+import ErrorMessage from "@/components/error-message";
 import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
@@ -36,6 +37,7 @@ const CheckoutPage: NextPageWithLayout<
         ifOn={!checkoutDetails.isLoading && !!checkoutDetails?.value}
         ifOnElse={checkoutDetails.isLoading && !checkoutDetails?.value}
         onElse={<CategoryLoading />}
+        elseThen={<ErrorMessage />}
       >
         <CheckoutContextProvider details={checkoutDetails?.value!}>
           <FadeInOut>
