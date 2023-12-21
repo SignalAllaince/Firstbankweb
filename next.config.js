@@ -33,6 +33,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'fbnbrandshopbackend-api-dev.fbn-devops-dev-asenv.appserviceenvironment.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

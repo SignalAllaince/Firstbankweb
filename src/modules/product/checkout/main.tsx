@@ -20,12 +20,13 @@ const btnText = {
 };
 const CheckoutMain = () => {
   const [checked, setChecked] = useState(false);
+  const [passed, setPassed] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [level, setLevel] = useState<"details" | "payment">("details");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isStatusOpen,
-    // onOpen: onStatusOpen,
+    onOpen: onStatusOpen,
     onClose: onStatusClose,
   } = useDisclosure();
   const { checkoutDetails } = useCheckout();
@@ -60,7 +61,11 @@ const CheckoutMain = () => {
     (level === "payment" && !paymentMethod);
 
   // Checkout handler
-
+  const onSuccess = () => {
+    setPassed(true);
+    onClose();
+    onStatusOpen();
+  };
   return (
     <>
       <PageHead title="Checkout" />
@@ -68,11 +73,12 @@ const CheckoutMain = () => {
         isOpen={isOpen}
         onClose={onClose}
         orderId={checkoutDetails.orderId}
+        onSuccess={onSuccess}
       />
       <PaymentModal
         isOpen={isStatusOpen}
         onClose={onStatusClose}
-        pass={false}
+        pass={passed}
       />
       <div className="bg-white pb-10">
         <div className="w-full border-b border-gray-200 ">

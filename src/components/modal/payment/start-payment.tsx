@@ -14,10 +14,12 @@ function ProceedPaymentModal({
   isOpen,
   onClose,
   orderId,
+  onSuccess,
 }: {
   isOpen: boolean;
   onClose: () => void;
   orderId: string;
+  onSuccess: () => void;
 }) {
   const {
     register,
@@ -34,10 +36,10 @@ function ProceedPaymentModal({
   } = useForm<{
     otp: number;
   }>();
-  const [stage] = React.useState<"start" | "complete">("start");
+  const [stage, setStage] = React.useState<"start" | "complete">("start");
   const startPayment = useStartPayment();
   const completePayment = useCompletePayment();
-
+  const [paymentId, setPaymentId] = React.useState("");
   const startPaymentHandler: SubmitHandler<{ accountNumber: number }> = (
     data
   ) => {
@@ -48,6 +50,9 @@ function ProceedPaymentModal({
       })
       .then((res) => {
         console.log(res);
+        setStage("complete");
+        // @ts-ignore
+        setPaymentId(res.data.data.paymentId);
       })
       .catch((err) => {
         console.log(err?.response?.data);
@@ -57,11 +62,12 @@ function ProceedPaymentModal({
   const completePaymentHandler: SubmitHandler<{ otp: number }> = (data) => {
     completePayment
       .mutateAsync({
-        orderId,
+        paymentId,
         otp: data.otp,
       })
       .then((res) => {
         console.log(res);
+        onSuccess();
       })
       .catch((err) => {
         console.log(err);
