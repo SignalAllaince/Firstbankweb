@@ -11,7 +11,7 @@ import useDisclosure from "@/hooks/use-disclosure";
 import { NextPageWithLayout } from "@/types/component.types";
 import { AnimatePresence } from "framer-motion";
 
-const AccountAddress: NextPageWithLayout  = () => {
+const AccountAddress: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const addressList = useGetAddressList();
 
@@ -83,6 +83,5 @@ const AccountAddress: NextPageWithLayout  = () => {
 AccountAddress.getLayout = function getLayout(page: React.ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
-
 
 export default AccountAddress;

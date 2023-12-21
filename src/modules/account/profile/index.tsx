@@ -7,7 +7,7 @@ import Section from "@/components/section";
 import useGetUserInfo from "@/hooks/user/useGetUserInfo";
 import { NextPageWithLayout } from "@/types/component.types";
 
-const AccountProfile: NextPageWithLayout  = () => {
+const AccountProfile: NextPageWithLayout = () => {
   const userInfo = useGetUserInfo();
 
   return (

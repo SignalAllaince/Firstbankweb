@@ -99,6 +99,4 @@ PersonalLogin.getLayout = function getLayout(page: ReactElement) {
   return <AuthLayout authType="personal">{page}</AuthLayout>;
 };
 
-
-
 export default PersonalLogin;

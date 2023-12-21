@@ -14,7 +14,7 @@ import React, { ReactElement } from "react";
 import ReviewMainSection from "./main";
 // import ReviewMainSection from "./main";
 
-const ReviewsPage: NextPageWithLayout  = () => {
+const ReviewsPage: NextPageWithLayout = () => {
   const [currentPageNumber, setPage] = React.useState(1);
   const pageSize = 10;
 
@@ -63,6 +63,5 @@ const ReviewsPage: NextPageWithLayout  = () => {
 ReviewsPage.getLayout = function getLayout(page: ReactElement) {
   return <AccountLayout>{page}</AccountLayout>;
 };
-
 
 export default ReviewsPage;

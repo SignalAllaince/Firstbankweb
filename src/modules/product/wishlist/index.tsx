@@ -83,5 +83,4 @@ WishListPage.getLayout = function getLayout(page: ReactElement) {
   return <AppLayout hasBanner={false}>{page}</AppLayout>;
 };
 
-
 export default WishListPage;

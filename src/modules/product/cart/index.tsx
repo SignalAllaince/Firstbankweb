@@ -17,7 +17,7 @@ import { ReactElement } from "react";
 import CartLoadingPage from "./loading";
 import CartPageSection from "./main";
 
-const CartPage: NextPageWithLayout  = () => {
+const CartPage: NextPageWithLayout = () => {
   const getCartList = useGetCartList();
   const getWishList = useGetWishlist(1, 4);
 
@@ -105,6 +105,5 @@ CartPage.getLayout = function getLayout(page: ReactElement) {
     </AppLayout>
   );
 };
-
 
 export default CartPage;

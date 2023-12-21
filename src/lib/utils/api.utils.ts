@@ -34,6 +34,7 @@ axios.interceptors.response.use(
     ) {
       if (typeof window !== "undefined") {
         deleteCookie(Constants.token);
+        deleteCookie(Constants.userId);
         window.location.href = `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`;
       }
     }

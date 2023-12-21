@@ -195,5 +195,5 @@ export const formatErrors = (error: Record<string, string[]>) => {
   return errorText.join(". ");
 };
 
-export const splitCapitalizeWord = (str: string) =>
-  str.split(/(?=[A-Z])/).join(" ");
+export const splitCapitalizeWord = (str?: string) =>
+  str ? str.split(/(?=[A-Z])/).join(" ") : "";

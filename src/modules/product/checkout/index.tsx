@@ -3,8 +3,10 @@ import IfElse from "@/components/if-else";
 import AppLayout from "@/components/layout/app-layout";
 import PageHead from "@/components/page-head";
 import useGetCheckoutDetails from "@/hooks/checkout/useGetCheckoutDetails";
+import { Constants } from "@/lib/constants";
 import CheckoutContextProvider from "@/lib/context/checkout-context";
 import { NextPageWithLayout } from "@/types/component.types";
+import { getCookie } from "cookies-next";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
@@ -24,8 +26,8 @@ export const getServerSideProps: GetServerSideProps<{
 const CheckoutPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ query }) => {
-  const userId = "7B0030007800640033006600640035003000";
-  const checkoutDetails = useGetCheckoutDetails(userId, query?.id as string);
+  const userId = getCookie(Constants.userId)?.toString();
+  const checkoutDetails = useGetCheckoutDetails(userId!, query?.id as string);
 
   return (
     <>

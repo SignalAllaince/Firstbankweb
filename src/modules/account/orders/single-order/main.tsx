@@ -17,42 +17,47 @@ const MainOrderSection = ({
   refetch: () => void;
 }) => {
   const pathname = usePathname();
-  const cancelOrder = useCancelOrder(order.id);
+  const cancelOrder = useCancelOrder(order?.id);
   const { toast } = useNotification();
 
   const cancelOrderHandler = () => {
-    cancelOrder.refetch().then(() => {
+    cancelOrder?.refetch().then(() => {
       toast({
         appearance: "success",
-        description: `Order #${order.id} has been cancelled successfully`,
+        description: `Order #${order?.id} has been cancelled successfully`,
       });
       refetch();
     });
   };
-  const total = order.subTotal + order.taxAmount + order.shippingAmount;
+
+  const total =
+    (order?.subTotal ?? 0) +
+    (order?.taxAmount ?? 0) +
+    (order?.shippingAmount ?? 0);
+
   return (
     <>
       <div className="space-y-5 pt-5">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <p className="text-sm font-medium text-brand-darkest">
-              Order No. - {order.id}
+              Order No. - {order?.id}
             </p>
-            <Badge variant={order.orderStatus}>
-              {splitCapitalizeWord(order.orderStatus)}
+            <Badge variant={order?.orderStatus}>
+              {splitCapitalizeWord(order?.orderStatus)}
             </Badge>
           </div>
           <div className="flex items-center gap-2">
-            {isCheckoutViable(order.orderStatusString) ? (
+            {isCheckoutViable(order?.orderStatusString) ? (
               <Button
                 size="small"
                 className="h-8 px-[8px]"
-                href={`/cart/checkout?id=${order.id}`}
+                href={`/cart/checkout?id=${order?.id}`}
               >
                 Continue to Checkout
               </Button>
             ) : null}
-            {isTrackingViable(order.orderStatusString) ? (
+            {isTrackingViable(order?.orderStatusString) ? (
               <Button
                 size="small"
                 className="h-8 px-[8px]"
@@ -64,8 +69,8 @@ const MainOrderSection = ({
           </div>
         </div>
         <div className="space-y-5">
-          {order.orderItems.map((item) => (
-            <OrderProductRow key={item.productId} product={item} />
+          {order?.orderItems?.map((item) => (
+            <OrderProductRow key={item?.productId} product={item} />
           ))}
         </div>
         <div className="item-start flex gap-3 text-[13px] font-light">
@@ -76,15 +81,15 @@ const MainOrderSection = ({
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-4">
                   <p className="w-[170px]">Item Cost:</p>
-                  <p className="font-medium">{order.subTotalString}</p>
+                  <p className="font-medium">{order?.subTotalString}</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="w-[170px]">Delivery/Shipping Cost:</p>
-                  <p className="font-medium">{order.shippingAmountString}</p>
+                  <p className="font-medium">{order?.shippingAmountString}</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="w-[170px]">Product Tax (7.5%):</p>
-                  <p className="font-medium">{order.taxAmountString}</p>
+                  <p className="font-medium">{order?.taxAmountString}</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <p className="w-[170px] text-sm font-medium">Total</p>
@@ -118,23 +123,23 @@ const MainOrderSection = ({
                 <p className="text-xs font-medium">Delivery Date</p>
                 <p className="text-[13px]">
                   To be delivered between{" "}
-                  {dayjs(order.dateCreated)
+                  {dayjs(order?.dateCreated)
                     .add(3, "day")
                     .format("dddd, MMMM DD")}{" "}
                   and{" "}
-                  {dayjs(order.dateCreated)
+                  {dayjs(order?.dateCreated)
                     .add(7, "day")
                     .format("dddd, MMMM DD")}{" "}
                 </p>
               </div>
-              {isCheckoutViable(order.orderStatusString) && (
+              {isCheckoutViable(order?.orderStatusString) && (
                 <div className="pt-5">
                   <Button
                     variant="secondary"
                     size="small"
                     onClick={cancelOrderHandler}
                     isLoading={
-                      cancelOrder.isRefetching || cancelOrder.isFetching
+                      cancelOrder?.isRefetching || cancelOrder?.isFetching
                     }
                   >
                     Cancel Order

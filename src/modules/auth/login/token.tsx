@@ -43,6 +43,7 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
       .mutateAsync({})
       .then((res) => {
         setCookie(Constants.token, res.data.data);
+        setCookie(Constants.userId, userId);
         router.replace(
           query?.callbackUrl ? (query?.callbackUrl as string) : "/"
         );

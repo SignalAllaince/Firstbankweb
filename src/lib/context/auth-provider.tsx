@@ -6,14 +6,14 @@ import { HashLoader } from "react-spinners";
 import { AuthPages, Constants, PAGES } from "../constants";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const isUser = getCookie(Constants.token)?.toString() ?? "";
-  const isAuthPage = AuthPages.includes(pathname)
-  
+  const isAuthPage = AuthPages.includes(pathname);
+
   React.useEffect(() => {
     if (!isUser && !isAuthPage) {
       window.location.href = `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`;
-    }  // If not authenticated, force log in
+    } // If not authenticated, force log in
   }, [isUser, isAuthPage]);
 
   if (isUser || isAuthPage) {

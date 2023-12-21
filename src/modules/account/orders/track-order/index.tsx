@@ -6,7 +6,7 @@ import TimeLine from "@/components/timeline";
 import { NextPageWithLayout } from "@/types/component.types";
 import { ReactElement } from "react";
 
-const TrackOpenOrderPage: NextPageWithLayout  = () => {
+const TrackOpenOrderPage: NextPageWithLayout = () => {
   return (
     <div className="space-y-6 pt-5">
       <div className="flex items-center justify-between gap-3">

@@ -1,3 +1,4 @@
+import ErrorMessage from "@/components/error-message";
 import FadeInOut from "@/components/fade";
 import IfElse from "@/components/if-else";
 import AccountLayout from "@/components/layout/account-layout";
@@ -36,6 +37,7 @@ const DetailedSingleOrderPage: NextPageWithLayout<
           ifOnElse={getOrder.isLoading && !getOrder?.value}
           // ifOnElse={true}
           onElse={<OrderLoading />}
+          elseThen={<ErrorMessage />}
         >
           <FadeInOut>
             <MainOrderSection
