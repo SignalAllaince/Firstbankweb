@@ -87,7 +87,10 @@ function ProceedPaymentModal({
             ifOn={stage === "start"}
             ifOnElse={stage === "complete"}
             onElse={
-              <FadeInOut key={stage}>
+              <FadeInOut key={stage} className="space-y-3">
+                <div className="space-y-1">
+                  <Heading size="h4">Enter Token</Heading>
+                </div>
                 <form
                   className="space-y-2"
                   onSubmit={hSubmit(completePaymentHandler)}
@@ -104,7 +107,7 @@ function ProceedPaymentModal({
                     <Button
                       className="w-full text-sm uppercase"
                       type="submit"
-                      isLoading={startPayment.isLoading}
+                      isLoading={completePayment.isLoading}
                     >
                       Make payment
                     </Button>
@@ -113,8 +116,13 @@ function ProceedPaymentModal({
               </FadeInOut>
             }
           >
-            <FadeInOut className="space-y-5" key={stage}>
-              <Heading size="h4">Enter Account Number</Heading>
+            <FadeInOut className="space-y-3" key={stage}>
+              <div className="space-y-1">
+                <Heading size="h4">Enter Account Number</Heading>
+                <p className="text-sm">
+                  Please input your first bank account number
+                </p>
+              </div>
               <form
                 className="space-y-2"
                 onSubmit={handleSubmit(startPaymentHandler)}
