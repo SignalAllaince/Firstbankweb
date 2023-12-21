@@ -1,4 +1,5 @@
 import useGetAllCategories from "@/hooks/category/useGetAllCategories";
+import Image from "next/image";
 import Link from "next/link";
 import branchImg from "../../../public/images/icons/branch.svg";
 import homeImg from "../../../public/images/icons/home.svg";
@@ -7,7 +8,6 @@ import penImg from "../../../public/images/icons/pen.svg";
 import shirtImg from "../../../public/images/icons/shirt.svg";
 import tagImg from "../../../public/images/icons/tag.svg";
 import IfElse from "../if-else";
-import Image from "next/image";
 
 const imgs = [
   branchImg,
@@ -33,6 +33,11 @@ function BannerNav() {
             {[1, 2, 3, 4, 5, 6, 7].map((item) => (
               <div key={item} className="h-14 bg-slate-200" />
             ))}
+          </div>
+        }
+        elseThen={
+          <div className="h-[430px] w-[270px] flex-shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-2">
+            <p>No Categories</p>
           </div>
         }
       >

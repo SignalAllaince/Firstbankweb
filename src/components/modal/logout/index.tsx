@@ -27,12 +27,12 @@ function LogoutModal({
             isLoading={loading}
             onClick={() => {
               setLoading(true);
-                deleteCookie(Constants.token);
-                deleteCookie(Constants.userId);
-                queryCache.clear();
-                window.location.replace(
-                  `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`
-                );
+              deleteCookie(Constants.token);
+              deleteCookie(Constants.userId);
+              queryCache.clear();
+              window.location.replace(
+                `${PAGES.SIGNIN}?callbackUrl=${window.location.href}`
+              );
             }}
             className="w-full px-2 text-sm uppercase"
             variant="secondary"
