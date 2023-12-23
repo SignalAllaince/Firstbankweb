@@ -74,11 +74,6 @@ function ProceedPaymentModal({
       });
   };
 
-  //   <div>
-  //   <p>Please wait...</p>
-  //   <p>we are processing your payment.</p>
-  // </div>
-
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
       <div className="space-y-4 py-3 md:px-5">
