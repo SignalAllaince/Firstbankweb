@@ -14,7 +14,6 @@ type Inputs = {
   token: string;
 };
 type LogininType = {
-  csrfToken: string;
   query: any;
   userId: string;
 };
@@ -23,7 +22,7 @@ const tokenSchema = yup.object({
   token: yup.string().required("Token is required").length(8).trim(),
 });
 
-const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
+const TokenComp = ({ query, userId }: LogininType) => {
   const {
     register,
     handleSubmit,
@@ -57,7 +56,6 @@ const TokenComp = ({ csrfToken, query, userId }: LogininType) => {
   return (
     <FadeInOut>
       <form className="pb-6" onSubmit={handleSubmit(submitLoginRequest)}>
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <div className="space-y-10">
           <CustomInput
             {...register("token", { required: true })}

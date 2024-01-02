@@ -12,7 +12,6 @@ import * as yup from "yup";
 import TokenComp from "./token";
 
 type LogininType = {
-  csrfToken: string;
   query: ParsedUrlQuery;
 };
 
@@ -26,10 +25,7 @@ const staffSchema = yup.object({
   password: yup.string().required("Password is required").min(5).trim(),
 });
 
-const PersonalLogin: NextPageWithLayout<LogininType> = ({
-  csrfToken,
-  query,
-}) => {
+const PersonalLogin: NextPageWithLayout<LogininType> = ({ query }) => {
   const {
     register,
     handleSubmit,
@@ -49,19 +45,13 @@ const PersonalLogin: NextPageWithLayout<LogininType> = ({
 
   if (userAuth?.value && userAuth.isSuccess) {
     return (
-      <TokenComp
-        csrfToken={csrfToken}
-        query={query}
-        userId={userAuth?.value as unknown as string}
-      />
+      <TokenComp query={query} userId={userAuth?.value as unknown as string} />
     );
   }
   return (
     <>
       <PageHead title="Staff Login" />
       <form className="gap-7" onSubmit={handleSubmit(submitLoginRequest)}>
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
         <div className="space-y-4">
           <CustomInput
             {...register("userName", { required: true })}
