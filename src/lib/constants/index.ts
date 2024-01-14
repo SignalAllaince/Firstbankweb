@@ -19,7 +19,8 @@ export const ENDPOINTS = {
   ADD_ITEM_TO_CART: `account/cart/add-item`,
   UPDATE_CART_ITEM_QUANTITY: "account/cart/update-item-quantity",
   CART_VALIDATION_SELECTION: "account/cart/validate-selection",
-  DELETE_CART_ITEM: (itemId: number) => `account/cart/remove-item?id=${itemId}`,
+  DELETE_CART_ITEM: (itemId: number) =>
+    `account/cart/remove-item?productId=${itemId}`,
   CLEAR_CART: `account/cart/clear`,
 
   // Category Endpoint
