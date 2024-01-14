@@ -27,10 +27,11 @@ const DetailedSingleOrderPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
   const getOrder = useGetOrderById(props?.query?.orderId as string);
+  const title = `Order ${props?.query?.orderId}`;
 
   return (
     <>
-      <PageHead title={`Order ${props?.query?.orderId}`} />
+      <PageHead title={title} />
       <AnimatePresence>
         <IfElse
           ifOn={!getOrder.isLoading && !!getOrder?.value}

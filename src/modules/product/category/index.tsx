@@ -50,14 +50,12 @@ const CategoryPage: NextPageWithLayout<
   });
 
   const changeSortHandler = (value: string) => setSortValue(value);
-
+  const title = stringifyCategory(
+    (props?.query?.categoryName as string) ?? "Category"
+  );
   return (
     <div className="">
-      <PageHead
-        title={stringifyCategory(
-          (props?.query?.categoryName as string) ?? "Category"
-        )}
-      />
+      <PageHead title={title} />
       <IfElse
         ifOn={!categoryProducts.isLoading && !!categoryProducts?.value}
         ifOnElse={categoryProducts.isLoading && !categoryProducts?.value}

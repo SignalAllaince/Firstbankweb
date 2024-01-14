@@ -1,5 +1,6 @@
 import Button from "@/components/button";
 import BlurImage from "@/components/image";
+import { useCheckout } from "@/lib/context/checkout-context";
 import { motion } from "framer-motion";
 import Modal from "..";
 import errorImg from "../../../../public/images/failed.svg";
@@ -17,7 +18,7 @@ function PaymentModal({
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
       <motion.div className="space-y-4 py-6 md:px-5" layout>
-        {!pass ? <SuccessComp /> : <ErrorComp />}
+        {pass ? <SuccessComp /> : <ErrorComp />}
       </motion.div>
     </Modal>
   );
@@ -39,6 +40,8 @@ function ErrorComp() {
 }
 
 function SuccessComp() {
+  const { checkoutDetails } = useCheckout();
+
   return (
     <div className="text-md mx-auto max-w-md space-y-6 text-center font-light">
       <div className="mx-auto grid max-w-[100px] place-items-center">
@@ -48,7 +51,7 @@ function SuccessComp() {
         <p className="text-lg">Payment successful!</p>
       </div>
       <div>
-        <p>Your order with Order number: FBBS-209323827</p>
+        <p>Your order with Order number: {checkoutDetails.orderId}</p>
         <p> has been successfully submitted.</p>
       </div>
       <div className="pt-10">
