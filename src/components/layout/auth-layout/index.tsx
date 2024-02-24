@@ -1,6 +1,5 @@
 import { Rubik } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import logoImg from "../../../../public/images/logo-blue.svg";
 import Footer from "../../footer";
@@ -36,7 +35,7 @@ function AuthLayout({
             <Image src={logoImg} alt="first bank logo" />
           </div>
           <Heading className="text-white" size="h3" as="h3">
-            Brandshop
+            MyBrandShop
           </Heading>
           <div className="w-full bg-transparent py-8 text-white sm:bg-white sm:text-brand-darkest">
             <div className="mx-auto w-full px-6 sm:px-8 lg:max-w-md lg:px-0">
@@ -50,15 +49,6 @@ function AuthLayout({
               </div>
 
               <div className="flex-1 pb-4 pt-6 sm:pt-8">{children}</div>
-
-              <div className="flex justify-center">
-                <Link
-                  href={section[authType]?.linkHref}
-                  className="text-sm underline underline-offset-4"
-                >
-                  {section[authType]?.linkText}
-                </Link>
-              </div>
             </div>
           </div>
         </div>
