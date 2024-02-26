@@ -156,7 +156,7 @@ const CartPageSection = ({
                                       onCartRefetch={refetchCartDetails}
                                       isLoading={isRefetching}
                                       name={item.productName}
-                                      productId={item.productId}
+                                      productId={item.id}
                                     />
                                   </motion.div>
                                 ))}

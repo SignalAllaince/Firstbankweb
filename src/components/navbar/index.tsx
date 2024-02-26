@@ -9,7 +9,6 @@ import {
   HeartIcon,
   HomeModernIcon,
   MagnifyingGlassIcon,
-  PhoneIcon,
   ShoppingCartIcon,
   UserCircleIcon,
   WalletIcon,
@@ -83,22 +82,13 @@ function Navbar() {
                 </MenuButton>
                 <MenuItems menuClasses="-right-24 bg-white divide-y divide-gray-100 mt-[18px] z-30">
                   <MenuItem
-                    href="mailto:help@firstbankltd.com"
+                    href="mailto:mybrandshop@firstbanknigeria.com"
                     // @ts-expect-error
                     target="_blank"
                     rel="noopener noreferrer"
                     leftIcon={<Icon IconComp={EnvelopeIcon} />}
                   >
                     Email us
-                  </MenuItem>
-                  <MenuItem
-                    href="tel:+234800000000"
-                    // @ts-expect-error
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    leftIcon={<Icon IconComp={PhoneIcon} />}
-                  >
-                    Call 0800000000
                   </MenuItem>
                 </MenuItems>
               </Menu>

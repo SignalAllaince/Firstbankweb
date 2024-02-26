@@ -22,7 +22,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   const bgColor = hasError ? "bg-red-100" : props.bg ?? "bg-brand-lightest";
   const borderColor = hasError
     ? "border-red-400"
-    : props.borderColor ?? "border-transparent";
+    : props.borderColor ?? "border-gray-200";
 
   return (
     <div

@@ -9,7 +9,7 @@ const inter = Rubik({ subsets: ["cyrillic"], weight: ["300"] });
 
 const section = {
   personal: {
-    header: "Staff/Personal Login",
+    header: "Personal Login",
     linkText: "Login with Branch profile",
     linkHref: "/login/branch",
   },

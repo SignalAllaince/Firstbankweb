@@ -12,7 +12,7 @@ function Footer() {
         <div className="space-y-6">
           <div className="flex gap-4">
             <a
-              href="mailto:help@firstbankltd.com"
+              href="mybrandshop@firstbanknigeria.com"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"

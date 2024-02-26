@@ -38,7 +38,7 @@ function StaffDetails({
           </span>
           <p className="text-sm font-light">
             By ticking, you are confirming that you have read understood and
-            agree with BrandShop’s terms and conditions
+            agree with BrandShop&apos;s terms and conditions
           </p>
         </div>
       </div>
