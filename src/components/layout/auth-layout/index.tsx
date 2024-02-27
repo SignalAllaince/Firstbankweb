@@ -1,7 +1,7 @@
 import { Rubik } from "next/font/google";
 import Image from "next/image";
 import React from "react";
-import logoImg from "../../../../public/images/logo-blue.svg";
+import logoImg from "../../../../public/images/t_fb_white.png";
 import Footer from "../../footer";
 import Heading from "../../heading";
 
@@ -30,7 +30,7 @@ function AuthLayout({
   return (
     <div className={`${inter.className} flex min-h-screen flex-col`}>
       <div className="custom-bg flex flex-1 items-center justify-center  py-10">
-        <div className="-mt-10 flex w-full max-w-xl flex-1 flex-col items-center space-y-4 sm:mt-0">
+        <div className="-mt-10 flex w-full max-w-xl flex-1 flex-col items-center space-y-10 sm:mt-0">
           <div className="max-w-[180px]">
             <Image src={logoImg} alt="first bank logo" />
           </div>
